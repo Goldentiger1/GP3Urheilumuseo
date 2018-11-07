@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singelton<AudioManager>
 {
     private AudioMixer audioMixer;
     private AudioClip[] musics;

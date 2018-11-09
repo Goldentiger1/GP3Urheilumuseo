@@ -4,12 +4,42 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Loop
+    100004: TestHoop
+    100006: Torus.001
+    100008: Hoop
+    100010: Torus.002
     400000: //RootNode
+    400002: Loop
+    400004: TestHoop
+    400006: Torus.001
+    400008: Hoop
+    400010: Torus.002
     2100000: Material
     2300000: //RootNode
+    2300002: Loop
+    2300004: TestHoop
+    2300006: Torus.001
+    2300008: Hoop
+    2300010: Torus.002
     3300000: //RootNode
+    3300002: Loop
+    3300004: TestHoop
+    3300006: Torus.001
+    3300008: Hoop
+    3300010: Torus.002
     4300000: Cube
+    4300002: TestHoop
+    4300004: Loop
+    4300006: Torus.001
+    4300008: Hoop
+    4300010: Torus.002
     6400000: //RootNode
+    6400002: Loop
+    6400004: TestHoop
+    6400006: Torus.001
+    6400008: Hoop
+    6400010: Torus.002
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -41,7 +71,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 1
     importVisibility: 1

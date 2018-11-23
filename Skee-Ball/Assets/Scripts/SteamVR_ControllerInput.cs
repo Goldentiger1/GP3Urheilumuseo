@@ -20,33 +20,40 @@ public class SteamVR_ControllerInput : MonoBehaviour
 
     FixedJoint joint;
 
-    /*
-
-
     void Awake() {
-        followedObj = GetComponent<SteamVR_Behaviour_Pose>();
+        controllerInput = GetComponent<SteamVR_Behaviour_Pose>();
     }
 
-    void OnTriggerEnter(Collider triggerCol) {
-        if (!triggerCol.GetComponent<Rigidbody>()) {
+    void OnTriggerEnter(Collider trigger) {
+        if (!trigger.GetComponent<Rigidbody>()) {
             return;
         }
-        collidingObj = triggerCol.gameObject;        
+        interactableRig = trigger.GetComponent<Rigidbody>();
     }
-    void OnTriggerExit(Collider triggerCol) {
-        collidingObj = null;
+
+    private void OnTriggerExit(Collider trigger) {
+        interactableRig = null;
     }
 
     void FixedUpdate() {
-        if(joint == null && grabObj.GetStateDown(followedObj.inputSource)) {
-            // Tähän if(collidingObj){
-            interactableObj.transform.position = controlAttachPoint.transform.position;
-            joint = interactableObj.AddComponent<FixedJoint>();
-            joint.connectedBody = controlAttachPoint;
+        if(joint == null && grabObj.GetStateDown(controllerInput.inputSource)){
+            if (interactableRig) {
+                interactableObj = interactableRig.GetComponent<GameObject>();
+                interactableObj.transform.position = controllerAttachPoint.transform.position;
+                joint = interactableObj.AddComponent<FixedJoint>();
+                joint.connectedBody = controllerAttachPoint;
+            }
         }
-        else if(joint != null && grabObj.GetStateUp(followedObj.inputSource)) {
-            // Tähän if(ObjectinHand){
-            var tempRigidbody = joint.GetComponent<Rigidbody>();
+        else if(joint != null && grabObj.GetStateUp(controllerInput.inputSource)) {
+            if (interactableObj) {
+
+            }
+        }
+    }
+
+
+    /*
+    var tempRigidbody = joint.GetComponent<Rigidbody>();
             Object.DestroyImmediate(joint);
             joint = null;
 

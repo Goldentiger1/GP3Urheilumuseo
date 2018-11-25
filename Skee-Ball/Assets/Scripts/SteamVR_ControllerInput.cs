@@ -46,6 +46,10 @@ public class SteamVR_ControllerInput : MonoBehaviour
         }
         else if(joint != null && grabObj.GetStateUp(controllerInput.inputSource)) {
             if (interactableObj) {
+                interactableRig = joint.GetComponent<Rigidbody>();
+                Object.DestroyImmediate(joint);
+                interactableObj = null;
+                joint = null;
 
             }
         }
@@ -53,11 +57,7 @@ public class SteamVR_ControllerInput : MonoBehaviour
 
 
     /*
-    var tempRigidbody = joint.GetComponent<Rigidbody>();
-            Object.DestroyImmediate(joint);
-            joint = null;
-
-            var origin = followedObj.origin ? followedObj.origin : followedObj.transform.parent;
+    var origin = followedObj.origin ? followedObj.origin : followedObj.transform.parent;
 
             if(origin != null) {
                 tempRigidbody.velocity = origin.TransformVector(followedObj.GetVelocity());

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using Valve.VR;
 
-public class SteamVR_ControllerInput : MonoBehaviour
-{
+public class SteamVR_ControllerInput : MonoBehaviour {
     [SteamVR_DefaultAction("Interact")]
     public SteamVR_Action_Boolean grabObj;
 
@@ -36,39 +35,31 @@ public class SteamVR_ControllerInput : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if(joint == null && grabObj.GetStateDown(controllerInput.inputSource)){
+        if (joint == null && grabObj.GetStateDown(controllerInput.inputSource)) {
             if (interactableRig) {
                 interactableObj = interactableRig.GetComponent<GameObject>();
                 interactableObj.transform.position = controllerAttachPoint.transform.position;
                 joint = interactableObj.AddComponent<FixedJoint>();
                 joint.connectedBody = controllerAttachPoint;
             }
-        }
-        else if(joint != null && grabObj.GetStateUp(controllerInput.inputSource)) {
+        } else if (joint != null && grabObj.GetStateUp(controllerInput.inputSource)) {
             if (interactableObj) {
                 interactableRig = joint.GetComponent<Rigidbody>();
                 Object.DestroyImmediate(joint);
-                interactableObj = null;
                 joint = null;
 
+                var origin = controllerInput.origin ? controllerInput.origin : controllerInput.transform.parent;
+
+                if (origin != null) {
+                    interactableRig.velocity = origin.TransformVector(controllerInput.GetVelocity());
+                    interactableRig.angularVelocity = origin.TransformVector(controllerInput.GetAngularVelocity());
+                } else {
+                    interactableRig.velocity = controllerInput.GetVelocity();
+                    interactableRig.angularVelocity = controllerInput.GetAngularVelocity();
+                }
+                interactableRig.maxAngularVelocity = interactableRig.angularVelocity.magnitude;
             }
+            interactableObj = null;
         }
     }
-
-
-    /*
-    var origin = followedObj.origin ? followedObj.origin : followedObj.transform.parent;
-
-            if(origin != null) {
-                tempRigidbody.velocity = origin.TransformVector(followedObj.GetVelocity());
-                tempRigidbody.angularVelocity = origin.TransformVector(followedObj.GetAngularVelocity());
-            }
-            else {
-                tempRigidbody.velocity = followedObj.GetVelocity();
-                tempRigidbody.angularVelocity = followedObj.GetAngularVelocity();
-            }
-            tempRigidbody.maxAngularVelocity = tempRigidbody.angularVelocity.magnitude;
-        }
-    }
-    */
 }

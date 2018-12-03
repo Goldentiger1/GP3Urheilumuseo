@@ -9,6 +9,16 @@ public class Basket : MonoBehaviour {
 
     void Start() {
         hoop = GameObject.Find("Basketball hoop");
+    }
+    void OnTriggerEnter(Collider other) {
+        if (!other.GetComponent<Rigidbody>()) {
+            return;
+        }
+        basketball = other.gameObject;
+    }
+
+    void OnTriggerExit(Collider other) {
         
     }
+
 }

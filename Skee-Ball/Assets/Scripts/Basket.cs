@@ -4,26 +4,21 @@ using UnityEngine;
 
 public class Basket : MonoBehaviour {
 
-    public GameObject hoop;
     public GameObject basketball;
     public int points;
+    public int highScore;
 
-    void Start() {
-        hoop = GameObject.Find("Basketball hoop");
-    }
-    void OnTriggerEnter(Collider other) {
-        if (!other.GetComponent<Rigidbody>()) {
+    public void OnTriggerEnter(Collider other) {
+        if (other.gameObject.GetComponent<Rigidbody>()) {
+            basketball = other.gameObject;
+        }else if (!other.gameObject.GetComponent<Rigidbody>()) {
             return;
         }
-        basketball = other.gameObject;
-        scoreAdd(points);
     }
 
-    void OnTriggerExit(Collider other) {
-        basketball = null;
-    }
-
-    public void scoreAdd(int score) {
-        score++;
+    void Update() {
+        if(basketball != null) {
+            points++;
+        }
     }
 }

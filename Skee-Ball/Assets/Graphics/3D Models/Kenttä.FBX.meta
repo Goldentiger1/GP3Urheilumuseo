@@ -43,6 +43,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Mainos
+    second: {fileID: 2100000, guid: ce766962f17ebef4799a4353a5861fc1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Standi
     second: {fileID: 2100000, guid: f19ca4f163a9ea4489b8a677a34c408d, type: 2}
   materials:

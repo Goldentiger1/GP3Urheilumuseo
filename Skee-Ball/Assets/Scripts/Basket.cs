@@ -6,6 +6,7 @@ public class Basket : MonoBehaviour {
 
     public GameObject hoop;
     public GameObject basketball;
+    public int points;
 
     void Start() {
         hoop = GameObject.Find("Basketball hoop");
@@ -15,10 +16,14 @@ public class Basket : MonoBehaviour {
             return;
         }
         basketball = other.gameObject;
+        scoreAdd(points);
     }
 
     void OnTriggerExit(Collider other) {
-        
+        basketball = null;
     }
 
+    public void scoreAdd(int score) {
+        score++;
+    }
 }

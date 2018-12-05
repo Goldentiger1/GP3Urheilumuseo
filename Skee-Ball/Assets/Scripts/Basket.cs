@@ -11,13 +11,17 @@ public class Basket : MonoBehaviour {
     public void OnTriggerEnter(Collider other) {
         if (other.gameObject.GetComponent<Rigidbody>()) {
             basketball = other.gameObject;
-        }else if (!other.gameObject.GetComponent<Rigidbody>()) {
+        } else if (!other.gameObject.GetComponent<Rigidbody>()) {
             return;
         }
     }
 
+    public void OnTriggerExit(Collider other) {
+        basketball = null;
+    }
+
     void Update() {
-        if(basketball != null) {
+        if (basketball != null) {
             points++;
         }
     }

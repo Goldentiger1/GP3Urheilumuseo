@@ -198,7 +198,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 487630057}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &521066032
+--- !u!1001 &517694028
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -236,116 +236,6 @@ Prefab:
     - target: {fileID: 4973656685066680, guid: 4f4c9f980e741a44385c0f11893defa5, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114982678808770854, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: attachmentOffset
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114990444483751080, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: attachmentOffset
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114299129847044704, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: attachmentOffset
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114027323375005436, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: attachmentOffset
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114624654294773136, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: attachmentOffset
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114254970537288992, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: attachmentOffset
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114808254724042890, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: attachmentOffset
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114436214269610796, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: attachmentOffset
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114098487935183848, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: attachmentOffset
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114189406916095850, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: attachmentOffset
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114858283173544610, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: handFollowTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114552815615415444, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: handFollowTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114067446402216614, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: handFollowTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114460779995857300, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: handFollowTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114172540077913382, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: handFollowTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114334595829314002, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: handFollowTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114457824173391458, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: handFollowTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114070093903509688, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: handFollowTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114541033834147370, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: handFollowTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114195463066052732, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: handFollowTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114673917906874288, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: attachmentOffset
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114917557608225838, guid: 4f4c9f980e741a44385c0f11893defa5,
-        type: 2}
-      propertyPath: handFollowTransform
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1727255665916320, guid: 4f4c9f980e741a44385c0f11893defa5, type: 2}
       propertyPath: m_Name

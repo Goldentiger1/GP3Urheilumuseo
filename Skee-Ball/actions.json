@@ -1,45 +1,6 @@
 {
   "actions": [
     {
-      "name": "/actions/default/in/InteractUI",
-      "type": "boolean"
-    },
-    {
-      "name": "/actions/default/in/Teleport",
-      "type": "boolean"
-    },
-    {
-      "name": "/actions/default/in/GrabPinch",
-      "type": "boolean"
-    },
-    {
-      "name": "/actions/default/in/GrabGrip",
-      "type": "boolean"
-    },
-    {
-      "name": "/actions/default/in/Pose",
-      "type": "pose"
-    },
-    {
-      "name": "/actions/default/in/SkeletonLeftHand",
-      "type": "skeleton",
-      "skeleton": "/skeleton/hand/left"
-    },
-    {
-      "name": "/actions/default/in/SkeletonRightHand",
-      "type": "skeleton",
-      "skeleton": "/skeleton/hand/right"
-    },
-    {
-      "name": "/actions/default/in/Squeeze",
-      "type": "vector1",
-      "requirement": "optional"
-    },
-    {
-      "name": "/actions/default/out/Haptic",
-      "type": "vibration"
-    },
-    {
       "name": "/actions/platformer/in/Move",
       "type": "vector2"
     },
@@ -62,13 +23,57 @@
     {
       "name": "/actions/buggy/in/Reset",
       "type": "boolean"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/leftTrigger",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/rightTrigger",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/leftMenuButton",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/rightMenuButton",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/leftDpad",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/rightDpad",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/leftSystemButton",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/rightSystemButton",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/leftGrip",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/rightGrip",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/Buttons_Input/out/leftVibration",
+      "type": "vibration"
+    },
+    {
+      "name": "/actions/Buttons_Input/out/rightVibration",
+      "type": "vibration"
     }
   ],
   "action_sets": [
-    {
-      "name": "/actions/default",
-      "usage": "single"
-    },
     {
       "name": "/actions/platformer",
       "usage": "single"
@@ -76,6 +81,10 @@
     {
       "name": "/actions/buggy",
       "usage": "single"
+    },
+    {
+      "name": "/actions/Buttons_Input",
+      "usage": "leftright"
     }
   ],
   "default_bindings": [
@@ -112,7 +121,20 @@
       "/actions/buggybuddy/in/Brake": "Brake",
       "/actions/buggybuddy/in/Reset": "Reset",
       "/actions/platformer/in/Move": "Move",
-      "/actions/platformer/in/Jump": "Jump"
+      "/actions/platformer/in/Jump": "Jump",
+      "/actions/Buttons_Input/in/leftTrigger": "Left hand controllers Trigger Button",
+      "/actions/Buttons_Input/in/rightTrigger": "Right hand controllers Trigger Button",
+      "/actions/Buttons_Input/in/L.Trigger": "Left hands controller trigger",
+      "/actions/Buttons_Input/in/leftMenuButton": "Left hand controllers Menu Button",
+      "/actions/Buttons_Input/in/rightMenuButton": "Right hand controllers Menu Button",
+      "/actions/Buttons_Input/in/leftDpad": "Left hand controllers Trackpad",
+      "/actions/Buttons_Input/in/rightDpad": "Right hand controllers Trackpad",
+      "/actions/Buttons_Input/in/leftSystemButton": "left hand controlles System Button",
+      "/actions/Buttons_Input/in/rightSystemButton": "Right hand controllers System Button",
+      "/actions/Buttons_Input/in/leftGrip": "Left hand controllers Grip Button",
+      "/actions/Buttons_Input/in/rightGrip": "Right hand controllers Grip Button",
+      "/actions/Buttons_Input/out/leftVibration": "Left hand controllers Vibration",
+      "/actions/Buttons_Input/out/rightVibration": "Right hand controllers Vibration"
     }
   ]
 }

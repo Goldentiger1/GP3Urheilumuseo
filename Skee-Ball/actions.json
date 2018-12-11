@@ -41,19 +41,11 @@
       "type": "boolean"
     },
     {
-      "name": "/actions/Buttons_Input/in/leftDpad",
+      "name": "/actions/Buttons_Input/in/leftDpadClick",
       "type": "boolean"
     },
     {
-      "name": "/actions/Buttons_Input/in/rightDpad",
-      "type": "boolean"
-    },
-    {
-      "name": "/actions/Buttons_Input/in/leftSystemButton",
-      "type": "boolean"
-    },
-    {
-      "name": "/actions/Buttons_Input/in/rightSystemButton",
+      "name": "/actions/Buttons_Input/in/rightDpadClick",
       "type": "boolean"
     },
     {
@@ -63,6 +55,40 @@
     {
       "name": "/actions/Buttons_Input/in/rightGrip",
       "type": "boolean"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/leftController",
+      "type": "skeleton",
+      "skeleton": "/skeleton/hand/left"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/rightController",
+      "type": "skeleton",
+      "skeleton": "/skeleton/hand/right"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/leftTriggerAnalog",
+      "type": "vector1"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/rightTriggerAnalog",
+      "type": "vector1"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/leftDpadTouch",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/rightDpadTouch",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/leftDpadPosition",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/rightDpadPosition",
+      "type": "vector2"
     },
     {
       "name": "/actions/Buttons_Input/out/leftVibration",
@@ -134,7 +160,17 @@
       "/actions/Buttons_Input/in/leftGrip": "Left hand controllers Grip Button",
       "/actions/Buttons_Input/in/rightGrip": "Right hand controllers Grip Button",
       "/actions/Buttons_Input/out/leftVibration": "Left hand controllers Vibration",
-      "/actions/Buttons_Input/out/rightVibration": "Right hand controllers Vibration"
+      "/actions/Buttons_Input/out/rightVibration": "Right hand controllers Vibration",
+      "/actions/Buttons_Input/in/leftController": "Left hand controllers Skeleton",
+      "/actions/Buttons_Input/in/rightController": "Right hand controllers Skeleton",
+      "/actions/Buttons_Input/in/leftTriggerAnalog": "Left hand controllers Analog Trigger",
+      "/actions/Buttons_Input/in/rightTriggerAnalog": "Right hand controllers Analog Trigger",
+      "/actions/Buttons_Input/in/leftDpadClick": "Left hand controllers Dpad Click",
+      "/actions/Buttons_Input/in/rightDpadClick": "Right hand controllers Dpad Click",
+      "/actions/Buttons_Input/in/leftDpadTouch": "Left hand controllers Dpad Touch",
+      "/actions/Buttons_Input/in/rightDpadTouch": "Right hand controllers Dpad Touch",
+      "/actions/Buttons_Input/in/leftDpadPosition": "Left hand controllers Dpad Position",
+      "/actions/Buttons_Input/in/rightDpadPosition": "Right hand controllers Dpad Position"
     }
   ]
 }

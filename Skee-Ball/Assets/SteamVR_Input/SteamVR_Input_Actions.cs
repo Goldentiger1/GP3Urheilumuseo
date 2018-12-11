@@ -37,17 +37,29 @@ namespace Valve.VR
         
         public static SteamVR_Action_Boolean __actions_Buttons_Input_in_rightMenuButton;
         
-        public static SteamVR_Action_Boolean __actions_Buttons_Input_in_leftDpad;
+        public static SteamVR_Action_Boolean __actions_Buttons_Input_in_leftDpadClick;
         
-        public static SteamVR_Action_Boolean __actions_Buttons_Input_in_rightDpad;
-        
-        public static SteamVR_Action_Boolean __actions_Buttons_Input_in_leftSystemButton;
-        
-        public static SteamVR_Action_Boolean __actions_Buttons_Input_in_rightSystemButton;
+        public static SteamVR_Action_Boolean __actions_Buttons_Input_in_rightDpadClick;
         
         public static SteamVR_Action_Boolean __actions_Buttons_Input_in_leftGrip;
         
         public static SteamVR_Action_Boolean __actions_Buttons_Input_in_rightGrip;
+        
+        public static SteamVR_Action_Skeleton __actions_Buttons_Input_in_leftController;
+        
+        public static SteamVR_Action_Skeleton __actions_Buttons_Input_in_rightController;
+        
+        public static SteamVR_Action_Single __actions_Buttons_Input_in_leftTriggerAnalog;
+        
+        public static SteamVR_Action_Single __actions_Buttons_Input_in_rightTriggerAnalog;
+        
+        public static SteamVR_Action_Boolean __actions_Buttons_Input_in_leftDpadTouch;
+        
+        public static SteamVR_Action_Boolean __actions_Buttons_Input_in_rightDpadTouch;
+        
+        public static SteamVR_Action_Vector2 __actions_Buttons_Input_in_leftDpadPosition;
+        
+        public static SteamVR_Action_Vector2 __actions_Buttons_Input_in_rightDpadPosition;
         
         public static SteamVR_Action_Vibration __actions_Buttons_Input_out_leftVibration;
         
@@ -65,12 +77,18 @@ namespace Valve.VR
             SteamVR_Input.__actions_Buttons_Input_in_rightTrigger.Initialize();
             SteamVR_Input.__actions_Buttons_Input_in_leftMenuButton.Initialize();
             SteamVR_Input.__actions_Buttons_Input_in_rightMenuButton.Initialize();
-            SteamVR_Input.__actions_Buttons_Input_in_leftDpad.Initialize();
-            SteamVR_Input.__actions_Buttons_Input_in_rightDpad.Initialize();
-            SteamVR_Input.__actions_Buttons_Input_in_leftSystemButton.Initialize();
-            SteamVR_Input.__actions_Buttons_Input_in_rightSystemButton.Initialize();
+            SteamVR_Input.__actions_Buttons_Input_in_leftDpadClick.Initialize();
+            SteamVR_Input.__actions_Buttons_Input_in_rightDpadClick.Initialize();
             SteamVR_Input.__actions_Buttons_Input_in_leftGrip.Initialize();
             SteamVR_Input.__actions_Buttons_Input_in_rightGrip.Initialize();
+            SteamVR_Input.__actions_Buttons_Input_in_leftController.Initialize();
+            SteamVR_Input.__actions_Buttons_Input_in_rightController.Initialize();
+            SteamVR_Input.__actions_Buttons_Input_in_leftTriggerAnalog.Initialize();
+            SteamVR_Input.__actions_Buttons_Input_in_rightTriggerAnalog.Initialize();
+            SteamVR_Input.__actions_Buttons_Input_in_leftDpadTouch.Initialize();
+            SteamVR_Input.__actions_Buttons_Input_in_rightDpadTouch.Initialize();
+            SteamVR_Input.__actions_Buttons_Input_in_leftDpadPosition.Initialize();
+            SteamVR_Input.__actions_Buttons_Input_in_rightDpadPosition.Initialize();
             SteamVR_Input.__actions_Buttons_Input_out_leftVibration.Initialize();
             SteamVR_Input.__actions_Buttons_Input_out_rightVibration.Initialize();
         }
@@ -87,12 +105,18 @@ namespace Valve.VR
             Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightTrigger = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_rightTrigger")));
             Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftMenuButton = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_leftMenuButton")));
             Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightMenuButton = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_rightMenuButton")));
-            Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpad = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_leftDpad")));
-            Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpad = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_rightDpad")));
-            Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftSystemButton = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_leftSystemButton")));
-            Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightSystemButton = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_rightSystemButton")));
+            Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadClick = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_leftDpadClick")));
+            Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadClick = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_rightDpadClick")));
             Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftGrip = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_leftGrip")));
             Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightGrip = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_rightGrip")));
+            Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftController = ((SteamVR_Action_Skeleton)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_leftController")));
+            Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightController = ((SteamVR_Action_Skeleton)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_rightController")));
+            Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftTriggerAnalog = ((SteamVR_Action_Single)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_leftTriggerAnalog")));
+            Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightTriggerAnalog = ((SteamVR_Action_Single)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_rightTriggerAnalog")));
+            Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_leftDpadTouch")));
+            Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadTouch = ((SteamVR_Action_Boolean)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_rightDpadTouch")));
+            Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_leftDpadPosition")));
+            Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadPosition = ((SteamVR_Action_Vector2)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_in_rightDpadPosition")));
             Valve.VR.SteamVR_Input.__actions_Buttons_Input_out_leftVibration = ((SteamVR_Action_Vibration)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_out_leftVibration")));
             Valve.VR.SteamVR_Input.__actions_Buttons_Input_out_rightVibration = ((SteamVR_Action_Vibration)(SteamVR_Input_References.GetAction("__actions_Buttons_Input_out_rightVibration")));
             Valve.VR.SteamVR_Input.actions = new Valve.VR.SteamVR_Action[]
@@ -107,12 +131,18 @@ namespace Valve.VR
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightTrigger,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftMenuButton,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightMenuButton,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpad,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpad,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftSystemButton,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightSystemButton,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadClick,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadClick,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftGrip,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightGrip,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftController,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightController,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftTriggerAnalog,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightTriggerAnalog,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadTouch,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadTouch,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadPosition,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadPosition,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_out_leftVibration,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_out_rightVibration};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.SteamVR_Action_In[]
@@ -127,12 +157,18 @@ namespace Valve.VR
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightTrigger,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftMenuButton,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightMenuButton,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpad,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpad,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftSystemButton,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightSystemButton,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadClick,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadClick,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftGrip,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightGrip};
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightGrip,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftController,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightController,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftTriggerAnalog,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightTriggerAnalog,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadTouch,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadTouch,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadPosition,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadPosition};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.SteamVR_Action_Out[]
             {
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_out_leftVibration,
@@ -151,21 +187,28 @@ namespace Valve.VR
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightTrigger,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftMenuButton,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightMenuButton,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpad,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpad,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftSystemButton,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightSystemButton,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadClick,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadClick,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftGrip,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightGrip};
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightGrip,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadTouch,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadTouch};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[]
             {
-                    Valve.VR.SteamVR_Input.__actions_buggy_in_Throttle};
+                    Valve.VR.SteamVR_Input.__actions_buggy_in_Throttle,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftTriggerAnalog,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightTriggerAnalog};
             Valve.VR.SteamVR_Input.actionsVector2 = new Valve.VR.SteamVR_Action_Vector2[]
             {
                     Valve.VR.SteamVR_Input.__actions_platformer_in_Move,
-                    Valve.VR.SteamVR_Input.__actions_buggy_in_Steering};
+                    Valve.VR.SteamVR_Input.__actions_buggy_in_Steering,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadPosition,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadPosition};
             Valve.VR.SteamVR_Input.actionsVector3 = new Valve.VR.SteamVR_Action_Vector3[0];
-            Valve.VR.SteamVR_Input.actionsSkeleton = new Valve.VR.SteamVR_Action_Skeleton[0];
+            Valve.VR.SteamVR_Input.actionsSkeleton = new Valve.VR.SteamVR_Action_Skeleton[]
+            {
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftController,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightController};
             Valve.VR.SteamVR_Input.actionsNonPoseNonSkeletonIn = new Valve.VR.SteamVR_Action_In[]
             {
                     Valve.VR.SteamVR_Input.__actions_platformer_in_Move,
@@ -178,12 +221,16 @@ namespace Valve.VR
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightTrigger,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftMenuButton,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightMenuButton,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpad,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpad,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftSystemButton,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightSystemButton,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadClick,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadClick,
                     Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftGrip,
-                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightGrip};
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightGrip,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftTriggerAnalog,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightTriggerAnalog,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadTouch,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadTouch,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_leftDpadPosition,
+                    Valve.VR.SteamVR_Input.__actions_Buttons_Input_in_rightDpadPosition};
         }
     }
 }

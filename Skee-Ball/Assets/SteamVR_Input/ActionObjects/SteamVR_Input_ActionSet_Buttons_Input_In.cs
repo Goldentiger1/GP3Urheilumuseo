@@ -25,16 +25,28 @@ namespace Valve.VR
         
         public Valve.VR.SteamVR_Action_Boolean rightMenuButton;
         
-        public Valve.VR.SteamVR_Action_Boolean leftDpad;
+        public Valve.VR.SteamVR_Action_Boolean leftDpadClick;
         
-        public Valve.VR.SteamVR_Action_Boolean rightDpad;
-        
-        public Valve.VR.SteamVR_Action_Boolean leftSystemButton;
-        
-        public Valve.VR.SteamVR_Action_Boolean rightSystemButton;
+        public Valve.VR.SteamVR_Action_Boolean rightDpadClick;
         
         public Valve.VR.SteamVR_Action_Boolean leftGrip;
         
         public Valve.VR.SteamVR_Action_Boolean rightGrip;
+        
+        public Valve.VR.SteamVR_Action_Skeleton leftController;
+        
+        public Valve.VR.SteamVR_Action_Skeleton rightController;
+        
+        public Valve.VR.SteamVR_Action_Single leftTriggerAnalog;
+        
+        public Valve.VR.SteamVR_Action_Single rightTriggerAnalog;
+        
+        public Valve.VR.SteamVR_Action_Boolean leftDpadTouch;
+        
+        public Valve.VR.SteamVR_Action_Boolean rightDpadTouch;
+        
+        public Valve.VR.SteamVR_Action_Vector2 leftDpadPosition;
+        
+        public Valve.VR.SteamVR_Action_Vector2 rightDpadPosition;
     }
 }

@@ -14,4 +14,9 @@ public class SteamVR_ControllerInput : MonoBehaviour {
     public SteamVR_Action_Vector2 dpadPosition;
     public SteamVR_Action_Boolean grip;
     public SteamVR_Action_Out vibration;
+
+    void Start() {
+        if(controller == null) {
+        }
+    }
 }

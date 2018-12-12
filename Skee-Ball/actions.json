@@ -91,6 +91,14 @@
       "type": "vector2"
     },
     {
+      "name": "/actions/Buttons_Input/in/leftPose",
+      "type": "pose"
+    },
+    {
+      "name": "/actions/Buttons_Input/in/rightPose",
+      "type": "pose"
+    },
+    {
       "name": "/actions/Buttons_Input/out/leftVibration",
       "type": "vibration"
     },
@@ -170,7 +178,11 @@
       "/actions/Buttons_Input/in/leftDpadTouch": "Left hand controllers Dpad Touch",
       "/actions/Buttons_Input/in/rightDpadTouch": "Right hand controllers Dpad Touch",
       "/actions/Buttons_Input/in/leftDpadPosition": "Left hand controllers Dpad Position",
-      "/actions/Buttons_Input/in/rightDpadPosition": "Right hand controllers Dpad Position"
+      "/actions/Buttons_Input/in/rightDpadPosition": "Right hand controllers Dpad Position",
+      "/actions/default/in/Move": "Move",
+      "/actions/default/in/Use": "Use",
+      "/actions/Buttons_Input/in/leftPose": "Left hand controllers Pose",
+      "/actions/Buttons_Input/in/rightPose": "Right hand controllers Pose"
     }
   ]
 }

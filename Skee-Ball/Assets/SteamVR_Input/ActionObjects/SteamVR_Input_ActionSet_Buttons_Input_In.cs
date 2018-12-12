@@ -48,5 +48,9 @@ namespace Valve.VR
         public Valve.VR.SteamVR_Action_Vector2 leftDpadPosition;
         
         public Valve.VR.SteamVR_Action_Vector2 rightDpadPosition;
+        
+        public Valve.VR.SteamVR_Action_Pose leftPose;
+        
+        public Valve.VR.SteamVR_Action_Pose rightPose;
     }
 }

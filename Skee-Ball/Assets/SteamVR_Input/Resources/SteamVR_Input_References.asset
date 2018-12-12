@@ -42,6 +42,8 @@ MonoBehaviour:
   - __actions_Buttons_Input_in_rightDpadTouch
   - __actions_Buttons_Input_in_leftDpadPosition
   - __actions_Buttons_Input_in_rightDpadPosition
+  - __actions_Buttons_Input_in_leftPose
+  - __actions_Buttons_Input_in_rightPose
   - __actions_Buttons_Input_out_leftVibration
   - __actions_Buttons_Input_out_rightVibration
   actionObjects:
@@ -67,5 +69,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3a5437829df94154b9bc90516b9be6c3, type: 2}
   - {fileID: 11400000, guid: 55991f254af35fd4398265595a31a055, type: 2}
   - {fileID: 11400000, guid: 0dcca639e88c46a4293bb0d1f4ceb4ec, type: 2}
+  - {fileID: 11400000, guid: c01d7ad4b88210440a22ab68cdf94627, type: 2}
+  - {fileID: 11400000, guid: 43ea2ced80d9a8141a342fb8b1b7db9f, type: 2}
   - {fileID: 11400000, guid: 0bf3ce5f43e8a344a8c99600063ba1c4, type: 2}
   - {fileID: 11400000, guid: 2fcac32b23a072046a78e6dd37f3ae74, type: 2}

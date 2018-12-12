@@ -30,6 +30,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3a5437829df94154b9bc90516b9be6c3, type: 2}
   - {fileID: 11400000, guid: 55991f254af35fd4398265595a31a055, type: 2}
   - {fileID: 11400000, guid: 0dcca639e88c46a4293bb0d1f4ceb4ec, type: 2}
+  - {fileID: 11400000, guid: c01d7ad4b88210440a22ab68cdf94627, type: 2}
+  - {fileID: 11400000, guid: 43ea2ced80d9a8141a342fb8b1b7db9f, type: 2}
   leftTrigger: {fileID: 11400000, guid: 8a285768f0148f24aabcf93dbd72dfd3, type: 2}
   rightTrigger: {fileID: 11400000, guid: 5e49da7c71a97ec4db08e1d387f5bb0b, type: 2}
   leftMenuButton: {fileID: 11400000, guid: 393d6fc13dc552d42b62f9b319f887e4, type: 2}
@@ -46,3 +48,5 @@ MonoBehaviour:
   rightDpadTouch: {fileID: 11400000, guid: 3a5437829df94154b9bc90516b9be6c3, type: 2}
   leftDpadPosition: {fileID: 11400000, guid: 55991f254af35fd4398265595a31a055, type: 2}
   rightDpadPosition: {fileID: 11400000, guid: 0dcca639e88c46a4293bb0d1f4ceb4ec, type: 2}
+  leftPose: {fileID: 11400000, guid: c01d7ad4b88210440a22ab68cdf94627, type: 2}
+  rightPose: {fileID: 11400000, guid: 43ea2ced80d9a8141a342fb8b1b7db9f, type: 2}

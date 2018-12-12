@@ -78,6 +78,20 @@
                "path" : "/user/hand/right/output/haptic"
             }
          ],
+         "poses" : [
+            {
+               "output" : "none",
+               "path" : "/user/hand/right/pose/tip"
+            },
+            {
+               "output" : "/actions/buttons_input/in/leftpose",
+               "path" : "/user/hand/left/pose/base"
+            },
+            {
+               "output" : "/actions/buttons_input/in/rightpose",
+               "path" : "/user/hand/right/pose/base"
+            }
+         ],
          "skeleton" : [
             {
                "output" : "/actions/buttons_input/in/leftcontroller",

@@ -12,64 +12,42 @@ MonoBehaviour:
   m_Name: SteamVR_Input_References
   m_EditorClassIdentifier: 
   actionSetNames:
+  - _default
   - platformer
   - buggy
-  - Buttons_Input
   actionSetObjects:
+  - {fileID: 11400000, guid: 3a81fbf34ba4e9f408fe6fae5f2811b3, type: 2}
   - {fileID: 11400000, guid: 04e45f5c8f32a454091263c3fff73746, type: 2}
   - {fileID: 11400000, guid: 501c24e6b14ee1f4f954d5ad556bc1fd, type: 2}
-  - {fileID: 11400000, guid: 0685f6b209794af4f951e2e5e1088b3e, type: 2}
   actionNames:
+  - __actions_default_in_InteractUI
+  - __actions_default_in_Teleport
+  - __actions_default_in_GrabPinch
+  - __actions_default_in_GrabGrip
+  - __actions_default_in_Pose
+  - __actions_default_in_SkeletonLeftHand
+  - __actions_default_in_SkeletonRightHand
+  - __actions_default_in_Squeeze
+  - __actions_default_out_Haptic
   - __actions_platformer_in_Move
   - __actions_platformer_in_Jump
   - __actions_buggy_in_Steering
   - __actions_buggy_in_Throttle
   - __actions_buggy_in_Brake
   - __actions_buggy_in_Reset
-  - __actions_Buttons_Input_in_leftTrigger
-  - __actions_Buttons_Input_in_rightTrigger
-  - __actions_Buttons_Input_in_leftMenuButton
-  - __actions_Buttons_Input_in_rightMenuButton
-  - __actions_Buttons_Input_in_leftDpadClick
-  - __actions_Buttons_Input_in_rightDpadClick
-  - __actions_Buttons_Input_in_leftGrip
-  - __actions_Buttons_Input_in_rightGrip
-  - __actions_Buttons_Input_in_leftController
-  - __actions_Buttons_Input_in_rightController
-  - __actions_Buttons_Input_in_leftTriggerAnalog
-  - __actions_Buttons_Input_in_rightTriggerAnalog
-  - __actions_Buttons_Input_in_leftDpadTouch
-  - __actions_Buttons_Input_in_rightDpadTouch
-  - __actions_Buttons_Input_in_leftDpadPosition
-  - __actions_Buttons_Input_in_rightDpadPosition
-  - __actions_Buttons_Input_in_leftPose
-  - __actions_Buttons_Input_in_rightPose
-  - __actions_Buttons_Input_out_leftVibration
-  - __actions_Buttons_Input_out_rightVibration
   actionObjects:
+  - {fileID: 11400000, guid: 155213283f8c5934fbf8a08b9850ddb4, type: 2}
+  - {fileID: 11400000, guid: e1c4269b08666504e98b0bdff74c44c2, type: 2}
+  - {fileID: 11400000, guid: 873fdb6014b61fe4eb66e241a05df336, type: 2}
+  - {fileID: 11400000, guid: cdb513e357b15e54d94e4c887cc6a000, type: 2}
+  - {fileID: 11400000, guid: 5bdef4a139e6adb428783ad09c6ad7aa, type: 2}
+  - {fileID: 11400000, guid: 85579b19d071cc3498c601e1708dca49, type: 2}
+  - {fileID: 11400000, guid: baddd9137f54ddb46a5b1150a1bd680f, type: 2}
+  - {fileID: 11400000, guid: 41be52d7dae8c2c4f8446e9a12ffbbd9, type: 2}
+  - {fileID: 11400000, guid: bc86c21ec855e3e4895670c020c5863b, type: 2}
   - {fileID: 11400000, guid: 1e67e98eacbdeb8479c16342b94b1342, type: 2}
   - {fileID: 11400000, guid: d17c9044c99cb4b4ab5d4f82add7f057, type: 2}
   - {fileID: 11400000, guid: 26e7df0d85404c043a5f581aa7fede18, type: 2}
   - {fileID: 11400000, guid: b6ac36878e7c404459884bb85576da96, type: 2}
   - {fileID: 11400000, guid: 3feb91be65ee91f4d823a72e65a66dab, type: 2}
   - {fileID: 11400000, guid: 98e44e46cde9b1f48bde56c9d77c394c, type: 2}
-  - {fileID: 11400000, guid: 8a285768f0148f24aabcf93dbd72dfd3, type: 2}
-  - {fileID: 11400000, guid: 5e49da7c71a97ec4db08e1d387f5bb0b, type: 2}
-  - {fileID: 11400000, guid: 393d6fc13dc552d42b62f9b319f887e4, type: 2}
-  - {fileID: 11400000, guid: 225fb255a0a0d994d9917f5c1c4f5db8, type: 2}
-  - {fileID: 11400000, guid: 827eb4794d2a5b54da6400c1316e314e, type: 2}
-  - {fileID: 11400000, guid: 7f513f33c65c45244997bbe5321f02e7, type: 2}
-  - {fileID: 11400000, guid: 24c6d24d574c98547bac29b49f59d3b4, type: 2}
-  - {fileID: 11400000, guid: 9b8432c3c56998b4abc657614634af91, type: 2}
-  - {fileID: 11400000, guid: 2778fe7f8e1e2ad4fb47dc578d304471, type: 2}
-  - {fileID: 11400000, guid: 99dc83f79a8005c4a9a27cdf960e95e4, type: 2}
-  - {fileID: 11400000, guid: 99bc60894e541a04db36af4730d2bee3, type: 2}
-  - {fileID: 11400000, guid: 90115b011e937414fbb4da557ee6d2aa, type: 2}
-  - {fileID: 11400000, guid: 0fbf9ec551af27143889303b96c5a317, type: 2}
-  - {fileID: 11400000, guid: 3a5437829df94154b9bc90516b9be6c3, type: 2}
-  - {fileID: 11400000, guid: 55991f254af35fd4398265595a31a055, type: 2}
-  - {fileID: 11400000, guid: 0dcca639e88c46a4293bb0d1f4ceb4ec, type: 2}
-  - {fileID: 11400000, guid: c01d7ad4b88210440a22ab68cdf94627, type: 2}
-  - {fileID: 11400000, guid: 43ea2ced80d9a8141a342fb8b1b7db9f, type: 2}
-  - {fileID: 11400000, guid: 0bf3ce5f43e8a344a8c99600063ba1c4, type: 2}
-  - {fileID: 11400000, guid: 2fcac32b23a072046a78e6dd37f3ae74, type: 2}

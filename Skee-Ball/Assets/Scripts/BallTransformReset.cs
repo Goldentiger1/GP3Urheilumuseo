@@ -14,7 +14,7 @@ public class BallTransformReset : MonoBehaviour {
         trigger = this.gameObject.GetComponent<Collider>();
     }
 
-    void OnTriggerStay(Collider other) {
+    void OnTriggerEnter(Collider other) {
         if(other.gameObject != null) {
             return;
         }

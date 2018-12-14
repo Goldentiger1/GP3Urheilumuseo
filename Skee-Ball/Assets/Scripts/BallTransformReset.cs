@@ -15,23 +15,27 @@ public class BallTransformReset : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider other) {
-        if(other.gameObject != null) {
-            return;
-        }
         controller = other.gameObject;
     }
 
     void Update() {
-        if(controller != null) {
+        if (controller != null) {
             time += Time.deltaTime;
-        }if(time >= buttonTime) {
-            foreach(GameObject ball in basketballs) {
-                for(int i = 0; i < ballTransforms.Count; i++) {
-                    ball.transform.position = ballTransforms[i].position;
-                    ball.transform.rotation = ballTransforms[i].rotation;
-                }
-            }
-            time = 0;
+        }
+        if (time >= buttonTime) {
+            ballPos(ballTransforms, basketballs);
+            time -= time;
+            controller = null;
+        }
+    }
+
+    void ballPos(List<Transform> bT, List<GameObject> b) {
+        for (int i = 0; i < b.Count; i++) {
+            //if (b[i].transform != bT[i].transform) {
+            b[i].GetComponent<Rigidbody>().position = bT[i].position;
+                //b[i].transform.position = bT[i].transform.position;
+                
+           // }
         }
     }
 }

@@ -93,7 +93,22 @@ ModelImporter:
     4300026: Chair_004
     4300028: Chair_005
     4300030: Wall_w_windows
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 01 - Default
+    second: {fileID: 2100000, guid: f19ca4f163a9ea4489b8a677a34c408d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #27'
+    second: {fileID: 2100000, guid: 40fc37e4094769e44addc7ca768aa037, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #29'
+    second: {fileID: 2100000, guid: 406981998f1234442a4f2eb50cfe07e1, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

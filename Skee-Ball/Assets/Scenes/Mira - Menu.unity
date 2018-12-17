@@ -147,7 +147,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 3f5766a8b67794141ac19c1a51d27083, type: 2}
+  - {fileID: 2100000, guid: cf52e8597328e9f4da875a25347b58a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -198,11 +198,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: e13ff4cea0e4b49459d3021e776f9b61, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.626
+      value: 19.616
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e13ff4cea0e4b49459d3021e776f9b61, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.69699997
+      value: 0.692
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e13ff4cea0e4b49459d3021e776f9b61, type: 3}
       propertyPath: m_LocalPosition.z
@@ -528,6 +528,14 @@ Prefab:
     - target: {fileID: 400000, guid: 4366412481589a7479d89ffe3b2ff61e, type: 3}
       propertyPath: m_LocalPosition.y
       value: -7.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 4366412481589a7479d89ffe3b2ff61e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 4366412481589a7479d89ffe3b2ff61e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4366412481589a7479d89ffe3b2ff61e, type: 3}

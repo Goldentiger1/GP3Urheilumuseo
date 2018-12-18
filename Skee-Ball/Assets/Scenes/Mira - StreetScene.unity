@@ -609,6 +609,11 @@ Prefab:
       propertyPath: m_BendingStiffness
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 23637843262979978, guid: 3a76798d0676fab4281c8e5b594ab0e3,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1830e6defc21f794199f29882dc4ad88, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a76798d0676fab4281c8e5b594ab0e3, type: 2}
   m_IsPrefabAsset: 0

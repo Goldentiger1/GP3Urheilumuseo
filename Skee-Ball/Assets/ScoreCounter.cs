@@ -5,32 +5,28 @@ using TMPro;
 
 
 public class ScoreCounter : MonoBehaviour {
-    bool trigger1;
-    bool trigger2;
+
     public TextMeshProUGUI uiScoreText;
     public TextMeshProUGUI uiScoreNumber;
+
     int score = 0;
 
-
     private void Update() {
-        if (trigger1 && trigger2) {
-            score += 2;
-            uiScoreNumber.text = "" + score;
+        if (Input.GetKeyDown(KeyCode.U)) {
+            UpdateScore();
         }
     }
 
-    private void OnTriggerStay(CapsuleCollider other) {
-        if (other != null)
-            trigger1 = true;
-        else
-            trigger1 = false;
+    private void OnTriggerEnter(Collider other) {
+        UpdateScore();
     }
 
-    private void OnTriggerEnter(SphereCollider other) {
-        if (other != null)
-            trigger2= true;
+    void UpdateScore() {
+        score += 2;
+        if (score < 10)
+            uiScoreNumber.text = "0" + score;
         else
-            trigger2 = false;
+            uiScoreNumber.text = "" + score;
     }
 
 }

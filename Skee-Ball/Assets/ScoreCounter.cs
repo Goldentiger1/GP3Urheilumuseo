@@ -9,6 +9,10 @@ public class ScoreCounter : MonoBehaviour {
     public TextMeshProUGUI uiScoreText;
     public TextMeshProUGUI uiScoreNumber;
     public float SceneChangeTimer = 10f;
+    public Vector3 throwStart;
+    public float throwDistance;
+    public float throwDistanceRequiredForThreePoints = 7f;
+    private float sceneChangeWaitTime = 2f;
 
     int score = 0;
 
@@ -17,6 +21,7 @@ public class ScoreCounter : MonoBehaviour {
         //    UpdateScore();
         //}
 
+        SceneChangeTimer -= Time.deltaTime;
         if(SceneChangeTimer <= 0) {
             ChangeScene();
         }
@@ -28,15 +33,23 @@ public class ScoreCounter : MonoBehaviour {
     }
 
     void UpdateScore() {
-        score += 2;
-        if (score < 10) {
-            uiScoreNumber.text = "0" + score;
+        
+        throwDistance = Vector3.Distance(throwStart, transform.position);
+        if (throwDistance > throwDistanceRequiredForThreePoints) {
+            score += 3;
+        } else {
+            score += 2;
         }
-        else {
+
+        if (score < 10) {
+
+            uiScoreNumber.text = "0" + score;
+        } else {
             uiScoreNumber.text = "" + score;
-            ChangeScene();
-        }       
+            Invoke( "ChangeScene", sceneChangeWaitTime);
+        }
     }
+    
 
     private void ChangeScene() {
 

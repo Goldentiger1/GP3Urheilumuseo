@@ -530,6 +530,10 @@ namespace Valve.VR.InteractionSystem
         //-------------------------------------------------
         public void DetachObject(GameObject objectToDetach, bool restoreOriginalParent = true)
         {
+            var ScoreCounter = FindObjectOfType<ScoreCounter>();
+
+            ScoreCounter.throwStart = transform.position;
+
             int index = attachedObjects.FindIndex(l => l.attachedObject == objectToDetach);
             if (index != -1)
             {

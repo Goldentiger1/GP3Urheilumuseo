@@ -8,6 +8,9 @@ public class ScoreCounter : MonoBehaviour {
 
     public TextMeshProUGUI uiScoreText;
     public TextMeshProUGUI uiScoreNumber;
+    public Vector3 throwStart;
+    public float throwDistance;
+    public float throwDistanceRequiredForThreePoints = 7f;
 
     int score = 0;
 
@@ -22,7 +25,12 @@ public class ScoreCounter : MonoBehaviour {
     }
 
     void UpdateScore() {
-        score += 2;
+        throwDistance = Vector3.Distance(throwStart, transform.position);
+        if(throwDistance > throwDistanceRequiredForThreePoints) {
+            score += 3;
+        } else {
+            score += 2;
+        }
         if (score < 10)
             uiScoreNumber.text = "0" + score;
         else

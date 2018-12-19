@@ -220,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiScoreText: {fileID: 114064530092015474}
   uiScoreNumber: {fileID: 114397158665739812}
-  SceneChangeTimer: 5000
+  SceneChangeTimer: 180
   throwStart: {x: 0, y: 0, z: 0}
   throwDistance: 0
   throwDistanceRequiredForThreePoints: 6

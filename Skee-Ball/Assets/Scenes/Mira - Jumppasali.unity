@@ -1812,6 +1812,11 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114205794277528580, guid: 2d3365a779ed5ea44a3f8d79dacdd10d,
+        type: 2}
+      propertyPath: SceneChangeTimer
+      value: 180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d3365a779ed5ea44a3f8d79dacdd10d, type: 2}
   m_IsPrefabAsset: 0

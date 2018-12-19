@@ -86,8 +86,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1512554516325458}
-  m_LocalRotation: {x: 0.0005584836, y: 0, z: 0, w: 0.9999999}
-  m_LocalPosition: {x: -0.08, y: 2.95, z: 11.756}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -11.689, y: 2.701, z: -3.163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224761730906020194}
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiScoreText: {fileID: 114064530092015474}
   uiScoreNumber: {fileID: 114397158665739812}
-  SceneChangeTimer: 60
+  SceneChangeTimer: 5000
   throwStart: {x: 0, y: 0, z: 0}
   throwDistance: 0
   throwDistanceRequiredForThreePoints: 6

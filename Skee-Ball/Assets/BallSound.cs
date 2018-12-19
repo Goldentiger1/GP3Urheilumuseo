@@ -15,7 +15,7 @@ public class BallSound : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Fabric.EventManager.Instance.PostEvent("street");
+        Fabric.EventManager.Instance.PostEvent("ambient");
 	}
 	
 	// Update is called once per frame

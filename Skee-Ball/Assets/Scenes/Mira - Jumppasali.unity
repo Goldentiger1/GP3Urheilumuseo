@@ -394,6 +394,10 @@ Prefab:
       propertyPath: m_Mass
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 2}
+      propertyPath: m_TagString
+      value: Ball
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9bef7725ba89842abfbe99dff30454, type: 2}
   m_IsPrefabAsset: 0
@@ -468,6 +472,10 @@ Prefab:
       propertyPath: m_Mass
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 2}
+      propertyPath: m_TagString
+      value: Ball
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9bef7725ba89842abfbe99dff30454, type: 2}
   m_IsPrefabAsset: 0
@@ -537,6 +545,10 @@ Prefab:
         type: 2}
       propertyPath: m_Mass
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 2}
+      propertyPath: m_TagString
+      value: Ball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9bef7725ba89842abfbe99dff30454, type: 2}
@@ -884,6 +896,10 @@ Prefab:
       propertyPath: m_Mass
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 2}
+      propertyPath: m_TagString
+      value: Ball
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9bef7725ba89842abfbe99dff30454, type: 2}
   m_IsPrefabAsset: 0
@@ -1164,6 +1180,10 @@ Prefab:
         type: 2}
       propertyPath: m_Mass
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 2}
+      propertyPath: m_TagString
+      value: Ball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9bef7725ba89842abfbe99dff30454, type: 2}
@@ -1468,7 +1488,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.6
+      value: -5.28
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1570,6 +1590,10 @@ Prefab:
         type: 2}
       propertyPath: m_Mass
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 2}
+      propertyPath: m_TagString
+      value: Ball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9bef7725ba89842abfbe99dff30454, type: 2}
@@ -1739,6 +1763,29 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100008, guid: 488b99ec2d1e096409080f45c1eb1885,
     type: 3}
   m_PrefabInternal: {fileID: 296622514}
+--- !u!114 &1748591804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1748591802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a726725f9a51449b1981f6f1925fc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1748591805
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1748591802}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 28, y: 15.000004, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &1748591806
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1746,10 +1793,10 @@ MeshCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1748591802}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
+  m_IsTrigger: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 488b99ec2d1e096409080f45c1eb1885, type: 3}

@@ -38,8 +38,10 @@ public class ScoreCounter : MonoBehaviour {
         print(throwDistance);
         print(transform.position);
         if (throwDistance > throwDistanceRequiredForThreePoints) {
+            Fabric.EventManager.Instance.PostEvent("score");
             score += 3;
         } else {
+            Fabric.EventManager.Instance.PostEvent("score");
             score += 2;
         }
 

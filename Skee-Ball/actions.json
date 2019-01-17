@@ -1,6 +1,50 @@
 {
-  "actions": [],
-  "action_sets": [],
+  "actions": [
+    {
+      "name": "/actions/default/in/InteractUI",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/Teleport",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/GrabPinch",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/GrabGrip",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/Pose",
+      "type": "pose"
+    },
+    {
+      "name": "/actions/default/in/SkeletonLeftHand",
+      "type": "skeleton",
+      "skeleton": "/skeleton/hand/left"
+    },
+    {
+      "name": "/actions/default/in/SkeletonRightHand",
+      "type": "skeleton",
+      "skeleton": "/skeleton/hand/right"
+    },
+    {
+      "name": "/actions/default/in/Squeeze",
+      "type": "vector1"
+    },
+    {
+      "name": "/actions/default/out/Haptic",
+      "type": "vibration"
+    }
+  ],
+  "action_sets": [
+    {
+      "name": "/actions/default",
+      "usage": "single"
+    }
+  ],
   "default_bindings": [
     {
       "controller_type": "vive_controller",
@@ -22,47 +66,14 @@
   "localization": [
     {
       "language_tag": "en_US",
-      "/actions/default/in/InteractUI": "Interact With UI",
       "/actions/default/in/Teleport": "Teleport",
+      "/actions/default/in/InteractUI": "Interact With UI",
       "/actions/default/in/GrabPinch": "Grab Pinch",
       "/actions/default/in/GrabGrip": "Grab Grip",
+      "/actions/default/in/Pose": "Pose",
       "/actions/default/in/SkeletonLeftHand": "Skeleton (Left)",
       "/actions/default/in/SkeletonRightHand": "Skeleton (Right)",
-      "/actions/default/in/Pose": "Pose",
-      "/actions/default/out/Haptic": "Haptic",
-      "/actions/buggybuddy/in/Steering": "Steering",
-      "/actions/buggybuddy/in/Throttle": "Throttle",
-      "/actions/buggybuddy/in/Brake": "Brake",
-      "/actions/buggybuddy/in/Reset": "Reset",
-      "/actions/platformer/in/Move": "Move",
-      "/actions/platformer/in/Jump": "Jump",
-      "/actions/Buttons_Input/in/leftTrigger": "Left hand controllers Trigger Button",
-      "/actions/Buttons_Input/in/rightTrigger": "Right hand controllers Trigger Button",
-      "/actions/Buttons_Input/in/L.Trigger": "Left hands controller trigger",
-      "/actions/Buttons_Input/in/leftMenuButton": "Left hand controllers Menu Button",
-      "/actions/Buttons_Input/in/rightMenuButton": "Right hand controllers Menu Button",
-      "/actions/Buttons_Input/in/leftDpad": "Left hand controllers Trackpad",
-      "/actions/Buttons_Input/in/rightDpad": "Right hand controllers Trackpad",
-      "/actions/Buttons_Input/in/leftSystemButton": "left hand controlles System Button",
-      "/actions/Buttons_Input/in/rightSystemButton": "Right hand controllers System Button",
-      "/actions/Buttons_Input/in/leftGrip": "Left hand controllers Grip Button",
-      "/actions/Buttons_Input/in/rightGrip": "Right hand controllers Grip Button",
-      "/actions/Buttons_Input/out/leftVibration": "Left hand controllers Vibration",
-      "/actions/Buttons_Input/out/rightVibration": "Right hand controllers Vibration",
-      "/actions/Buttons_Input/in/leftController": "Left hand controllers Skeleton",
-      "/actions/Buttons_Input/in/rightController": "Right hand controllers Skeleton",
-      "/actions/Buttons_Input/in/leftTriggerAnalog": "Left hand controllers Analog Trigger",
-      "/actions/Buttons_Input/in/rightTriggerAnalog": "Right hand controllers Analog Trigger",
-      "/actions/Buttons_Input/in/leftDpadClick": "Left hand controllers Dpad Click",
-      "/actions/Buttons_Input/in/rightDpadClick": "Right hand controllers Dpad Click",
-      "/actions/Buttons_Input/in/leftDpadTouch": "Left hand controllers Dpad Touch",
-      "/actions/Buttons_Input/in/rightDpadTouch": "Right hand controllers Dpad Touch",
-      "/actions/Buttons_Input/in/leftDpadPosition": "Left hand controllers Dpad Position",
-      "/actions/Buttons_Input/in/rightDpadPosition": "Right hand controllers Dpad Position",
-      "/actions/default/in/Move": "Move",
-      "/actions/default/in/Use": "Use",
-      "/actions/Buttons_Input/in/leftPose": "Left hand controllers Pose",
-      "/actions/Buttons_Input/in/rightPose": "Right hand controllers Pose"
+      "/actions/default/out/Haptic": "Haptic"
     }
   ]
 }

@@ -82,7 +82,6 @@ namespace Valve.VR.InteractionSystem
 			if ( GUILayout.Button( "Click" ) )
 			{
 				InputModule.instance.Submit( uiElement.gameObject );
-                Debug.Log("ON CLICK");
 			}
 		}
 	}

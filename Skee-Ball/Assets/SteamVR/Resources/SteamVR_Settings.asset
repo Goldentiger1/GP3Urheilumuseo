@@ -20,4 +20,5 @@ MonoBehaviour:
   inputUpdateMode: 2
   poseUpdateMode: 8
   activateFirstActionSetOnStart: 1
-  editorAppKey: application.generated.unity.skeeball.exe
+  editorAppKey: application.generated.unity.steam_vr.exe
+  autoEnableVR: 1

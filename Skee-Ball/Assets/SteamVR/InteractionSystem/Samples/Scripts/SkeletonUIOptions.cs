@@ -57,8 +57,6 @@ namespace Valve.VR.InteractionSystem.Sample
                     if (hand.handType == SteamVR_Input_Sources.LeftHand)
                         hand.SetRenderModel(prefabs.leftPrefab);
                 }
-
-                Debug.Log("FOO!");
             }
         }
 

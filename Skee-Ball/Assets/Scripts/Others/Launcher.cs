@@ -13,8 +13,8 @@ public class Launcher : MonoBehaviour
     //private readonly float maxPower = 7.5f;
 
     public Vector3 LaunchPosition;
-    private readonly float minX = -0.5f;
-    private readonly float maxX = 0.5f;
+    //private readonly float minX = -0.5f;
+    //private readonly float maxX = 0.5f;
 
     private Vector3 Spin(SPIN_DIRECTION SpinDirection, float spinSpeed)
     {

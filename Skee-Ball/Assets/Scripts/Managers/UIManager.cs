@@ -5,13 +5,13 @@ public class UIManager : Singelton<UIManager>
 {
     public Transform HUDCanvas { get; private set; }
 
-    private Transform panel;
+    //private Transform panel;
     private Text scoreText, PowerText, LaunchPositionText;
 
     private void Awake()
     {
         HUDCanvas = GameObject.Find("HUDCanvas").transform;
-        panel = HUDCanvas.transform.Find("Panel");
+        //panel = HUDCanvas.transform.Find("Panel");
         scoreText = HUDCanvas.transform.Find("ScoreText").GetComponent<Text>();
         PowerText = HUDCanvas.transform.Find("PowerText").GetComponent<Text>();
         LaunchPositionText = HUDCanvas.transform.Find("LaunchPositionText").GetComponent<Text>();

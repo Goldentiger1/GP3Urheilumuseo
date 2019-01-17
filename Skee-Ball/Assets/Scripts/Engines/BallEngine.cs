@@ -59,7 +59,7 @@ public class BallEngine : MonoBehaviour
                     return;
                 }
 
-                AudioManager.Instance.PlayClipAtPoint("Bounce", transform.position);
+                //AudioManager.Instance.PlayClipAtPoint("Bounce", transform.position);
 
                 break;
 
@@ -70,7 +70,7 @@ public class BallEngine : MonoBehaviour
                     return;
                 }
 
-                AudioManager.Instance.PlayClipAtPoint("BackBoard", transform.position);
+                //AudioManager.Instance.PlayClipAtPoint("BackBoard", transform.position);
                 
 
                 break;

@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-[SerializeField]
+[Serializable]
 public class LocalizationData
 {
     public LocalizationItem[] Items;
 }
 
-[SerializeField]
+[Serializable]
 public class LocalizationItem
 {
     public string Key;
@@ -19,26 +21,39 @@ public class LocalizationManager : Singelton<LocalizationManager>
 {
     private Dictionary<string, string> localizationText;
 
-    private void Start()
+    private readonly string defaultLanguage = "FI";
+    private readonly string missingText = "Localized text not found!";
+
+    public bool IsReady { get; private set; }
+
+    private void Awake()
     {
-        //LoadLocalizedText("LocalizedText_UK.json");
+        IsReady = false;
+
+        ChangeLanguage(defaultLanguage);
+        //ChangeLanguage("UK");
     }
 
-    public void LoadLocalizedText(string fileName)
+    private IEnumerator Start()
+    {
+        yield return new WaitUntil(() => IsReady);
+
+        Debug.Log("Localization is ready");
+
+        // kaikki localizedText objectit tulee ajaa ChangeText-funktio.
+    }
+
+    private void LoadLocalizedText(string fileName)
     {
         localizationText = new Dictionary<string, string>();
 
-        string filePath = Path.Combine(Application.streamingAssetsPath, fileName );
-        Debug.Log(filePath);
+        string filePath = Path.Combine(Application.streamingAssetsPath, "LocalizedText_" + fileName + ".json");
 
         if (File.Exists(filePath))
         {
             string dataAsJson = File.ReadAllText(filePath);
 
-            print("Json: " + dataAsJson);
-
             LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataAsJson);
-            print("Loaded Items: " + loadedData.Items.Length);
 
             for (int i = 0; i < loadedData.Items.Length; i++)
             {
@@ -51,5 +66,19 @@ public class LocalizationManager : Singelton<LocalizationManager>
         {
             Debug.LogError("Cannot find file!");
         }
+
+        IsReady = true;
+    }
+
+    public void ChangeLanguage(string newLanguage)
+    {
+        LoadLocalizedText(newLanguage);
+    }
+
+    public string GetValue(string key)
+    {
+        var result = string.Empty;
+
+        return result = localizationText.TryGetValue(key, out result) ? result : missingText;
     }
 }

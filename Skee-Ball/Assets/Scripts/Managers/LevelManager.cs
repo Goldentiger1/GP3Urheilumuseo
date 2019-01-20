@@ -21,7 +21,7 @@ public class LevelManager : Singelton<LevelManager>
         Score += amount;
 
         //Update score UI
-        UIManager.Instance.UpdateScoreText(Score);
+        //UIManager.Instance.UpdateScoreText(Score);
 
         //AudioManager.Instance.PlayClipAtPoint("Swish", ScoreTrigger.position);
     }

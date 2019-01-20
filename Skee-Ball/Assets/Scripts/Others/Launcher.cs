@@ -45,7 +45,7 @@ public class Launcher : MonoBehaviour
 
     private void Update()
     {
-        UIManager.Instance.UpdateLaunchPositionText(LaunchPosition);
+        // UIManager.Instance.UpdateLaunchPositionText(LaunchPosition);
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -60,7 +60,7 @@ public class Launcher : MonoBehaviour
             }
 
             shootPower += 0.1f;
-            UIManager.Instance.UpdatePowerText(shootPower);
+            // UIManager.Instance.UpdatePowerText(shootPower);
         }
 
         if (Input.GetButtonUp("Jump"))

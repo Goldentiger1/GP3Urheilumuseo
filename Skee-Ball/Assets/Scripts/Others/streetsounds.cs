@@ -1,24 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class streetsounds : MonoBehaviour {
-    public void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Ball") {
-            print("Pallo pomppii");
+public class StreetSounds : MonoBehaviour
+{
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Ball")
+        {
             Fabric.EventManager.Instance.PostEvent("ballbounce");
         }
     }
 
-    // Use this for initialization
-    void Start() {
+    private void Start()
+    {
         Fabric.EventManager.Instance.PostEvent("stop");
 
         Fabric.EventManager.Instance.PostEvent("street");
-    }
-
-    // Update is called once per frame
-    void Update() {
-
     }
 }

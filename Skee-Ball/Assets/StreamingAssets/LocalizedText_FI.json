@@ -1,1 +1,6 @@
-{"Items":[{"Key:"game_title","Value":"Arvaus Peli"},{"Key":"StartButton","value":"Aloita Peli"}]}
+{"Items":
+	[
+		{"Key":"FooKey","Value":"FooValue"},
+		{"Key":"TestText","Value":"Testi"}
+	]
+}

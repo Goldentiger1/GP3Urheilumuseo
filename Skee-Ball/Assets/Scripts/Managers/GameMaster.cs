@@ -1,4 +1,6 @@
-﻿public class GameMaster : SingeltonPersistant<GameMaster>
-{
+﻿using UnityEngine;
 
+public class GameMaster : SingeltonPersistant<GameMaster>
+{
+    
 }

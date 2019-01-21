@@ -19,48 +19,10 @@ namespace Valve.VR
 #pragma warning disable 0219 // variable assigned but not used.
     public class SteamVR_Input_EditorWindow : EditorWindow
     {
-        private static SteamVR_Input_EditorWindow instance;
-
         [MenuItem("Window/SteamVR Input")]
         public static void ShowWindow()
         {
-            instance = GetWindow<SteamVR_Input_EditorWindow>(false, "SteamVR Input", true);
-        }
-
-        public static void ReopenWindow()
-        {
-            instance = GetOpenWindow();
-            if (instance != null)
-            {
-                instance.ForceClose();
-                System.Threading.Thread.Sleep(100);
-            }
-
-            ShowWindow();
-        }
-
-        public static void Refresh()
-        {
-            instance = GetOpenWindow();
-
-            if (instance != null)
-            {
-                instance.selectedActionIndex = -1;
-                instance.selectedAction = null;
-                instance.selectedActionSet = -1;
-                instance.selectedLocalizationIndex = -1;
-                instance.scrollPosition = Vector2.zero;
-
-                SteamVR_Input.InitializeFile(true);
-                instance.InitializeLists();
-            }
-        }
-
-        private bool forcingClose = false;
-        public void ForceClose()
-        {
-            forcingClose = true;
-            this.Close();
+            GetWindow<SteamVR_Input_EditorWindow>(false, "SteamVR Input", true);
         }
 
         private const bool defaultOverwriteBuildOption = true;
@@ -68,6 +30,7 @@ namespace Valve.VR
 
         private static void InitializeEditorValues()
         {
+
             if (EditorPrefs.HasKey(SteamVR_Input_Generator.steamVRInputOverwriteBuildKey) == false)
                 EditorPrefs.SetBool(SteamVR_Input_Generator.steamVRInputOverwriteBuildKey, defaultOverwriteBuildOption);
 
@@ -178,7 +141,7 @@ namespace Valve.VR
                 outList.index = outList.list.Count - 1;
             }
 
-            newAction.name = SteamVR_Input_ActionFile_Action.CreateNewName(SteamVR_Input.actionFile.action_sets[selectedActionSet].shortName, direction);
+            newAction.name = newAction.CreateNewName(SteamVR_Input.actionFile.action_sets[selectedActionSet].name, direction);
 
             OnSelectCallback(list);
         }
@@ -274,35 +237,37 @@ namespace Valve.VR
             }
         }
 
+        void OnInspectorUpdate()
+        {
+            Repaint();
+
+#if UNITY_2017_1_OR_NEWER
+        if (EditorApplication.isCompiling == false) 
+            SteamVR_Input_Generator.OnEditorUpdate();
+#endif
+        }
+
         private Vector2 scrollPosition;
 
         private bool initialized = false;
 
         private void Initialize()
         {
-            SteamVR_Input.InitializeFile(false, false);
+            SteamVR_Input.InitializeFile();
             InitializeEditorValues();
             initialized = true;
         }
 
         private bool CopyOrClose()
         {
-            bool copyExamples = UnityEditor.EditorUtility.DisplayDialog("Copy Examples", "It looks like your project is missing an actions.json. Would you like to use the example files?", "Yes", "No");
-            if (copyExamples)
+            bool copy = UnityEditor.EditorUtility.DisplayDialog("Copy Examples", "It looks like your project is missing an actions.json. Would you like to use the example file?", "Yes", "No");
+            if (copy)
             {
                 SteamVR_CopyExampleInputFiles.CopyFiles(true);
-                System.Threading.Thread.Sleep(1000);
                 bool initializeSuccess = SteamVR_Input.InitializeFile();
                 return initializeSuccess;
             }
-            else
-            {
-                SteamVR_Input.CreateEmptyActionsFile();
-                System.Threading.Thread.Sleep(1000);
-                bool initializeSuccess = SteamVR_Input.InitializeFile();
-                return initializeSuccess;
-            }
-            //Debug.LogErrorFormat("<b>[SteamVR]</b> Actions file does not exist in project root: {0}. You'll need to create one for SteamVR to work.", SteamVR_Input.actionsFilePath);
+            return false;
         }
 
         private void CheckFileInitialized()
@@ -311,17 +276,16 @@ namespace Valve.VR
             {
                 Initialize();
             }
-
             if (SteamVR_Input.actionFile == null)
             {
-                bool initializeSuccess = SteamVR_Input.InitializeFile(false, false);
+                bool initializeSuccess = SteamVR_Input.InitializeFile();
 
                 if (initializeSuccess == false)
                 {
                     bool copySuccess = CopyOrClose();
                     if (copySuccess == false)
                     {
-                        Close(); // close the window since they didn't initialize the file
+                        this.Close();
                     }
                 }
             }
@@ -329,10 +293,16 @@ namespace Valve.VR
 
         private void UpdateProgressBar()
         {
+
             UpdateProgressBarTextFromPrefs();
             if (string.IsNullOrEmpty(progressBarText) == false)
             {
-                EditorUtility.DisplayProgressBar(progressBarTitle, progressBarText, progressBarAmount);
+                bool cancel = EditorUtility.DisplayCancelableProgressBar(progressBarTitle, progressBarText, progressBarAmount);
+                if (cancel)
+                {
+                    SteamVR_Input_Generator.CancelGeneration();
+                    ClearProgressBar();
+                }
             }
         }
 
@@ -354,32 +324,8 @@ namespace Valve.VR
                 InitializeLists();
         }
 
-        public static bool IsOpen()
-        {
-            SteamVR_Input_EditorWindow[] windows = Resources.FindObjectsOfTypeAll<SteamVR_Input_EditorWindow>();
-            if (windows != null && windows.Length > 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public static SteamVR_Input_EditorWindow GetOpenWindow()
-        {
-            SteamVR_Input_EditorWindow[] windows = Resources.FindObjectsOfTypeAll<SteamVR_Input_EditorWindow>();
-            if (windows != null && windows.Length > 0)
-            {
-                return windows[0];
-            }
-            return null;
-        }
-
-        private GUIStyle headerLabelStyle = null;
         private void OnGUI()
         {
-            if (headerLabelStyle == null)
-                headerLabelStyle = new GUIStyle(EditorStyles.boldLabel);
-
             CheckFileInitialized();
 
             UpdateProgressBar();
@@ -392,7 +338,6 @@ namespace Valve.VR
                 if (cancel)
                 {
                     SteamVR_Input_Generator.CancelGeneration();
-                    ClearProgressBar();
                 }
 
                 return;
@@ -405,6 +350,7 @@ namespace Valve.VR
             return; //ongui gets more fussy after 2017
         }
 #endif
+
             CheckInitialized();
 
             scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
@@ -461,13 +407,31 @@ namespace Valve.VR
         {
             EditorGUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
+
+            DrawRefreshButton();
+
+            GUILayout.FlexibleSpace();
+
             DrawSettingsButton();
+
+            GUILayout.FlexibleSpace();
             EditorGUILayout.EndHorizontal();
+        }
+
+        private void DrawRefreshButton()
+        {
+            bool refresh = GUILayout.Button("Refresh");
+
+            if (refresh)
+            {
+                SteamVR_Input.InitializeFile(true);
+                InitializeLists();
+            }
         }
 
         private void DrawSettingsButton()
         {
-            bool openSettings = GUILayout.Button("Advanced Settings");
+            bool openSettings = GUILayout.Button("Settings");
 
             if (openSettings)
             {
@@ -499,7 +463,7 @@ namespace Valve.VR
 
             if (save)
             {
-                EditorApplication.delayCall += SaveFile;
+                SaveFile();
             }
 
             if (open)
@@ -530,7 +494,7 @@ namespace Valve.VR
 
         private void OnDestroy()
         {
-            if (forcingClose == false && HasBeenModified())
+            if (HasBeenModified())
             {
                 bool saveFirst = EditorUtility.DisplayDialog("Save?", "It looks like you've closed the input actions window without saving changes. Would you like to save first?", "Save", "Close");
                 if (saveFirst)
@@ -544,7 +508,7 @@ namespace Valve.VR
         {
             EditorGUILayout.BeginFadeGroup(1);
 
-            EditorGUILayout.LabelField("Actions", headerLabelStyle);
+            EditorGUILayout.LabelField("Actions");
 
             EditorGUILayout.Space();
 
@@ -564,7 +528,7 @@ namespace Valve.VR
         {
             EditorGUILayout.BeginFadeGroup(1);
 
-            EditorGUILayout.LabelField("Action Details", headerLabelStyle);
+            EditorGUILayout.LabelField("Action Details");
 
             EditorGUILayout.Space();
 
@@ -685,7 +649,7 @@ namespace Valve.VR
 
         private void DrawSets()
         {
-            EditorGUILayout.LabelField("Action Sets", headerLabelStyle);
+            EditorGUILayout.LabelField("Action Sets");
             EditorGUILayout.BeginHorizontal();
 
             GUILayout.FlexibleSpace();
@@ -698,13 +662,6 @@ namespace Valve.VR
                     string newName = GUILayout.TextField(SteamVR_Input.actionFile.action_sets[actionSetIndex].shortName);
                     if (newName != SteamVR_Input.actionFile.action_sets[actionSetIndex].shortName)
                     {
-                        string oldName = SteamVR_Input.actionFile.action_sets[actionSetIndex].name;
-                        foreach (var action in SteamVR_Input.actionFile.actions)
-                        {
-                            if (action.actionSet == oldName)
-                                action.SetNewActionSet(newName);
-                        }
-
                         SteamVR_Input.actionFile.action_sets[actionSetIndex].SetNewShortName(newName);
                     }
 
@@ -781,7 +738,7 @@ namespace Valve.VR
             if (addSet)
             {
                 SteamVR_Input_ActionFile_ActionSet newActionSet = new SteamVR_Input_ActionFile_ActionSet();
-                newActionSet.name = SteamVR_Input_ActionFile_ActionSet.CreateNewName();
+                newActionSet.name = newActionSet.CreateNewName();
 
                 SteamVR_Input.actionFile.action_sets.Add(newActionSet);
 
@@ -805,13 +762,21 @@ namespace Valve.VR
 
         private void SaveFile()
         {
+            FileInfo existingActionsFile = new FileInfo(SteamVR_Input.actionsFilePath);
+            if (existingActionsFile.Exists)
+            {
+                existingActionsFile.IsReadOnly = false;
+            }
+
             SteamVR_Input.actionFile.SaveHelperLists();
 
-            SteamVR_Input.actionFile.Save(SteamVR_Input.actionsFilePath);
+            //SanitizeActionFile(); //todo: shouldn't we be doing this?
 
-            SteamVR_Input_ActionManifest_Manager.CleanBindings(true);
+            string json = JsonConvert.SerializeObject(SteamVR_Input.actionFile, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
-            Debug.Log("<b>[SteamVR Input]</b> Saved actions manifest successfully.");
+            File.WriteAllText(SteamVR_Input.actionsFilePath, json);
+
+            Debug.Log("[SteamVR Input] Saved actions manifest successfully.");
 
             SteamVR_Input_Generator.BeginGeneration();
         }
@@ -838,39 +803,11 @@ namespace Valve.VR
             GetWindow<SteamVR_Input_SettingsEditor>(true, "SteamVR Input Settings", true);
         }
 
-        private GUIStyle headerLabelStyle = null;
-        private GUIStyle multiLineStyle = null;
-        private GUIStyle smallMultiLineStyle = null;
         private void OnGUI()
         {
-            if (headerLabelStyle == null)
-                headerLabelStyle = new GUIStyle(EditorStyles.boldLabel);
-            if (multiLineStyle == null)
-                multiLineStyle = new GUIStyle(EditorStyles.wordWrappedLabel);
-            if (smallMultiLineStyle == null)
-            {
-                smallMultiLineStyle = new GUIStyle(EditorStyles.wordWrappedLabel);
-                smallMultiLineStyle.fontSize = EditorStyles.miniLabel.fontSize;
-                smallMultiLineStyle.fontStyle = FontStyle.Italic;
-            }
-
             SteamVR_Input.InitializeFile();
-            EditorGUILayout.Space();
 
-
-            EditorGUILayout.LabelField("Actions manifest", headerLabelStyle);
-            EditorGUILayout.LabelField(string.Format("Path: {0}", SteamVR_Input.actionsFilePath));
-
-            DrawRefreshButton();
-
-
-            EditorGUILayout.Space();
-            EditorGUILayout.Space();
-
-            EditorGUILayout.Space();
-            EditorGUILayout.Space();
-
-            DrawPartial();
+            EditorGUILayout.LabelField(string.Format("File path: {0}", SteamVR_Input.actionsFilePath));
 
 
             EditorGUILayout.Space();
@@ -883,12 +820,11 @@ namespace Valve.VR
 
             DrawDeleteUnusedActions();
 
-            EditorGUILayout.Space();
-            EditorGUILayout.Space();
-
             EditorGUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
-            bool delete = GUILayout.Button("Delete input generated input folder");
+            bool delete = GUILayout.Button("Delete input classes");
+            GUILayout.FlexibleSpace();
+            bool deleteActions = GUILayout.Button("Delete input actions");
             GUILayout.FlexibleSpace();
             bool showSettings = GUILayout.Button("SteamVR Settings");
             GUILayout.FlexibleSpace();
@@ -898,7 +834,14 @@ namespace Valve.VR
             {
                 bool confirm = EditorUtility.DisplayDialog("Confirmation", "Are you sure you want to delete the input code files? This may make your project unable to compile.", "Delete", "Cancel");
                 if (confirm)
-                    SteamVR_Input_Generator.DeleteGeneratedFolder();
+                    SteamVR_Input_Generator.DeleteActionClassFiles();
+            }
+
+            if (deleteActions)
+            {
+                bool confirm = EditorUtility.DisplayDialog("Confirmation", "Are you sure you want to delete the input action files? This will remove all references in your project to these actions.", "Delete", "Cancel");
+                if (confirm)
+                    SteamVR_Input_Generator.DeleteActionObjects("*.asset");
             }
 
             if (showSettings)
@@ -907,38 +850,10 @@ namespace Valve.VR
             }
         }
 
-        private void DrawRefreshButton()
-        {
-            EditorGUILayout.BeginHorizontal();
-            bool refresh = GUILayout.Button("Refresh");
-            GUILayout.FlexibleSpace();
-            EditorGUILayout.EndHorizontal();
-
-            if (refresh)
-            {
-                SteamVR_Input_EditorWindow.ReopenWindow();
-            }
-        }
-
-        private void DrawPartial()
-        {
-            EditorGUILayout.LabelField("Partial bindings", headerLabelStyle);
-            EditorGUILayout.LabelField("This is for SteamVR related asset packages. Here you can create a folder containing your current action manifest and associated bindings that will automatically query users to import into their project and add to their actions when loaded (as long as they have the SteamVR asset).", multiLineStyle);
-            EditorGUILayout.LabelField("note: Please create action sets specific to your asset to avoid collisions.", smallMultiLineStyle);
-
-            bool create = GUILayout.Button("Create");
-            if (create)
-            {
-                SteamVR_Input_CreatePartial.ShowWindow();
-            }
-        }
-
         private void DrawOverwriteOption()
         {
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Overwrite actions and bindings json files during build");
-
-
             bool overwrite = EditorPrefs.GetBool(SteamVR_Input_Generator.steamVRInputOverwriteBuildKey);
             bool newOverwrite = EditorGUILayout.Toggle(overwrite);
 
@@ -954,8 +869,6 @@ namespace Valve.VR
         {
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Delete actions that are no longer in the action list during generation");
-
-
             bool deleteUnused = EditorPrefs.GetBool(SteamVR_Input_Generator.steamVRInputDeleteUnusedKey);
             bool newDeleteUnused = EditorGUILayout.Toggle(deleteUnused);
 
@@ -965,79 +878,6 @@ namespace Valve.VR
             }
 
             EditorGUILayout.EndHorizontal();
-        }
-    }
-
-    public class SteamVR_Input_CreatePartial : EditorWindow
-    {
-        public static void ShowWindow()
-        {
-            GetWindow<SteamVR_Input_CreatePartial>(true, "SteamVR Input Partial Bindings Creator", true);
-        }
-
-        private GUIStyle headerLabelStyle = null;
-        private GUIStyle multiLineStyle = null;
-        private GUIStyle smallMultiLineStyle = null;
-
-        private string folderName = null;
-        private int version = 1;
-
-        private bool overwriteOldActions = true;
-        private bool removeOldVersionActions = true;
-
-        private void OnGUI()
-        {
-            if (headerLabelStyle == null)
-                headerLabelStyle = new GUIStyle(EditorStyles.boldLabel);
-            if (multiLineStyle == null)
-                multiLineStyle = new GUIStyle(EditorStyles.wordWrappedLabel);
-            if (smallMultiLineStyle == null)
-            {
-                smallMultiLineStyle = new GUIStyle(EditorStyles.wordWrappedLabel);
-                smallMultiLineStyle.fontSize = EditorStyles.miniLabel.fontSize;
-                smallMultiLineStyle.fontStyle = FontStyle.Italic;
-            }
-
-            if (folderName == null)
-                folderName = "SteamVR_" + SteamVR.GenerateCleanProductName();
-
-            SteamVR_Input.InitializeFile();
-            EditorGUILayout.Space();
-
-
-            EditorGUILayout.LabelField("Partial input bindings", headerLabelStyle);
-            EditorGUILayout.LabelField("When you create a partial bindings folder you can include that anywhere inside your asset package folder and it will automatically be found and imported to the user's project on load.", multiLineStyle);
-            EditorGUILayout.LabelField("note: You can rename the folder but do not rename any files inside.", smallMultiLineStyle);
-
-            EditorGUILayout.Space();
-            EditorGUILayout.Space();
-
-            folderName = EditorGUILayout.TextField("Name", folderName);
-
-            EditorGUILayout.Space();
-
-            version = EditorGUILayout.IntField("Version", version);
-            EditorGUILayout.LabelField("note: only whole numbers", smallMultiLineStyle);
-
-            EditorGUILayout.Space();
-
-            overwriteOldActions = EditorGUILayout.Toggle("Overwrite old actions", overwriteOldActions);
-            EditorGUILayout.LabelField("If the person importing your asset package has a previous version of your package this determines whether or not to overwrite actions and bindings that have the same name.", smallMultiLineStyle);
-
-            EditorGUILayout.Space();
-
-            removeOldVersionActions = EditorGUILayout.Toggle("Remove unused actions from old versions", overwriteOldActions);
-            EditorGUILayout.LabelField("If the person importing your asset package has a previous version of your package that has actions that are not used in the new version of your package this determines whether or not to delete those actions.", smallMultiLineStyle);
-
-            EditorGUILayout.Space();
-            EditorGUILayout.Space();
-
-            bool create = GUILayout.Button("Create");
-
-            if (create)
-            {
-                SteamVR_Input_ActionManifest_Manager.CreatePartial(folderName, version, overwriteOldActions, removeOldVersionActions);
-            }
         }
     }
 }

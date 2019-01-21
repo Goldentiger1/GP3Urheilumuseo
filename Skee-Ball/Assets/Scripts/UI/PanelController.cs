@@ -7,4 +7,9 @@ public class PanelController : MonoBehaviour
     {
         SceneManager.LoadScene(sceneIndex);
     }
+
+    public void ChangeLanguage(string language)
+    {
+        LocalizationManager.Instance.ChangeLanguage(language);
+    }
 }

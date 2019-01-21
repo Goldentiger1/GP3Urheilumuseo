@@ -15,7 +15,7 @@ using System;
 
 namespace Valve.VR
 {
-    public class SteamVR_Input_Action_GenericPropertyEditor<T> : PropertyDrawer where T : SteamVR_Action, new()
+    public class SteamVR_Input_Action_GenericPropertyEditor<T> : PropertyDrawer where T : SteamVR_Action
     {
         protected T[] actions;
         protected string[] enumItems;
@@ -24,10 +24,6 @@ namespace Valve.VR
         protected const int notInitializedIndex = -1;
         protected const int noneIndex = 0;
         protected int addIndex = 1;
-
-
-        protected const string defaultPathTemplate = "    \u26A0 Missing action: {0}";
-        protected string defaultPathLabel = null;
 
         protected void Awake()
         {
@@ -60,31 +56,9 @@ namespace Valve.VR
             */
         }
 
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            float height = base.GetPropertyHeight(property, label);
-
-            SerializedProperty actionPathProperty = property.FindPropertyRelative("actionPath");
-            if (string.IsNullOrEmpty(actionPathProperty.stringValue) == false)
-            {
-                if (selectedIndex == 0)
-                    return height * 2;
-            }
-
-            return height;
-        }
-
         // Draw the property inside the given rect
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            if (SteamVR_Input.actions == null || SteamVR_Input.actions.Length == 0)
-            {
-                EditorGUI.BeginProperty(position, label, property);
-                EditorGUI.LabelField(position, "Please generate SteamVR Input actions");
-                EditorGUI.EndProperty();
-                return;
-            }
-
             if (enumItems == null || enumItems.Length == 0)
             {
                 Awake();
@@ -94,32 +68,18 @@ namespace Valve.VR
             // prefab override logic works on the entire property.
             EditorGUI.BeginProperty(position, label, property);
 
-            SerializedProperty actionPathProperty = property.FindPropertyRelative("actionPath");
-            string currentPath = null;
 
-            if (actionPathProperty != null)
+            if (property.objectReferenceValue != null)
             {
-                currentPath = actionPathProperty.stringValue;
+                T action = (T)property.objectReferenceValue;
 
-                if (string.IsNullOrEmpty(currentPath) == false)
+                if (string.IsNullOrEmpty(action.fullPath) == false)
                 {
-                    SteamVR_Action existingAction = SteamVR_Action.FindExistingActionForPartialPath(currentPath);
-                    if (existingAction != null)
-                    {
-                        if (currentPath != existingAction.GetPath())
-                        {
-                            actionPathProperty.stringValue = existingAction.GetPath();
-                            property.serializedObject.ApplyModifiedProperties();
-                        }
-
-                        currentPath = existingAction.GetPath();
-                    }
-
                     for (int actionsIndex = 0; actionsIndex < actions.Length; actionsIndex++)
                     {
-                        if (actions[actionsIndex].fullPath == currentPath)
+                        if (actions[actionsIndex].fullPath == action.fullPath)
                         {
-                            selectedIndex = actionsIndex + 1; // account for none option
+                            selectedIndex = actionsIndex + 1;
                             break;
                         }
                     }
@@ -129,30 +89,28 @@ namespace Valve.VR
             if (selectedIndex == notInitializedIndex)
                 selectedIndex = 0;
 
-
+            
             Rect labelPosition = position;
             labelPosition.width = EditorGUIUtility.labelWidth;
             EditorGUI.LabelField(labelPosition, label);
 
             Rect fieldPosition = position;
             fieldPosition.x = (labelPosition.x + labelPosition.width);
-            fieldPosition.width = EditorGUIUtility.currentViewWidth - (labelPosition.x + labelPosition.width) - 5;
+            fieldPosition.width = EditorGUIUtility.currentViewWidth - (labelPosition.x + labelPosition.width) - 5 - 16;
 
-            if (selectedIndex == 0 && string.IsNullOrEmpty(currentPath) == false)
+            Rect objectRect = position;
+            objectRect.x = fieldPosition.x + fieldPosition.width + 15;
+            objectRect.width = 10;
+
+            if (property.objectReferenceValue != null)
             {
-                if (defaultPathLabel == null)
-                    defaultPathLabel = string.Format(defaultPathTemplate, currentPath);
-
-                Rect defaultLabelPosition = position;
-                defaultLabelPosition.y = position.y + fieldPosition.height / 2f;
-
-                if (defaultPathLabel == null)
-                    defaultPathLabel = string.Format(defaultPathTemplate, actionPathProperty.stringValue);
-
-                EditorGUI.LabelField(defaultLabelPosition, defaultPathLabel);
+                bool selectObject = EditorGUI.Foldout(objectRect, false, GUIContent.none);
+                if (selectObject)
+                {
+                    Selection.activeObject = property.objectReferenceValue;
+                }
             }
-
-            bool showInputWindow = false;
+            
 
             int wasSelected = selectedIndex;
             selectedIndex = EditorGUI.Popup(fieldPosition, selectedIndex, enumItems);
@@ -161,30 +119,20 @@ namespace Valve.VR
                 if (selectedIndex == noneIndex || selectedIndex == notInitializedIndex)
                 {
                     selectedIndex = noneIndex;
-
-                    actionPathProperty.stringValue = null;
+                    property.objectReferenceValue = null;
                 }
                 else if (selectedIndex == addIndex)
                 {
                     selectedIndex = wasSelected; // don't change the index
-                    showInputWindow = true;
+                    SteamVR_Input_EditorWindow.ShowWindow(); //show the input window so they can add one
                 }
                 else
                 {
-                    int actionIndex = selectedIndex - 1; // account for none option
-
-                    actionPathProperty.stringValue = actions[actionIndex].GetPath();
-                    //property.objectReferenceValue = actions[actionIndex];
+                    property.objectReferenceValue = actions[selectedIndex-1];
                 }
-
-                property.serializedObject.ApplyModifiedProperties();
             }
 
-
             EditorGUI.EndProperty();
-
-            if (showInputWindow)
-                SteamVR_Input_EditorWindow.ShowWindow(); //show the input window so they can add a new action
         }
     }
 }

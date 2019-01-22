@@ -45,6 +45,8 @@ public class LocalizationManager : Singelton<LocalizationManager>
 
     private void LoadLocalizedText(string fileName)
     {
+        print("LoadLocalizedText");
+
         localizationText = new Dictionary<string, string>();
 
         string filePath = Path.Combine(Application.streamingAssetsPath, "LocalizedText_" + fileName + ".json");

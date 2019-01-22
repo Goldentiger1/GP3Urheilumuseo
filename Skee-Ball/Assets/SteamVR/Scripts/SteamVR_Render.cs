@@ -238,9 +238,7 @@ namespace Valve.VR
             }
         }
 
-        private EVRScreenshotType[] screenshotTypes = new EVRScreenshotType[] { EVRScreenshotType.StereoPanorama };
-
-        private void OnEnable()
+        void OnEnable()
         {
             StartCoroutine(RenderLoop());
             SteamVR_Events.InputFocus.Listen(OnInputFocus);
@@ -251,20 +249,11 @@ namespace Valve.VR
 #else
             Camera.onPreCull += OnCameraPreCull;
 #endif
-
-            if (SteamVR.initializedState == SteamVR.InitializedStates.InitializeSuccess)
-                OpenVR.Screenshots.HookScreenshot(screenshotTypes);
-            else
-                SteamVR_Events.Initialized.AddListener(OnSteamVRInitialized);
+            var types = new EVRScreenshotType[] { EVRScreenshotType.StereoPanorama };
+            OpenVR.Screenshots.HookScreenshot(types);
         }
 
-        private void OnSteamVRInitialized(bool success)
-        {
-            if (success)
-                OpenVR.Screenshots.HookScreenshot(screenshotTypes);
-        }
-
-        private void OnDisable()
+        void OnDisable()
         {
             StopAllCoroutines();
             SteamVR_Events.InputFocus.Remove(OnInputFocus);
@@ -275,12 +264,9 @@ namespace Valve.VR
 #else
             Camera.onPreCull -= OnCameraPreCull;
 #endif
-
-            if (SteamVR.initializedState != SteamVR.InitializedStates.InitializeSuccess)
-                SteamVR_Events.Initialized.RemoveListener(OnSteamVRInitialized);
         }
 
-        private void Awake()
+        void Awake()
         {
             if (externalCamera == null && System.IO.File.Exists(externalCameraConfigPath))
             {

@@ -7,9 +7,11 @@ namespace Valve.VR.InteractionSystem.Sample
 {
     public class FloppyHand : MonoBehaviour
     {
+
         protected float fingerFlexAngle = 140;
-        
-        public SteamVR_Action_Single squeezyAction = SteamVR_Input.GetAction<SteamVR_Action_Single>("Squeeze");
+
+        [SteamVR_DefaultAction("Squeeze")]
+        public SteamVR_Action_Single squeezyAction;
         public SteamVR_Input_Sources inputSource;
 
         [System.Serializable]
@@ -170,7 +172,7 @@ namespace Valve.VR.InteractionSystem.Sample
                 }
                 else
                 {
-                    Debug.LogError("<b>[SteamVR Interaction]</b> finger mass is zero");
+                    Debug.LogError("finger mass is zero");
                 }
             }
 

@@ -50,7 +50,7 @@ namespace Valve.VR
         static public float sceneResolutionScale
         {
             get { return XRSettings.renderScale; }
-            set { if (value == 0) return; XRSettings.renderScale = value; }
+            set { XRSettings.renderScale = value; }
         }
 #endif
 

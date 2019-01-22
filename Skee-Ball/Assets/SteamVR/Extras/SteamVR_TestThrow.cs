@@ -9,8 +9,9 @@ namespace Valve.VR.Extras
     {
         public GameObject prefab;
         public Rigidbody attachPoint;
-        
-        public SteamVR_Action_Boolean spawn = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("InteractUI");
+
+        [SteamVR_DefaultAction("Interact")]
+        public SteamVR_Action_Boolean spawn;
 
         SteamVR_Behaviour_Pose trackedObj;
         FixedJoint joint;
@@ -24,7 +25,7 @@ namespace Valve.VR.Extras
         {
             if (joint == null && spawn.GetStateDown(trackedObj.inputSource))
             {
-                GameObject go = GameObject.Instantiate(prefab);
+                var go = GameObject.Instantiate(prefab);
                 go.transform.position = attachPoint.transform.position;
 
                 joint = go.AddComponent<FixedJoint>();
@@ -32,8 +33,8 @@ namespace Valve.VR.Extras
             }
             else if (joint != null && spawn.GetStateUp(trackedObj.inputSource))
             {
-                GameObject go = joint.gameObject;
-                Rigidbody rigidbody = go.GetComponent<Rigidbody>();
+                var go = joint.gameObject;
+                var rigidbody = go.GetComponent<Rigidbody>();
                 Object.DestroyImmediate(joint);
                 joint = null;
                 Object.Destroy(go, 15.0f);
@@ -43,7 +44,7 @@ namespace Valve.VR.Extras
                 // location, however, we would then want to predict ahead the visual representation
                 // by the same amount we are predicting our render poses.
 
-                Transform origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
+                var origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
                 if (origin != null)
                 {
                     rigidbody.velocity = origin.TransformVector(trackedObj.GetVelocity());

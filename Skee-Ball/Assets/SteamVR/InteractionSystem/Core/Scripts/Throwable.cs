@@ -48,10 +48,9 @@ namespace Valve.VR.InteractionSystem
         protected Transform attachEaseInTransform;
 
 		public UnityEvent onPickUp;
-        public UnityEvent onDetachFromHand;
-        public UnityEvent<Hand> onHeldUpdate;
+		public UnityEvent onDetachFromHand;
 
-        public bool snapAttachEaseInCompleted = false;
+		public bool snapAttachEaseInCompleted = false;
         
         protected RigidbodyInterpolation hadInterpolation = RigidbodyInterpolation.None;
 
@@ -137,7 +136,7 @@ namespace Valve.VR.InteractionSystem
         //-------------------------------------------------
         protected virtual void OnAttachedToHand( Hand hand )
 		{
-            //Debug.Log("<b>[SteamVR Interaction]</b> Pickup: " + hand.GetGrabStarting().ToString());
+            //Debug.Log("Pickup: " + hand.GetGrabStarting().ToString());
 
             hadInterpolation = this.rigidbody.interpolation;
 
@@ -187,9 +186,6 @@ namespace Valve.VR.InteractionSystem
 
         public virtual void GetReleaseVelocities(Hand hand, out Vector3 velocity, out Vector3 angularVelocity)
         {
-            if (hand.noSteamVRFallbackCamera && releaseVelocityStyle != ReleaseStyle.NoChange)
-                releaseVelocityStyle = ReleaseStyle.ShortEstimation; // only type that works with fallback hand is short estimation.
-
             switch (releaseVelocityStyle)
             {
                 case ReleaseStyle.ShortEstimation:
@@ -246,9 +242,6 @@ namespace Valve.VR.InteractionSystem
                 // to teleport behind the hand when the player releases it.
                 //StartCoroutine( LateDetach( hand ) );
             }
-
-            if (onHeldUpdate != null)
-                onHeldUpdate.Invoke(hand);
         }
 
 

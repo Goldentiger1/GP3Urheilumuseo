@@ -14,25 +14,22 @@ namespace Valve.VR
     using UnityEngine;
     
     
-    public partial class SteamVR_Actions
+    public partial class SteamVR_Input
     {
         
-        private static SteamVR_Input_ActionSet_default p__default;
+        public static Valve.VR.SteamVR_Input_ActionSet_default _default;
         
-        public static SteamVR_Input_ActionSet_default _default
+        public static void Dynamic_InitializeActionSets()
         {
-            get
-            {
-                return SteamVR_Actions.p__default.GetCopy <SteamVR_Input_ActionSet_default>();
-            }
+            SteamVR_Input._default.Initialize();
         }
         
-        private static void StartPreInitActionSets()
+        public static void Dynamic_InitializeInstanceActionSets()
         {
-            SteamVR_Actions.p__default = ((SteamVR_Input_ActionSet_default)(SteamVR_ActionSet.Create <SteamVR_Input_ActionSet_default>("/actions/default")));
+            Valve.VR.SteamVR_Input._default = ((SteamVR_Input_ActionSet_default)(SteamVR_Input_References.GetActionSet("_default")));
             Valve.VR.SteamVR_Input.actionSets = new Valve.VR.SteamVR_ActionSet[]
             {
-                    SteamVR_Actions._default};
+                    Valve.VR.SteamVR_Input._default};
         }
     }
 }

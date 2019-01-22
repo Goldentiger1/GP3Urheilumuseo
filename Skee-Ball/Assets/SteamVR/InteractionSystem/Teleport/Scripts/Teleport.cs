@@ -13,7 +13,8 @@ namespace Valve.VR.InteractionSystem
 	//-------------------------------------------------------------------------
 	public class Teleport : MonoBehaviour
     {
-        public SteamVR_Action_Boolean teleportAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("Teleport");
+        [SteamVR_DefaultAction("Teleport", "default")]
+        public SteamVR_Action_Boolean teleportAction;
 
         public LayerMask traceLayerMask;
 		public LayerMask floorFixupTraceLayerMask;
@@ -141,8 +142,8 @@ namespace Valve.VR.InteractionSystem
 
 		//-------------------------------------------------
 		void Awake()
-        {
-            _instance = this;
+		{
+			_instance = this;
 
 			chaperoneInfoInitializedAction = ChaperoneInfo.InitializedAction( OnChaperoneInfoInitialized );
 
@@ -168,8 +169,8 @@ namespace Valve.VR.InteractionSystem
 
 		//-------------------------------------------------
 		void Start()
-        {
-            teleportMarkers = GameObject.FindObjectsOfType<TeleportMarkerBase>();
+		{
+			teleportMarkers = GameObject.FindObjectsOfType<TeleportMarkerBase>();
 
 			HidePointer();
 
@@ -177,7 +178,7 @@ namespace Valve.VR.InteractionSystem
 
 			if ( player == null )
 			{
-				Debug.LogError("<b>[SteamVR Interaction]</b> Teleport: No Player instance found in map.");
+				Debug.LogError( "Teleport: No Player instance found in map." );
 				Destroy( this.gameObject );
 				return;
 			}
@@ -543,9 +544,9 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void OnChaperoneInfoInitialized()
 		{
-			ChaperoneInfo chaperone = ChaperoneInfo.instance;
+			ChaperoneInfo chaperone = ChaperoneInfo.Instance;
 
-			if ( chaperone.initialized && chaperone.roomscale )
+			if ( chaperone.Initialized && chaperone.Roomscale )
 			{
 				//Set up the render model for the play area bounds
 
@@ -580,8 +581,8 @@ namespace Valve.VR.InteractionSystem
 					playAreaPreviewSides[3].transform.parent = playAreaPreviewTransform;
 				}
 
-				float x = chaperone.playAreaSizeX;
-				float z = chaperone.playAreaSizeZ;
+				float x = chaperone.PlayAreaSizeX;
+				float z = chaperone.PlayAreaSizeZ;
 
 				playAreaPreviewSides[0].localPosition = new Vector3( 0.0f, 0.0f, 0.5f * z - 0.25f );
 				playAreaPreviewSides[1].localPosition = new Vector3( 0.0f, 0.0f, -0.5f * z + 0.25f );
@@ -1110,6 +1111,8 @@ namespace Valve.VR.InteractionSystem
 				else
                 {
                     return teleportAction.GetState(hand.handType);
+
+                    //return hand.controller.GetPress( SteamVR_Controller.ButtonMask.Touchpad );
 				}
 			}
 

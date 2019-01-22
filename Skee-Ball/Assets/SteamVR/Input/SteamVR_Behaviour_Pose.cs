@@ -10,11 +10,12 @@ namespace Valve.VR
 {
     /// <summary>
     /// This component simplifies the use of Pose actions. Adding it to a gameobject will auto set that transform's position and rotation every update to match the pose.
-    /// Advanced velocity estimation is handled through a buffer of the last 30 updates.
+    /// Advanced velocity estimation is also handled through a buffer of the last 30 updates.
     /// </summary>
     public class SteamVR_Behaviour_Pose : MonoBehaviour
     {
-        public SteamVR_Action_Pose poseAction = SteamVR_Input.GetAction<SteamVR_Action_Pose>("Pose");
+        [SteamVR_DefaultAction("Pose")]
+        public SteamVR_Action_Pose poseAction;
 
         [Tooltip("The device this action should apply to. Any if the action is not device specific.")]
         public SteamVR_Input_Sources inputSource;
@@ -23,10 +24,10 @@ namespace Valve.VR
         public Transform origin;
 
         /// <summary>Returns whether or not the current pose is in a valid state</summary>
-        public bool isValid { get { return poseAction[inputSource].poseIsValid; } }
+        public bool isValid { get { return poseAction.GetPoseIsValid(inputSource); } }
 
         /// <summary>Returns whether or not the pose action is bound and able to be updated</summary>
-        public bool isActive { get { return poseAction[inputSource].active; } }
+        public bool isActive { get { return poseAction.GetActive(inputSource); } }
 
         /// <summary>This event will fire whenever the position or rotation of this transform is updated.</summary>
         public SteamVR_Behaviour_PoseEvent onTransformUpdated;
@@ -35,16 +36,10 @@ namespace Valve.VR
         public SteamVR_Behaviour_PoseEvent onTransformChanged;
 
         /// <summary>This event will fire whenever the device is connected or disconnected</summary>
-        public SteamVR_Behaviour_Pose_ConnectedChangedEvent onConnectedChanged;
+        public SteamVR_Behaviour_PoseEvent onConnectedChanged;
 
         /// <summary>This event will fire whenever the device's tracking state changes</summary>
-        public SteamVR_Behaviour_Pose_TrackingChangedEvent onTrackingChanged;
-
-        /// <summary>This event will fire whenever the device's deviceIndex changes</summary>
-        public SteamVR_Behaviour_Pose_DeviceIndexChangedEvent onDeviceIndexChanged;
-
-        [Tooltip("Can be disabled to stop broadcasting bound device status changes")]
-        public bool broadcastDeviceChanges = true;
+        public SteamVR_Behaviour_PoseEvent onTrackingChanged;
 
         protected int deviceIndex = -1;
 
@@ -53,108 +48,39 @@ namespace Valve.VR
 
         protected virtual void Start()
         {
-            if (poseAction == null)
-            {
-                Debug.LogError("<b>[SteamVR]</b> No pose action set for this component");
-                return;
-            }
-
             CheckDeviceIndex();
 
             if (origin == null)
                 origin = this.transform.parent;
         }
 
-        protected virtual void OnEnable()
-        {
-            SteamVR.Initialize();
-
-            if (poseAction != null)
-            {
-                poseAction[inputSource].onUpdate += SteamVR_Behaviour_Pose_OnUpdate;
-                poseAction[inputSource].onDeviceConnectedChanged += OnDeviceConnectedChanged;
-                poseAction[inputSource].onTrackingChanged += OnTrackingChanged;
-                poseAction[inputSource].onChange += SteamVR_Behaviour_Pose_OnChange;
-            }
-        }
-
-        protected virtual void OnDisable()
-        {
-            if (poseAction != null)
-            {
-                poseAction[inputSource].onUpdate -= SteamVR_Behaviour_Pose_OnUpdate;
-                poseAction[inputSource].onDeviceConnectedChanged -= OnDeviceConnectedChanged;
-                poseAction[inputSource].onTrackingChanged -= OnTrackingChanged;
-                poseAction[inputSource].onChange -= SteamVR_Behaviour_Pose_OnChange;
-            }
-
-            historyBuffer.Clear();
-        }
-
-        private void SteamVR_Behaviour_Pose_OnUpdate(SteamVR_Action_Pose fromAction, SteamVR_Input_Sources fromSource)
-        {
-            UpdateHistoryBuffer();
-
-            UpdateTransform();
-
-            if (onTransformUpdated != null)
-                onTransformUpdated.Invoke(poseAction, inputSource);
-        }
-        protected virtual void UpdateTransform()
-        {
-            CheckDeviceIndex();
-
-            if (origin != null)
-            {
-                transform.position = origin.transform.TransformPoint(poseAction[inputSource].localPosition);
-                transform.rotation = origin.rotation * poseAction[inputSource].localRotation;
-            }
-            else
-            {
-                transform.localPosition = poseAction[inputSource].localPosition;
-                transform.localRotation = poseAction[inputSource].localRotation;
-            }
-        }
-
-        private void SteamVR_Behaviour_Pose_OnChange(SteamVR_Action_Pose fromAction, SteamVR_Input_Sources fromSource)
-        {
-            if (onTransformChanged != null)
-                onTransformChanged.Invoke(fromAction, fromSource);
-        }
-
-        protected virtual void OnDeviceConnectedChanged(SteamVR_Action_Pose changedAction, SteamVR_Input_Sources changedSource, bool connected)
+        protected virtual void OnDeviceConnectedChanged(SteamVR_Action_Pose changedAction)
         {
             CheckDeviceIndex();
 
             if (onConnectedChanged != null)
-                onConnectedChanged.Invoke(poseAction, inputSource, connected);
+                onConnectedChanged.Invoke(poseAction);
         }
 
-        protected virtual void OnTrackingChanged(SteamVR_Action_Pose changedAction, SteamVR_Input_Sources changedSource, ETrackingResult trackingChanged)
+        protected virtual void OnTrackingChanged(SteamVR_Action_Pose changedAction)
         {
             if (onTrackingChanged != null)
-                onTrackingChanged.Invoke(poseAction, inputSource, trackingChanged);
+                onTrackingChanged.Invoke(poseAction);
         }
 
         protected virtual void CheckDeviceIndex()
         {
-            if (poseAction[inputSource].active && poseAction[inputSource].deviceIsConnected)
+            if (poseAction.GetActive(inputSource))
             {
-                int currentDeviceIndex = (int)poseAction[inputSource].trackedDeviceIndex;
-
-                if (deviceIndex != currentDeviceIndex)
+                if (poseAction.GetDeviceIsConnected(inputSource))
                 {
-                    deviceIndex = currentDeviceIndex;
+                    int currentDeviceIndex = (int)poseAction.GetDeviceIndex(inputSource);
 
-                    if (broadcastDeviceChanges)
+                    if (deviceIndex != currentDeviceIndex)
                     {
+                        deviceIndex = currentDeviceIndex;
                         this.gameObject.BroadcastMessage("SetInputSource", inputSource, SendMessageOptions.DontRequireReceiver);
                         this.gameObject.BroadcastMessage("SetDeviceIndex", deviceIndex, SendMessageOptions.DontRequireReceiver);
-                    }
-
-                    if (onDeviceIndexChanged != null)
-                    {
-                        onDeviceIndexChanged.Invoke(poseAction, inputSource, deviceIndex);
                     }
                 }
             }
@@ -171,22 +97,45 @@ namespace Valve.VR
             return deviceIndex;
         }
 
+        protected virtual void OnEnable()
+        {
+            SteamVR.Initialize();
+
+            SteamVR_Input.OnPosesUpdated += SteamVR_Input_OnPosesUpdated;
+            poseAction.AddOnDeviceConnectedChanged(inputSource, OnDeviceConnectedChanged);
+            poseAction.AddOnTrackingChanged(inputSource, OnTrackingChanged);
+        }
+
+        protected virtual void OnDisable()
+        {
+            SteamVR_Input.OnPosesUpdated -= SteamVR_Input_OnPosesUpdated;
+            poseAction.RemoveOnDeviceConnectedChanged(inputSource, OnDeviceConnectedChanged);
+            poseAction.RemoveOnTrackingChanged(inputSource, OnTrackingChanged);
+
+            historyBuffer.Clear();
+        }
+
         /// <summary>Returns the current velocity of the pose (as of the last update)</summary>
         public Vector3 GetVelocity()
         {
-            return poseAction[inputSource].velocity;
+            return poseAction.GetVelocity(inputSource);
         }
 
         /// <summary>Returns the current angular velocity of the pose (as of the last update)</summary>
         public Vector3 GetAngularVelocity()
         {
-            return poseAction[inputSource].angularVelocity;
+            return poseAction.GetAngularVelocity(inputSource);
         }
 
         /// <summary>Returns the velocities of the pose at the time specified. Can predict in the future or return past values.</summary>
         public bool GetVelocitiesAtTimeOffset(float secondsFromNow, out Vector3 velocity, out Vector3 angularVelocity)
         {
-            return poseAction[inputSource].GetVelocitiesAtTimeOffset(secondsFromNow, out velocity, out angularVelocity);
+            return poseAction.GetVelocitiesAtTimeOffset(inputSource, secondsFromNow, out velocity, out angularVelocity);
+        }
+
+        protected void UpdateHistoryBuffer()
+        {
+            historyBuffer.Update(poseAction.GetLocalPosition(inputSource), poseAction.GetLocalRotation(inputSource), poseAction.GetVelocity(inputSource), poseAction.GetAngularVelocity(inputSource));
         }
 
         /// <summary>Uses previously recorded values to find the peak speed of the pose and returns the corresponding velocity and angular velocity</summary>
@@ -197,45 +146,41 @@ namespace Valve.VR
             historyBuffer.GetAverageVelocities(out velocity, out angularVelocity, 2, top);
         }
 
-        protected int lastFrameUpdated;
-        protected void UpdateHistoryBuffer()
+        private void SteamVR_Input_OnPosesUpdated(bool obj)
         {
-            int currentFrame = Time.frameCount;
-            if (lastFrameUpdated != currentFrame)
-            {
-                historyBuffer.Update(poseAction[inputSource].localPosition, poseAction[inputSource].localRotation, poseAction[inputSource].velocity, poseAction[inputSource].angularVelocity);
-                lastFrameUpdated = currentFrame;
-            }
+            UpdateHistoryBuffer();
+            Update();
         }
 
-        /// <summary>
-        /// Gets the localized name of the device that the action corresponds to. 
-        /// </summary>
-        /// <param name="localizedParts">
-        /// <list type="bullet">
-        /// <item><description>VRInputString_Hand - Which hand the origin is in. E.g. "Left Hand"</description></item>
-        /// <item><description>VRInputString_ControllerType - What kind of controller the user has in that hand.E.g. "Vive Controller"</description></item>
-        /// <item><description>VRInputString_InputSource - What part of that controller is the origin. E.g. "Trackpad"</description></item>
-        /// <item><description>VRInputString_All - All of the above. E.g. "Left Hand Vive Controller Trackpad"</description></item>
-        /// </list>
-        /// </param>
-        public string GetLocalizedName(params EVRInputStringBits[] localizedParts)
+        protected virtual void Update()
         {
-            if (poseAction != null)
-                return poseAction.GetLocalizedOriginPart(inputSource, localizedParts);
-            return null;
+            if (poseAction == null)
+                return;
+
+            CheckDeviceIndex();
+
+            if (origin != null)
+            {
+                transform.position = origin.transform.TransformPoint(poseAction.GetLocalPosition(inputSource));
+                transform.rotation = origin.rotation * poseAction.GetLocalRotation(inputSource);
+            }
+            else
+            {
+                transform.localPosition = poseAction.GetLocalPosition(inputSource);
+                transform.localRotation = poseAction.GetLocalRotation(inputSource);
+            }
+
+            if (poseAction.GetChanged(inputSource))
+            {
+                if (onTransformChanged != null)
+                    onTransformChanged.Invoke(poseAction);
+            }
+
+            if (onTransformUpdated != null)
+                onTransformUpdated.Invoke(poseAction);
         }
     }
 
     [Serializable]
-    public class SteamVR_Behaviour_PoseEvent : UnityEvent<SteamVR_Action_Pose, SteamVR_Input_Sources> { }
-
-    [Serializable]
-    public class SteamVR_Behaviour_Pose_ConnectedChangedEvent : UnityEvent<SteamVR_Action_Pose, SteamVR_Input_Sources, bool> { }
-
-    [Serializable]
-    public class SteamVR_Behaviour_Pose_TrackingChangedEvent : UnityEvent<SteamVR_Action_Pose, SteamVR_Input_Sources, ETrackingResult> { }
-
-    [Serializable]
-    public class SteamVR_Behaviour_Pose_DeviceIndexChangedEvent : UnityEvent<SteamVR_Action_Pose, SteamVR_Input_Sources, int> { }
+    public class SteamVR_Behaviour_PoseEvent : UnityEvent<SteamVR_Action_Pose> { }
 }

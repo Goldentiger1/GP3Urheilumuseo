@@ -18,7 +18,6 @@ namespace Valve.VR
     public class SteamVR_Input_LiveWindow : EditorWindow
     {
         private GUIStyle labelStyle;
-        private GUIStyle setLabelStyle;
 
         [MenuItem("Window/SteamVR Input Live View")]
         public static void ShowWindow()
@@ -33,62 +32,12 @@ namespace Valve.VR
 
         private Vector2 scrollPosition;
 
-        private Dictionary<SteamVR_Input_Sources, bool> sourceFoldouts = null;
-        private Dictionary<SteamVR_Input_Sources, Dictionary<string, bool>> setFoldouts = null;
-
-        Color inactiveSetColor = Color.Lerp(Color.red, Color.white, 0.5f);
-        Color actionUnboundColor = Color.red;
-        Color actionChangedColor = Color.green;
-        Color actionNotUpdatingColor = Color.yellow;
-
-        private void DrawMap()
-        {
-            EditorGUILayout.BeginHorizontal();
-            //GUILayout.FlexibleSpace();
-
-            GUI.backgroundColor = actionUnboundColor;
-            EditorGUILayout.LabelField("Not Bound", labelStyle);
-
-            GUILayout.FlexibleSpace();
-
-            GUI.backgroundColor = inactiveSetColor;
-            EditorGUILayout.LabelField("Inactive", labelStyle);
-
-            GUILayout.FlexibleSpace();
-
-            GUI.backgroundColor = actionNotUpdatingColor;
-            EditorGUILayout.LabelField("Not Used Yet", labelStyle);
-
-            GUILayout.FlexibleSpace();
-
-            GUI.backgroundColor = actionChangedColor;
-            EditorGUILayout.LabelField("Changed", labelStyle);
-
-            //GUILayout.FlexibleSpace();
-            EditorGUILayout.EndHorizontal();
-
-            EditorGUILayout.Space();
-        }
-
         private void OnGUI()
         {
-            if (SteamVR_Input.actionSets == null)
-            {
-                EditorGUILayout.LabelField("Must first generate actions. Open SteamVR Input window.");
-                return;
-            }
-
-            bool startUpdatingSourceOnAccess = SteamVR_Action.startUpdatingSourceOnAccess;
-            SteamVR_Action.startUpdatingSourceOnAccess = false;
-
             if (labelStyle == null)
             {
                 labelStyle = new GUIStyle(EditorStyles.textField);
                 labelStyle.normal.background = Texture2D.whiteTexture;
-                
-                setLabelStyle = new GUIStyle(EditorStyles.label);
-                setLabelStyle.wordWrap = true;
-                setLabelStyle.normal.background = Texture2D.whiteTexture;
             }
 
             scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
@@ -96,105 +45,45 @@ namespace Valve.VR
             Color defaultColor = GUI.backgroundColor;
 
             SteamVR_ActionSet[] actionSets = SteamVR_Input.actionSets;
-            SteamVR_Input_Sources[] sources = SteamVR_Input_Source.GetAllSources();
+            if (actionSets == null)
+                actionSets = SteamVR_Input_References.instance.actionSetObjects;
 
-            if (sourceFoldouts == null)
-            {
-                sourceFoldouts = new Dictionary<SteamVR_Input_Sources, bool>();
-                setFoldouts = new Dictionary<SteamVR_Input_Sources, Dictionary<string, bool>>();
-                for (int sourceIndex = 0; sourceIndex < sources.Length; sourceIndex++)
-                {
-                    sourceFoldouts.Add(sources[sourceIndex], false);
-                    setFoldouts.Add(sources[sourceIndex], new Dictionary<string, bool>());
-
-                    for (int actionSetIndex = 0; actionSetIndex < actionSets.Length; actionSetIndex++)
-                    {
-                        SteamVR_ActionSet set = actionSets[actionSetIndex];
-                        setFoldouts[sources[sourceIndex]].Add(set.GetShortName(), true);
-                    }
-                }
-
-                sourceFoldouts[SteamVR_Input_Sources.Any] = true;
-                sourceFoldouts[SteamVR_Input_Sources.LeftHand] = true;
-                sourceFoldouts[SteamVR_Input_Sources.RightHand] = true;
-            }
-
-            DrawMap();
-            
+            SteamVR_Input_Sources[] sources = SteamVR_Input_Source.GetUpdateSources();
             for (int sourceIndex = 0; sourceIndex < sources.Length; sourceIndex++)
             {
                 SteamVR_Input_Sources source = sources[sourceIndex];
-                sourceFoldouts[source] = EditorGUILayout.Foldout(sourceFoldouts[source], source.ToString());
-
-                if (sourceFoldouts[source] == false)
-                    continue;
+                EditorGUILayout.LabelField(source.ToString());
 
                 EditorGUI.indentLevel++;
 
                 for (int actionSetIndex = 0; actionSetIndex < actionSets.Length; actionSetIndex++)
                 {
                     SteamVR_ActionSet set = actionSets[actionSetIndex];
-                    bool setActive = set.IsActive(source);
-                    string activeText = setActive ? "Active" : "Inactive";
+                    string activeText = set.IsActive() ? "Active" : "Inactive";
                     float setLastChanged = set.GetTimeLastChanged();
 
                     if (setLastChanged != -1)
                     {
-                        float timeSinceLastChanged = Time.realtimeSinceStartup - setLastChanged;
+                        float timeSinceLastChanged = Time.time - setLastChanged;
                         if (timeSinceLastChanged < 1)
                         {
-                            Color blendColor = setActive ? Color.green : inactiveSetColor;
-                            Color setColor = Color.Lerp(blendColor, defaultColor, timeSinceLastChanged);
+                            Color setColor = Color.Lerp(Color.green, defaultColor, timeSinceLastChanged);
                             GUI.backgroundColor = setColor;
                         }
                     }
 
-                    EditorGUILayout.BeginHorizontal();
-                        setFoldouts[source][set.GetShortName()] = EditorGUILayout.Foldout(setFoldouts[source][set.GetShortName()], set.GetShortName());
-
-                        EditorGUILayout.LabelField(activeText, labelStyle);
-
-                        GUI.backgroundColor = defaultColor;
-                    EditorGUILayout.EndHorizontal();
-
-                    if (setFoldouts[source][set.GetShortName()] == false)
-                        continue;
+                    EditorGUILayout.LabelField(set.GetShortName(), activeText, labelStyle);
+                    GUI.backgroundColor = defaultColor;
 
                     EditorGUI.indentLevel++;
 
                     for (int actionIndex = 0; actionIndex < set.allActions.Length; actionIndex++)
                     {
                         SteamVR_Action action = set.allActions[actionIndex];
-                        if (source != SteamVR_Input_Sources.Any && action is SteamVR_Action_Skeleton)
-                            continue;
 
-                        bool isUpdating = action.IsUpdating(source);
-                        bool inAction = action is ISteamVR_Action_In;
-
-                        bool noData = false;
-                        if (inAction && isUpdating == false)
-                        {
-                            GUI.backgroundColor = Color.yellow;
-                            noData = true;
-                        }
-                        else
-                        {
-                            bool actionBound = action.GetActiveBinding(source);
-                            if (setActive == false)
-                            {
-                                GUI.backgroundColor = inactiveSetColor;
-                            }
-                            else if (actionBound == false)
-                            {
-                                GUI.backgroundColor = Color.red;
-                                noData = true;
-                            }
-                        }
-
-                        if (noData)
+                        if (action.actionSet == null || action.actionSet.IsActive() == false)
                         {
                             EditorGUILayout.LabelField(action.GetShortName(), "-", labelStyle);
-                            GUI.backgroundColor = defaultColor;
                             continue;
                         }
 
@@ -204,9 +93,13 @@ namespace Valve.VR
 
                         float timeSinceLastChanged = -1;
 
-                        if (actionLastChanged != -1)
+                        if (action is SteamVR_Action_In && ((SteamVR_Action_In)action).GetActive(source) == false)
                         {
-                            timeSinceLastChanged = Time.realtimeSinceStartup - actionLastChanged;
+                            GUI.backgroundColor = Color.red;
+                        }
+                        else if (actionLastChanged != -1)
+                        {
+                            timeSinceLastChanged = Time.time - actionLastChanged;
 
                             if (timeSinceLastChanged < 1)
                             {
@@ -277,18 +170,7 @@ namespace Valve.VR
                 EditorGUI.indentLevel--;
             }
 
-            EditorGUILayout.Space();
-
-            EditorGUILayout.LabelField("Active Action Set List");
-            EditorGUI.indentLevel++;
-            EditorGUILayout.LabelField(SteamVR_ActionSet_Manager.debugActiveSetListText, setLabelStyle);
-            EditorGUI.indentLevel--;
-
-            EditorGUILayout.Space();
-
             EditorGUILayout.EndScrollView();
-
-            SteamVR_Action.startUpdatingSourceOnAccess = startUpdatingSourceOnAccess;
         }
     }
 }

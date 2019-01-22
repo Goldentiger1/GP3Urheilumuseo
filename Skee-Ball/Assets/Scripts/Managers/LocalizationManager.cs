@@ -26,6 +26,8 @@ public class LocalizationManager : Singelton<LocalizationManager>
 
     public bool IsReady { get; private set; }
 
+    private Action<string> actions;
+
     private void Awake()
     {
         IsReady = false;
@@ -41,6 +43,11 @@ public class LocalizationManager : Singelton<LocalizationManager>
         Debug.Log("Localization is ready");
 
         // kaikki localizedText objectit tulee ajaa ChangeText-funktio.
+    }
+
+    public void RegisterCallback(Action<string, string> action)
+    {
+        action.Invoke("ResetButton", GetValue("ResetButton"));
     }
 
     private void LoadLocalizedText(string fileName)

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Text))]
@@ -16,10 +15,12 @@ public class LocalizedText : MonoBehaviour
 
     private void Start()
     {
-        LocalizationManager.Instance.RegisterCallback(
-            
-            (Key, result) => { text.text = result; }
+        // Hei olen olemaassa Localization Manager!
+        LocalizationManager.Instance.AddLocalizedText(this);
+    }
 
-            );
+    public void ChangeText(string newText)
+    {
+        text.text = newText;
     }
 }

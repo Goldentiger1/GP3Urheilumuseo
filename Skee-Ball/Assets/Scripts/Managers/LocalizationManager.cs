@@ -19,14 +19,16 @@ public class LocalizationItem
 
 public class LocalizationManager : Singelton<LocalizationManager>
 {
-    private Dictionary<string, string> localizationText;
+    private string currentLanguage = string.Empty;
+
+    private Dictionary<string, string> localizationTextDictionary;
+    private List<LocalizedText> localizedTextsInScene = new List<LocalizedText>();
 
     private readonly string defaultLanguage = "FI";
     private readonly string missingText = "Localized text not found!";
 
     public bool IsReady { get; private set; }
-
-    private Action<string> actions;
+    public event Action<Func<string, string>> Actions;
 
     private void Awake()
     {
@@ -42,19 +44,15 @@ public class LocalizationManager : Singelton<LocalizationManager>
 
         Debug.Log("Localization is ready");
 
-        // kaikki localizedText objectit tulee ajaa ChangeText-funktio.
+        // kaikki localizedText objectit tulee ajaa ChangeText-funktion.
+
+        ChangeTextToNewLanguage();
     }
 
-    public void RegisterCallback(Action<string, string> action)
-    {
-        action.Invoke("ResetButton", GetValue("ResetButton"));
-    }
 
     private void LoadLocalizedText(string fileName)
     {
-        print("LoadLocalizedText");
-
-        localizationText = new Dictionary<string, string>();
+        localizationTextDictionary = new Dictionary<string, string>();
 
         string filePath = Path.Combine(Application.streamingAssetsPath, "LocalizedText_" + fileName + ".json");
 
@@ -66,10 +64,10 @@ public class LocalizationManager : Singelton<LocalizationManager>
 
             for (int i = 0; i < loadedData.Items.Length; i++)
             {
-                localizationText.Add(loadedData.Items[i].Key, loadedData.Items[i].Value);
+                localizationTextDictionary.Add(loadedData.Items[i].Key, loadedData.Items[i].Value);
             }
 
-            Debug.Log("Data loaded, dictionary contains: " + localizationText.Count + " entries.");
+            Debug.Log("Data loaded, dictionary contains: " + localizationTextDictionary.Count + " entries.");
         }
         else
         {
@@ -79,15 +77,43 @@ public class LocalizationManager : Singelton<LocalizationManager>
         IsReady = true;
     }
 
-    public void ChangeLanguage(string newLanguage)
+    public void AddLocalizedText(LocalizedText newLocalizedText)
     {
-        LoadLocalizedText(newLanguage);
+        localizedTextsInScene.Add(newLocalizedText);
     }
 
-    public string GetValue(string key)
+    public void ClearLocalizedText()
+    {
+        localizedTextsInScene.Clear();
+    }
+
+    private void ChangeTextToNewLanguage()
+    {
+        foreach (var localizedText in localizedTextsInScene)
+        {
+            localizedText.ChangeText(GetValue(localizedText.Key));
+        }
+    }
+
+    private string GetValue(string key)
     {
         var result = string.Empty;
 
-        return result = localizationText.TryGetValue(key, out result) ? result : missingText;
+        return result = localizationTextDictionary.TryGetValue(key, out result) ? result : missingText;
     }
+
+    public void ChangeLanguage(string newLanguage)
+    {
+        if (currentLanguage.Equals(newLanguage))
+        {
+            Debug.LogWarning("Language is already: " + newLanguage);
+            return;
+        }
+
+        LoadLocalizedText(newLanguage);
+
+        currentLanguage = newLanguage;
+
+        ChangeTextToNewLanguage();
+    } 
 }

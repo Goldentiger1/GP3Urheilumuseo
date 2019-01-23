@@ -119,13 +119,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2215443054820359434}
-        m_MethodName: LoadScene
+      - m_Target: {fileID: 0}
+        m_MethodName: ChangeScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -282,7 +282,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.27833042, g: 0.45497572, b: 0.9705882, a: 1}
+    m_NormalColor: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
     m_HighlightedColor: {r: 0.5921569, g: 0.70980394, b: 0.83921576, a: 1}
     m_PressedColor: {r: 0.6039216, g: 0.654902, b: 0.70980394, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2215443054820359434}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeLanguage
         m_Mode: 5
         m_Arguments:
@@ -595,7 +595,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.27833042, g: 0.45497572, b: 0.9705882, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.5921569, g: 0.70980394, b: 0.83921576, a: 1}
     m_PressedColor: {r: 0.6039216, g: 0.654902, b: 0.70980394, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -615,7 +615,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2215443054820359434}
+      - m_Target: {fileID: 0}
         m_MethodName: ChangeLanguage
         m_Mode: 5
         m_Arguments:
@@ -933,7 +933,6 @@ GameObject:
   - component: {fileID: 1815526095399091357}
   - component: {fileID: 5194679948785199532}
   - component: {fileID: 346253492110194087}
-  - component: {fileID: 2215443054820359434}
   m_Layer: 0
   m_Name: ControlPanel
   m_TagString: Untagged
@@ -1022,15 +1021,3 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2215443054820359434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9046947803258742834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9275d1399ea52d44e8c12aa8892e5614, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

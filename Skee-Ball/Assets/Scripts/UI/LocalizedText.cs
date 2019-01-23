@@ -8,7 +8,6 @@ public class LocalizedText : MonoBehaviour
     public string Key;
 
     private Text text;
-    private delegate void Delegate();
 
     private void Awake()
     {
@@ -17,11 +16,10 @@ public class LocalizedText : MonoBehaviour
 
     private void Start()
     {
-        ChangeText();
-    }
+        LocalizationManager.Instance.RegisterCallback(
+            
+            (Key, result) => { text.text = result; }
 
-    public void ChangeText()
-    {
-        text.text = LocalizationManager.Instance.GetValue(Key);
+            );
     }
 }

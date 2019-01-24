@@ -8,11 +8,20 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
     private readonly float fakeLoadDuration = 4f;
 
-    private int currentSceneIndex;
+    public int CurrentSceneIndex
+    {
+        get;
+        private set;
+    }
+    public bool IsChangingScene
+    {
+        get;
+        private set;
+    }
 
     private void Start()
     {
-        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
     }
 
     public void ChangeScene(int sceneIndex)
@@ -21,8 +30,15 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         loadSceneAsync = StartCoroutine(ILoadSceneAsync(sceneIndex));
     }
 
+    public void RestartScene()
+    {
+        ChangeScene(CurrentSceneIndex);
+    }
+
     private IEnumerator ILoadSceneAsync(int sceneIndex)
     {
+        IsChangingScene = true;
+
         UIManager.Instance.FadeScreenImage(10f, 2f);
 
         yield return new WaitWhile(() => UIManager.Instance.IsFading);
@@ -38,13 +54,19 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
                 yield return new WaitForSeconds(fakeLoadDuration);
                 
-                currentSceneIndex = sceneIndex;
+                CurrentSceneIndex = sceneIndex;
                 asyncOperation.allowSceneActivation = true;
                 
             }
 
             yield return null;
         }
+
+        loadSceneAsync = null;
+
+        IsChangingScene = false;
+
+        LocalizationManager.Instance.ChangeTextToNewLanguage();
 
         UIManager.Instance.FadeScreenImage(-50f, 2f);
     }

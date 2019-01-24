@@ -21,8 +21,9 @@ public class UIManager : Singelton<UIManager>
     private void Start()
     {
         canvasGroup.alpha = 1f;
+        LoadImage.gameObject.SetActive(false);
 
-        FadeScreenImage(0f, 2f);
+        FadeScreenImage(0f, 2f, 1f);
     }
 
     private void Initialize()
@@ -32,9 +33,9 @@ public class UIManager : Singelton<UIManager>
         LoadImage = hudCanvas.Find("LoadImage").GetComponent<RectTransform>();
     }
 
-    public void FadeScreenImage(float targetFillAmount, float fadeSpeed = 1f, float startDelay = 0f)
+    public void FadeScreenImage(float targetFillAmount, float fadeSpeed = 1f, float startFadeDelay = 0f)
     {
-        StartCoroutine(IFadeScreenImage(targetFillAmount, fadeSpeed, startDelay));
+        StartCoroutine(IFadeScreenImage(targetFillAmount, fadeSpeed, startFadeDelay));
     }
 
     private IEnumerator IFadeScreenImage(float targetFillAmount, float fadeSpeed, float startFadeDelay)
@@ -48,7 +49,7 @@ public class UIManager : Singelton<UIManager>
 
         yield return new WaitForSeconds(startFadeDelay > 0f ? startFadeDelay : 0f);
 
-        while (canvasGroup.alpha != targetFillAmount)
+        while (canvasGroup.alpha != targetFillAmount) // ???
         {
             canvasGroup.alpha += canvasGroup.alpha < targetFillAmount ? (1f / fadeSpeed) * Time.unscaledDeltaTime : -(1f / fadeSpeed) * Time.unscaledDeltaTime;
             yield return null;

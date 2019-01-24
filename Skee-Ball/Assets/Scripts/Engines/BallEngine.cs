@@ -3,8 +3,12 @@
 public class BallEngine : MonoBehaviour
 {
     private new Rigidbody rigidbody;
-    private Vector3 closestPoint;
+    private Vector3 rigidbodyStartPosition;
     private readonly float minHitToSoundVelocity = 1F;
+    private readonly float spinSpeed = 10f;
+
+    #region AARO
+
     // World global position
     private GameObject world;
     // Rigidbody rotation speed
@@ -14,12 +18,37 @@ public class BallEngine : MonoBehaviour
     // New rigidbody velocity
     public Vector3 newVelocity;
 
+    #endregion AARO
+
+    public float CurrentVelocity
+    {
+        get
+        {
+            return rigidbody.velocity.magnitude;
+        }
+    }
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
-        world = GameObject.FindGameObjectWithTag("World").gameObject.GetComponent<GameObject>();
         oldVelocity = rigidbody.velocity;
+    }
+
+    private void Start()
+    {
+        rigidbodyStartPosition = rigidbody.position;
+
+        AddTorque(Vector3.forward * spinSpeed, ForceMode.Impulse);
+    }
+
+    private void Update()
+    {
+        // Kokeillaan Velocitya, paljonko arvo muuttuu heittäessä
+        newVelocity = rigidbody.velocity;
+        if (oldVelocity.magnitude < newVelocity.magnitude)
+        {
+
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -66,11 +95,13 @@ public class BallEngine : MonoBehaviour
         }
     }
 
-    void Update(){
-        // Kokeillaan Velocitya, paljonko arvo muuttuu heittäessä
-        newVelocity = rigidbody.velocity;
-        if(oldVelocity.magnitude < newVelocity.magnitude) {
+    public void AddTorque(Vector3 newTorque, ForceMode forceMode)
+    {
+        rigidbody.AddTorque(newTorque, forceMode);
+    }
 
-        }
+    public void ResetPosition()
+    {
+        rigidbody.position = rigidbodyStartPosition;
     }
 }

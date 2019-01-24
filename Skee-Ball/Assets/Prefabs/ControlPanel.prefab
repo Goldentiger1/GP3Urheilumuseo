@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2187963216030120763}
   - component: {fileID: 8908607402186784283}
   m_Layer: 0
-  m_Name: ResetButton
+  m_Name: PanelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -848,7 +848,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: RESET
+  m_Text: START
 --- !u!114 &4471040665490200644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ced8421dc31d9f4794a0d7a071326eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Key: ResetButton
+  Key: StartButton
 --- !u!1 &8530420049635712215
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +933,7 @@ GameObject:
   - component: {fileID: 1815526095399091357}
   - component: {fileID: 5194679948785199532}
   - component: {fileID: 346253492110194087}
+  - component: {fileID: 5545732359757592028}
   m_Layer: 0
   m_Name: ControlPanel
   m_TagString: Untagged
@@ -1021,3 +1022,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5545732359757592028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9046947803258742834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43bec31002f57e040bc24ba7dfacc26c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

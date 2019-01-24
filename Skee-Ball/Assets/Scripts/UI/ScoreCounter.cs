@@ -1,26 +1,36 @@
 ﻿using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class ScoreCounter : MonoBehaviour
 {
-    public TextMeshProUGUI uiScoreText;
-    public TextMeshProUGUI uiScoreNumber;
-    public float SceneChangeTimer = 60f;
-    public Vector3 throwStart;
-    public float throwDistance;
-    public float throwDistanceRequiredForThreePoints = 7f;
+    private const int MAX_SCORE_AMOUNT = 10;
+
+    private TextMeshProUGUI uiScoreText;
+    private Vector3 throwStart = Vector3.zero;
+    private float SceneChangeTimer = 60f;
+    private float throwDistance;
+    private readonly float throwDistanceRequiredForThreePoints = 7f;
     private readonly float sceneChangeWaitTime = 2f;
 
     int score = 0;
 
+    private void Awake()
+    {
+        uiScoreText = transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
+    }
+
     private void Update()
     {
+        if (GameMaster.Instance.IsChangingScene)
+        {
+            return;
+        }
+
         SceneChangeTimer -= Time.deltaTime;
+
         if(SceneChangeTimer <= 0)
         {
-            print("!!!");
-          //  ChangeScene();
+            ChangeScene();
         }
     }
 
@@ -39,31 +49,22 @@ public class ScoreCounter : MonoBehaviour
     {    
         throwDistance = Vector3.Distance(throwStart, transform.position);
 
-        if (throwDistance > throwDistanceRequiredForThreePoints)
-        {
-            AddScore(3);
-        }
-        else
-        {
-            AddScore(2);
-        }
+        AddScore(throwDistance > throwDistanceRequiredForThreePoints ? 3 : 2);
 
-        if (score < 10)
+        if (score < MAX_SCORE_AMOUNT)
         {
-            uiScoreNumber.text = "0" + score;
+            uiScoreText.text = "SCORE 0" + score;
         }
         else
         {
-            uiScoreNumber.text = "" + score;
+            uiScoreText.text = "SCORE " + score;
             Invoke( "ChangeScene", sceneChangeWaitTime);
         }
     }
     
     private void ChangeScene()
     {
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
-
-        switch (currentScene)
+        switch (GameMaster.Instance.CurrentSceneIndex)
         {
             case 1:
                 

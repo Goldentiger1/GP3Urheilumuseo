@@ -10,7 +10,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine.Events;
-using System.Threading;
 
 namespace Valve.VR.InteractionSystem
 {
@@ -118,9 +117,13 @@ namespace Valve.VR.InteractionSystem
             get { return attachedObjects.AsReadOnly(); }
         }
 
-        public bool HoverLocked { get; private set; }
+        public bool HoverLocked
+        {
+            get;
+            private set;
+        }
 
-        private Interactable _hoveringInteractable;
+        private Interactable hoveringInteractable;
 
         private TextMesh debugText;
         private int prevOverlappingColliders = 0;
@@ -155,36 +158,39 @@ namespace Valve.VR.InteractionSystem
         //-------------------------------------------------
         public Interactable HoveringInteractable
         {
-            get { return _hoveringInteractable; }
+            get
+            {
+                return hoveringInteractable;
+            }
             set
             {
-                if (_hoveringInteractable != value)
+                if (hoveringInteractable != value)
                 {
-                    if (_hoveringInteractable != null)
+                    if (hoveringInteractable != null)
                     {
                         if (spewDebugText)
-                            HandDebugLog("HoverEnd " + _hoveringInteractable.gameObject);
-                        _hoveringInteractable.SendMessage("OnHandHoverEnd", this, SendMessageOptions.DontRequireReceiver);
+                            HandDebugLog("HoverEnd " + hoveringInteractable.gameObject);
+                        hoveringInteractable.SendMessage("OnHandHoverEnd", this, SendMessageOptions.DontRequireReceiver);
 
                         //Note: The _hoveringInteractable can change after sending the OnHandHoverEnd message so we need to check it again before broadcasting this message
-                        if (_hoveringInteractable != null)
+                        if (hoveringInteractable != null)
                         {
-                            this.BroadcastMessage("OnParentHandHoverEnd", _hoveringInteractable, SendMessageOptions.DontRequireReceiver); // let objects attached to the hand know that a hover has ended
+                            this.BroadcastMessage("OnParentHandHoverEnd", hoveringInteractable, SendMessageOptions.DontRequireReceiver); // let objects attached to the hand know that a hover has ended
                         }
                     }
 
-                    _hoveringInteractable = value;
+                    hoveringInteractable = value;
 
-                    if (_hoveringInteractable != null)
+                    if (hoveringInteractable != null)
                     {
                         if (spewDebugText)
-                            HandDebugLog("HoverBegin " + _hoveringInteractable.gameObject);
-                        _hoveringInteractable.SendMessage("OnHandHoverBegin", this, SendMessageOptions.DontRequireReceiver);
+                            HandDebugLog("HoverBegin " + hoveringInteractable.gameObject);
+                        hoveringInteractable.SendMessage("OnHandHoverBegin", this, SendMessageOptions.DontRequireReceiver);
 
                         //Note: The _hoveringInteractable can change after sending the OnHandHoverBegin message so we need to check it again before broadcasting this message
-                        if (_hoveringInteractable != null)
+                        if (hoveringInteractable != null)
                         {
-                            this.BroadcastMessage("OnParentHandHoverBegin", _hoveringInteractable, SendMessageOptions.DontRequireReceiver); // let objects attached to the hand know that a hover has begun
+                            this.BroadcastMessage("OnParentHandHoverBegin", hoveringInteractable, SendMessageOptions.DontRequireReceiver); // let objects attached to the hand know that a hover has begun
                         }
                     }
                 }
@@ -325,10 +331,11 @@ namespace Valve.VR.InteractionSystem
         //-------------------------------------------------
         public void AttachObject(GameObject objectToAttach, GrabTypes grabbedWithType, AttachmentFlags flags = defaultAttachmentFlags, Transform attachmentOffset = null)
         {
-            AttachedObject attachedObject = new AttachedObject();
-            attachedObject.attachmentFlags = flags;
-            attachedObject.attachedOffsetTransform = attachmentOffset;
-
+            AttachedObject attachedObject = new AttachedObject
+            {
+                attachmentFlags = flags,
+                attachedOffsetTransform = attachmentOffset
+            };
 
             if (flags == 0)
             {
@@ -419,7 +426,7 @@ namespace Valve.VR.InteractionSystem
             if (attachedObject.HasAttachFlag(AttachmentFlags.ParentToHand))
             {
                 //Parent the object to the hand
-                objectToAttach.transform.parent = this.transform;
+                objectToAttach.transform.parent = transform;
                 attachedObject.isParentedToHand = true;
             }
             else
@@ -525,6 +532,8 @@ namespace Valve.VR.InteractionSystem
         //-------------------------------------------------
         public void DetachObject(GameObject objectToDetach, bool restoreOriginalParent = true)
         {
+            Debug.LogError("Detach object: " + objectToDetach.name);
+
             int index = attachedObjects.FindIndex(l => l.attachedObject == objectToDetach);
             if (index != -1)
             {
@@ -673,17 +682,17 @@ namespace Valve.VR.InteractionSystem
             inputFocusAction = SteamVR_Events.InputFocusAction(OnInputFocus);
 
             if (hoverSphereTransform == null)
-                hoverSphereTransform = this.transform;
+                hoverSphereTransform = transform;
 
             if (objectAttachmentPoint == null)
-                objectAttachmentPoint = this.transform;
+                objectAttachmentPoint = transform;
 
             applicationLostFocusObject = new GameObject("_application_lost_focus");
             applicationLostFocusObject.transform.parent = transform;
             applicationLostFocusObject.SetActive(false);
 
             if (trackedObject == null)
-                trackedObject = this.gameObject.GetComponent<SteamVR_Behaviour_Pose>();
+                trackedObject = gameObject.GetComponent<SteamVR_Behaviour_Pose>();
 
             trackedObject.onTransformUpdated.AddListener(OnTransformUpdated);
         }

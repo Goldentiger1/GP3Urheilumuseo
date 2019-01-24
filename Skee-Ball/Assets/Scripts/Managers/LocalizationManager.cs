@@ -27,8 +27,11 @@ public class LocalizationManager : Singelton<LocalizationManager>
     private readonly string defaultLanguage = "FI";
     private readonly string missingText = "Localized text not found!";
 
-    public bool IsReady { get; private set; }
-    public event Action<Func<string, string>> Actions;
+    public bool IsReady
+    {
+        get;
+        private set;
+    }
 
     private void Awake()
     {
@@ -87,11 +90,11 @@ public class LocalizationManager : Singelton<LocalizationManager>
         localizedTextsInScene.Clear();
     }
 
-    private void ChangeTextToNewLanguage()
+    public void ChangeTextToNewLanguage()
     {
         foreach (var localizedText in localizedTextsInScene)
         {
-            localizedText.ChangeText(GetValue(localizedText.Key));
+            localizedText.Text = GetValue(localizedText.Key);
         }
     }
 

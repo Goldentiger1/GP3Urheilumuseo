@@ -8,6 +8,14 @@ public class LocalizedText : MonoBehaviour
 
     private Text text;
 
+    public string Text
+    {
+        set
+        {
+            text.text = value;
+        }
+    }
+
     private void Awake()
     {
         text = GetComponent<Text>();
@@ -15,12 +23,6 @@ public class LocalizedText : MonoBehaviour
 
     private void Start()
     {
-        // Hei olen olemaassa Localization Manager!
         LocalizationManager.Instance.AddLocalizedText(this);
-    }
-
-    public void ChangeText(string newText)
-    {
-        text.text = newText;
     }
 }

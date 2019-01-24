@@ -5,16 +5,21 @@ public class BallEngine : MonoBehaviour
     private new Rigidbody rigidbody;
     private Vector3 closestPoint;
     private readonly float minHitToSoundVelocity = 1F;
-    //World global position
+    // World global position
     private GameObject world;
     // Rigidbody rotation speed
     public float speed;
+    // Old rigidbody velocity
+    public Vector3 oldVelocity;
+    // New rigidbody velocity
+    public Vector3 newVelocity;
 
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         world = GameObject.FindGameObjectWithTag("World").gameObject.GetComponent<GameObject>();
+        oldVelocity = rigidbody.velocity;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -63,6 +68,9 @@ public class BallEngine : MonoBehaviour
 
     void Update(){
         // Kokeillaan Velocitya, paljonko arvo muuttuu heittäessä
-        print(rigidbody.velocity);
+        newVelocity = rigidbody.velocity;
+        if(oldVelocity.magnitude < newVelocity.magnitude) {
+
+        }
     }
 }

@@ -47,8 +47,6 @@ public class LocalizationManager : Singelton<LocalizationManager>
 
         Debug.Log("Localization is ready");
 
-        // kaikki localizedText objectit tulee ajaa ChangeText-funktion.
-
         ChangeTextToNewLanguage();
     }
 

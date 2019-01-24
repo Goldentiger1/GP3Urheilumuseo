@@ -8,7 +8,19 @@ public class ControlPanel : MonoBehaviour
     private Button fiButton;
     private Button ukButton;
 
+    private Action @delegate;
+
     private void Awake()
+    {
+        Initialize();
+    }
+
+    private void Start()
+    {
+        AssignButtonEvents();
+    }
+
+    private void Initialize()
     {
         var buttonContainer = transform.Find("ButtonContainer");
 
@@ -17,40 +29,26 @@ public class ControlPanel : MonoBehaviour
         ukButton = buttonContainer.Find("UKButton").GetComponent<Button>();
     }
 
-    private void Start()
+    private void AssignButtonEvents()
     {
-        panelButton.onClick.AddListener(
-
-            PanelButton
-
-            );
-        fiButton.onClick.AddListener(FINButton);
+        panelButton.onClick.AddListener(PanelButton);
+        fiButton.onClick.AddListener(FIButton);
         ukButton.onClick.AddListener(UKButton);
     }
 
     private void PanelButton()
-    {
-        if(GameMaster.Instance.CurrentSceneIndex == 0)
+    {    
+        if (GameMaster.Instance.CurrentSceneIndex == 0)
         {
-            OnStart();
+            GameMaster.Instance.ChangeScene(1); 
         }
         else
         {
-            OnRestart();
+            GameMaster.Instance.RestartScene();
         }
     }
 
-    private void OnStart()
-    {
-        GameMaster.Instance.ChangeScene(1);
-    }
-
-    private void OnRestart()
-    {
-        GameMaster.Instance.RestartScene();
-    }
-
-    private void FINButton()
+    private void FIButton()
     {
         LocalizationManager.Instance.ChangeLanguage("FI");
     }

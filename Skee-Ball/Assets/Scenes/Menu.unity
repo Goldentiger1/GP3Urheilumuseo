@@ -585,6 +585,20 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 563268899}
+    - target: {fileID: 718390810279768715, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
+        type: 3}
+      propertyPath: m_Name
+      value: PanelButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4361570181188819884, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
+        type: 3}
+      propertyPath: m_Text
+      value: START
+      objectReference: {fileID: 0}
+    - target: {fileID: 577222691, guid: 1a23fa4ef343f11438b6fd85a50d6b1b, type: 3}
+      propertyPath: Key
+      value: StartButton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a23fa4ef343f11438b6fd85a50d6b1b, type: 3}
 --- !u!224 &1112910864 stripped

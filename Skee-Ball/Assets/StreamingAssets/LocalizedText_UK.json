@@ -1,5 +1,6 @@
 {"Items":
 	[
+		{"Key":"StartButton","Value":"START"},
 		{"Key":"ResetButton","Value":"RESET"}
 	]
 }

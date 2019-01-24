@@ -1,5 +1,6 @@
 {"Items":
 	[
+		{"Key":"StartButton","Value":"ALOITA"},
 		{"Key":"ResetButton","Value":"RESETOI"}
 	]
 }

@@ -62,7 +62,7 @@ namespace Valve.VR.InteractionSystem.Sample
             else
             {
                 plantPosition = hand.transform.position;
-                plantPosition.y = Player.instance.transform.position.y;
+                plantPosition.y = Player.Instance.transform.position.y;
             }
 
             GameObject planting = GameObject.Instantiate<GameObject>(prefabToPlant);

@@ -277,7 +277,7 @@ namespace Valve.VR.InteractionSystem
                 grabbedWithType = GrabTypes.None;
             }
 
-            if ( driving && isGrabEnding == false && hand.hoveringInteractable == this.interactable )
+            if ( driving && isGrabEnding == false && hand.HoveringInteractable == this.interactable )
 			{
 				ComputeAngle( hand );
 				UpdateAll();

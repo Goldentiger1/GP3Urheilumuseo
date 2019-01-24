@@ -174,7 +174,7 @@ namespace Valve.VR.InteractionSystem
 
 			HidePointer();
 
-			player = InteractionSystem.Player.instance;
+			player = InteractionSystem.Player.Instance;
 
 			if ( player == null )
 			{
@@ -315,7 +315,7 @@ namespace Valve.VR.InteractionSystem
 			Vector3 pointerDir = pointerStartTransform.forward;
 			bool hitSomething = false;
 			bool showPlayAreaPreview = false;
-			Vector3 playerFeetOffset = player.trackingOriginTransform.position - player.feetPositionGuess;
+			Vector3 playerFeetOffset = player.trackingOriginTransform.position - player.FeetPositionGuess;
 
 			Vector3 arcVelocity = pointerDir * arcDistance;
 
@@ -323,7 +323,7 @@ namespace Valve.VR.InteractionSystem
 
 			//Check pointer angle
 			float dotUp = Vector3.Dot( pointerDir, Vector3.up );
-			float dotForward = Vector3.Dot( pointerDir, player.hmdTransform.forward );
+			float dotForward = Vector3.Dot( pointerDir, player.HmdTransform.forward );
 			bool pointerAtBadAngle = false;
 			if ( ( dotForward > 0 && dotUp > 0.75f ) || ( dotForward < 0.0f && dotUp > 0.5f ) )
 			{
@@ -437,7 +437,7 @@ namespace Valve.VR.InteractionSystem
 				invalidReticleTransform.rotation = Quaternion.Slerp( invalidReticleTransform.rotation, invalidReticleTargetRotation, 0.1f );
 
 				//Scale the invalid reticle based on the distance from the player
-				float distanceFromPlayer = Vector3.Distance( hitInfo.point, player.hmdTransform.position );
+				float distanceFromPlayer = Vector3.Distance( hitInfo.point, player.HmdTransform.position );
 				float invalidReticleCurrentScale = Util.RemapNumberClamped( distanceFromPlayer, invalidReticleMinScaleDistance, invalidReticleMaxScaleDistance, invalidReticleMinScale, invalidReticleMaxScale );
 				invalidReticleScale.x = invalidReticleCurrentScale;
 				invalidReticleScale.y = invalidReticleCurrentScale;
@@ -688,14 +688,14 @@ namespace Valve.VR.InteractionSystem
 
 				foreach ( TeleportMarkerBase teleportMarker in teleportMarkers )
 				{
-					if ( teleportMarker.markerActive && teleportMarker.ShouldActivate( player.feetPositionGuess ) )
+					if ( teleportMarker.markerActive && teleportMarker.ShouldActivate( player.FeetPositionGuess ) )
 					{
 						teleportMarker.gameObject.SetActive( true );
 						teleportMarker.Highlight( false );
 					}
 				}
 
-				startingFeetOffset = player.trackingOriginTransform.position - player.feetPositionGuess;
+				startingFeetOffset = player.trackingOriginTransform.position - player.FeetPositionGuess;
 				movedFeetFarEnough = false;
 
 				if ( onDeactivateObjectTransform.gameObject.activeSelf )
@@ -738,14 +738,14 @@ namespace Valve.VR.InteractionSystem
 			{
 				pointerStartTransform = GetPointerStartTransform( pointerHand );
 
-				if ( pointerHand.currentAttachedObject != null )
+				if ( pointerHand.CurrentAttachedObject != null )
 				{
-					allowTeleportWhileAttached = pointerHand.currentAttachedObject.GetComponent<AllowTeleportWhileAttachedToHand>();
+					allowTeleportWhileAttached = pointerHand.CurrentAttachedObject.GetComponent<AllowTeleportWhileAttachedToHand>();
 				}
 
 				//Keep track of any existing hovering interactable on the hand
-				originalHoverLockState = pointerHand.hoverLocked;
-				originalHoveringInteractable = pointerHand.hoveringInteractable;
+				originalHoverLockState = pointerHand.HoverLocked;
+				originalHoveringInteractable = pointerHand.HoveringInteractable;
 
 				if ( ShouldOverrideHoverLock() )
 				{
@@ -842,7 +842,7 @@ namespace Valve.VR.InteractionSystem
 			SteamVR_Fade.Start( Color.clear, 0 );
 			SteamVR_Fade.Start( Color.black, currentFadeTime );
 
-			headAudioSource.transform.SetParent( player.hmdTransform );
+			headAudioSource.transform.SetParent( player.HmdTransform );
 			headAudioSource.transform.localPosition = Vector3.zero;
 			PlayAudioClip( headAudioSource, teleportSound );
 
@@ -890,7 +890,7 @@ namespace Valve.VR.InteractionSystem
 
 			if ( teleportingToMarker.ShouldMovePlayer() )
 			{
-				Vector3 playerFeetOffset = player.trackingOriginTransform.position - player.feetPositionGuess;
+				Vector3 playerFeetOffset = player.trackingOriginTransform.position - player.FeetPositionGuess;
 				player.trackingOriginTransform.position = teleportPosition + playerFeetOffset;
 			}
 			else
@@ -955,8 +955,8 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( hintCoroutine != null )
             {
-                ControllerButtonHints.HideTextHint(player.leftHand, teleportAction);
-                ControllerButtonHints.HideTextHint(player.rightHand, teleportAction);
+                ControllerButtonHints.HideTextHint(player.LeftHand, teleportAction);
+                ControllerButtonHints.HideTextHint(player.RightHand, teleportAction);
 
 				StopCoroutine( hintCoroutine );
 				hintCoroutine = null;
@@ -1035,22 +1035,22 @@ namespace Valve.VR.InteractionSystem
 				return false;
 			}
 
-			if ( hand.hoveringInteractable != null )
+			if ( hand.HoveringInteractable != null )
 			{
 				return false;
 			}
 
 			if ( hand.noSteamVRFallbackCamera == null )
 			{
-				if ( hand.isActive == false)
+				if ( hand.IsActive == false)
 				{
 					return false;
 				}
 
 				//Something is attached to the hand
-				if ( hand.currentAttachedObject != null )
+				if ( hand.CurrentAttachedObject != null )
 				{
-					AllowTeleportWhileAttachedToHand allowTeleportWhileAttachedToHand = hand.currentAttachedObject.GetComponent<AllowTeleportWhileAttachedToHand>();
+					AllowTeleportWhileAttachedToHand allowTeleportWhileAttachedToHand = hand.CurrentAttachedObject.GetComponent<AllowTeleportWhileAttachedToHand>();
 
 					if ( allowTeleportWhileAttachedToHand != null && allowTeleportWhileAttachedToHand.teleportAllowed == true )
 					{

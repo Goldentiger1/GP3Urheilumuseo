@@ -29,7 +29,6 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         {
             if (asyncOperation.progress == 0.9f)
             {
-
                 LocalizationManager.Instance.ClearLocalizedText();
 
                 if (Input.anyKeyDown)

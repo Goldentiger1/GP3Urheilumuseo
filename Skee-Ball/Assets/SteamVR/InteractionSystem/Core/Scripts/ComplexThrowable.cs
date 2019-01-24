@@ -59,7 +59,7 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( holdingHands.IndexOf( hand ) == -1 )
 			{
-				if ( hand.isActive )
+				if ( hand.IsActive )
 				{
 					hand.TriggerHapticPulse( 800 );
 				}
@@ -72,7 +72,7 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( holdingHands.IndexOf( hand ) == -1 )
 			{
-				if (hand.isActive)
+				if (hand.IsActive)
 				{
 					hand.TriggerHapticPulse( 500 );
 				}

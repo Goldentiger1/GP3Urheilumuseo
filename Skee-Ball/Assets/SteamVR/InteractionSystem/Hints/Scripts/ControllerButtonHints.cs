@@ -86,7 +86,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		void Start()
 		{
-			player = Player.instance;
+			player = Player.Instance;
 		}
 
 
@@ -593,7 +593,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void UpdateTextHint( ActionHintInfo hintInfo )
 		{
-			Transform playerTransform = player.hmdTransform;
+			Transform playerTransform = player.HmdTransform;
 			Vector3 vDir = playerTransform.position - hintInfo.canvasOffset.position;
 
 			Quaternion standardLookat = Quaternion.LookRotation( vDir, Vector3.up );

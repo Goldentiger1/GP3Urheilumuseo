@@ -196,14 +196,14 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private ItemPackage GetAttachedItemPackage( Hand hand )
 		{
-			GameObject currentAttachedObject = hand.currentAttachedObject;
+			GameObject currentAttachedObject = hand.CurrentAttachedObject;
 
 			if ( currentAttachedObject == null ) // verify the hand is holding something
 			{
 				return null;
 			}
 
-			ItemPackageReference packageReference = hand.currentAttachedObject.GetComponent<ItemPackageReference>();
+			ItemPackageReference packageReference = hand.CurrentAttachedObject.GetComponent<ItemPackageReference>();
 			if ( packageReference == null ) // verify the item in the hand is matchable
 			{
 				return null;
@@ -220,7 +220,7 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( takeBackItem && requireTriggerPressToReturn )
 			{
-                if (hand.isActive)
+                if (hand.IsActive)
 				{
 					ItemPackage currentAttachedItemPackage = GetAttachedItemPackage( hand );
                     if (currentAttachedItemPackage == itemPackage && hand.IsGrabEnding(currentAttachedItemPackage.gameObject))
@@ -312,7 +312,7 @@ namespace Valve.VR.InteractionSystem
 
 			if ( itemPackage.otherHandItemPrefab != null )
 			{
-				if ( hand.otherHand.hoverLocked )
+				if ( hand.otherHand.HoverLocked )
 				{
 					//Debug.Log( "Not attaching objects because other hand is hoverlocked and we can't deliver both items." );
 					return;
@@ -340,7 +340,7 @@ namespace Valve.VR.InteractionSystem
 			spawnedItem.SetActive( true );
 			hand.AttachObject( spawnedItem, grabType, attachmentFlags );
 
-			if ( ( itemPackage.otherHandItemPrefab != null ) && ( hand.otherHand.isActive ) )
+			if ( ( itemPackage.otherHandItemPrefab != null ) && ( hand.otherHand.IsActive ) )
 			{
 				GameObject otherHandObjectToAttach = GameObject.Instantiate( itemPackage.otherHandItemPrefab );
 				otherHandObjectToAttach.SetActive( true );

@@ -83,7 +83,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		void Start()
 		{
-			player = Player.instance;
+			player = Player.Instance;
 		}
 
 
@@ -92,9 +92,9 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( Application.isPlaying )
 			{
-				lookAtPosition.x = player.hmdTransform.position.x;
+				lookAtPosition.x = player.HmdTransform.position.x;
 				lookAtPosition.y = lookAtJointTransform.position.y;
-				lookAtPosition.z = player.hmdTransform.position.z;
+				lookAtPosition.z = player.HmdTransform.position.z;
 
 				lookAtJointTransform.LookAt( lookAtPosition );
 			}

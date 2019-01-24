@@ -29,7 +29,7 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( itemPrefab != null )
 			{
-                if (hand.isActive && hand.isPoseValid)
+                if (hand.IsActive && hand.IsPoseValid)
                 {
                     GameObject objectToAttach = GameObject.Instantiate(itemPrefab);
                     objectToAttach.SetActive(true);

@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class ScoreCounter : MonoBehaviour {
-
+public class ScoreCounter : MonoBehaviour
+{
     public TextMeshProUGUI uiScoreText;
     public TextMeshProUGUI uiScoreNumber;
     public float SceneChangeTimer = 60f;
@@ -16,60 +14,66 @@ public class ScoreCounter : MonoBehaviour {
 
     int score = 0;
 
-    private void Update() {
-        //if (Input.GetKeyDown(KeyCode.U)) {
-        //    UpdateScore();
-        //}
-
+    private void Update()
+    {
         SceneChangeTimer -= Time.deltaTime;
-        if(SceneChangeTimer <= 0) {
-            ChangeScene();
+        if(SceneChangeTimer <= 0)
+        {
+            print("!!!");
+          //  ChangeScene();
         }
-
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other)
+    {
         UpdateScore();
     }
 
-    void UpdateScore() {
-        
+    private void AddScore(int scoreAmount)
+    {
+        Fabric.EventManager.Instance.PostEvent("score");
+        score += scoreAmount;
+    }
+
+    private void UpdateScore()
+    {    
         throwDistance = Vector3.Distance(throwStart, transform.position);
-        print(throwDistance);
-        print(transform.position);
-        if (throwDistance > throwDistanceRequiredForThreePoints) {
-            Fabric.EventManager.Instance.PostEvent("score");
-            score += 3;
-        } else {
-            Fabric.EventManager.Instance.PostEvent("score");
-            score += 2;
+
+        if (throwDistance > throwDistanceRequiredForThreePoints)
+        {
+            AddScore(3);
+        }
+        else
+        {
+            AddScore(2);
         }
 
-        if (score < 10) {
-
+        if (score < 10)
+        {
             uiScoreNumber.text = "0" + score;
-        } else {
+        }
+        else
+        {
             uiScoreNumber.text = "" + score;
             Invoke( "ChangeScene", sceneChangeWaitTime);
         }
     }
     
-
-    private void ChangeScene() {
-
+    private void ChangeScene()
+    {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
 
-        switch (currentScene) {
-
+        switch (currentScene)
+        {
             case 1:
-
-                SceneManager.LoadScene(2);
+                
+                GameMaster.Instance.ChangeScene(2);
 
                 break;
 
             case 2:
 
-                SceneManager.LoadScene(0);
+                GameMaster.Instance.ChangeScene(0);
 
                 break;
 

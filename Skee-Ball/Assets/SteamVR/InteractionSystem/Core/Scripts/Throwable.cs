@@ -59,7 +59,6 @@ namespace Valve.VR.InteractionSystem
         [HideInInspector]
         public Interactable interactable;
 
-
         //-------------------------------------------------
         protected virtual void Awake()
 		{
@@ -74,14 +73,11 @@ namespace Valve.VR.InteractionSystem
             rigidbody = GetComponent<Rigidbody>();
             rigidbody.maxAngularVelocity = 50.0f;
 
-
             if(attachmentOffset != null)
             {
                 interactable.handFollowTransform = attachmentOffset;
             }
-
 		}
-
 
         //-------------------------------------------------
         protected virtual void OnHandHoverBegin( Hand hand )
@@ -93,7 +89,7 @@ namespace Valve.VR.InteractionSystem
             // and if it isn't attached to another hand
             if ( !attached && catchingSpeedThreshold != -1)
             {
-                float catchingThreshold = catchingSpeedThreshold * SteamVR_Utils.GetLossyScale(Player.instance.trackingOriginTransform);
+                float catchingThreshold = catchingSpeedThreshold * SteamVR_Utils.GetLossyScale(Player.Instance.trackingOriginTransform);
 
                 GrabTypes bestGrabType = hand.GetBestGrabbingType();
 
@@ -119,7 +115,6 @@ namespace Valve.VR.InteractionSystem
 		{
             hand.HideGrabHint();
 		}
-
 
         //-------------------------------------------------
         protected virtual void HandHoverUpdate( Hand hand )
@@ -244,7 +239,6 @@ namespace Valve.VR.InteractionSystem
             }
         }
 
-
         //-------------------------------------------------
         protected virtual IEnumerator LateDetach( Hand hand )
 		{
@@ -253,14 +247,12 @@ namespace Valve.VR.InteractionSystem
 			hand.DetachObject( gameObject, restoreOriginalParent );
 		}
 
-
         //-------------------------------------------------
         protected virtual void OnHandFocusAcquired( Hand hand )
 		{
 			gameObject.SetActive( true );
 			velocityEstimator.BeginEstimatingVelocity();
 		}
-
 
         //-------------------------------------------------
         protected virtual void OnHandFocusLost( Hand hand )

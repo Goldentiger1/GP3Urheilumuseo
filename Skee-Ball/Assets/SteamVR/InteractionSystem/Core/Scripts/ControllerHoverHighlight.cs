@@ -82,7 +82,7 @@ namespace Valve.VR.InteractionSystem
                 return;
             }
 
-            if (hand.hoveringInteractable && hand.hoveringInteractable.transform.parent != transform.parent)
+            if (hand.HoveringInteractable && hand.HoveringInteractable.transform.parent != transform.parent)
             {
                 ShowHighlight();
             }

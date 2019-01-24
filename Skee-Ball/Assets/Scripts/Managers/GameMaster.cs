@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class GameMaster : SingeltonPersistant<GameMaster>
 {
+    private Coroutine loadSceneAsync;
+
+    private readonly float fakeLoadDuration = 4f;
+
     private int currentSceneIndex;
 
     private void Start()
@@ -13,7 +17,8 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
     public void ChangeScene(int sceneIndex)
     {
-        StartCoroutine(ILoadSceneAsync(sceneIndex));
+        if(loadSceneAsync == null)
+        loadSceneAsync = StartCoroutine(ILoadSceneAsync(sceneIndex));
     }
 
     private IEnumerator ILoadSceneAsync(int sceneIndex)
@@ -31,10 +36,11 @@ public class GameMaster : SingeltonPersistant<GameMaster>
             {
                 LocalizationManager.Instance.ClearLocalizedText();
 
-                if (Input.anyKeyDown)
-                {
-                    asyncOperation.allowSceneActivation = true;
-                }
+                yield return new WaitForSeconds(fakeLoadDuration);
+                
+                currentSceneIndex = sceneIndex;
+                asyncOperation.allowSceneActivation = true;
+                
             }
 
             yield return null;

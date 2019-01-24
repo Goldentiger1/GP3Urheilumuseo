@@ -5,6 +5,7 @@ public class UIManager : Singelton<UIManager>
 {
     private Transform hudCanvas;
     private CanvasGroup canvasGroup;
+    private RectTransform LoadImage;
 
     public bool IsFading
     {
@@ -28,6 +29,7 @@ public class UIManager : Singelton<UIManager>
     {
         hudCanvas = transform.Find("HudCanvas");
         canvasGroup = hudCanvas.GetComponent<CanvasGroup>();
+        LoadImage = hudCanvas.Find("LoadImage").GetComponent<RectTransform>();
     }
 
     public void FadeScreenImage(float targetFillAmount, float fadeSpeed = 1f, float startDelay = 0f)
@@ -39,6 +41,7 @@ public class UIManager : Singelton<UIManager>
     {
         IsFading = true;
         canvasGroup.blocksRaycasts = true;
+        LoadImage.gameObject.SetActive(false);
 
         targetFillAmount = targetFillAmount > 1f ? 1f : targetFillAmount;
         targetFillAmount = targetFillAmount < 0f ? 0f : targetFillAmount;
@@ -51,6 +54,7 @@ public class UIManager : Singelton<UIManager>
             yield return null;
         }
 
+        LoadImage.gameObject.SetActive(true);
         canvasGroup.blocksRaycasts = false;
         IsFading = false;
     }

@@ -22,6 +22,8 @@ public class GameMaster : SingeltonPersistant<GameMaster>
     private void Start()
     {
         CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        OnSceneChanged();
     }
 
     public void ChangeScene(int sceneIndex)
@@ -39,7 +41,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
     {
         IsChangingScene = true;
 
-        UIManager.Instance.FadeScreenImage(10f, 2f);
+        UIManager.Instance.FadeScreenImage(1f, 2f);
 
         yield return new WaitWhile(() => UIManager.Instance.IsFading);
 
@@ -68,6 +70,12 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
         LocalizationManager.Instance.ChangeTextToNewLanguage();
 
-        UIManager.Instance.FadeScreenImage(-50f, 2f);
+        OnSceneChanged();
+    }
+
+    private void OnSceneChanged()
+    {
+        UIManager.Instance.FadeScreenImage(0f, 2f);
+        AudioManager.Instance.ChangeMusicTrack(CurrentSceneIndex);
     }
 }

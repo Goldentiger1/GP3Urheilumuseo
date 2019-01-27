@@ -38,7 +38,7 @@ public class BallEngine : MonoBehaviour
     {
         rigidbodyStartPosition = rigidbody.position;
 
-        AddTorque(Vector3.forward * CurrentVelocity, ForceMode.Impulse);
+        AddTorque(Vector3.forward * CurrentVelocity * spinSpeed, ForceMode.Impulse);
     }
 
     private void Update()
@@ -67,17 +67,12 @@ public class BallEngine : MonoBehaviour
         {
             case 9:
 
-                //Debug.LogError("Hit");
-
                 if (rigidbody.velocity.magnitude < minHitToSoundVelocity)
-                {
-                    // Debug.LogError("Not enough velocity: " + rigidbody.velocity);
+                { 
                     return;
                 }
 
-                Fabric.EventManager.Instance.PostEvent("ballbounce");
-
-                // Debug.LogError("Bounce sound");
+                AudioManager.Instance.PlaySfx("Ballbounce");
 
                 break;
 
@@ -87,9 +82,6 @@ public class BallEngine : MonoBehaviour
                 {
                     return;
                 }
-
-                //AudioManager.Instance.PlayClipAtPoint("BackBoard", transform.position);
-
 
                 break;
         }

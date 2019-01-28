@@ -38,7 +38,7 @@ public class BallEngine : MonoBehaviour
     {
         rigidbodyStartPosition = rigidbody.position;
 
-        AddTorque(Vector3.forward * CurrentVelocity * spinSpeed, ForceMode.Impulse);
+        // AddTorque(Vector3.forward * CurrentVelocity * spinSpeed, ForceMode.Impulse);
     }
 
     private void Update()

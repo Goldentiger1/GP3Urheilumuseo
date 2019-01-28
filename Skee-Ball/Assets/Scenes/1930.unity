@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028377, g: 0.22571409, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -986,6 +986,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 877077387}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &886675511 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2014920, guid: dc06161b6d97feb419f45f03b62e14b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1421967375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &914701301 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100030, guid: 488b99ec2d1e096409080f45c1eb1885,
@@ -1032,6 +1038,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8292869656536256982, guid: 40337c1f989496e4492a7ff670c5a084,
+        type: 3}
+      propertyPath: m_Name
+      value: GameMaster
+      objectReference: {fileID: 0}
     - target: {fileID: 762804847047507654, guid: 40337c1f989496e4492a7ff670c5a084,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1087,11 +1098,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8292869656536256982, guid: 40337c1f989496e4492a7ff670c5a084,
-        type: 3}
-      propertyPath: m_Name
-      value: GameMaster
+    - target: {fileID: 127017558, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 127017558, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 886675511}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
 --- !u!1 &1006642177
@@ -2026,6 +2040,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 107044238}
     m_Modifications:
+    - target: {fileID: 9046947803258742834, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
+        type: 3}
+      propertyPath: m_Name
+      value: ControlPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 6890192731532230168, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2130,11 +2149,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9046947803258742834, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
-        type: 3}
-      propertyPath: m_Name
-      value: ControlPanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a23fa4ef343f11438b6fd85a50d6b1b, type: 3}

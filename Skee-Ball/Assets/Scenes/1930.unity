@@ -421,14 +421,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basketball
       objectReference: {fileID: 0}
-    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_TagString
-      value: Ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.92
@@ -462,28 +454,17 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 54592747563221260, guid: cc9bef7725ba89842abfbe99dff30454,
-        type: 3}
-      propertyPath: m_Mass
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 135093192052826248, guid: cc9bef7725ba89842abfbe99dff30454,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
 --- !u!4 &366926923 stripped
@@ -502,14 +483,6 @@ PrefabInstance:
     - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
       propertyPath: m_Name
       value: Basketball
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_TagString
-      value: Ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
       propertyPath: m_LocalPosition.x
@@ -544,28 +517,17 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 54592747563221260, guid: cc9bef7725ba89842abfbe99dff30454,
-        type: 3}
-      propertyPath: m_Mass
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 135093192052826248, guid: cc9bef7725ba89842abfbe99dff30454,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
 --- !u!4 &433433883 stripped
@@ -628,11 +590,6 @@ PrefabInstance:
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54592747563221260, guid: cc9bef7725ba89842abfbe99dff30454,
-        type: 3}
-      propertyPath: m_Drag
-      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
@@ -813,14 +770,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basketball
       objectReference: {fileID: 0}
-    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_TagString
-      value: Ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.92
@@ -854,28 +803,17 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 54592747563221260, guid: cc9bef7725ba89842abfbe99dff30454,
-        type: 3}
-      propertyPath: m_Mass
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 135093192052826248, guid: cc9bef7725ba89842abfbe99dff30454,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
 --- !u!4 &710441184 stripped
@@ -915,14 +853,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basketball
       objectReference: {fileID: 0}
-    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_TagString
-      value: Ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.92
@@ -956,28 +886,17 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 54592747563221260, guid: cc9bef7725ba89842abfbe99dff30454,
-        type: 3}
-      propertyPath: m_Mass
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 135093192052826248, guid: cc9bef7725ba89842abfbe99dff30454,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
 --- !u!4 &877077396 stripped
@@ -1475,14 +1394,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Basketball
       objectReference: {fileID: 0}
-    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_TagString
-      value: Ball
-      objectReference: {fileID: 0}
-    - target: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.02
@@ -1516,28 +1427,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 54592747563221260, guid: cc9bef7725ba89842abfbe99dff30454,
-        type: 3}
-      propertyPath: m_Mass
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 135093192052826248, guid: cc9bef7725ba89842abfbe99dff30454,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
 --- !u!4 &1451153122 stripped

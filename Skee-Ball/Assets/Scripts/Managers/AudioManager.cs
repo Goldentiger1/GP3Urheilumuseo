@@ -32,8 +32,10 @@ public class AudioManager : Singelton<AudioManager>
 
     public void ChangeMusicTrack(int index)
     {
+
         StopMusicTrack();
         PlayMusicTrack(GetCorrectSceneMusicTrack(index));
+        Debug.Log("ChangeMusicTrack: " + GetCorrectSceneMusicTrack(index));
     }
 
     private string GetCorrectSceneMusicTrack(int index)
@@ -51,10 +53,6 @@ public class AudioManager : Singelton<AudioManager>
             case 2:
 
                 return "Street";
-
-            case 3:
-
-                return "Menu";
 
             default:
 

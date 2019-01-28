@@ -532,7 +532,17 @@ namespace Valve.VR.InteractionSystem
         //-------------------------------------------------
         public void DetachObject(GameObject objectToDetach, bool restoreOriginalParent = true)
         {
+            #region MUSTONEN
+
             Debug.LogError("Detach object: " + objectToDetach.name);
+
+            var basketBall = objectToDetach.GetComponent<BallEngine>();
+            if (basketBall != null) {
+                basketBall.AddTorque(Vector3.forward * basketBall.CurrentVelocity * 100f, ForceMode.Impulse);
+                Debug.LogError(basketBall.CurrentVelocity);
+            }
+
+            #endregion MUSTONEN
 
             int index = attachedObjects.FindIndex(l => l.attachedObject == objectToDetach);
             if (index != -1)

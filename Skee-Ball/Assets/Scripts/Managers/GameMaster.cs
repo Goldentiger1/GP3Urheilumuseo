@@ -22,8 +22,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
     private void Start()
     {
         CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-        OnSceneChanged();
+        OnSceneChanged();        
     }
 
     public void ChangeScene(int sceneIndex)

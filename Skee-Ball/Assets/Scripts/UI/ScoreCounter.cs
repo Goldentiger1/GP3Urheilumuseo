@@ -7,7 +7,7 @@ public class ScoreCounter : MonoBehaviour
 
     private TextMeshProUGUI uiScoreText;
     private Vector3 throwStart = Vector3.zero;
-    private float SceneChangeTimer = 2f;
+    private float SceneChangeTimer = 200f;
     private float throwDistance;
     private readonly float throwDistanceRequiredForThreePoints = 7f;
     private readonly float sceneChangeWaitTime = 2f;

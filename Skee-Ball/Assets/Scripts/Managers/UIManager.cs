@@ -22,8 +22,6 @@ public class UIManager : Singelton<UIManager>
     {
         canvasGroup.alpha = 1f;
         LoadImage.gameObject.SetActive(false);
-
-        FadeScreenImage(0f, 2f, 1f);
     }
 
     private void Initialize()

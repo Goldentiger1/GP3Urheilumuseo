@@ -34,14 +34,15 @@ public class BallEngine : MonoBehaviour
         // Starting velocity when object is not moving
         oldVelocity = rigidbody.velocity;
         // World local space
-        world = GameObject.FindGameObjectWithTag("World").gameObject;
+        // world = GameObject.FindGameObjectWithTag("World").gameObject;
     }
 
     private void Start()
     {
-        rigidbodyStartPosition = rigidbody.position;
+        LevelManager.Instance.AddLevelBasketBall(this);
 
-        // AddTorque(Vector3.forward * CurrentVelocity * spinSpeed, ForceMode.Impulse);
+        rigidbodyStartPosition = rigidbody.position;
+        AddSpin(Vector3.forward * CurrentVelocity * spinSpeed, ForceMode.Impulse);
     }
 
     private void Update()
@@ -56,7 +57,10 @@ public class BallEngine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.gameObject.layer.Equals(10))
+        {
+            LevelManager.Instance.UpdateScore(other.transform);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -83,6 +87,8 @@ public class BallEngine : MonoBehaviour
 
                 if (rigidbody.velocity.magnitude < minHitToSoundVelocity)
                 {
+                    Debug.LogWarning("HOOP");
+
                     return;
                 }
 
@@ -90,13 +96,15 @@ public class BallEngine : MonoBehaviour
         }
     }
 
-    public void AddTorque(Vector3 newTorque, ForceMode forceMode)
+    public void AddSpin(Vector3 spinDirection, ForceMode forceMode)
     {
-        rigidbody.AddTorque(newTorque, forceMode);
+        rigidbody.AddTorque(spinDirection, forceMode);
     }
 
     public void ResetPosition()
     {
+        rigidbody.velocity = Vector3.zero;
         rigidbody.position = rigidbodyStartPosition;
+        rigidbody.rotation = Quaternion.Euler(Vector3.zero);
     }
 }

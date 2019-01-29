@@ -12,22 +12,22 @@ public class AudioManager : Singelton<AudioManager>
 
     private void PlayMusicTrack(string musicTrackName)
     {
-        Fabric.EventManager.Instance.PostEvent(musicTrackName);
+        
     }
 
     private void StopMusicTrack()
     {
-        Fabric.EventManager.Instance.PostEvent("Stop_Music");
+        
     }
 
     private void StopNarration()
     {
-        Fabric.EventManager.Instance.PostEvent("Stop_Narration");
+        
     }
 
     public void PlaySfx(string sfxName)
     {
-        Fabric.EventManager.Instance.PostEvent(sfxName);
+        
     }
 
     public void ChangeMusicTrack(int index)

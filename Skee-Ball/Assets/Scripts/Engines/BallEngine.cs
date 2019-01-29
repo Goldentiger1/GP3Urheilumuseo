@@ -31,7 +31,10 @@ public class BallEngine : MonoBehaviour
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        // Starting velocity when object is not moving
         oldVelocity = rigidbody.velocity;
+        // World local space
+        world = GameObject.FindGameObjectWithTag("World").gameObject;
     }
 
     private void Start()

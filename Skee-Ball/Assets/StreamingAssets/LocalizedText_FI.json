@@ -1,6 +1,7 @@
 {"Items":
 	[
 		{"Key":"StartButton","Value":"ALOITA"},
-		{"Key":"ResetButton","Value":"RESETOI"}
+		{"Key":"ResetButton","Value":"RESETOI"},
+		{"Key":"Score","Value":"PISTEET"}
 	]
 }

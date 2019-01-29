@@ -34,6 +34,10 @@ public class BallEngine : MonoBehaviour
         // Starting velocity when object is not moving
         oldVelocity = rigidbody.velocity;
         // World local space
+
+        // "Worldiä" ei löydy joka scenestä => antaa virheen kun sen nimistä "game objectia"
+        //  World-tagillä ei löydy
+
         // world = GameObject.FindGameObjectWithTag("World").gameObject;
     }
 
@@ -79,7 +83,7 @@ public class BallEngine : MonoBehaviour
                     return;
                 }
 
-                AudioManager.Instance.PlaySfx("Ballbounce");
+                AudioManager.Instance.PlaySfx("BallBounce", rigidbody.position);
 
                 break;
 

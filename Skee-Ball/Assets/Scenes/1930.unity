@@ -1062,7 +1062,7 @@ PrefabInstance:
     - target: {fileID: 2074218451, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
       propertyPath: text
       value: 
-      objectReference: {fileID: 1109279265612269771}
+      objectReference: {fileID: 0}
     - target: {fileID: 127017558, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
       propertyPath: m_RenderMode
       value: 1
@@ -1731,18 +1731,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 296622514}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1109279265612269771 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6090412567225534417, guid: 044a5df9ed67b1645ae34dd77a2d645a,
-    type: 3}
-  m_PrefabInstance: {fileID: 6620729518540394266}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2617445325417220366 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9201565201987208724, guid: 044a5df9ed67b1645ae34dd77a2d645a,
@@ -1903,7 +1891,7 @@ PrefabInstance:
     - target: {fileID: 6890192731532230168, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -5
+      value: -7.48
       objectReference: {fileID: 0}
     - target: {fileID: 6890192731532230168, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
         type: 3}
@@ -1955,14 +1943,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 965569930}
-    - target: {fileID: 6944374276600111316, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
+    - target: {fileID: 4585315075191053662, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RestartScene
+      propertyPath: m_havePropertiesChanged
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6944374276600111316, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
+    - target: {fileID: 4585315075191053662, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

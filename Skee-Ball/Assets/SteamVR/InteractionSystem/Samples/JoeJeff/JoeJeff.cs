@@ -198,7 +198,7 @@ namespace Valve.VR.InteractionSystem.Sample
         }
 
         private float jumpTimer;
-        public void Jump()
+        private void Jump()
         {
             isGrounded = false;
             jumpTimer = 0.1f;

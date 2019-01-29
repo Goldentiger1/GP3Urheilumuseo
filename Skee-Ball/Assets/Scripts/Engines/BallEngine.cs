@@ -3,49 +3,65 @@
 public class BallEngine : MonoBehaviour
 {
     private new Rigidbody rigidbody;
-    private readonly string ScoreTriggerTag = "ScoreTrigger";
-    private Vector3 closestPoint;
+    private Vector3 rigidbodyStartPosition;
+    private readonly float minHitToSoundVelocity = 1F;
+    private readonly float spinSpeed = 10f;
+
+    #region AARO
+
+    // World global position
+    private GameObject world;
+    // Rigidbody rotation speed
+    public float speed;
+    // Old rigidbody velocity
+    public Vector3 oldVelocity;
+    // New rigidbody velocity
+    public Vector3 newVelocity;
+
+    #endregion AARO
+
+    public float CurrentVelocity
+    {
+        get
+        {
+            return rigidbody.velocity.magnitude;
+        }
+    }
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        // Starting velocity when object is not moving
+        oldVelocity = rigidbody.velocity;
+        // World local space
+        world = GameObject.FindGameObjectWithTag("World").gameObject;
     }
 
-    public void AddForce(Vector3 force, ForceMode forceMode)
+    private void Start()
     {
-        rigidbody.AddForce(force, forceMode);
-    }
+        rigidbodyStartPosition = rigidbody.position;
 
-    public void AddTorque(Vector3 torque, ForceMode forceMode)
-    {
-        rigidbody.AddTorque(torque, forceMode);
+        // AddTorque(Vector3.forward * CurrentVelocity * spinSpeed, ForceMode.Impulse);
     }
 
     private void Update()
     {
-        if(transform.position.y <= -20)
+        // Kokeillaan Velocitya, paljonko arvo muuttuu heittäessä
+        newVelocity = rigidbody.velocity;
+        if (oldVelocity.magnitude < newVelocity.magnitude)
         {
-            Destroy(gameObject);
+
         }
     }
 
     private void OnTriggerEnter(Collider other)
-    {     
-        if (other.CompareTag(ScoreTriggerTag))
-        {
-            closestPoint = other.ClosestPoint(transform.position);
-        }
+    {
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(ScoreTriggerTag))
-        {
-            if(closestPoint.y > transform.position.y)
-            {
-                LevelManager.Instance.AddScore(2);
-            }
-        }
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -54,26 +70,33 @@ public class BallEngine : MonoBehaviour
         {
             case 9:
 
-                if (rigidbody.velocity.magnitude < 2)
-                {
+                if (rigidbody.velocity.magnitude < minHitToSoundVelocity)
+                { 
                     return;
                 }
 
-                //AudioManager.Instance.PlayClipAtPoint("Bounce", transform.position);
+                AudioManager.Instance.PlaySfx("Ballbounce");
 
                 break;
 
             case 10:
 
-                if (rigidbody.velocity.magnitude < 2)
+                if (rigidbody.velocity.magnitude < minHitToSoundVelocity)
                 {
                     return;
                 }
 
-                //AudioManager.Instance.PlayClipAtPoint("BackBoard", transform.position);
-                
-
                 break;
         }
+    }
+
+    public void AddTorque(Vector3 newTorque, ForceMode forceMode)
+    {
+        rigidbody.AddTorque(newTorque, forceMode);
+    }
+
+    public void ResetPosition()
+    {
+        rigidbody.position = rigidbodyStartPosition;
     }
 }

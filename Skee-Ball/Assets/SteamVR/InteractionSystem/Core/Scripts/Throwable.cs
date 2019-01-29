@@ -48,10 +48,9 @@ namespace Valve.VR.InteractionSystem
         protected Transform attachEaseInTransform;
 
 		public UnityEvent onPickUp;
-        public UnityEvent onDetachFromHand;
-        public UnityEvent<Hand> onHeldUpdate;
+		public UnityEvent onDetachFromHand;
 
-        public bool snapAttachEaseInCompleted = false;
+		public bool snapAttachEaseInCompleted = false;
         
         protected RigidbodyInterpolation hadInterpolation = RigidbodyInterpolation.None;
 
@@ -59,7 +58,6 @@ namespace Valve.VR.InteractionSystem
 
         [HideInInspector]
         public Interactable interactable;
-
 
         //-------------------------------------------------
         protected virtual void Awake()
@@ -75,14 +73,11 @@ namespace Valve.VR.InteractionSystem
             rigidbody = GetComponent<Rigidbody>();
             rigidbody.maxAngularVelocity = 50.0f;
 
-
             if(attachmentOffset != null)
             {
                 interactable.handFollowTransform = attachmentOffset;
             }
-
 		}
-
 
         //-------------------------------------------------
         protected virtual void OnHandHoverBegin( Hand hand )
@@ -94,7 +89,7 @@ namespace Valve.VR.InteractionSystem
             // and if it isn't attached to another hand
             if ( !attached && catchingSpeedThreshold != -1)
             {
-                float catchingThreshold = catchingSpeedThreshold * SteamVR_Utils.GetLossyScale(Player.instance.trackingOriginTransform);
+                float catchingThreshold = catchingSpeedThreshold * SteamVR_Utils.GetLossyScale(Player.Instance.trackingOriginTransform);
 
                 GrabTypes bestGrabType = hand.GetBestGrabbingType();
 
@@ -121,7 +116,6 @@ namespace Valve.VR.InteractionSystem
             hand.HideGrabHint();
 		}
 
-
         //-------------------------------------------------
         protected virtual void HandHoverUpdate( Hand hand )
         {
@@ -137,7 +131,7 @@ namespace Valve.VR.InteractionSystem
         //-------------------------------------------------
         protected virtual void OnAttachedToHand( Hand hand )
 		{
-            //Debug.Log("<b>[SteamVR Interaction]</b> Pickup: " + hand.GetGrabStarting().ToString());
+            //Debug.Log("Pickup: " + hand.GetGrabStarting().ToString());
 
             hadInterpolation = this.rigidbody.interpolation;
 
@@ -187,9 +181,6 @@ namespace Valve.VR.InteractionSystem
 
         public virtual void GetReleaseVelocities(Hand hand, out Vector3 velocity, out Vector3 angularVelocity)
         {
-            if (hand.noSteamVRFallbackCamera && releaseVelocityStyle != ReleaseStyle.NoChange)
-                releaseVelocityStyle = ReleaseStyle.ShortEstimation; // only type that works with fallback hand is short estimation.
-
             switch (releaseVelocityStyle)
             {
                 case ReleaseStyle.ShortEstimation:
@@ -246,11 +237,7 @@ namespace Valve.VR.InteractionSystem
                 // to teleport behind the hand when the player releases it.
                 //StartCoroutine( LateDetach( hand ) );
             }
-
-            if (onHeldUpdate != null)
-                onHeldUpdate.Invoke(hand);
         }
-
 
         //-------------------------------------------------
         protected virtual IEnumerator LateDetach( Hand hand )
@@ -260,14 +247,12 @@ namespace Valve.VR.InteractionSystem
 			hand.DetachObject( gameObject, restoreOriginalParent );
 		}
 
-
         //-------------------------------------------------
         protected virtual void OnHandFocusAcquired( Hand hand )
 		{
 			gameObject.SetActive( true );
 			velocityEstimator.BeginEstimatingVelocity();
 		}
-
 
         //-------------------------------------------------
         protected virtual void OnHandFocusLost( Hand hand )

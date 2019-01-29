@@ -90,8 +90,8 @@ namespace Valve.VR.InteractionSystem
 		private void HandAttachedUpdate( Hand hand )
 		{
 			// Reset transform since we cheated it right after getting poses on previous frame
-			//transform.localPosition = Vector3.zero;
-			//transform.localRotation = Quaternion.identity;
+			transform.localPosition = Vector3.zero;
+			transform.localRotation = Quaternion.identity;
 
 			// Update handedness guess
 			EvaluateHandedness();
@@ -106,7 +106,7 @@ namespace Valve.VR.InteractionSystem
 
 				float pullLerp = Util.RemapNumberClamped( nockToarrowHand.magnitude, minPull, maxPull, 0f, 1f ); // Normalized current state of bow draw 0 - 1
 
-				Vector3 arrowNockTransformToHeadset = ( ( Player.instance.hmdTransform.position + ( Vector3.down * 0.05f ) ) - arrowHand.arrowNockTransform.parent.position ).normalized;
+				Vector3 arrowNockTransformToHeadset = ( ( Player.Instance.HmdTransform.position + ( Vector3.down * 0.05f ) ) - arrowHand.arrowNockTransform.parent.position ).normalized;
 				Vector3 arrowHandPosition = ( arrowHand.arrowNockTransform.parent.position + ( ( arrowNockTransformToHeadset * drawOffset ) * pullLerp ) ); // Use this line to lerp arrowHand nock position
 				//Vector3 arrowHandPosition = arrowHand.arrowNockTransform.position; // Use this line if we don't want to lerp arrowHand nock position
 
@@ -349,13 +349,13 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void ShutDown()
 		{
-			if ( hand != null && hand.otherHand.currentAttachedObject != null )
+			if ( hand != null && hand.otherHand.CurrentAttachedObject != null )
 			{
-				if ( hand.otherHand.currentAttachedObject.GetComponent<ItemPackageReference>() != null )
+				if ( hand.otherHand.CurrentAttachedObject.GetComponent<ItemPackageReference>() != null )
 				{
-					if ( hand.otherHand.currentAttachedObject.GetComponent<ItemPackageReference>().itemPackage == arrowHandItemPackage )
+					if ( hand.otherHand.CurrentAttachedObject.GetComponent<ItemPackageReference>().itemPackage == arrowHandItemPackage )
 					{
-						hand.otherHand.DetachObject( hand.otherHand.currentAttachedObject );
+						hand.otherHand.DetachObject( hand.otherHand.CurrentAttachedObject );
 					}
 				}
 			}

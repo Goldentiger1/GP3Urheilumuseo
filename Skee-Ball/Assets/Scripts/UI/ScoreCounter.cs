@@ -1,75 +1,80 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 
-public class ScoreCounter : MonoBehaviour {
+public class ScoreCounter : MonoBehaviour
+{
+    private const int MAX_SCORE_AMOUNT = 10;
 
-    public TextMeshProUGUI uiScoreText;
-    public TextMeshProUGUI uiScoreNumber;
-    public float SceneChangeTimer = 60f;
-    public Vector3 throwStart;
-    public float throwDistance;
-    public float throwDistanceRequiredForThreePoints = 7f;
+    private TextMeshProUGUI uiScoreText;
+    private Vector3 throwStart = Vector3.zero;
+    private float SceneChangeTimer = 2000f;
+    private float throwDistance;
+    private readonly float throwDistanceRequiredForThreePoints = 7f;
     private readonly float sceneChangeWaitTime = 2f;
 
     int score = 0;
 
-    private void Update() {
-        //if (Input.GetKeyDown(KeyCode.U)) {
-        //    UpdateScore();
-        //}
-
-        SceneChangeTimer -= Time.deltaTime;
-        if(SceneChangeTimer <= 0) {
-            ChangeScene();
-        }
-
+    private void Awake()
+    {
+        uiScoreText = transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void Update()
+    {
+        if (GameMaster.Instance.IsChangingScene)
+        {
+            return;
+        }
+
+        SceneChangeTimer -= Time.deltaTime;
+
+        if(SceneChangeTimer <= 0)
+        {
+            ChangeScene();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         UpdateScore();
     }
 
-    void UpdateScore() {
-        
+    private void AddScore(int scoreAmount)
+    {
+        Fabric.EventManager.Instance.PostEvent("score");
+        score += scoreAmount;
+    }
+
+    private void UpdateScore()
+    {    
         throwDistance = Vector3.Distance(throwStart, transform.position);
-        print(throwDistance);
-        print(transform.position);
-        if (throwDistance > throwDistanceRequiredForThreePoints) {
-            Fabric.EventManager.Instance.PostEvent("score");
-            score += 3;
-        } else {
-            Fabric.EventManager.Instance.PostEvent("score");
-            score += 2;
+
+        AddScore(throwDistance > throwDistanceRequiredForThreePoints ? 3 : 2);
+
+        if (score < MAX_SCORE_AMOUNT)
+        {
+            uiScoreText.text = "SCORE 0" + score;
         }
-
-        if (score < 10) {
-
-            uiScoreNumber.text = "0" + score;
-        } else {
-            uiScoreNumber.text = "" + score;
+        else
+        {
+            uiScoreText.text = "SCORE " + score;
             Invoke( "ChangeScene", sceneChangeWaitTime);
         }
     }
     
-
-    private void ChangeScene() {
-
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
-
-        switch (currentScene) {
-
+    private void ChangeScene()
+    {
+        switch (GameMaster.Instance.CurrentSceneIndex)
+        {
             case 1:
-
-                SceneManager.LoadScene(2);
+                
+                GameMaster.Instance.ChangeScene(2);
 
                 break;
 
             case 2:
 
-                SceneManager.LoadScene(0);
+                GameMaster.Instance.ChangeScene(0);
 
                 break;
 

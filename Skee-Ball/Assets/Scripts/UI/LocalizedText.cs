@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Text))]
@@ -8,7 +7,14 @@ public class LocalizedText : MonoBehaviour
     public string Key;
 
     private Text text;
-    private delegate void Delegate();
+
+    public string Text
+    {
+        set
+        {
+            text.text = value;
+        }
+    }
 
     private void Awake()
     {
@@ -17,11 +23,6 @@ public class LocalizedText : MonoBehaviour
 
     private void Start()
     {
-        ChangeText();
-    }
-
-    public void ChangeText()
-    {
-        text.text = LocalizationManager.Instance.GetValue(Key);
+        LocalizationManager.Instance.AddLocalizedText(this);
     }
 }

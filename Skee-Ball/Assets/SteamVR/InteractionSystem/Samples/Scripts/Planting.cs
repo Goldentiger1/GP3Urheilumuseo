@@ -23,7 +23,7 @@ namespace Valve.VR.InteractionSystem.Sample
 
             if (plantAction == null)
             {
-                Debug.LogError("<b>[SteamVR Interaction]</b> No plant action assigned");
+                Debug.LogError("No plant action assigned");
                 return;
             }
 
@@ -36,9 +36,9 @@ namespace Valve.VR.InteractionSystem.Sample
                 plantAction.RemoveOnChangeListener(OnPlantActionChange, hand.handType);
         }
 
-        private void OnPlantActionChange(SteamVR_Action_Boolean actionIn, SteamVR_Input_Sources inputSource, bool newValue)
+        private void OnPlantActionChange(SteamVR_Action_In actionIn)
         {
-            if (newValue)
+            if (plantAction.GetStateDown(hand.handType))
             {
                 Plant();
             }
@@ -62,7 +62,7 @@ namespace Valve.VR.InteractionSystem.Sample
             else
             {
                 plantPosition = hand.transform.position;
-                plantPosition.y = Player.instance.transform.position.y;
+                plantPosition.y = Player.Instance.transform.position.y;
             }
 
             GameObject planting = GameObject.Instantiate<GameObject>(prefabToPlant);

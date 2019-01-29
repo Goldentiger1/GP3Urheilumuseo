@@ -5,7 +5,6 @@
 //=============================================================================
 
 using UnityEngine;
-using System.Collections;
 
 namespace Valve.VR.InteractionSystem
 {
@@ -51,11 +50,10 @@ namespace Valve.VR.InteractionSystem
             renderModel.Hide();
         }
 
-
         //-------------------------------------------------
         protected void OnParentHandHoverBegin(Interactable other)
         {
-            if (!this.isActiveAndEnabled)
+            if (!isActiveAndEnabled)
             {
                 return;
             }
@@ -66,35 +64,31 @@ namespace Valve.VR.InteractionSystem
             }
         }
 
-
         //-------------------------------------------------
         private void OnParentHandHoverEnd(Interactable other)
         {
             HideHighlight();
         }
 
-
         //-------------------------------------------------
         private void OnParentHandInputFocusAcquired()
         {
-            if (!this.isActiveAndEnabled)
+            if (!isActiveAndEnabled)
             {
                 return;
             }
 
-            if (hand.hoveringInteractable && hand.hoveringInteractable.transform.parent != transform.parent)
+            if (hand.HoveringInteractable && hand.HoveringInteractable.transform.parent != transform.parent)
             {
                 ShowHighlight();
             }
         }
-
 
         //-------------------------------------------------
         private void OnParentHandInputFocusLost()
         {
             HideHighlight();
         }
-
 
         //-------------------------------------------------
         public void ShowHighlight()
@@ -111,7 +105,6 @@ namespace Valve.VR.InteractionSystem
 
             renderModel.Show();
         }
-
 
         //-------------------------------------------------
         public void HideHighlight()

@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 69d5fc642eaaf18439d1ae2c5a1ef1ad
   - enabled: 1
-    path: Assets/Scenes/Stage2.unity
-    guid: 3e71c66d5bd46e345af3d4f645933469
+    path: Assets/Scenes/1930.unity
+    guid: a99a31cd16d671744b342e90c459733a
   - enabled: 1
-    path: Assets/Scenes/DevScene - Mathias.unity
-    guid: 1b25507f42b7f314bb1fc39c3018ec9c
+    path: Assets/Scenes/2010 - Street.unity
+    guid: c4ff97e2320fe4e418551580e5e3c0f5
   m_configObjects: {}

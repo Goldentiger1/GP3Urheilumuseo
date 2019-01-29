@@ -83,7 +83,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		void Start()
 		{
-			player = Player.instance;
+			player = Player.Instance;
 		}
 
 
@@ -92,9 +92,9 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( Application.isPlaying )
 			{
-				lookAtPosition.x = player.hmdTransform.position.x;
+				lookAtPosition.x = player.HmdTransform.position.x;
 				lookAtPosition.y = lookAtJointTransform.position.y;
-				lookAtPosition.z = player.hmdTransform.position.z;
+				lookAtPosition.z = player.HmdTransform.position.z;
 
 				lookAtJointTransform.LookAt( lookAtPosition );
 			}
@@ -221,11 +221,11 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( !string.IsNullOrEmpty( switchToScene ) )
 			{
-				Debug.Log("<b>[SteamVR Interaction]</b> TeleportPoint: Hook up your level loading logic to switch to new scene: " + switchToScene );
+				Debug.Log( "TeleportPoint: Hook up your level loading logic to switch to new scene: " + switchToScene );
 			}
 			else
 			{
-				Debug.LogError("<b>[SteamVR Interaction]</b> TeleportPoint: Invalid scene name to switch to: " + switchToScene );
+				Debug.LogError( "TeleportPoint: Invalid scene name to switch to: " + switchToScene );
 			}
 		}
 
@@ -323,8 +323,7 @@ namespace Valve.VR.InteractionSystem
 			if ( Selection.activeTransform )
 			{
 				TeleportPoint teleportPoint = Selection.activeTransform.GetComponent<TeleportPoint>();
-                if (teleportPoint != null)
-				    teleportPoint.UpdateVisualsInEditor();
+				teleportPoint.UpdateVisualsInEditor();
 			}
 		}
 

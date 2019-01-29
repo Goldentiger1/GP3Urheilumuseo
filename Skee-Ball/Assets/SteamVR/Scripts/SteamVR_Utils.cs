@@ -10,16 +10,15 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using Valve.VR;
-using System.IO;
 
 namespace Valve.VR
 {
     public static class SteamVR_Utils
     {
         // this version does not clamp [0..1]
-        public static Quaternion Slerp(Quaternion A, Quaternion B, float time)
+        public static Quaternion Slerp(Quaternion A, Quaternion B, float t)
         {
-            float cosom = Mathf.Clamp(A.x * B.x + A.y * B.y + A.z * B.z + A.w * B.w, -1.0f, 1.0f);
+            var cosom = Mathf.Clamp(A.x * B.x + A.y * B.y + A.z * B.z + A.w * B.w, -1.0f, 1.0f);
             if (cosom < 0.0f)
             {
                 B = new Quaternion(-B.x, -B.y, -B.z, -B.w);
@@ -29,16 +28,16 @@ namespace Valve.VR
             float sclp, sclq;
             if ((1.0f - cosom) > 0.0001f)
             {
-                float omega = Mathf.Acos(cosom);
-                float sinom = Mathf.Sin(omega);
-                sclp = Mathf.Sin((1.0f - time) * omega) / sinom;
-                sclq = Mathf.Sin(time * omega) / sinom;
+                var omega = Mathf.Acos(cosom);
+                var sinom = Mathf.Sin(omega);
+                sclp = Mathf.Sin((1.0f - t) * omega) / sinom;
+                sclq = Mathf.Sin(t * omega) / sinom;
             }
             else
             {
                 // "from" and "to" very close, so do linear interp
-                sclp = 1.0f - time;
-                sclq = time;
+                sclp = 1.0f - t;
+                sclq = t;
             }
 
             return new Quaternion(
@@ -48,37 +47,37 @@ namespace Valve.VR
                 sclp * A.w + sclq * B.w);
         }
 
-        public static Vector3 Lerp(Vector3 from, Vector3 to, float amount)
+        public static Vector3 Lerp(Vector3 A, Vector3 B, float t)
         {
             return new Vector3(
-                Lerp(from.x, to.x, amount),
-                Lerp(from.y, to.y, amount),
-                Lerp(from.z, to.z, amount));
+                Lerp(A.x, B.x, t),
+                Lerp(A.y, B.y, t),
+                Lerp(A.z, B.z, t));
         }
 
-        public static float Lerp(float from, float to, float amount)
+        public static float Lerp(float A, float B, float t)
         {
-            return from + (to - from) * amount;
+            return A + (B - A) * t;
         }
 
-        public static double Lerp(double from, double to, double amount)
+        public static double Lerp(double A, double B, double t)
         {
-            return from + (to - from) * amount;
+            return A + (B - A) * t;
         }
 
-        public static float InverseLerp(Vector3 from, Vector3 to, Vector3 result)
+        public static float InverseLerp(Vector3 A, Vector3 B, Vector3 result)
         {
-            return Vector3.Dot(result - from, to - from);
+            return Vector3.Dot(result - A, B - A);
         }
 
-        public static float InverseLerp(float from, float to, float result)
+        public static float InverseLerp(float A, float B, float result)
         {
-            return (result - from) / (to - from);
+            return (result - A) / (B - A);
         }
 
-        public static double InverseLerp(double from, double to, double result)
+        public static double InverseLerp(double A, double B, double result)
         {
-            return (result - from) / (to - from);
+            return (result - A) / (B - A);
         }
 
         public static float Saturate(float A)
@@ -91,11 +90,6 @@ namespace Valve.VR
             return new Vector2(Saturate(A.x), Saturate(A.y));
         }
 
-        public static Vector3 Saturate(Vector3 A)
-        {
-            return new Vector3(Saturate(A.x), Saturate(A.y), Saturate(A.z));
-        }
-
         public static float Abs(float A)
         {
             return (A < 0) ? -A : A;
@@ -106,11 +100,6 @@ namespace Valve.VR
             return new Vector2(Abs(A.x), Abs(A.y));
         }
 
-        public static Vector3 Abs(Vector3 A)
-        {
-            return new Vector3(Abs(A.x), Abs(A.y), Abs(A.z));
-        }
-
         private static float _copysign(float sizeval, float signval)
         {
             return Mathf.Sign(signval) == 1 ? Mathf.Abs(sizeval) : -Mathf.Abs(sizeval);
@@ -119,10 +108,10 @@ namespace Valve.VR
         public static Quaternion GetRotation(this Matrix4x4 matrix)
         {
             Quaternion q = new Quaternion();
-            q.w = Mathf.Sqrt(Mathf.Max(0, 1f + matrix.m00 + matrix.m11 + matrix.m22)) / 2f;
-            q.x = Mathf.Sqrt(Mathf.Max(0, 1f + matrix.m00 - matrix.m11 - matrix.m22)) / 2f;
-            q.y = Mathf.Sqrt(Mathf.Max(0, 1f - matrix.m00 + matrix.m11 - matrix.m22)) / 2f;
-            q.z = Mathf.Sqrt(Mathf.Max(0, 1f - matrix.m00 - matrix.m11 + matrix.m22)) / 2f;
+            q.w = Mathf.Sqrt(Mathf.Max(0, 1 + matrix.m00 + matrix.m11 + matrix.m22)) / 2;
+            q.x = Mathf.Sqrt(Mathf.Max(0, 1 + matrix.m00 - matrix.m11 - matrix.m22)) / 2;
+            q.y = Mathf.Sqrt(Mathf.Max(0, 1 - matrix.m00 + matrix.m11 - matrix.m22)) / 2;
+            q.z = Mathf.Sqrt(Mathf.Max(0, 1 - matrix.m00 - matrix.m11 + matrix.m22)) / 2;
             q.x = _copysign(q.x, matrix.m21 - matrix.m12);
             q.y = _copysign(q.y, matrix.m02 - matrix.m20);
             q.z = _copysign(q.z, matrix.m10 - matrix.m01);
@@ -131,18 +120,18 @@ namespace Valve.VR
 
         public static Vector3 GetPosition(this Matrix4x4 matrix)
         {
-            float x = matrix.m03;
-            float y = matrix.m13;
-            float z = matrix.m23;
+            var x = matrix.m03;
+            var y = matrix.m13;
+            var z = matrix.m23;
 
             return new Vector3(x, y, z);
         }
 
         public static Vector3 GetScale(this Matrix4x4 m)
         {
-            float x = Mathf.Sqrt(m.m00 * m.m00 + m.m01 * m.m01 + m.m02 * m.m02);
-            float y = Mathf.Sqrt(m.m10 * m.m10 + m.m11 * m.m11 + m.m12 * m.m12);
-            float z = Mathf.Sqrt(m.m20 * m.m20 + m.m21 * m.m21 + m.m22 * m.m22);
+            var x = Mathf.Sqrt(m.m00 * m.m00 + m.m01 * m.m01 + m.m02 * m.m02);
+            var y = Mathf.Sqrt(m.m10 * m.m10 + m.m11 * m.m11 + m.m12 * m.m12);
+            var z = Mathf.Sqrt(m.m20 * m.m20 + m.m21 * m.m21 + m.m22 * m.m22);
 
             return new Vector3(x, y, z);
         }
@@ -171,137 +160,137 @@ namespace Valve.VR
                 get { return new RigidTransform(Vector3.zero, Quaternion.identity); }
             }
 
-            public static RigidTransform FromLocal(Transform fromTransform)
+            public static RigidTransform FromLocal(Transform t)
             {
-                return new RigidTransform(fromTransform.localPosition, fromTransform.localRotation);
+                return new RigidTransform(t.localPosition, t.localRotation);
             }
 
-            public RigidTransform(Vector3 position, Quaternion rotation)
+            public RigidTransform(Vector3 pos, Quaternion rot)
             {
-                this.pos = position;
-                this.rot = rotation;
+                this.pos = pos;
+                this.rot = rot;
             }
 
-            public RigidTransform(Transform fromTransform)
+            public RigidTransform(Transform t)
             {
-                this.pos = fromTransform.position;
-                this.rot = fromTransform.rotation;
+                this.pos = t.position;
+                this.rot = t.rotation;
             }
 
             public RigidTransform(Transform from, Transform to)
             {
-                Quaternion inverse = Quaternion.Inverse(from.rotation);
-                rot = inverse * to.rotation;
-                pos = inverse * (to.position - from.position);
+                var inv = Quaternion.Inverse(from.rotation);
+                rot = inv * to.rotation;
+                pos = inv * (to.position - from.position);
             }
 
             public RigidTransform(HmdMatrix34_t pose)
             {
-                Matrix4x4 matrix = Matrix4x4.identity;
+                var m = Matrix4x4.identity;
 
-                matrix[0, 0] = pose.m0;
-                matrix[0, 1] = pose.m1;
-                matrix[0, 2] = -pose.m2;
-                matrix[0, 3] = pose.m3;
+                m[0, 0] = pose.m0;
+                m[0, 1] = pose.m1;
+                m[0, 2] = -pose.m2;
+                m[0, 3] = pose.m3;
 
-                matrix[1, 0] = pose.m4;
-                matrix[1, 1] = pose.m5;
-                matrix[1, 2] = -pose.m6;
-                matrix[1, 3] = pose.m7;
+                m[1, 0] = pose.m4;
+                m[1, 1] = pose.m5;
+                m[1, 2] = -pose.m6;
+                m[1, 3] = pose.m7;
 
-                matrix[2, 0] = -pose.m8;
-                matrix[2, 1] = -pose.m9;
-                matrix[2, 2] = pose.m10;
-                matrix[2, 3] = -pose.m11;
+                m[2, 0] = -pose.m8;
+                m[2, 1] = -pose.m9;
+                m[2, 2] = pose.m10;
+                m[2, 3] = -pose.m11;
 
-                this.pos = matrix.GetPosition();
-                this.rot = matrix.GetRotation();
+                this.pos = m.GetPosition();
+                this.rot = m.GetRotation();
             }
 
             public RigidTransform(HmdMatrix44_t pose)
             {
-                Matrix4x4 matrix = Matrix4x4.identity;
+                var m = Matrix4x4.identity;
 
-                matrix[0, 0] = pose.m0;
-                matrix[0, 1] = pose.m1;
-                matrix[0, 2] = -pose.m2;
-                matrix[0, 3] = pose.m3;
+                m[0, 0] = pose.m0;
+                m[0, 1] = pose.m1;
+                m[0, 2] = -pose.m2;
+                m[0, 3] = pose.m3;
 
-                matrix[1, 0] = pose.m4;
-                matrix[1, 1] = pose.m5;
-                matrix[1, 2] = -pose.m6;
-                matrix[1, 3] = pose.m7;
+                m[1, 0] = pose.m4;
+                m[1, 1] = pose.m5;
+                m[1, 2] = -pose.m6;
+                m[1, 3] = pose.m7;
 
-                matrix[2, 0] = -pose.m8;
-                matrix[2, 1] = -pose.m9;
-                matrix[2, 2] = pose.m10;
-                matrix[2, 3] = -pose.m11;
+                m[2, 0] = -pose.m8;
+                m[2, 1] = -pose.m9;
+                m[2, 2] = pose.m10;
+                m[2, 3] = -pose.m11;
 
-                matrix[3, 0] = pose.m12;
-                matrix[3, 1] = pose.m13;
-                matrix[3, 2] = -pose.m14;
-                matrix[3, 3] = pose.m15;
+                m[3, 0] = pose.m12;
+                m[3, 1] = pose.m13;
+                m[3, 2] = -pose.m14;
+                m[3, 3] = pose.m15;
 
-                this.pos = matrix.GetPosition();
-                this.rot = matrix.GetRotation();
+                this.pos = m.GetPosition();
+                this.rot = m.GetRotation();
             }
 
             public HmdMatrix44_t ToHmdMatrix44()
             {
-                Matrix4x4 matrix = Matrix4x4.TRS(pos, rot, Vector3.one);
-                HmdMatrix44_t pose = new HmdMatrix44_t();
+                var m = Matrix4x4.TRS(pos, rot, Vector3.one);
+                var pose = new HmdMatrix44_t();
 
-                pose.m0 = matrix[0, 0];
-                pose.m1 = matrix[0, 1];
-                pose.m2 = -matrix[0, 2];
-                pose.m3 = matrix[0, 3];
+                pose.m0 = m[0, 0];
+                pose.m1 = m[0, 1];
+                pose.m2 = -m[0, 2];
+                pose.m3 = m[0, 3];
 
-                pose.m4 = matrix[1, 0];
-                pose.m5 = matrix[1, 1];
-                pose.m6 = -matrix[1, 2];
-                pose.m7 = matrix[1, 3];
+                pose.m4 = m[1, 0];
+                pose.m5 = m[1, 1];
+                pose.m6 = -m[1, 2];
+                pose.m7 = m[1, 3];
 
-                pose.m8 = -matrix[2, 0];
-                pose.m9 = -matrix[2, 1];
-                pose.m10 = matrix[2, 2];
-                pose.m11 = -matrix[2, 3];
+                pose.m8 = -m[2, 0];
+                pose.m9 = -m[2, 1];
+                pose.m10 = m[2, 2];
+                pose.m11 = -m[2, 3];
 
-                pose.m12 = matrix[3, 0];
-                pose.m13 = matrix[3, 1];
-                pose.m14 = -matrix[3, 2];
-                pose.m15 = matrix[3, 3];
+                pose.m12 = m[3, 0];
+                pose.m13 = m[3, 1];
+                pose.m14 = -m[3, 2];
+                pose.m15 = m[3, 3];
 
                 return pose;
             }
 
             public HmdMatrix34_t ToHmdMatrix34()
             {
-                Matrix4x4 matrix = Matrix4x4.TRS(pos, rot, Vector3.one);
-                HmdMatrix34_t pose = new HmdMatrix34_t();
+                var m = Matrix4x4.TRS(pos, rot, Vector3.one);
+                var pose = new HmdMatrix34_t();
 
-                pose.m0 = matrix[0, 0];
-                pose.m1 = matrix[0, 1];
-                pose.m2 = -matrix[0, 2];
-                pose.m3 = matrix[0, 3];
+                pose.m0 = m[0, 0];
+                pose.m1 = m[0, 1];
+                pose.m2 = -m[0, 2];
+                pose.m3 = m[0, 3];
 
-                pose.m4 = matrix[1, 0];
-                pose.m5 = matrix[1, 1];
-                pose.m6 = -matrix[1, 2];
-                pose.m7 = matrix[1, 3];
+                pose.m4 = m[1, 0];
+                pose.m5 = m[1, 1];
+                pose.m6 = -m[1, 2];
+                pose.m7 = m[1, 3];
 
-                pose.m8 = -matrix[2, 0];
-                pose.m9 = -matrix[2, 1];
-                pose.m10 = matrix[2, 2];
-                pose.m11 = -matrix[2, 3];
+                pose.m8 = -m[2, 0];
+                pose.m9 = -m[2, 1];
+                pose.m10 = m[2, 2];
+                pose.m11 = -m[2, 3];
 
                 return pose;
             }
 
-            public override bool Equals(object other)
+            public override bool Equals(object o)
             {
-                if (other is RigidTransform)
+                if (o is RigidTransform)
                 {
-                    RigidTransform t = (RigidTransform)other;
+                    RigidTransform t = (RigidTransform)o;
                     return pos == t.pos && rot == t.rot;
                 }
                 return false;
@@ -339,9 +328,9 @@ namespace Valve.VR
 
             public RigidTransform GetInverse()
             {
-                RigidTransform transform = new RigidTransform(pos, rot);
-                transform.Inverse();
-                return transform;
+                var t = new RigidTransform(pos, rot);
+                t.Inverse();
+                return t;
             }
 
             public void Multiply(RigidTransform a, RigidTransform b)
@@ -381,15 +370,15 @@ namespace Valve.VR
 
         public static object CallSystemFn(SystemFn fn, params object[] args)
         {
-            bool initOpenVR = (!SteamVR.active && !SteamVR.usingNativeSupport);
+            var initOpenVR = (!SteamVR.active && !SteamVR.usingNativeSupport);
             if (initOpenVR)
             {
-                EVRInitError error = EVRInitError.None;
+                var error = EVRInitError.None;
                 OpenVR.Init(ref error, EVRApplicationType.VRApplication_Utility);
             }
 
-            CVRSystem system = OpenVR.System;
-            object result = (system != null) ? fn(system, args) : null;
+            var system = OpenVR.System;
+            var result = (system != null) ? fn(system, args) : null;
 
             if (initOpenVR)
                 OpenVR.Shutdown();
@@ -403,15 +392,15 @@ namespace Valve.VR
             const int height = width / 2;
             const int halfHeight = height / 2;
 
-            Texture2D texture = new Texture2D(width, height * 2, TextureFormat.ARGB32, false);
+            var texture = new Texture2D(width, height * 2, TextureFormat.ARGB32, false);
 
-            System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
+            var timer = new System.Diagnostics.Stopwatch();
 
             Camera tempCamera = null;
 
             timer.Start();
 
-            Camera camera = target.GetComponent<Camera>();
+            var camera = target.GetComponent<Camera>();
             if (camera == null)
             {
                 if (tempCamera == null)
@@ -422,14 +411,14 @@ namespace Valve.VR
             // Render preview texture
             const int previewWidth = 2048;
             const int previewHeight = 2048;
-            Texture2D previewTexture = new Texture2D(previewWidth, previewHeight, TextureFormat.ARGB32, false);
-            RenderTexture targetPreviewTexture = new RenderTexture(previewWidth, previewHeight, 24);
+            var previewTexture = new Texture2D(previewWidth, previewHeight, TextureFormat.ARGB32, false);
+            var targetPreviewTexture = new RenderTexture(previewWidth, previewHeight, 24);
 
-            RenderTexture oldTargetTexture = camera.targetTexture;
-            bool oldOrthographic = camera.orthographic;
-            float oldFieldOfView = camera.fieldOfView;
-            float oldAspect = camera.aspect;
-            StereoTargetEyeMask oldstereoTargetEye = camera.stereoTargetEye;
+            var oldTargetTexture = camera.targetTexture;
+            var oldOrthographic = camera.orthographic;
+            var oldFieldOfView = camera.fieldOfView;
+            var oldAspect = camera.aspect;
+            var oldstereoTargetEye = camera.stereoTargetEye;
             camera.stereoTargetEye = StereoTargetEyeMask.None;
             camera.fieldOfView = 60.0f;
             camera.orthographic = false;
@@ -444,20 +433,20 @@ namespace Valve.VR
             camera.targetTexture = null;
             Object.DestroyImmediate(targetPreviewTexture);
 
-            SteamVR_SphericalProjection fx = camera.gameObject.AddComponent<SteamVR_SphericalProjection>();
+            var fx = camera.gameObject.AddComponent<SteamVR_SphericalProjection>();
 
-            Vector3 oldPosition = target.transform.localPosition;
-            Quaternion oldRotation = target.transform.localRotation;
-            Vector3 basePosition = target.transform.position;
-            Quaternion baseRotation = Quaternion.Euler(0, target.transform.rotation.eulerAngles.y, 0);
+            var oldPosition = target.transform.localPosition;
+            var oldRotation = target.transform.localRotation;
+            var basePosition = target.transform.position;
+            var baseRotation = Quaternion.Euler(0, target.transform.rotation.eulerAngles.y, 0);
 
-            Transform transform = camera.transform;
+            var transform = camera.transform;
 
             int vTotal = halfHeight / cellSize;
             float dv = 90.0f / vTotal; // vertical degrees per segment
             float dvHalf = dv / 2.0f;
 
-            RenderTexture targetTexture = new RenderTexture(cellSize, cellSize, 24);
+            var targetTexture = new RenderTexture(cellSize, cellSize, 24);
             targetTexture.wrapMode = TextureWrapMode.Clamp;
             targetTexture.antiAliasing = 8;
 
@@ -475,12 +464,12 @@ namespace Valve.VR
             // alternating left and right eyes.
             for (int v = 0; v < vTotal; v++)
             {
-                float pitch = 90.0f - (v * dv) - dvHalf;
-                int uTotal = width / targetTexture.width;
-                float du = 360.0f / uTotal; // horizontal degrees per segment
-                float duHalf = du / 2.0f;
+                var pitch = 90.0f - (v * dv) - dvHalf;
+                var uTotal = width / targetTexture.width;
+                var du = 360.0f / uTotal; // horizontal degrees per segment
+                var duHalf = du / 2.0f;
 
-                int vTarget = v * halfHeight / vTotal;
+                var vTarget = v * halfHeight / vTotal;
 
                 for (int i = 0; i < 2; i++) // top, bottom
                 {
@@ -492,12 +481,12 @@ namespace Valve.VR
 
                     for (int u = 0; u < uTotal; u++)
                     {
-                        float yaw = -180.0f + (u * du) + duHalf;
+                        var yaw = -180.0f + (u * du) + duHalf;
 
-                        int uTarget = u * width / uTotal;
+                        var uTarget = u * width / uTotal;
 
-                        int vTargetOffset = 0;
-                        float xOffset = -ipd / 2 * Mathf.Cos(pitch * Mathf.Deg2Rad);
+                        var vTargetOffset = 0;
+                        var xOffset = -ipd / 2 * Mathf.Cos(pitch * Mathf.Deg2Rad);
 
                         for (int j = 0; j < 2; j++) // left, right
                         {
@@ -507,52 +496,52 @@ namespace Valve.VR
                                 xOffset = -xOffset;
                             }
 
-                            Vector3 offset = baseRotation * Quaternion.Euler(0, yaw, 0) * new Vector3(xOffset, 0, 0);
+                            var offset = baseRotation * Quaternion.Euler(0, yaw, 0) * new Vector3(xOffset, 0, 0);
                             transform.position = basePosition + offset;
 
-                            Quaternion direction = Quaternion.Euler(pitch, yaw, 0.0f);
+                            var direction = Quaternion.Euler(pitch, yaw, 0.0f);
                             transform.rotation = baseRotation * direction;
 
                             // vector pointing to center of this section
-                            Vector3 N = direction * Vector3.forward;
+                            var N = direction * Vector3.forward;
 
                             // horizontal span of this section in degrees
-                            float phi0 = yaw - (du / 2);
-                            float phi1 = phi0 + du;
+                            var phi0 = yaw - (du / 2);
+                            var phi1 = phi0 + du;
 
                             // vertical span of this section in degrees
-                            float theta0 = pitch + (dv / 2);
-                            float theta1 = theta0 - dv;
+                            var theta0 = pitch + (dv / 2);
+                            var theta1 = theta0 - dv;
 
-                            float midPhi = (phi0 + phi1) / 2;
-                            float baseTheta = Mathf.Abs(theta0) < Mathf.Abs(theta1) ? theta0 : theta1;
+                            var midPhi = (phi0 + phi1) / 2;
+                            var baseTheta = Mathf.Abs(theta0) < Mathf.Abs(theta1) ? theta0 : theta1;
 
                             // vectors pointing to corners of image closes to the equator
-                            Vector3 V00 = Quaternion.Euler(baseTheta, phi0, 0.0f) * Vector3.forward;
-                            Vector3 V01 = Quaternion.Euler(baseTheta, phi1, 0.0f) * Vector3.forward;
+                            var V00 = Quaternion.Euler(baseTheta, phi0, 0.0f) * Vector3.forward;
+                            var V01 = Quaternion.Euler(baseTheta, phi1, 0.0f) * Vector3.forward;
 
                             // vectors pointing to top and bottom midsection of image
-                            Vector3 V0M = Quaternion.Euler(theta0, midPhi, 0.0f) * Vector3.forward;
-                            Vector3 V1M = Quaternion.Euler(theta1, midPhi, 0.0f) * Vector3.forward;
+                            var V0M = Quaternion.Euler(theta0, midPhi, 0.0f) * Vector3.forward;
+                            var V1M = Quaternion.Euler(theta1, midPhi, 0.0f) * Vector3.forward;
 
                             // intersection points for each of the above
-                            Vector3 P00 = V00 / Vector3.Dot(V00, N);
-                            Vector3 P01 = V01 / Vector3.Dot(V01, N);
-                            Vector3 P0M = V0M / Vector3.Dot(V0M, N);
-                            Vector3 P1M = V1M / Vector3.Dot(V1M, N);
+                            var P00 = V00 / Vector3.Dot(V00, N);
+                            var P01 = V01 / Vector3.Dot(V01, N);
+                            var P0M = V0M / Vector3.Dot(V0M, N);
+                            var P1M = V1M / Vector3.Dot(V1M, N);
 
                             // calculate basis vectors for plane
-                            Vector3 P00_P01 = P01 - P00;
-                            Vector3 P0M_P1M = P1M - P0M;
+                            var P00_P01 = P01 - P00;
+                            var P0M_P1M = P1M - P0M;
 
-                            float uMag = P00_P01.magnitude;
-                            float vMag = P0M_P1M.magnitude;
+                            var uMag = P00_P01.magnitude;
+                            var vMag = P0M_P1M.magnitude;
 
-                            float uScale = 1.0f / uMag;
-                            float vScale = 1.0f / vMag;
+                            var uScale = 1.0f / uMag;
+                            var vScale = 1.0f / vMag;
 
-                            Vector3 uAxis = P00_P01 * uScale;
-                            Vector3 vAxis = P0M_P1M * vScale;
+                            var uAxis = P00_P01 * uScale;
+                            var vAxis = P0M_P1M * vScale;
 
                             // update material constant buffer
                             fx.Set(N, phi0, phi1, theta0, theta1,
@@ -568,7 +557,7 @@ namespace Valve.VR
                         }
 
                         // Update progress
-                        float progress = (float)(v * (uTotal * 2.0f) + u + i * uTotal) / (float)(vTotal * (uTotal * 2.0f));
+                        var progress = (float)(v * (uTotal * 2.0f) + u + i * uTotal) / (float)(vTotal * (uTotal * 2.0f));
                         OpenVR.Screenshots.UpdateScreenshotProgress(screenshotHandle, progress);
                     }
                 }
@@ -611,7 +600,7 @@ namespace Valve.VR
             Object.DestroyImmediate(fx);
 
             timer.Stop();
-            Debug.Log(string.Format("<b>[SteamVR]</b> Screenshot took {0} seconds.", timer.Elapsed));
+            Debug.Log(string.Format("Screenshot took {0} seconds.", timer.Elapsed));
 
             if (tempCamera != null)
             {
@@ -626,13 +615,8 @@ namespace Valve.VR
         ///<summary>Bad because the secret key is here in plain text</summary>
         public static string GetBadMD5Hash(string usedString)
         {
+            var md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes(usedString + secretKey);
-
-            return GetBadMD5Hash(bytes);
-        }
-        public static string GetBadMD5Hash(byte[] bytes)
-        {
-            System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
             byte[] hash = md5.ComputeHash(bytes);
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
@@ -642,14 +626,6 @@ namespace Valve.VR
             }
 
             return sb.ToString();
-        }
-        public static string GetBadMD5HashFromFile(string filePath)
-        {
-            if (File.Exists(filePath) == false)
-                return null;
-
-            string data = File.ReadAllText(filePath);
-            return GetBadMD5Hash(data + secretKey);
         }
 
         public static string ConvertToForwardSlashes(string fromString)
@@ -663,7 +639,7 @@ namespace Valve.VR
         public static float GetLossyScale(Transform forTransform)
         {
             float scale = 1f;
-            while (forTransform != null && forTransform.parent != null)
+            while (forTransform.parent != null)
             {
                 forTransform = forTransform.parent;
                 scale *= forTransform.localScale.x;

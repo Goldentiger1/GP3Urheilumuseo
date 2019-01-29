@@ -9,13 +9,22 @@ namespace Valve.VR.InteractionSystem.Sample
     {
         public Transform Joystick;
         public float joyMove = 0.1f;
+
         
-        public SteamVR_Action_Vector2 moveAction = SteamVR_Input.GetAction<SteamVR_Action_Vector2>("platformer", "Move");
-        public SteamVR_Action_Boolean jumpAction = SteamVR_Input.GetAction<SteamVR_Action_Boolean>("platformer", "Jump");
+        [SteamVR_DefaultActionSet("platformer")]
+        public SteamVR_ActionSet actionSet;
+
+        [SteamVR_DefaultAction("Move", "platformer")]
+        public SteamVR_Action_Vector2 a_move;
+
+        [SteamVR_DefaultAction("Jump", "platformer")]
+        public SteamVR_Action_Boolean a_jump;
+
 
         public JoeJeff character;
 
         public Renderer jumpHighlight;
+
 
         private Vector3 movement;
         private bool jump;
@@ -26,6 +35,7 @@ namespace Valve.VR.InteractionSystem.Sample
         private void Start()
         {
             interactable = GetComponent<Interactable>();
+            interactable.activateActionSetOnAttach = actionSet;
         }
 
         private void Update()
@@ -33,11 +43,11 @@ namespace Valve.VR.InteractionSystem.Sample
             if (interactable.attachedToHand)
             {
                 hand = interactable.attachedToHand.handType;
-                Vector2 m = moveAction[hand].axis;
+                Vector2 m = a_move.GetAxis(hand);
                 movement = new Vector3(m.x, 0, m.y);
 
-                jump = jumpAction[hand].stateDown;
-                glow = Mathf.Lerp(glow, jumpAction[hand].state ? 1.5f : 1.0f, Time.deltaTime * 20);
+                jump = a_jump.GetStateDown(hand);
+                glow = Mathf.Lerp(glow, a_jump.GetState(hand) ? 1.5f : 1.0f, Time.deltaTime * 20);
             }
             else
             {

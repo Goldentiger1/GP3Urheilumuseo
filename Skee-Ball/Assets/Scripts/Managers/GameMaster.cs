@@ -6,7 +6,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 {
     private Coroutine loadSceneAsync;
 
-    private readonly float fakeLoadDuration = 4f;
+    private readonly float fakeLoadDuration = 0f;
 
     public int CurrentSceneIndex
     {
@@ -40,7 +40,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
     {
         IsChangingScene = true;
 
-        UIManager.Instance.FadeScreenImage(1f, 2f);
+        UIManager.Instance.FadeScreenImage(1f);
 
         yield return new WaitWhile(() => UIManager.Instance.IsFading);
 
@@ -74,7 +74,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
     private void OnSceneChanged()
     {
-        UIManager.Instance.FadeScreenImage(0f, 2f);
+        UIManager.Instance.FadeScreenImage(0f);
         AudioManager.Instance.ChangeMusicTrack(CurrentSceneIndex);
     }
 }

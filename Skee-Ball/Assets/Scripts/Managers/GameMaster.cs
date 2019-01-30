@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 public class GameMaster : SingeltonPersistant<GameMaster>
 {
     private Coroutine loadSceneAsync;
-    private Coroutine timedLoadSceneAsync;
-
-    private readonly float sceneChangeTimer = 20f;
-    private readonly float fakeLoadDuration = 0f;
+    [SerializeField]
+    private float sceneChangeTimer = 60f;
+    [SerializeField]
+    private float fakeLoadDuration = 0f;
 
     private bool isChangingScene;
     private int sceneCount;

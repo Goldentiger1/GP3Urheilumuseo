@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -945,7 +945,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914,
+      objectReference: {fileID: 13400000, guid: 164dbb280869d724ab38e23e35eaad50,
         type: 2}
     - target: {fileID: 135200997516174468, guid: 3a76798d0676fab4281c8e5b594ab0e3,
         type: 3}
@@ -963,7 +963,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914,
+      objectReference: {fileID: 13400000, guid: 164dbb280869d724ab38e23e35eaad50,
         type: 2}
     - target: {fileID: 135960247707025912, guid: 3a76798d0676fab4281c8e5b594ab0e3,
         type: 3}
@@ -981,7 +981,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914,
+      objectReference: {fileID: 13400000, guid: 164dbb280869d724ab38e23e35eaad50,
         type: 2}
     - target: {fileID: 135652167974875044, guid: 3a76798d0676fab4281c8e5b594ab0e3,
         type: 3}
@@ -999,7 +999,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914,
+      objectReference: {fileID: 13400000, guid: 164dbb280869d724ab38e23e35eaad50,
         type: 2}
     - target: {fileID: 135767250412687970, guid: 3a76798d0676fab4281c8e5b594ab0e3,
         type: 3}
@@ -1017,7 +1017,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914,
+      objectReference: {fileID: 13400000, guid: 164dbb280869d724ab38e23e35eaad50,
         type: 2}
     - target: {fileID: 135688723098380364, guid: 3a76798d0676fab4281c8e5b594ab0e3,
         type: 3}
@@ -1035,7 +1035,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914,
+      objectReference: {fileID: 13400000, guid: 164dbb280869d724ab38e23e35eaad50,
         type: 2}
     - target: {fileID: 135032974051429602, guid: 3a76798d0676fab4281c8e5b594ab0e3,
         type: 3}

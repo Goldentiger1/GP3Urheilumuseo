@@ -7,7 +7,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
     private Coroutine loadSceneAsync;
     private Coroutine timedLoadSceneAsync;
 
-    private readonly float sceneChangeTimer = 2f;
+    private readonly float sceneChangeTimer = 20f;
     private readonly float fakeLoadDuration = 0f;
 
     private bool isChangingScene;

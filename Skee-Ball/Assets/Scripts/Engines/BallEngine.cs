@@ -9,8 +9,12 @@ public class BallEngine : MonoBehaviour
 
     #region AARO
 
-    // World global position
-    private GameObject world;
+    // Added force along the world x-axis
+    public float forceX;
+    // Added force along the world y-axis
+    public float forceY;
+    // Added force along the world z-axis
+    public float forceZ;
     // Rigidbody rotation speed
     public float speed;
     // Old rigidbody velocity
@@ -33,12 +37,6 @@ public class BallEngine : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         // Starting velocity when object is not moving
         oldVelocity = rigidbody.velocity;
-        // World local space
-
-        // "Worldiä" ei löydy joka scenestä => antaa virheen kun sen nimistä "game objectia"
-        //  World-tagillä ei löydy
-
-        // world = GameObject.FindGameObjectWithTag("World").gameObject;
     }
 
     private void Start()
@@ -55,7 +53,7 @@ public class BallEngine : MonoBehaviour
         newVelocity = rigidbody.velocity;
         if (oldVelocity.magnitude < newVelocity.magnitude)
         {
-
+            rigidbody.AddForce(forceX, forceY, forceZ, ForceMode.Force);
         }
     }
 

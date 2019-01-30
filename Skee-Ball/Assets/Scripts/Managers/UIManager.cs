@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class UIManager : Singelton<UIManager>
 {
@@ -56,5 +57,20 @@ public class UIManager : Singelton<UIManager>
         LoadImage.gameObject.SetActive(true);
         canvasGroup.blocksRaycasts = false;
         IsFading = false;
+    }
+
+    public void UpdateScoreVisuals(string newScoreText)
+    {
+     
+       
+
+          
+                //uiScoreText.text = "SCORE 0" + newScoreText;
+            
+          
+                //uiScoreText.text = "SCORE " + newScoreText;
+            
+
+                          
     }
 }

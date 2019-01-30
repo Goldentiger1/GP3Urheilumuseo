@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 public class GameMaster : SingeltonPersistant<GameMaster>
 {
     private Coroutine loadSceneAsync;
+    private Coroutine timedLoadSceneAsync;
 
+    private readonly float sceneChangeTimer = 20f;
     private readonly float fakeLoadDuration = 0f;
 
+    private bool isChangingScene;
+    private int sceneCount;
+
     public int CurrentSceneIndex
-    {
-        get;
-        private set;
-    }
-    public bool IsChangingScene
     {
         get;
         private set;
@@ -21,14 +21,17 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
     private void Start()
     {
+        sceneCount = SceneManager.sceneCountInBuildSettings;
         CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        OnSceneChanged();        
+        OnSceneChanged();
     }
 
-    public void ChangeScene(int sceneIndex)
+    public void ChangeScene(int sceneIndex, float sceneChangeTimer = 0f)
     {
         if(loadSceneAsync == null)
-        loadSceneAsync = StartCoroutine(ILoadSceneAsync(sceneIndex));
+        {
+            loadSceneAsync = StartCoroutine(ILoadSceneAsync(sceneIndex, sceneChangeTimer));
+        }    
     }
 
     public void RestartScene()
@@ -36,9 +39,11 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         ChangeScene(CurrentSceneIndex);
     }
 
-    private IEnumerator ILoadSceneAsync(int sceneIndex)
+    private IEnumerator ILoadSceneAsync(int sceneIndex, float sceneChangeTimer)
     {
-        IsChangingScene = true;
+        yield return new WaitForSeconds(sceneChangeTimer);
+
+        OnSceneChangeStarted();
 
         UIManager.Instance.FadeScreenImage(1f);
 
@@ -65,16 +70,36 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
         loadSceneAsync = null;
 
-        IsChangingScene = false;
+        isChangingScene = false;
 
         LocalizationManager.Instance.ChangeTextToNewLanguage();
 
         OnSceneChanged();
     }
 
+    private void OnSceneChangeStarted()
+    {
+        LevelManager.Instance.ClearBasketBalls();
+        isChangingScene = true;
+    }
+
     private void OnSceneChanged()
     {
         UIManager.Instance.FadeScreenImage(0f);
         AudioManager.Instance.ChangeMusicTrack(CurrentSceneIndex);
+
+        if(CurrentSceneIndex == 0)
+        {
+            return;
+        }
+
+        if(CurrentSceneIndex == sceneCount - 1)
+        {
+            Debug.LogError("FOO");
+            ChangeScene(0, sceneChangeTimer);
+            return;
+        }
+
+        ChangeScene(CurrentSceneIndex + 1, sceneChangeTimer);
     }
 }

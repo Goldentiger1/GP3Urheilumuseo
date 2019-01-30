@@ -1,6 +1,7 @@
 {"Items":
 	[
 		{"Key":"StartButton","Value":"START"},
-		{"Key":"ResetButton","Value":"RESET"}
+		{"Key":"ResetButton","Value":"RESET"},
+		{"Key":"Score","Value":"SCORE"}
 	]
 }

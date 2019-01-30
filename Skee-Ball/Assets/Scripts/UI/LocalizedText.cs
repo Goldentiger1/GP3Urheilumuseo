@@ -1,24 +1,36 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using TMPro;
+using UnityEngine;
 
-[RequireComponent(typeof(Text))]
 public class LocalizedText : MonoBehaviour
 {
     public string Key;
 
-    private Text text;
+    private TextMeshProUGUI textMeshProUGUI;
+    private TextMeshPro textMeshPro;
 
     public string Text
     {
         set
         {
-            text.text = value;
+            if(textMeshProUGUI != null)
+            {
+                textMeshProUGUI.text = value;
+            }
+            else if (textMeshPro != null)
+            {
+                textMeshPro.text = value;
+            }
+            else
+            {
+                Debug.LogError("Super Foo!");
+            }
         }
     }
 
     private void Awake()
     {
-        text = GetComponent<Text>();
+        textMeshProUGUI = GetComponent<TextMeshProUGUI>();
+        textMeshPro = GetComponent<TextMeshPro>();
     }
 
     private void Start()

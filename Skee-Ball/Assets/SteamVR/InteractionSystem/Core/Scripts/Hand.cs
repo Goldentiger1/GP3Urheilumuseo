@@ -538,7 +538,7 @@ namespace Valve.VR.InteractionSystem
 
             var basketBall = objectToDetach.GetComponent<BallEngine>();
             if (basketBall != null) {
-                basketBall.AddTorque(Vector3.forward * basketBall.CurrentVelocity * 100f, ForceMode.Impulse);
+                basketBall.AddSpin(Vector3.forward * basketBall.CurrentVelocity * 100f, ForceMode.Impulse);
                 Debug.LogError(basketBall.CurrentVelocity);
             }
 

@@ -610,7 +610,6 @@ namespace Valve.VR.InteractionSystem
 
                 HoverLocked = false;
 
-
                 //Give focus to the top most object on the stack if it changed
                 if (newTopObject != null && newTopObject != prevTopObject)
                 {

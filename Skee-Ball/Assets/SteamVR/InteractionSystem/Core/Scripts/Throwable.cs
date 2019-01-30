@@ -157,7 +157,6 @@ namespace Valve.VR.InteractionSystem
 			snapAttachEaseInCompleted = false;
 		}
 
-
         //-------------------------------------------------
         protected virtual void OnDetachedFromHand(Hand hand)
         {
@@ -192,8 +191,11 @@ namespace Valve.VR.InteractionSystem
                     hand.GetEstimatedPeakVelocities(out velocity, out angularVelocity);
                     break;
                 case ReleaseStyle.GetFromHand:
+                    // !!!
+                    #region MUSTONEN
                     velocity = hand.GetTrackedObjectVelocity(releaseVelocityTimeOffset);
                     angularVelocity = hand.GetTrackedObjectAngularVelocity(releaseVelocityTimeOffset);
+                    #endregion MUSTONEN
                     break;
                 default:
                 case ReleaseStyle.NoChange:

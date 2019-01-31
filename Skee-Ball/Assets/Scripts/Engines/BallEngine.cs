@@ -9,12 +9,12 @@ public class BallEngine : MonoBehaviour
 
     #region AARO
 
-    // Added force along the world x-axis
-    public float forceX;
-    // Added force along the world y-axis
-    public float forceY;
-    // Added force along the world z-axis
-    public float forceZ;
+    // Size of torque along the world x-axis
+    public float torqueX;
+    // Size of torque along the world y-axis
+    public float torqueY;
+    // Size of torque along the world z-axis
+    public float torqueZ;
     // Rigidbody rotation speed
     public float speed;
     // Old rigidbody velocity
@@ -51,9 +51,10 @@ public class BallEngine : MonoBehaviour
     {
         // Kokeillaan Velocitya, paljonko arvo muuttuu heittäessä
         newVelocity = rigidbody.velocity;
+        // Pallon liikkuessa pyöritetään palloa haluttuun suuntaan
         if (oldVelocity.magnitude < newVelocity.magnitude)
         {
-            rigidbody.AddForce(forceX, forceY, forceZ, ForceMode.Force);
+            rigidbody.AddTorque(torqueX, torqueY, torqueZ, ForceMode.Force);
         }
     }
 

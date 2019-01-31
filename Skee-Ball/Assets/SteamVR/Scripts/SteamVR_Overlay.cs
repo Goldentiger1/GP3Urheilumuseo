@@ -5,45 +5,43 @@
 //=============================================================================
 
 using UnityEngine;
-using System.Collections;
-using Valve.VR;
 
 namespace Valve.VR
 {
     public class SteamVR_Overlay : MonoBehaviour
     {
-        public Texture texture;
-        public bool curved = true;
-        public bool antialias = true;
-        public bool highquality = true;
+        public Texture Texture;
+        public bool Curved = true;
+        public bool Antialias = true;
+        public bool Highquality = true;
 
         [Tooltip("Size of overlay view.")]
-        public float scale = 3.0f;
+        public float Scale = 3.0f;
 
         [Tooltip("Distance from surface.")]
-        public float distance = 1.25f;
+        public float Distance = 1.25f;
 
         [Tooltip("Opacity"), Range(0.0f, 1.0f)]
-        public float alpha = 1.0f;
+        public float Alpha = 1.0f;
 
-        public Vector4 uvOffset = new Vector4(0, 0, 1, 1);
-        public Vector2 mouseScale = new Vector2(1, 1);
-        public Vector2 curvedRange = new Vector2(1, 2);
+        public Vector4 UvOffset = new Vector4(0, 0, 1, 1);
+        public Vector2 MouseScale = new Vector2(1, 1);
+        public Vector2 CurvedRange = new Vector2(1, 2);
 
-        public VROverlayInputMethod inputMethod = VROverlayInputMethod.None;
+        public VROverlayInputMethod InputMethod = VROverlayInputMethod.None;
 
-        static public SteamVR_Overlay instance { get; private set; }
+        public static SteamVR_Overlay Instance { get; private set; }
 
-        static public string key { get { return "unity:" + Application.companyName + "." + Application.productName; } }
+        public static string Key { get { return "unity:" + Application.companyName + "." + Application.productName; } }
 
         private ulong handle = OpenVR.k_ulOverlayHandleInvalid;
 
-        void OnEnable()
+        private void OnEnable()
         {
             var overlay = OpenVR.Overlay;
             if (overlay != null)
             {
-                var error = overlay.CreateOverlay(key, gameObject.name, ref handle);
+                var error = overlay.CreateOverlay(Key, gameObject.name, ref handle);
                 if (error != EVROverlayError.None)
                 {
                     Debug.Log(overlay.GetOverlayErrorNameFromEnum(error));
@@ -52,10 +50,10 @@ namespace Valve.VR
                 }
             }
 
-            SteamVR_Overlay.instance = this;
+            Instance = this;
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             if (handle != OpenVR.k_ulOverlayHandleInvalid)
             {
@@ -68,7 +66,7 @@ namespace Valve.VR
                 handle = OpenVR.k_ulOverlayHandleInvalid;
             }
 
-            SteamVR_Overlay.instance = null;
+            Instance = null;
         }
 
         public void UpdateOverlay()
@@ -77,35 +75,41 @@ namespace Valve.VR
             if (overlay == null)
                 return;
 
-            if (texture != null)
+            if (Texture != null)
             {
                 var error = overlay.ShowOverlay(handle);
                 if (error == EVROverlayError.InvalidHandle || error == EVROverlayError.UnknownOverlay)
                 {
-                    if (overlay.FindOverlay(key, ref handle) != EVROverlayError.None)
+                    if (overlay.FindOverlay(Key, ref handle) != EVROverlayError.None)
                         return;
                 }
 
-                var tex = new Texture_t();
-                tex.handle = texture.GetNativeTexturePtr();
-                tex.eType = SteamVR.instance.textureType;
-                tex.eColorSpace = EColorSpace.Auto;
+                var tex = new Texture_t
+                {
+                    handle = Texture.GetNativeTexturePtr(),
+                    eType = SteamVR.instance.textureType,
+                    eColorSpace = EColorSpace.Auto
+                };
                 overlay.SetOverlayTexture(handle, ref tex);
 
-                overlay.SetOverlayAlpha(handle, alpha);
-                overlay.SetOverlayWidthInMeters(handle, scale);
-                overlay.SetOverlayAutoCurveDistanceRangeInMeters(handle, curvedRange.x, curvedRange.y);
+                overlay.SetOverlayAlpha(handle, Alpha);
+                overlay.SetOverlayWidthInMeters(handle, Scale);
+                overlay.SetOverlayAutoCurveDistanceRangeInMeters(handle, CurvedRange.x, CurvedRange.y);
 
-                var textureBounds = new VRTextureBounds_t();
-                textureBounds.uMin = (0 + uvOffset.x) * uvOffset.z;
-                textureBounds.vMin = (1 + uvOffset.y) * uvOffset.w;
-                textureBounds.uMax = (1 + uvOffset.x) * uvOffset.z;
-                textureBounds.vMax = (0 + uvOffset.y) * uvOffset.w;
+                var textureBounds = new VRTextureBounds_t
+                {
+                    uMin = (0 + UvOffset.x) * UvOffset.z,
+                    vMin = (1 + UvOffset.y) * UvOffset.w,
+                    uMax = (1 + UvOffset.x) * UvOffset.z,
+                    vMax = (0 + UvOffset.y) * UvOffset.w
+                };
                 overlay.SetOverlayTextureBounds(handle, ref textureBounds);
 
-                var vecMouseScale = new HmdVector2_t();
-                vecMouseScale.v0 = mouseScale.x;
-                vecMouseScale.v1 = mouseScale.y;
+                var vecMouseScale = new HmdVector2_t
+                {
+                    v0 = MouseScale.x,
+                    v1 = MouseScale.y
+                };
                 overlay.SetOverlayMouseScale(handle, ref vecMouseScale);
 
                 var vrcam = SteamVR_Render.Top();
@@ -116,22 +120,22 @@ namespace Valve.VR
                     offset.pos.y /= vrcam.origin.localScale.y;
                     offset.pos.z /= vrcam.origin.localScale.z;
 
-                    offset.pos.z += distance;
+                    offset.pos.z += Distance;
 
                     var t = offset.ToHmdMatrix34();
                     overlay.SetOverlayTransformAbsolute(handle, SteamVR.settings.trackingSpace, ref t);
                 }
 
-                overlay.SetOverlayInputMethod(handle, inputMethod);
+                overlay.SetOverlayInputMethod(handle, InputMethod);
 
-                if (curved || antialias)
-                    highquality = true;
+                if (Curved || Antialias)
+                    Highquality = true;
 
-                if (highquality)
+                if (Highquality)
                 {
                     overlay.SetHighQualityOverlay(handle);
-                    overlay.SetOverlayFlag(handle, VROverlayFlags.Curved, curved);
-                    overlay.SetOverlayFlag(handle, VROverlayFlags.RGSS4X, antialias);
+                    overlay.SetOverlayFlag(handle, VROverlayFlags.Curved, Curved);
+                    overlay.SetOverlayFlag(handle, VROverlayFlags.RGSS4X, Antialias);
                 }
                 else if (overlay.GetHighQualityOverlay() == handle)
                 {
@@ -168,8 +172,10 @@ namespace Valve.VR
             if (overlay == null)
                 return false;
 
-            var input = new VROverlayIntersectionParams_t();
-            input.eOrigin = SteamVR.settings.trackingSpace;
+            var input = new VROverlayIntersectionParams_t
+            {
+                eOrigin = SteamVR.settings.trackingSpace
+            };
             input.vSource.v0 = source.x;
             input.vSource.v1 = source.y;
             input.vSource.v2 = -source.z;

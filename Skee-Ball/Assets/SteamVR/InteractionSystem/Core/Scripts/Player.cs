@@ -6,7 +6,6 @@
 
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace Valve.VR.InteractionSystem
 {
@@ -17,28 +16,27 @@ namespace Valve.VR.InteractionSystem
 	public class Player : MonoBehaviour
 	{
 		[Tooltip( "Virtual transform corresponding to the meatspace tracking origin. Devices are tracked relative to this." )]
-		public Transform trackingOriginTransform;
+        public Transform TrackingOriginTransform;
 
 		[Tooltip( "List of possible transforms for the head/HMD, including the no-SteamVR fallback camera." )]
-		public Transform[] hmdTransforms;
+        public Transform[] HmdTransforms;
 
 		[Tooltip( "List of possible Hands, including no-SteamVR fallback Hands." )]
-		public Hand[] hands;
+        public Hand[] Hands;
 
 		[Tooltip( "Reference to the physics collider that follows the player's HMD position." )]
-		public Collider headCollider;
+        public Collider HeadCollider;
 
 		[Tooltip( "These objects are enabled when SteamVR is available" )]
-		public GameObject rigSteamVR;
+        public GameObject RigSteamVR;
 
 		[Tooltip( "These objects are enabled when SteamVR is not available, or when the user toggles out of VR" )]
-		public GameObject rig2DFallback;
+        public GameObject Rig2DFallback;
 
 		[Tooltip( "The audio listener for this player" )]
-		public Transform audioListener;
+        public Transform AudioListener;
 
-		public bool allowToggleTo2D = true;
-
+        public bool AllowToggleTo2D = true;
 
 		//-------------------------------------------------
 		// Singleton instance of the Player. Only one can exist at a time.
@@ -56,7 +54,6 @@ namespace Valve.VR.InteractionSystem
 			}
 		}
 
-
 		//-------------------------------------------------
 		// Get the number of active Hands.
 		//-------------------------------------------------
@@ -65,9 +62,9 @@ namespace Valve.VR.InteractionSystem
 			get
 			{
 				int count = 0;
-				for ( int i = 0; i < hands.Length; i++ )
+				for ( int i = 0; i < Hands.Length; i++ )
 				{
-					if ( hands[i].gameObject.activeInHierarchy )
+					if ( Hands[i].gameObject.activeInHierarchy )
 					{
 						count++;
 					}
@@ -76,7 +73,6 @@ namespace Valve.VR.InteractionSystem
 			}
 		}
 
-
 		//-------------------------------------------------
 		// Get the i-th active Hand.
 		//
@@ -84,9 +80,9 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		public Hand GetHand( int i )
 		{
-			for ( int j = 0; j < hands.Length; j++ )
+			for ( int j = 0; j < Hands.Length; j++ )
 			{
-				if ( !hands[j].gameObject.activeInHierarchy )
+				if ( !Hands[j].gameObject.activeInHierarchy )
 				{
 					continue;
 				}
@@ -97,7 +93,7 @@ namespace Valve.VR.InteractionSystem
 					continue;
 				}
 
-				return hands[j];
+				return Hands[j];
 			}
 
 			return null;
@@ -108,19 +104,19 @@ namespace Valve.VR.InteractionSystem
 		{
 			get
 			{
-				for ( int j = 0; j < hands.Length; j++ )
+				for ( int j = 0; j < Hands.Length; j++ )
 				{
-					if ( !hands[j].gameObject.activeInHierarchy )
+					if ( !Hands[j].gameObject.activeInHierarchy )
 					{
 						continue;
 					}
 
-					if ( hands[j].handType != SteamVR_Input_Sources.LeftHand)
+					if ( Hands[j].HandType != SteamVR_Input_Sources.LeftHand)
 					{
 						continue;
 					}
 
-					return hands[j];
+					return Hands[j];
 				}
 
 				return null;
@@ -132,19 +128,19 @@ namespace Valve.VR.InteractionSystem
 		{
 			get
 			{
-				for ( int j = 0; j < hands.Length; j++ )
+				for ( int j = 0; j < Hands.Length; j++ )
 				{
-					if ( !hands[j].gameObject.activeInHierarchy )
+					if ( !Hands[j].gameObject.activeInHierarchy )
 					{
 						continue;
 					}
 
-					if ( hands[j].handType != SteamVR_Input_Sources.RightHand)
+					if ( Hands[j].HandType != SteamVR_Input_Sources.RightHand)
 					{
 						continue;
 					}
 
-					return hands[j];
+					return Hands[j];
 				}
 
 				return null;
@@ -170,12 +166,12 @@ namespace Valve.VR.InteractionSystem
 		{
 			get
 			{
-                if (hmdTransforms != null)
+                if (HmdTransforms != null)
                 {
-                    for (int i = 0; i < hmdTransforms.Length; i++)
+                    for (int i = 0; i < HmdTransforms.Length; i++)
                     {
-                        if (hmdTransforms[i].gameObject.activeInHierarchy)
-                            return hmdTransforms[i];
+                        if (HmdTransforms[i].gameObject.activeInHierarchy)
+                            return HmdTransforms[i];
                     }
                 }
 				return null;
@@ -192,8 +188,8 @@ namespace Valve.VR.InteractionSystem
 				Transform hmd = HmdTransform;
 				if ( hmd )
 				{
-					Vector3 eyeOffset = Vector3.Project( hmd.position - trackingOriginTransform.position, trackingOriginTransform.up );
-					return eyeOffset.magnitude / trackingOriginTransform.lossyScale.x;
+					Vector3 eyeOffset = Vector3.Project( hmd.position - TrackingOriginTransform.position, TrackingOriginTransform.up );
+					return eyeOffset.magnitude / TrackingOriginTransform.lossyScale.x;
 				}
 				return 0.0f;
 			}
@@ -209,9 +205,9 @@ namespace Valve.VR.InteractionSystem
 				Transform hmd = HmdTransform;
 				if ( hmd )
 				{
-					return trackingOriginTransform.position + Vector3.ProjectOnPlane( hmd.position - trackingOriginTransform.position, trackingOriginTransform.up );
+					return TrackingOriginTransform.position + Vector3.ProjectOnPlane( hmd.position - TrackingOriginTransform.position, TrackingOriginTransform.up );
 				}
-				return trackingOriginTransform.position;
+				return TrackingOriginTransform.position;
 			}
 		}
 
@@ -225,8 +221,8 @@ namespace Valve.VR.InteractionSystem
 				Transform hmd = HmdTransform;
 				if ( hmd )
 				{
-					Vector3 direction = Vector3.ProjectOnPlane( hmd.forward, trackingOriginTransform.up );
-					if ( Vector3.Dot( hmd.up, trackingOriginTransform.up ) < 0.0f )
+					Vector3 direction = Vector3.ProjectOnPlane( hmd.forward, TrackingOriginTransform.up );
+					if ( Vector3.Dot( hmd.up, TrackingOriginTransform.up ) < 0.0f )
 					{
 						// The HMD is upside-down. Either
 						// -The player is bending over backwards
@@ -235,7 +231,7 @@ namespace Valve.VR.InteractionSystem
 					}
 					return direction;
 				}
-				return trackingOriginTransform.forward;
+				return TrackingOriginTransform.forward;
 			}
 		}
 
@@ -244,9 +240,9 @@ namespace Valve.VR.InteractionSystem
 		{
             SteamVR.Initialize(true); //force openvr
 
-			if ( trackingOriginTransform == null )
+			if ( TrackingOriginTransform == null )
 			{
-				trackingOriginTransform = this.transform;
+				TrackingOriginTransform = this.transform;
 			}
 		}
 
@@ -260,12 +256,12 @@ namespace Valve.VR.InteractionSystem
 
 			if ( SteamVR.instance != null )
 			{
-				ActivateRig( rigSteamVR );
+				ActivateRig( RigSteamVR );
 			}
 			else
 			{
 #if !HIDE_DEBUG_UI
-				ActivateRig( rig2DFallback );
+				ActivateRig( Rig2DFallback );
 #endif
 			}
 		}
@@ -286,13 +282,13 @@ namespace Valve.VR.InteractionSystem
 			Gizmos.DrawIcon( FeetPositionGuess, "vr_interaction_system_feet.png" );
 
 			Gizmos.color = Color.cyan;
-			Gizmos.DrawLine( FeetPositionGuess, FeetPositionGuess + trackingOriginTransform.up * EyeHeight );
+			Gizmos.DrawLine( FeetPositionGuess, FeetPositionGuess + TrackingOriginTransform.up * EyeHeight );
 
 			// Body direction arrow
 			Gizmos.color = Color.blue;
 			Vector3 bodyDirection = BodyDirectionGuess;
-			Vector3 bodyDirectionTangent = Vector3.Cross( trackingOriginTransform.up, bodyDirection );
-			Vector3 startForward = FeetPositionGuess + trackingOriginTransform.up * EyeHeight * 0.75f;
+			Vector3 bodyDirectionTangent = Vector3.Cross( TrackingOriginTransform.up, bodyDirection );
+			Vector3 startForward = FeetPositionGuess + TrackingOriginTransform.up * EyeHeight * 0.75f;
 			Vector3 endForward = startForward + bodyDirection * 0.33f;
 			Gizmos.DrawLine( startForward, endForward );
 			Gizmos.DrawLine( endForward, endForward - 0.033f * ( bodyDirection + bodyDirectionTangent ) );
@@ -302,13 +298,13 @@ namespace Valve.VR.InteractionSystem
 			int count = HandCount;
 			for ( int i = 0; i < count; i++ )
 			{
-				Hand hand = GetHand( i );
+                Hand hand = GetHand(i);
 
-				if ( hand.handType == SteamVR_Input_Sources.LeftHand)
+				if ( hand.HandType == SteamVR_Input_Sources.LeftHand)
 				{
 					Gizmos.DrawIcon( hand.transform.position, "vr_interaction_system_left_hand.png" );
 				}
-				else if ( hand.handType == SteamVR_Input_Sources.RightHand)
+				else if ( hand.HandType == SteamVR_Input_Sources.RightHand)
 				{
 					Gizmos.DrawIcon( hand.transform.position, "vr_interaction_system_right_hand.png" );
 				}
@@ -337,7 +333,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		public void Draw2DDebug()
 		{
-			if ( !allowToggleTo2D )
+			if ( !AllowToggleTo2D )
 				return;
 
 			if ( !SteamVR.active )
@@ -348,17 +344,17 @@ namespace Valve.VR.InteractionSystem
 			int left = Screen.width / 2 - width / 2;
 			int top = Screen.height - height - 10;
 
-			string text = ( rigSteamVR.activeSelf ) ? "2D Debug" : "VR";
+            string text = (RigSteamVR.activeSelf) ? "2D Debug" : "VR";
 
-			if ( GUI.Button( new Rect( left, top, width, height ), text ) )
+            if (GUI.Button(new Rect(left, top, width, height), text))
 			{
-				if ( rigSteamVR.activeSelf )
+                if (RigSteamVR.activeSelf) 
 				{
-					ActivateRig( rig2DFallback );
+                    ActivateRig(Rig2DFallback);
 				}
 				else
 				{
-					ActivateRig( rigSteamVR );
+                    ActivateRig(RigSteamVR);
 				}
 			}
 		}
@@ -366,14 +362,14 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void ActivateRig( GameObject rig )
 		{
-			rigSteamVR.SetActive( rig == rigSteamVR );
-			rig2DFallback.SetActive( rig == rig2DFallback );
+			RigSteamVR.SetActive( rig == RigSteamVR );
+			Rig2DFallback.SetActive( rig == Rig2DFallback );
 
-			if ( audioListener )
+			if ( AudioListener )
 			{
-				audioListener.transform.parent = HmdTransform;
-				audioListener.transform.localPosition = Vector3.zero;
-				audioListener.transform.localRotation = Quaternion.identity;
+				AudioListener.transform.parent = HmdTransform;
+				AudioListener.transform.localPosition = Vector3.zero;
+				AudioListener.transform.localRotation = Quaternion.identity;
 			}
 		}
 

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 490018}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ObjectAttachmentPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 471722}
   - component: {fileID: 8194540}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FollowHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,13 +79,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 402768}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: NoSteamVRFallbackObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &402768
 Transform:
   m_ObjectHideFlags: 0
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 2326430}
   - component: {fileID: 3390842}
   - component: {fileID: 11451472}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PlayVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 447954}
   - component: {fileID: 11465950}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -256,19 +256,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202a6e24b48d1684398409c47161adcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackingOriginTransform: {fileID: 447954}
-  hmdTransforms:
-  - {fileID: 429506}
-  - {fileID: 496744}
-  hands:
+  TrackingOriginTransform: {fileID: 447954}
+  HmdTransforms:
+  - {fileID: 476540}
+  - {fileID: 485514}
+  - {fileID: 458882}
+  Hands:
   - {fileID: 11450312}
   - {fileID: 11401046}
   - {fileID: 11497470}
-  headCollider: {fileID: 13533284}
-  rigSteamVR: {fileID: 114188}
-  rig2DFallback: {fileID: 105336}
-  audioListener: {fileID: 471722}
-  allowToggleTo2D: 1
+  HeadCollider: {fileID: 13533284}
+  RigSteamVR: {fileID: 168724}
+  Rig2DFallback: {fileID: 105336}
+  AudioListener: {fileID: 471722}
+  AllowToggleTo2D: 1
 --- !u!1 &109154
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +281,7 @@ GameObject:
   - component: {fileID: 422332}
   - component: {fileID: 3368578}
   - component: {fileID: 2353626}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +358,7 @@ GameObject:
   - component: {fileID: 496744}
   - component: {fileID: 2083460}
   - component: {fileID: 11476190}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FallbackObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -444,7 +445,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 494198}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SteamVRObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +483,7 @@ GameObject:
   - component: {fileID: 453574}
   - component: {fileID: 13533284}
   - component: {fileID: 5452286}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HeadCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +545,7 @@ GameObject:
   - component: {fileID: 2014920}
   - component: {fileID: 11450526}
   - component: {fileID: 12440092}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: VRCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -637,7 +638,7 @@ GameObject:
   m_Component:
   - component: {fileID: 495400}
   - component: {fileID: 11405908}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ControllerHoverHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,7 +685,7 @@ GameObject:
   - component: {fileID: 11461462}
   - component: {fileID: 11464692}
   - component: {fileID: 114000013786455312}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: InputModule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -762,7 +763,8 @@ GameObject:
   - component: {fileID: 458882}
   - component: {fileID: 11497470}
   - component: {fileID: 5492098}
-  m_Layer: 0
+  - component: {fileID: 135527}
+  m_Layer: 12
   m_Name: FallbackHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -796,34 +798,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e3e4511966ba94d8ba0b98c6c62f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  otherHand: {fileID: 0}
-  handType: 0
-  trackedObject: {fileID: 0}
-  grabPinchAction: {fileID: 11400000, guid: 54a1cfeca643149438660244a6bca89b, type: 2}
-  grabGripAction: {fileID: 11400000, guid: 50b3dda8f49e1d74c9b7ce428bdde187, type: 2}
-  hapticAction: {fileID: 11400000, guid: 79d4cbd60f8ded942bce0e7440fd3a0e, type: 2}
-  uiInteractAction: {fileID: 11400000, guid: d67dd739e2e03d548b236b54ca59f093, type: 2}
-  useHoverSphere: 1
-  hoverSphereTransform: {fileID: 0}
-  hoverSphereRadius: 0.05
-  hoverLayerMask:
+  OtherHand: {fileID: 11497470}
+  HandType: 0
+  TrackedObject: {fileID: 0}
+  GrabPinchAction: {fileID: 11400000, guid: 54a1cfeca643149438660244a6bca89b, type: 2}
+  GrabGripAction: {fileID: 11400000, guid: 50b3dda8f49e1d74c9b7ce428bdde187, type: 2}
+  HapticAction: {fileID: 11400000, guid: 79d4cbd60f8ded942bce0e7440fd3a0e, type: 2}
+  UiInteractAction: {fileID: 11400000, guid: d67dd739e2e03d548b236b54ca59f093, type: 2}
+  UseHoverSphere: 1
+  HoverSphereTransform: {fileID: 458882}
+  HoverSphereRadius: 0.05
+  HoverLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  hoverUpdateInterval: 0.1
-  useControllerHoverComponent: 1
-  controllerHoverComponent: tip
-  controllerHoverRadius: 0.05
-  useFingerJointHover: 1
-  fingerJointHover: 10
-  fingerJointHoverRadius: 0.05
-  objectAttachmentPoint: {fileID: 0}
-  noSteamVRFallbackCamera: {fileID: 2083460}
-  noSteamVRFallbackMaxDistanceNoItem: 10
-  noSteamVRFallbackMaxDistanceWithItem: 0.5
-  renderModelPrefab: {fileID: 0}
-  showDebugText: 0
-  spewDebugText: 0
-  showDebugInteractables: 0
+  HoverUpdateInterval: 0.1
+  UseControllerHoverComponent: 1
+  ControllerHoverComponent: tip
+  ControllerHoverRadius: 0.075
+  UseFingerJointHover: 1
+  FingerJointHover: 10
+  FingerJointHoverRadius: 0.025
+  ObjectAttachmentPoint: {fileID: 422332}
+  NoSteamVRFallbackCamera: {fileID: 2083460}
+  NoSteamVRFallbackMaxDistanceNoItem: 10
+  NoSteamVRFallbackMaxDistanceWithItem: 0.5
+  RenderModelPrefab: {fileID: 0}
+  ShowDebugText: 0
+  SpewDebugText: 0
+  ShowDebugInteractables: 0
 --- !u!54 &5492098
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -840,6 +842,41 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &135527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a5fb0ca93b55ef4b8d54b512b103341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poseAction: {fileID: 11400000, guid: 4d9983bb05f111c4090d87d8b512a3fd, type: 2}
+  inputSource: 0
+  origin: {fileID: 0}
+  onTransformUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Valve.VR.SteamVR_Behaviour_PoseEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onTransformChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Valve.VR.SteamVR_Behaviour_PoseEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onConnectedChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Valve.VR.SteamVR_Behaviour_PoseEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onTrackingChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Valve.VR.SteamVR_Behaviour_PoseEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &144230
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +888,7 @@ GameObject:
   - component: {fileID: 476540}
   - component: {fileID: 11450312}
   - component: {fileID: 114000011273627542}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -888,35 +925,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e3e4511966ba94d8ba0b98c6c62f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  otherHand: {fileID: 11401046}
-  handType: 1
-  trackedObject: {fileID: 0}
-  grabPinchAction: {fileID: 11400000, guid: 54a1cfeca643149438660244a6bca89b, type: 2}
-  grabGripAction: {fileID: 11400000, guid: 50b3dda8f49e1d74c9b7ce428bdde187, type: 2}
-  hapticAction: {fileID: 11400000, guid: 79d4cbd60f8ded942bce0e7440fd3a0e, type: 2}
-  uiInteractAction: {fileID: 11400000, guid: d67dd739e2e03d548b236b54ca59f093, type: 2}
-  useHoverSphere: 1
-  hoverSphereTransform: {fileID: 4000012325712216}
-  hoverSphereRadius: 0.075
-  hoverLayerMask:
+  OtherHand: {fileID: 11401046}
+  HandType: 1
+  TrackedObject: {fileID: 0}
+  GrabPinchAction: {fileID: 11400000, guid: 54a1cfeca643149438660244a6bca89b, type: 2}
+  GrabGripAction: {fileID: 11400000, guid: 50b3dda8f49e1d74c9b7ce428bdde187, type: 2}
+  HapticAction: {fileID: 11400000, guid: 79d4cbd60f8ded942bce0e7440fd3a0e, type: 2}
+  UiInteractAction: {fileID: 11400000, guid: d67dd739e2e03d548b236b54ca59f093, type: 2}
+  UseHoverSphere: 1
+  HoverSphereTransform: {fileID: 4000012325712216}
+  HoverSphereRadius: 0.05
+  HoverLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  hoverUpdateInterval: 0.1
-  useControllerHoverComponent: 1
-  controllerHoverComponent: tip
-  controllerHoverRadius: 0.15
-  useFingerJointHover: 1
-  fingerJointHover: 10
-  fingerJointHoverRadius: 0.05
-  objectAttachmentPoint: {fileID: 4000011474053580}
-  noSteamVRFallbackCamera: {fileID: 0}
-  noSteamVRFallbackMaxDistanceNoItem: 10
-  noSteamVRFallbackMaxDistanceWithItem: 0.5
-  renderModelPrefab: {fileID: 1000011547835092, guid: d5082f7d9f947374197e0a97786f4e40,
+  HoverUpdateInterval: 0.1
+  UseControllerHoverComponent: 1
+  ControllerHoverComponent: tip
+  ControllerHoverRadius: 0.075
+  UseFingerJointHover: 1
+  FingerJointHover: 10
+  FingerJointHoverRadius: 0.025
+  ObjectAttachmentPoint: {fileID: 4000011474053580}
+  NoSteamVRFallbackCamera: {fileID: 2083460}
+  NoSteamVRFallbackMaxDistanceNoItem: 10
+  NoSteamVRFallbackMaxDistanceWithItem: 0.5
+  RenderModelPrefab: {fileID: 1000011547835092, guid: 8ade79fed86bbd141926d1cd94c98457,
     type: 3}
-  showDebugText: 0
-  spewDebugText: 0
-  showDebugInteractables: 0
+  ShowDebugText: 0
+  SpewDebugText: 0
+  ShowDebugInteractables: 0
 --- !u!114 &114000011273627542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -963,7 +1000,7 @@ GameObject:
   - component: {fileID: 485514}
   - component: {fileID: 11401046}
   - component: {fileID: 114000011957598740}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1000,35 +1037,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e3e4511966ba94d8ba0b98c6c62f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  otherHand: {fileID: 11450312}
-  handType: 2
-  trackedObject: {fileID: 0}
-  grabPinchAction: {fileID: 11400000, guid: 54a1cfeca643149438660244a6bca89b, type: 2}
-  grabGripAction: {fileID: 11400000, guid: 50b3dda8f49e1d74c9b7ce428bdde187, type: 2}
-  hapticAction: {fileID: 11400000, guid: 79d4cbd60f8ded942bce0e7440fd3a0e, type: 2}
-  uiInteractAction: {fileID: 11400000, guid: d67dd739e2e03d548b236b54ca59f093, type: 2}
-  useHoverSphere: 1
-  hoverSphereTransform: {fileID: 480432}
-  hoverSphereRadius: 0.075
-  hoverLayerMask:
+  OtherHand: {fileID: 11450312}
+  HandType: 2
+  TrackedObject: {fileID: 0}
+  GrabPinchAction: {fileID: 11400000, guid: 54a1cfeca643149438660244a6bca89b, type: 2}
+  GrabGripAction: {fileID: 11400000, guid: 50b3dda8f49e1d74c9b7ce428bdde187, type: 2}
+  HapticAction: {fileID: 11400000, guid: 79d4cbd60f8ded942bce0e7440fd3a0e, type: 2}
+  UiInteractAction: {fileID: 11400000, guid: d67dd739e2e03d548b236b54ca59f093, type: 2}
+  UseHoverSphere: 1
+  HoverSphereTransform: {fileID: 480432}
+  HoverSphereRadius: 0.05
+  HoverLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  hoverUpdateInterval: 0.1
-  useControllerHoverComponent: 1
-  controllerHoverComponent: tip
-  controllerHoverRadius: 0.15
-  useFingerJointHover: 1
-  fingerJointHover: 10
-  fingerJointHoverRadius: 0.05
-  objectAttachmentPoint: {fileID: 490018}
-  noSteamVRFallbackCamera: {fileID: 0}
-  noSteamVRFallbackMaxDistanceNoItem: 10
-  noSteamVRFallbackMaxDistanceWithItem: 0.5
-  renderModelPrefab: {fileID: 1000012617731570, guid: 837f93beb9a614743ae3a2c0ada7c388,
+  HoverUpdateInterval: 0.1
+  UseControllerHoverComponent: 1
+  ControllerHoverComponent: tip
+  ControllerHoverRadius: 0.075
+  UseFingerJointHover: 1
+  FingerJointHover: 10
+  FingerJointHoverRadius: 0.025
+  ObjectAttachmentPoint: {fileID: 490018}
+  NoSteamVRFallbackCamera: {fileID: 2083460}
+  NoSteamVRFallbackMaxDistanceNoItem: 10
+  NoSteamVRFallbackMaxDistanceWithItem: 0.5
+  RenderModelPrefab: {fileID: 1000012617731570, guid: d07386f0ec952ec409dc7753bcf5746b,
     type: 3}
-  showDebugText: 0
-  spewDebugText: 0
-  showDebugInteractables: 0
+  ShowDebugText: 0
+  SpewDebugText: 0
+  ShowDebugInteractables: 0
 --- !u!114 &114000011957598740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1073,7 +1110,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 480432}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HoverPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1104,7 +1141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 451882}
   - component: {fileID: 11461284}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ControllerHoverHighlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1150,7 +1187,7 @@ GameObject:
   - component: {fileID: 472612}
   - component: {fileID: 11479638}
   - component: {fileID: 114000010474703086}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: '[SteamVR]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1198,7 +1235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionSet: {fileID: 11400000, guid: cffc4ab7d75b4f94f854024cfea5f678, type: 2}
-  disableAllOtherActionSets: 1
+  disableAllOtherActionSets: 0
   activateOnStart: 1
   deactivateOnDestroy: 1
 --- !u!1 &171246
@@ -1211,7 +1248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 446772}
   - component: {fileID: 11489144}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ControllerButtonHints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1247,7 +1284,7 @@ MonoBehaviour:
   controllerMaterial: {fileID: 2100000, guid: 11b050e661ec0cf48a289a7266451e91, type: 2}
   flashColor: {r: 1, g: 0.9170069, b: 0.453, a: 0.709}
   textHintPrefab: {fileID: 140952, guid: 5fa42bb9e52706a42b8a1eaf0b54326a, type: 3}
-  hapticFlash: {fileID: 11400000, guid: 79d4cbd60f8ded942bce0e7440fd3a0e, type: 2}
+  hapticFlash: {fileID: 0}
   debugHints: 0
 --- !u!1 &177230
 GameObject:
@@ -1259,7 +1296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 413580}
   - component: {fileID: 11494192}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ControllerButtonHints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1295,7 +1332,7 @@ MonoBehaviour:
   controllerMaterial: {fileID: 2100000, guid: 11b050e661ec0cf48a289a7266451e91, type: 2}
   flashColor: {r: 1, g: 0.9170069, b: 0.453, a: 0.709}
   textHintPrefab: {fileID: 140952, guid: 5fa42bb9e52706a42b8a1eaf0b54326a, type: 3}
-  hapticFlash: {fileID: 11400000, guid: 79d4cbd60f8ded942bce0e7440fd3a0e, type: 2}
+  hapticFlash: {fileID: 0}
   debugHints: 0
 --- !u!1 &191996
 GameObject:
@@ -1309,7 +1346,7 @@ GameObject:
   - component: {fileID: 13693334}
   - component: {fileID: 11455280}
   - component: {fileID: 5475726}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BodyCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1383,7 +1420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012025983752}
   - component: {fileID: 114000013709408034}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DebugUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1426,7 +1463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011699137176}
   - component: {fileID: 114000010777378212}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Overlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1459,17 +1496,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46fe9e0b23166454c8cb73040321d78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texture: {fileID: 8400000, guid: 005ed5a6df2f5ff468efd6497d37fefa, type: 2}
-  curved: 1
-  antialias: 1
-  highquality: 1
-  scale: 3
-  distance: 1.25
-  alpha: 1
-  uvOffset: {x: 0, y: 0, z: 1, w: 1}
-  mouseScale: {x: 1, y: 1}
-  curvedRange: {x: 1, y: 2}
-  inputMethod: 0
+  Texture: {fileID: 0}
+  Curved: 1
+  Antialias: 1
+  Highquality: 1
+  Scale: 3
+  Distance: 1.25
+  Alpha: 1
+  UvOffset: {x: 0, y: 0, z: 1, w: 1}
+  MouseScale: {x: 1, y: 1}
+  CurvedRange: {x: 1, y: 2}
+  InputMethod: 0
 --- !u!1 &1000013428287994
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,7 +1516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000012325712216}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HoverPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1509,7 +1546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000011474053580}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ObjectAttachmentPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

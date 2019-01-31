@@ -188,7 +188,7 @@ namespace Valve.VR.InteractionSystem
 
 			if ( itemPackage.packageType == ItemPackage.ItemPackageType.TwoHanded )
 			{
-				RemoveMatchingItemsFromHandStack( itemPackage, hand.otherHand );
+				RemoveMatchingItemsFromHandStack( itemPackage, hand.OtherHand );
 			}
 		}
 
@@ -295,13 +295,13 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void SpawnAndAttachObject( Hand hand, GrabTypes grabType )
 		{
-			if ( hand.otherHand != null )
+			if ( hand.OtherHand != null )
 			{
 				//If the other hand has this item package, take it back from the other hand
-				ItemPackage otherHandItemPackage = GetAttachedItemPackage( hand.otherHand );
+				ItemPackage otherHandItemPackage = GetAttachedItemPackage( hand.OtherHand );
 				if ( otherHandItemPackage == itemPackage )
 				{
-					TakeBackItem( hand.otherHand );
+					TakeBackItem( hand.OtherHand );
 				}
 			}
 
@@ -312,7 +312,7 @@ namespace Valve.VR.InteractionSystem
 
 			if ( itemPackage.otherHandItemPrefab != null )
 			{
-				if ( hand.otherHand.HoverLocked )
+				if ( hand.OtherHand.HoverLocked )
 				{
 					//Debug.Log( "Not attaching objects because other hand is hoverlocked and we can't deliver both items." );
 					return;
@@ -324,27 +324,27 @@ namespace Valve.VR.InteractionSystem
 			{
 				RemoveMatchingItemTypesFromHand( ItemPackage.ItemPackageType.OneHanded, hand );
 				RemoveMatchingItemTypesFromHand( ItemPackage.ItemPackageType.TwoHanded, hand );
-				RemoveMatchingItemTypesFromHand( ItemPackage.ItemPackageType.TwoHanded, hand.otherHand );
+				RemoveMatchingItemTypesFromHand( ItemPackage.ItemPackageType.TwoHanded, hand.OtherHand );
 			}
 
 			// if we're trying to spawn a two-handed item, remove one and two-handed items from both hands
 			if ( itemPackage.packageType == ItemPackage.ItemPackageType.TwoHanded )
 			{
 				RemoveMatchingItemTypesFromHand( ItemPackage.ItemPackageType.OneHanded, hand );
-				RemoveMatchingItemTypesFromHand( ItemPackage.ItemPackageType.OneHanded, hand.otherHand );
+				RemoveMatchingItemTypesFromHand( ItemPackage.ItemPackageType.OneHanded, hand.OtherHand );
 				RemoveMatchingItemTypesFromHand( ItemPackage.ItemPackageType.TwoHanded, hand );
-				RemoveMatchingItemTypesFromHand( ItemPackage.ItemPackageType.TwoHanded, hand.otherHand );
+				RemoveMatchingItemTypesFromHand( ItemPackage.ItemPackageType.TwoHanded, hand.OtherHand );
 			}
 
 			spawnedItem = GameObject.Instantiate( itemPackage.itemPrefab );
 			spawnedItem.SetActive( true );
 			hand.AttachObject( spawnedItem, grabType, attachmentFlags );
 
-			if ( ( itemPackage.otherHandItemPrefab != null ) && ( hand.otherHand.IsActive ) )
+			if ( ( itemPackage.otherHandItemPrefab != null ) && ( hand.OtherHand.IsActive ) )
 			{
 				GameObject otherHandObjectToAttach = GameObject.Instantiate( itemPackage.otherHandItemPrefab );
 				otherHandObjectToAttach.SetActive( true );
-				hand.otherHand.AttachObject( otherHandObjectToAttach, grabType, attachmentFlags );
+				hand.OtherHand.AttachObject( otherHandObjectToAttach, grabType, attachmentFlags );
 			}
 
 			itemIsSpawned = true;

@@ -455,7 +455,7 @@ namespace Valve.VR
             if (overlay == null)
                 return handle;
 
-            var key = SteamVR_Overlay.key + "." + overlayName;
+            var key = SteamVR_Overlay.Key + "." + overlayName;
 
             var error = overlay.FindOverlay(key, ref handle);
             if (error != EVROverlayError.None)

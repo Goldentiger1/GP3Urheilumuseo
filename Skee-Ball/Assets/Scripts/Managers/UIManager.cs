@@ -27,7 +27,7 @@ public class UIManager : Singelton<UIManager>
 
     private void Initialize()
     {
-        hudCanvas = transform.Find("HudCanvas");
+        hudCanvas = transform.Find("HUDCanvas");
         canvasGroup = hudCanvas.GetComponent<CanvasGroup>();
         LoadImage = hudCanvas.Find("LoadImage").GetComponent<RectTransform>();
     }

@@ -43,11 +43,12 @@ public class GameMaster : SingeltonPersistant<GameMaster>
     {
         yield return new WaitForSeconds(sceneChangeTimer);
 
-        OnSceneChangeStarted();
+        LevelManager.Instance.ClearBasketBalls();
+        isChangingScene = true;
 
-        UIManager.Instance.FadeScreenImage(1f);
+        //UIManager.Instance.FadeScreenImage(1f);
 
-        yield return new WaitWhile(() => UIManager.Instance.IsFading);
+        //yield return new WaitWhile(() => UIManager.Instance.IsFading);
 
         var asyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
         asyncOperation.allowSceneActivation = false;
@@ -77,15 +78,9 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         OnSceneChanged();
     }
 
-    private void OnSceneChangeStarted()
-    {
-        LevelManager.Instance.ClearBasketBalls();
-        isChangingScene = true;
-    }
-
     private void OnSceneChanged()
     {
-        UIManager.Instance.FadeScreenImage(0f);
+        //UIManager.Instance.FadeScreenImage(0f);
         AudioManager.Instance.ChangeMusicTrack(CurrentSceneIndex);
 
         if(CurrentSceneIndex == 0)
@@ -95,7 +90,6 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
         if(CurrentSceneIndex == sceneCount - 1)
         {
-            Debug.LogError("FOO");
             ChangeScene(0, sceneChangeTimer);
             return;
         }

@@ -22,7 +22,7 @@ namespace Valve.VR
         Vector4 uvOffset;
         float distance;
 
-        public RenderTexture texture { get { return overlay ? overlay.texture as RenderTexture : null; } }
+        public RenderTexture texture { get { return overlay ? overlay.Texture as RenderTexture : null; } }
         public float scale { get; private set; }
 
         string scaleLimitX, scaleLimitY, scaleRateText;
@@ -36,11 +36,11 @@ namespace Valve.VR
             scaleLimitY = string.Format("{0:N1}", scaleLimits.y);
             scaleRateText = string.Format("{0:N1}", scaleRate);
 
-            var overlay = SteamVR_Overlay.instance;
+            var overlay = SteamVR_Overlay.Instance;
             if (overlay != null)
             {
-                uvOffset = overlay.uvOffset;
-                distance = overlay.distance;
+                uvOffset = overlay.UvOffset;
+                distance = overlay.Distance;
             }
         }
 
@@ -49,7 +49,7 @@ namespace Valve.VR
             if (overlay == null)
                 return;
 
-            var texture = overlay.texture as RenderTexture;
+            var texture = overlay.Texture as RenderTexture;
 
             var prevActive = RenderTexture.active;
             RenderTexture.active = texture;
@@ -63,12 +63,12 @@ namespace Valve.VR
             if (Screen.width < texture.width)
             {
                 area.width = Screen.width;
-                overlay.uvOffset.x = -(float)(texture.width - Screen.width) / (2 * texture.width);
+                overlay.UvOffset.x = -(float)(texture.width - Screen.width) / (2 * texture.width);
             }
             if (Screen.height < texture.height)
             {
                 area.height = Screen.height;
-                overlay.uvOffset.y = (float)(texture.height - Screen.height) / (2 * texture.height);
+                overlay.UvOffset.y = (float)(texture.height - Screen.height) / (2 * texture.height);
             }
 
             GUILayout.BeginArea(area);
@@ -158,17 +158,17 @@ namespace Valve.VR
                 GUILayout.EndHorizontal();
             }
 
-            overlay.highquality = GUILayout.Toggle(overlay.highquality, "High quality");
+            overlay.Highquality = GUILayout.Toggle(overlay.Highquality, "High quality");
 
-            if (overlay.highquality)
+            if (overlay.Highquality)
             {
-                overlay.curved = GUILayout.Toggle(overlay.curved, "Curved overlay");
-                overlay.antialias = GUILayout.Toggle(overlay.antialias, "Overlay RGSS(2x2)");
+                overlay.Curved = GUILayout.Toggle(overlay.Curved, "Curved overlay");
+                overlay.Antialias = GUILayout.Toggle(overlay.Antialias, "Overlay RGSS(2x2)");
             }
             else
             {
-                overlay.curved = false;
-                overlay.antialias = false;
+                overlay.Curved = false;
+                overlay.Antialias = false;
             }
 
             var tracker = SteamVR_Render.Top();
@@ -229,11 +229,11 @@ namespace Valve.VR
 
         public void ShowMenu()
         {
-            var overlay = SteamVR_Overlay.instance;
+            var overlay = SteamVR_Overlay.Instance;
             if (overlay == null)
                 return;
 
-            var texture = overlay.texture as RenderTexture;
+            var texture = overlay.Texture as RenderTexture;
             if (texture == null)
             {
                 Debug.LogError("Menu requires overlay texture to be a render texture.");
@@ -246,8 +246,8 @@ namespace Valve.VR
             Cursor.lockState = CursorLockMode.None;
 
             this.overlay = overlay;
-            uvOffset = overlay.uvOffset;
-            distance = overlay.distance;
+            uvOffset = overlay.UvOffset;
+            distance = overlay.Distance;
 
             // If an existing camera is rendering into the overlay texture, we need
             // to temporarily disable it to keep it from clearing the texture on us.
@@ -276,8 +276,8 @@ namespace Valve.VR
 
             if (overlay != null)
             {
-                overlay.uvOffset = uvOffset;
-                overlay.distance = distance;
+                overlay.UvOffset = uvOffset;
+                overlay.Distance = distance;
                 overlay = null;
             }
         }

@@ -143,7 +143,7 @@ namespace Valve.VR.InteractionSystem
 					{
 						ushort hapticStrength = (ushort)Util.RemapNumber( nockDistanceTravelled, 0, maxPull, bowPullPulseStrengthLow, bowPullPulseStrengthHigh );
 						hand.TriggerHapticPulse( hapticStrength );
-						hand.otherHand.TriggerHapticPulse( hapticStrength );
+						hand.OtherHand.TriggerHapticPulse( hapticStrength );
 
 						drawSound.PlayBowTensionClicks( drawTension );
 
@@ -155,7 +155,7 @@ namespace Valve.VR.InteractionSystem
 						if ( Time.time > nextStrainTick )
 						{
 							hand.TriggerHapticPulse( 400 );
-							hand.otherHand.TriggerHapticPulse( 400 );
+							hand.OtherHand.TriggerHapticPulse( 400 );
 
 							drawSound.PlayBowTensionClicks( drawTension );
 
@@ -192,7 +192,7 @@ namespace Valve.VR.InteractionSystem
 		{
 			nocked = false;
 			hand.HoverUnlock( GetComponent<Interactable>() );
-			hand.otherHand.HoverUnlock( arrowHand.GetComponent<Interactable>() );
+			hand.OtherHand.HoverUnlock( arrowHand.GetComponent<Interactable>() );
 
 			if ( releaseSound != null )
 			{
@@ -260,7 +260,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void EvaluateHandedness()
 		{
-            var handType = hand.handType;
+            var handType = hand.HandType;
 
 			if ( handType == SteamVR_Input_Sources.LeftHand )// Bow hand is further left than arrow hand.
 			{
@@ -349,13 +349,13 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void ShutDown()
 		{
-			if ( hand != null && hand.otherHand.CurrentAttachedObject != null )
+			if ( hand != null && hand.OtherHand.CurrentAttachedObject != null )
 			{
-				if ( hand.otherHand.CurrentAttachedObject.GetComponent<ItemPackageReference>() != null )
+				if ( hand.OtherHand.CurrentAttachedObject.GetComponent<ItemPackageReference>() != null )
 				{
-					if ( hand.otherHand.CurrentAttachedObject.GetComponent<ItemPackageReference>().itemPackage == arrowHandItemPackage )
+					if ( hand.OtherHand.CurrentAttachedObject.GetComponent<ItemPackageReference>().itemPackage == arrowHandItemPackage )
 					{
-						hand.otherHand.DetachObject( hand.otherHand.CurrentAttachedObject );
+						hand.OtherHand.DetachObject( hand.OtherHand.CurrentAttachedObject );
 					}
 				}
 			}

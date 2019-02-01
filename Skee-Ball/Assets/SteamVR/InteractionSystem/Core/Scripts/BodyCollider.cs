@@ -5,7 +5,6 @@
 //=============================================================================
 
 using UnityEngine;
-using System.Collections;
 
 namespace Valve.VR.InteractionSystem
 {
@@ -17,15 +16,14 @@ namespace Valve.VR.InteractionSystem
 
 		private CapsuleCollider capsuleCollider;
 
-		//-------------------------------------------------
-		void Awake()
+        //-------------------------------------------------
+        private void Awake()
 		{
 			capsuleCollider = GetComponent<CapsuleCollider>();
 		}
 
-
-		//-------------------------------------------------
-		void FixedUpdate()
+        //-------------------------------------------------
+        private void FixedUpdate()
 		{
 			float distanceFromFloor = Vector3.Dot( head.localPosition, Vector3.up );
 			capsuleCollider.height = Mathf.Max( capsuleCollider.radius, distanceFromFloor );

@@ -89,7 +89,7 @@ namespace Valve.VR.InteractionSystem
             // and if it isn't attached to another hand
             if ( !attached && catchingSpeedThreshold != -1)
             {
-                float catchingThreshold = catchingSpeedThreshold * SteamVR_Utils.GetLossyScale(Player.Instance.trackingOriginTransform);
+                float catchingThreshold = catchingSpeedThreshold * SteamVR_Utils.GetLossyScale(Player.Instance.TrackingOriginTransform);
 
                 GrabTypes bestGrabType = hand.GetBestGrabbingType();
 
@@ -151,7 +151,7 @@ namespace Valve.VR.InteractionSystem
 
 			if ( attachEaseIn )
 			{
-                attachEaseInTransform = hand.objectAttachmentPoint;
+                attachEaseInTransform = hand.ObjectAttachmentPoint;
 			}
 
 			snapAttachEaseInCompleted = false;

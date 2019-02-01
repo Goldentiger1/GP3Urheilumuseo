@@ -42,7 +42,7 @@ namespace Valve.VR.InteractionSystem.Sample
         {
             if (interactable.attachedToHand)
             {
-                hand = interactable.attachedToHand.handType;
+                hand = interactable.attachedToHand.HandType;
                 Vector2 m = a_move.GetAxis(hand);
                 movement = new Vector3(m.x, 0, m.y);
 

@@ -110,7 +110,7 @@ namespace Valve.VR.InteractionSystem
 		{
 			frozen = true;
 			frozenAngle = outAngle;
-			frozenHandWorldPos = hand.hoverSphereTransform.position;
+			frozenHandWorldPos = hand.HoverSphereTransform.position;
 			frozenSqDistanceMinMaxThreshold.x = frozenDistanceMinMaxThreshold.x * frozenDistanceMinMaxThreshold.x;
 			frozenSqDistanceMinMaxThreshold.y = frozenDistanceMinMaxThreshold.y * frozenDistanceMinMaxThreshold.y;
 		}
@@ -249,7 +249,7 @@ namespace Valve.VR.InteractionSystem
             {
                 grabbedWithType = startingGrabType;
                 // Trigger was just pressed
-                lastHandProjected = ComputeToTransformProjected( hand.hoverSphereTransform );
+                lastHandProjected = ComputeToTransformProjected( hand.HoverSphereTransform );
 
 				if ( hoverLock )
 				{
@@ -446,7 +446,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void ComputeAngle( Hand hand )
 		{
-			Vector3 toHandProjected = ComputeToTransformProjected( hand.hoverSphereTransform );
+			Vector3 toHandProjected = ComputeToTransformProjected( hand.HoverSphereTransform );
 
 			if ( !toHandProjected.Equals( lastHandProjected ) )
 			{
@@ -456,7 +456,7 @@ namespace Valve.VR.InteractionSystem
 				{
 					if ( frozen )
 					{
-						float frozenSqDist = ( hand.hoverSphereTransform.position - frozenHandWorldPos ).sqrMagnitude;
+						float frozenSqDist = ( hand.HoverSphereTransform.position - frozenHandWorldPos ).sqrMagnitude;
 						if ( frozenSqDist > frozenSqDistanceMinMaxThreshold.x )
 						{
 							outAngle = frozenAngle + Random.Range( -1.0f, 1.0f );

@@ -9,8 +9,12 @@ public class BallEngine : MonoBehaviour
 
     #region AARO
 
-    // World global position
-    private GameObject world;
+    // Size of torque along the world x-axis
+    public float torqueX;
+    // Size of torque along the world y-axis
+    public float torqueY;
+    // Size of torque along the world z-axis
+    public float torqueZ;
     // Rigidbody rotation speed
     public float speed;
     // Old rigidbody velocity
@@ -33,12 +37,6 @@ public class BallEngine : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         // Starting velocity when object is not moving
         oldVelocity = rigidbody.velocity;
-        // World local space
-
-        // "Worldiä" ei löydy joka scenestä => antaa virheen kun sen nimistä "game objectia"
-        //  World-tagillä ei löydy
-
-        // world = GameObject.FindGameObjectWithTag("World").gameObject;
     }
 
     private void Start()
@@ -53,9 +51,10 @@ public class BallEngine : MonoBehaviour
     {
         // Kokeillaan Velocitya, paljonko arvo muuttuu heittäessä
         newVelocity = rigidbody.velocity;
+        // Pallon liikkuessa pyöritetään palloa haluttuun suuntaan
         if (oldVelocity.magnitude < newVelocity.magnitude)
         {
-
+            rigidbody.AddTorque(torqueX, torqueY, torqueZ, ForceMode.Force);
         }
     }
 

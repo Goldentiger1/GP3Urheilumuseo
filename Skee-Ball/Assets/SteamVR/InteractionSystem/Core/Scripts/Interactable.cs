@@ -244,8 +244,8 @@ namespace Valve.VR.InteractionSystem
         {
             if (activateActionSetOnAttach != null)
             {
-                if (hand.otherHand.CurrentAttachedObjectInfo.HasValue == false || (hand.otherHand.CurrentAttachedObjectInfo.Value.interactable != null && 
-                    hand.otherHand.CurrentAttachedObjectInfo.Value.interactable.activateActionSetOnAttach != this.activateActionSetOnAttach))
+                if (hand.OtherHand.CurrentAttachedObjectInfo.HasValue == false || (hand.OtherHand.CurrentAttachedObjectInfo.Value.interactable != null && 
+                    hand.OtherHand.CurrentAttachedObjectInfo.Value.interactable.activateActionSetOnAttach != this.activateActionSetOnAttach))
                 {
                     activateActionSetOnAttach.Deactivate();
                 }

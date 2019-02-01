@@ -53,7 +53,7 @@ namespace Valve.VR.InteractionSystem.Sample
 				textHintCoroutine = null;
 			}
 
-			foreach ( Hand hand in Player.Instance.hands )
+			foreach ( Hand hand in Player.Instance.Hands )
 			{
 				ControllerButtonHints.HideAllButtonHints( hand );
 				ControllerButtonHints.HideAllTextHints( hand );
@@ -73,7 +73,7 @@ namespace Valve.VR.InteractionSystem.Sample
                 for (int actionIndex = 0; actionIndex < SteamVR_Input.actionsIn.Length; actionIndex++)
                 {
                     SteamVR_Action_In action = (SteamVR_Action_In)SteamVR_Input.actionsIn[actionIndex];
-                    if (action.GetActive(hand.handType))
+                    if (action.GetActive(hand.HandType))
                     {
                         ControllerButtonHints.ShowButtonHint(hand, action);
                         yield return new WaitForSeconds(1.0f);
@@ -101,7 +101,7 @@ namespace Valve.VR.InteractionSystem.Sample
                 for (int actionIndex = 0; actionIndex < SteamVR_Input.actionsIn.Length; actionIndex++)
                 {
                     SteamVR_Action_In action = (SteamVR_Action_In)SteamVR_Input.actionsIn[actionIndex];
-                    if (action.GetActive(hand.handType))
+                    if (action.GetActive(hand.HandType))
                     {
                         ControllerButtonHints.ShowTextHint(hand, action, action.GetShortName());
                         yield return new WaitForSeconds(3.0f);

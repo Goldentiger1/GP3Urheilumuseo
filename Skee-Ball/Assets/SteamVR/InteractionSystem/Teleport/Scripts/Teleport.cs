@@ -237,7 +237,7 @@ namespace Valve.VR.InteractionSystem
 			Hand oldPointerHand = pointerHand;
 			Hand newPointerHand = null;
 
-			foreach ( Hand hand in player.hands )
+			foreach ( Hand hand in player.Hands )
 			{
 				if ( visible )
 				{
@@ -315,7 +315,7 @@ namespace Valve.VR.InteractionSystem
 			Vector3 pointerDir = pointerStartTransform.forward;
 			bool hitSomething = false;
 			bool showPlayAreaPreview = false;
-			Vector3 playerFeetOffset = player.trackingOriginTransform.position - player.FeetPositionGuess;
+			Vector3 playerFeetOffset = player.TrackingOriginTransform.position - player.FeetPositionGuess;
 
 			Vector3 arcVelocity = pointerDir * arcDistance;
 
@@ -695,7 +695,7 @@ namespace Valve.VR.InteractionSystem
 					}
 				}
 
-				startingFeetOffset = player.trackingOriginTransform.position - player.FeetPositionGuess;
+				startingFeetOffset = player.TrackingOriginTransform.position - player.FeetPositionGuess;
 				movedFeetFarEnough = false;
 
 				if ( onDeactivateObjectTransform.gameObject.activeSelf )
@@ -890,8 +890,8 @@ namespace Valve.VR.InteractionSystem
 
 			if ( teleportingToMarker.ShouldMovePlayer() )
 			{
-				Vector3 playerFeetOffset = player.trackingOriginTransform.position - player.FeetPositionGuess;
-				player.trackingOriginTransform.position = teleportPosition + playerFeetOffset;
+				Vector3 playerFeetOffset = player.TrackingOriginTransform.position - player.FeetPositionGuess;
+				player.TrackingOriginTransform.position = teleportPosition + playerFeetOffset;
 			}
 			else
 			{
@@ -977,7 +977,7 @@ namespace Valve.VR.InteractionSystem
 				bool pulsed = false;
 
 				//Show the hint on each eligible hand
-				foreach ( Hand hand in player.hands )
+				foreach ( Hand hand in player.Hands )
 				{
 					bool showHint = IsEligibleForTeleport( hand );
 					bool isShowingHint = !string.IsNullOrEmpty( ControllerButtonHints.GetActiveHintText( hand, teleportAction) );
@@ -1040,7 +1040,7 @@ namespace Valve.VR.InteractionSystem
 				return false;
 			}
 
-			if ( hand.noSteamVRFallbackCamera == null )
+			if ( hand.NoSteamVRFallbackCamera == null )
 			{
 				if ( hand.IsActive == false)
 				{
@@ -1084,13 +1084,13 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( IsEligibleForTeleport( hand ) )
 			{
-				if ( hand.noSteamVRFallbackCamera != null )
+				if ( hand.NoSteamVRFallbackCamera != null )
 				{
 					return Input.GetKeyUp( KeyCode.T );
 				}
 				else
                 {
-                    return teleportAction.GetStateUp(hand.handType);
+                    return teleportAction.GetStateUp(hand.HandType);
 
                     //return hand.controller.GetPressUp( SteamVR_Controller.ButtonMask.Touchpad );
                 }
@@ -1104,13 +1104,13 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( IsEligibleForTeleport( hand ) )
 			{
-				if ( hand.noSteamVRFallbackCamera != null )
+				if ( hand.NoSteamVRFallbackCamera != null )
 				{
 					return Input.GetKey( KeyCode.T );
 				}
 				else
                 {
-                    return teleportAction.GetState(hand.handType);
+                    return teleportAction.GetState(hand.HandType);
 
                     //return hand.controller.GetPress( SteamVR_Controller.ButtonMask.Touchpad );
 				}
@@ -1125,13 +1125,13 @@ namespace Valve.VR.InteractionSystem
 		{
 			if ( IsEligibleForTeleport( hand ) )
 			{
-				if ( hand.noSteamVRFallbackCamera != null )
+				if ( hand.NoSteamVRFallbackCamera != null )
 				{
 					return Input.GetKeyDown( KeyCode.T );
 				}
 				else
                 {
-                    return teleportAction.GetStateDown(hand.handType);
+                    return teleportAction.GetStateDown(hand.HandType);
 
                     //return hand.controller.GetPressDown( SteamVR_Controller.ButtonMask.Touchpad );
 				}
@@ -1144,9 +1144,9 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private Transform GetPointerStartTransform( Hand hand )
 		{
-			if ( hand.noSteamVRFallbackCamera != null )
+			if ( hand.NoSteamVRFallbackCamera != null )
 			{
-				return hand.noSteamVRFallbackCamera.transform;
+				return hand.NoSteamVRFallbackCamera.transform;
 			}
 			else
 			{

@@ -41,7 +41,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		void Start()
 		{
-			Physics.IgnoreCollision( shaftRB.GetComponent<Collider>(), Player.Instance.headCollider );
+			Physics.IgnoreCollision( shaftRB.GetComponent<Collider>(), Player.Instance.HeadCollider );
 		}
 
 
@@ -81,7 +81,7 @@ namespace Valve.VR.InteractionSystem
 			RaycastHit[] hits = Physics.SphereCastAll( transform.position, 0.01f, transform.forward, 0.80f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore );
 			foreach ( RaycastHit hit in hits )
 			{
-				if ( hit.collider.gameObject != gameObject && hit.collider.gameObject != arrowHeadRB.gameObject && hit.collider != Player.Instance.headCollider )
+				if ( hit.collider.gameObject != gameObject && hit.collider.gameObject != arrowHeadRB.gameObject && hit.collider != Player.Instance.HeadCollider )
 				{
 					Destroy( gameObject );
 					return;
@@ -171,7 +171,7 @@ namespace Valve.VR.InteractionSystem
 				}
 
 				// Player Collision Check (self hit)
-				if ( Player.Instance && collision.collider == Player.Instance.headCollider )
+				if ( Player.Instance && collision.collider == Player.Instance.HeadCollider )
 				{
 					Player.Instance.PlayerShotSelf();
 				}

@@ -27,18 +27,18 @@ namespace Valve.VR.InteractionSystem.Sample
                 return;
             }
 
-            plantAction.AddOnChangeListener(OnPlantActionChange, hand.handType);
+            plantAction.AddOnChangeListener(OnPlantActionChange, hand.HandType);
         }
 
         private void OnDisable()
         {
             if (plantAction != null)
-                plantAction.RemoveOnChangeListener(OnPlantActionChange, hand.handType);
+                plantAction.RemoveOnChangeListener(OnPlantActionChange, hand.HandType);
         }
 
         private void OnPlantActionChange(SteamVR_Action_In actionIn)
         {
-            if (plantAction.GetStateDown(hand.handType))
+            if (plantAction.GetStateDown(hand.HandType))
             {
                 Plant();
             }

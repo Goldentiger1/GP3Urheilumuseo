@@ -41,8 +41,8 @@ namespace Valve.VR.InteractionSystem
 
             if (interactable.attachedToHand)
             {
-                grip = gripSqueeze.GetAxis(interactable.attachedToHand.handType);
-                pinch = pinchSqueeze.GetAxis(interactable.attachedToHand.handType);
+                grip = gripSqueeze.GetAxis(interactable.attachedToHand.HandType);
+                pinch = pinchSqueeze.GetAxis(interactable.attachedToHand.HandType);
             }
 
             renderer.SetBlendShapeWeight(0, Mathf.Lerp(renderer.GetBlendShapeWeight(0), grip * 150, Time.deltaTime * 10));

@@ -87,7 +87,7 @@ namespace Valve.VR.InteractionSystem.Sample
 
             if (interactable.attachedToHand)
             {
-                SteamVR_Input_Sources hand = interactable.attachedToHand.handType;
+                SteamVR_Input_Sources hand = interactable.attachedToHand.HandType;
 
                 steer = a_steering.GetAxis(hand);
 

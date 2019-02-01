@@ -8,7 +8,6 @@ using UnityEngine;
 using System.Collections;
 using Valve.VR;
 
-
 namespace Valve.VR
 {
     public class SteamVR_Render : MonoBehaviour
@@ -49,7 +48,7 @@ namespace Valve.VR
 
         private SteamVR_Camera[] cameras = new SteamVR_Camera[0];
 
-        void AddInternal(SteamVR_Camera vrcam)
+        private void AddInternal(SteamVR_Camera vrcam)
         {
             var camera = vrcam.GetComponent<Camera>();
             var length = cameras.Length;
@@ -69,7 +68,7 @@ namespace Valve.VR
             cameras = sorted;
         }
 
-        void RemoveInternal(SteamVR_Camera vrcam)
+        private void RemoveInternal(SteamVR_Camera vrcam)
         {
             var length = cameras.Length;
             int count = 0;
@@ -94,7 +93,7 @@ namespace Valve.VR
             cameras = sorted;
         }
 
-        SteamVR_Camera TopInternal()
+        private SteamVR_Camera TopInternal()
         {
             if (cameras.Length > 0)
                 return cameras[cameras.Length - 1];
@@ -139,7 +138,7 @@ namespace Valve.VR
                     compositor.SetTrackingSpace(SteamVR.settings.trackingSpace);
                 }
 
-                var overlay = SteamVR_Overlay.instance;
+                var overlay = SteamVR_Overlay.Instance;
                 if (overlay != null)
                     overlay.UpdateOverlay();
 
@@ -147,7 +146,7 @@ namespace Valve.VR
             }
         }
 
-        void RenderExternalCamera()
+        private void RenderExternalCamera()
         {
             if (externalCamera == null)
                 return;
@@ -238,7 +237,7 @@ namespace Valve.VR
             }
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
             StartCoroutine(RenderLoop());
             SteamVR_Events.InputFocus.Listen(OnInputFocus);
@@ -266,7 +265,7 @@ namespace Valve.VR
 #endif
         }
 
-        void Awake()
+        private void Awake()
         {
             if (externalCamera == null && System.IO.File.Exists(externalCameraConfigPath))
             {
@@ -292,7 +291,7 @@ namespace Valve.VR
         }
 
 #if UNITY_2017_1_OR_NEWER
-	    void OnBeforeRender() 
+        private void OnBeforeRender() 
         { 
             if (SteamVR.active == false)
                 return;
@@ -303,7 +302,7 @@ namespace Valve.VR
             }
         }
 #else
-        void OnCameraPreCull(Camera cam)
+        private void OnCameraPreCull(Camera cam)
         {
             if (SteamVR.active == false)
                 return;
@@ -332,7 +331,7 @@ namespace Valve.VR
         static int lastFrameCount = -1;
 #endif
 
-        void Update()
+        private void Update()
         {
             if (SteamVR.active == false)
                 return;

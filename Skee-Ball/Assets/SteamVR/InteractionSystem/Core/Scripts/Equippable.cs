@@ -36,7 +36,7 @@ namespace Valve.VR.InteractionSystem
             get
             {
                 if (interactable.attachedToHand)
-                    return interactable.attachedToHand.handType;
+                    return interactable.attachedToHand.HandType;
                 else
                     return SteamVR_Input_Sources.Any;
             }

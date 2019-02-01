@@ -3684,7 +3684,27 @@ ModelImporter:
     4301464: big496
     4301466: big512
     4301468: Corner001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #2'
+    second: {fileID: 2100000, guid: 2d2f7a58897aa394a94cd41758bc95b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #3'
+    second: {fileID: 2100000, guid: 1093a2313abed5f45b89138501ce4ded, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #4'
+    second: {fileID: 2100000, guid: 0d83afabe99e4384ead49cf16ef44799, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 07bcd4e0597eb0648b7a45624f2e0594, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

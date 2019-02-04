@@ -50,7 +50,6 @@ public class LocalizationManager : Singelton<LocalizationManager>
         ChangeTextToNewLanguage();
     }
 
-
     private void LoadLocalizedText(string fileName)
     {
         localizationTextDictionary = new Dictionary<string, string>();

@@ -2,6 +2,30 @@
 	[
 		{"Key":"StartButton","Value":"START"},
 		{"Key":"ResetButton","Value":"RESET"},
-		{"Key":"Score","Value":"SCORE"}
+		{"Key":"Score","Value":"SCORE"},
+		
+		{"Key":"1","Value":"1 UK"},
+		{"Key":"2","Value":"2 UK"},
+		{"Key":"3","Value":"3 UK"},
+		{"Key":"4","Value":"4 UK"},
+		{"Key":"5","Value":"5 UK"},
+		{"Key":"6","Value":"6 UK"},
+		{"Key":"7","Value":"7 UK"},
+		{"Key":"8","Value":"8 UK"},
+		{"Key":"9","Value":"9 UK"},
+		{"Key":"10","Value":"10 UK"},
+		{"Key":"11","Value":"11 UK"},
+		{"Key":"12","Value":"12 UK"},
+		{"Key":"13","Value":"13 UK"},
+		{"Key":"14","Value":"14 UK"},
+		{"Key":"15","Value":"15 UK"},
+		{"Key":"16","Value":"16 UK"},
+		{"Key":"17","Value":"17 UK"},
+		{"Key":"18","Value":"18 UK"},
+		{"Key":"19","Value":"19 UK"},
+		{"Key":"20","Value":"20 UK"},
+		{"Key":"21","Value":"21 UK"},
+		{"Key":"22","Value":"22 UK"},
+		{"Key":"23","Value":"23 UK"}		
 	]
 }

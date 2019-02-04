@@ -8,10 +8,7 @@ public class LevelManager : Singelton<LevelManager>
 
     private Stack<BallEngine> basketBalls = new Stack<BallEngine>();
 
-    private float SceneChangeTimer = 2f;
-    private float throwDistance;
     private readonly float throwDistanceRequiredForThreePoints = 7f;
-    private readonly float sceneChangeWaitTime = 2f;
 
     private int totalScore = 0;
 
@@ -37,7 +34,7 @@ public class LevelManager : Singelton<LevelManager>
 
     public void UpdateScore(Transform hitTransform)
     {
-        throwDistance = Vector3.Distance(hitTransform.position, Player.Instance.FeetPositionGuess);
+        var throwDistance = Vector3.Distance(hitTransform.position, Player.Instance.FeetPositionGuess);
 
         totalScore = throwDistance > throwDistanceRequiredForThreePoints ? 3 : 2;
 

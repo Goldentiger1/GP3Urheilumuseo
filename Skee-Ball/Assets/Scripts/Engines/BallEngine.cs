@@ -7,6 +7,8 @@ public class BallEngine : MonoBehaviour
     private readonly float minHitToSoundVelocity = 1F;
     private readonly float spinSpeed = 10f;
 
+    private AudioSource audioSource;
+
     #region AARO
 
     // Size of torque along the world x-axis
@@ -37,6 +39,7 @@ public class BallEngine : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         // Starting velocity when object is not moving
         oldVelocity = rigidbody.velocity;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -82,7 +85,10 @@ public class BallEngine : MonoBehaviour
                     return;
                 }
 
-                AudioManager.Instance.PlaySfx("BallBounce", rigidbody.position);
+                //AudioManager.Instance.PlaySfx("BallBounce", rigidbody.position);
+                AudioPlayer.Instance.PlaySfx(
+                    audioSource,
+                    "BallBounce");
 
                 break;
 

@@ -8,8 +8,6 @@ public class ControlPanel : MonoBehaviour
     private Button fiButton;
     private Button ukButton;
 
-    private Action @delegate;
-
     private void Awake()
     {
         Initialize();
@@ -40,7 +38,7 @@ public class ControlPanel : MonoBehaviour
     {    
         if (GameMaster.Instance.CurrentSceneIndex == 0)
         {
-            GameMaster.Instance.ChangeScene(1); 
+            GameMaster.Instance.ChangeNextScene(); 
         }
         else
         {

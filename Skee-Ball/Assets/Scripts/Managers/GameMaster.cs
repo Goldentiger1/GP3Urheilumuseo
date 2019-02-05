@@ -5,12 +5,9 @@ using UnityEngine.SceneManagement;
 public class GameMaster : SingeltonPersistant<GameMaster>
 {
     private Coroutine loadSceneAsync;
-    [SerializeField]
-    private float sceneChangeTimer = 60f;
-    [SerializeField]
-    private float fakeLoadDuration = 0f;
+    public float SceneChangeTimer = 60f;
+    public float FakeLoadDuration = 0f;
 
-    private bool isChangingScene;
     private int sceneCount;
 
     public int CurrentSceneIndex
@@ -18,12 +15,30 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         get;
         private set;
     }
+    public int NextSceneIndex
+    {
+        get
+        {
+            return CurrentSceneIndex + 1;
+        }
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        Initialize();
+    }
 
     private void Start()
+    {      
+        OnSceneChanged();
+    }
+
+    private void Initialize()
     {
         sceneCount = SceneManager.sceneCountInBuildSettings;
         CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        OnSceneChanged();
     }
 
     public void ChangeScene(int sceneIndex, float sceneChangeTimer = 0f)
@@ -32,6 +47,11 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         {
             loadSceneAsync = StartCoroutine(ILoadSceneAsync(sceneIndex, sceneChangeTimer));
         }    
+    }
+
+    public void ChangeNextScene()
+    {
+        ChangeScene(NextSceneIndex);
     }
 
     public void RestartScene()
@@ -44,11 +64,16 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         yield return new WaitForSeconds(sceneChangeTimer);
 
         LevelManager.Instance.ClearBasketBalls();
-        isChangingScene = true;
 
-        //UIManager.Instance.FadeScreenImage(1f);
+        UIManager.Instance.FadeScreenImage(1f);
 
-        //yield return new WaitWhile(() => UIManager.Instance.IsFading);
+        AudioManager.Instance.FadeChannelVolume("Music", 0, 1);
+        AudioPlayer.Instance.StopMusicTrack(CurrentSceneIndex);
+        AudioPlayer.Instance.StopNarration(CurrentSceneIndex);
+
+        yield return new WaitWhile(() => AudioManager.Instance.IsAudioFading);
+
+        yield return new WaitWhile(() => UIManager.Instance.IsFading);
 
         var asyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
         asyncOperation.allowSceneActivation = false;
@@ -59,7 +84,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
             {
                 LocalizationManager.Instance.ClearLocalizedText();
 
-                yield return new WaitForSeconds(fakeLoadDuration);
+                yield return new WaitForSeconds(FakeLoadDuration);
                 
                 CurrentSceneIndex = sceneIndex;
                 asyncOperation.allowSceneActivation = true;
@@ -71,29 +96,31 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
         loadSceneAsync = null;
 
-        isChangingScene = false;
-
-        LocalizationManager.Instance.ChangeTextToNewLanguage();
+        LocalizationManager.Instance.ChangeTextToNewLanguage();    
 
         OnSceneChanged();
     }
 
     private void OnSceneChanged()
     {
-        //UIManager.Instance.FadeScreenImage(0f);
-        AudioManager.Instance.ChangeMusicTrack(CurrentSceneIndex);
+        UIManager.Instance.FadeScreenImage(0f);
 
-        if(CurrentSceneIndex == 0)
+        AudioManager.Instance.FadeChannelVolume("Music", 1, 1);
+        AudioPlayer.Instance.PlayMusicTrack(CurrentSceneIndex);
+
+        if (CurrentSceneIndex == 0)
         {
             return;
         }
 
-        if(CurrentSceneIndex == sceneCount - 1)
+        AudioPlayer.Instance.PlayNarration(CurrentSceneIndex);
+
+        if (CurrentSceneIndex == sceneCount - 1)
         {
-            ChangeScene(0, sceneChangeTimer);
+            ChangeScene(0, SceneChangeTimer);
             return;
         }
 
-        ChangeScene(CurrentSceneIndex + 1, sceneChangeTimer);
+        ChangeScene(NextSceneIndex, SceneChangeTimer);
     }
 }

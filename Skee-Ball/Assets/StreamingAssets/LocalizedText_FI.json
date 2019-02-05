@@ -2,6 +2,30 @@
 	[
 		{"Key":"StartButton","Value":"ALOITA"},
 		{"Key":"ResetButton","Value":"RESETOI"},
-		{"Key":"Score","Value":"PISTEET"}
+		{"Key":"Score","Value":"PISTEET"},
+		
+		{"Key":"1","Value":"1 FI"},
+		{"Key":"2","Value":"2 FI"},
+		{"Key":"3","Value":"3 FI"},
+		{"Key":"4","Value":"4 FI"},
+		{"Key":"5","Value":"5 FI"},
+		{"Key":"6","Value":"6 FI"},
+		{"Key":"7","Value":"7 FI"},
+		{"Key":"8","Value":"8 FI"},
+		{"Key":"9","Value":"9 FI"},
+		{"Key":"10","Value":"10 FI"},
+		{"Key":"11","Value":"11 FI"},
+		{"Key":"12","Value":"12 FI"},
+		{"Key":"13","Value":"13 FI"},
+		{"Key":"14","Value":"14 FI"},
+		{"Key":"15","Value":"15 FI"},
+		{"Key":"16","Value":"16 FI"},
+		{"Key":"17","Value":"17 FI"},
+		{"Key":"18","Value":"18 FI"},
+		{"Key":"19","Value":"19 FI"},
+		{"Key":"20","Value":"20 FI"},
+		{"Key":"21","Value":"21 FI"},
+		{"Key":"22","Value":"22 FI"},
+		{"Key":"23","Value":"23 FI"}		
 	]
 }

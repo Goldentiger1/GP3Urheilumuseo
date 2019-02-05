@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 127017556}
   - component: {fileID: 1917116479}
   m_Layer: 0
-  m_Name: HudCanvas
+  m_Name: HUDCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ Canvas:
   m_GameObject: {fileID: 127017554}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -109,10 +109,40 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127017554}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &289052772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 289052773}
+  m_Layer: 0
+  m_Name: MusicTracks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &289052773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289052772}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 222090912520118977}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1419023330
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +232,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeStep: 0.01
   oneStepAngle: 10
+--- !u!1 &1925009970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1925009971}
+  m_Layer: 0
+  m_Name: Narrations
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1925009971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925009970}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 222090912520118977}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2074218449
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,7 +376,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0.78
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -363,6 +423,150 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a519200e9472d1141a84c19870819716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4092494253325817368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 222090912520118977}
+  - component: {fileID: 9195234747672604789}
+  m_Layer: 0
+  m_Name: AudioPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &222090912520118977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4092494253325817368}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 289052773}
+  - {fileID: 1925009971}
+  m_Father: {fileID: 8340127195113468370}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9195234747672604789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4092494253325817368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9203d7103652b664385f24739d6842b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MusicTracks:
+  - Name: Menu
+    volume: 0.1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: f449011625760a4439d550f6acf96536, type: 3}
+    loop: 1
+  - Name: Ambience
+    volume: 0.1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: 55f10de55bc465b49b0e1c76692ad40e, type: 3}
+    loop: 1
+  - Name: StreetAmbience
+    volume: 0.1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: de649b2ea27019a4385b8bb6d2bc0049, type: 3}
+    loop: 1
+  - Name: 
+    volume: 0
+    pitch: 1
+    audioClip: {fileID: 0}
+    loop: 0
+  - Name: 
+    volume: 0
+    pitch: 1
+    audioClip: {fileID: 0}
+    loop: 0
+  - Name: 
+    volume: 0
+    pitch: 0
+    audioClip: {fileID: 0}
+    loop: 0
+  Narrations:
+  - Name: I
+    volume: 1
+    pitch: 1
+    AudioClips:
+    - {fileID: 8300000, guid: 93c20f5cbea3c994da72c15b4f37a3b3, type: 3}
+  - Name: II
+    volume: 1
+    pitch: 1
+    AudioClips:
+    - {fileID: 8300000, guid: 7d024927ce7d6224eb13f67b48b27b39, type: 3}
+    - {fileID: 8300000, guid: b246297d05442d84b927f255c5e7bc7c, type: 3}
+  - Name: III
+    volume: 1
+    pitch: 1
+    AudioClips:
+    - {fileID: 8300000, guid: 703183293ba7a714da97f9fc946e3d61, type: 3}
+    - {fileID: 8300000, guid: 76b7c001c5b80d94cafe879c844c74bf, type: 3}
+    - {fileID: 8300000, guid: 7db2f0760dc828f4cb7b09e4256b9878, type: 3}
+  - Name: IV (60-luku)
+    volume: 1
+    pitch: 1
+    AudioClips:
+    - {fileID: 8300000, guid: 4aee85064a73f2a4d883c820b546c8bc, type: 3}
+    - {fileID: 8300000, guid: 9419fca32dc0fdd46a8510d78b46468d, type: 3}
+    - {fileID: 8300000, guid: 9ae5dc99833e6b14d8dac10fbb07d948, type: 3}
+    - {fileID: 8300000, guid: a1ce459995a63ed4f92841e38e57c3c7, type: 3}
+  - Name: V (70-luku)
+    volume: 0.5
+    pitch: 1
+    AudioClips:
+    - {fileID: 8300000, guid: 7d5673fe336c9af448cca6c58f51e7e4, type: 3}
+    - {fileID: 8300000, guid: dfaa9e6193726024bb1a6be8dc4ab955, type: 3}
+  - Name: VI (80-luku)
+    volume: 0.5
+    pitch: 1
+    AudioClips:
+    - {fileID: 8300000, guid: f4f1e50d690f3704cba21db007bb1b3c, type: 3}
+    - {fileID: 8300000, guid: 43979cf24bb89da43bc8abd6b9b74891, type: 3}
+    - {fileID: 8300000, guid: 32e541ea30e078b46b79a3506e17f2f4, type: 3}
+  - Name: VII (90-luku)
+    volume: 0.5
+    pitch: 1
+    AudioClips:
+    - {fileID: 8300000, guid: 472192e32ee76c74098e2c653a021d09, type: 3}
+    - {fileID: 8300000, guid: 7d4074439f3f81b4bb445a72b1407782, type: 3}
+    - {fileID: 8300000, guid: fff44b1bfc78d6a48935e03883aa662c, type: 3}
+  - Name: VIII (2000-luku)
+    volume: 1
+    pitch: 1
+    AudioClips:
+    - {fileID: 8300000, guid: 3ad7e99262b131a4795b0b9accdda7a0, type: 3}
+    - {fileID: 8300000, guid: b6954f24ca7c45f42a905a6fc8516445, type: 3}
+    - {fileID: 8300000, guid: 1946c2306409f514f998a374018ad0f6, type: 3}
+    - {fileID: 8300000, guid: 9c738bc38dd42fd46b52d22f373fedd9, type: 3}
+  SoundEffects:
+  - Name: BallBounce
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: 737aafd3e83af4843ad8d33db11bdbbf, type: 3}
+  - Name: BackBoard
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: 6b8a65ae0035c32478728763cedee2b5, type: 3}
+  - Name: Sock
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: 192caba07c24a3b44a6e2e810bf5f267, type: 3}
 --- !u!1 &5146164436979092304
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,6 +645,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8237a35b74dd3845b7f2b2c7d336b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneChangeTimer: 30
+  FakeLoadDuration: 1
 --- !u!1 &8336564984598727477
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +717,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 222090912520118977}
   m_Father: {fileID: 1114661408618749378}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -527,3 +734,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb02420b6b66b804783da5f262a75c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioMixer: {fileID: 24100000, guid: 3fb0db9a5fbfcde4d902093b0697cf16, type: 2}

@@ -42,15 +42,23 @@ public class AudioPlayer : Singelton<AudioPlayer>
         MusicTracks[sceneIndex].StopTrack();
     }
 
+    #region INDEXIT !!!
     public void PlayNarration(int sceneIndex)
     {
-        Narrations[sceneIndex].PlayNarration();
+        if (sceneIndex < 1)
+            return;
+
+        Narrations[sceneIndex - 1].PlayNarration();
     }
 
     public void StopNarration(int sceneIndex)
-    {     
-        Narrations[sceneIndex].StopNarration();
+    {
+        if (sceneIndex< 1)
+            return;
+
+        Narrations[sceneIndex - 1].StopNarration();
     }
+    #endregion INDEXIT !!!
 
     public void PlaySfx(
         AudioSource audioSource,

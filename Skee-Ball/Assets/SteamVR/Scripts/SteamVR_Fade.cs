@@ -23,8 +23,16 @@ using UnityEngine;
 
 namespace Valve.VR
 {
-    public class SteamVR_Fade : MonoBehaviour
+    public class SteamVR_Fade : Singelton<SteamVR_Fade>
     {
+        public bool IsFading
+        {
+            get
+            {
+                return currentColor != targetColor;
+            }
+        }
+
         private Color currentColor = new Color(0, 0, 0, 0); // default starting color: black and fully transparent
         private Color targetColor = new Color(0, 0, 0, 0);  // default target color: black and fully transparent
         private Color deltaColor = new Color(0, 0, 0, 0);   // the delta-color is basically the "speed / second" at which the current color should change
@@ -35,7 +43,7 @@ namespace Valve.VR
 
         public static void Start(Color newColor, float duration, bool fadeOverlay = false)
         {
-            SteamVR_Events.Fade.Send(newColor, duration, fadeOverlay);
+            SteamVR_Events.Fade.Send(newColor, duration, fadeOverlay);        
         }
 
         public static void View(Color newColor, float duration)
@@ -98,6 +106,7 @@ namespace Valve.VR
                         overlay.Alpha = 1.0f - currentColor.a;
                     }
                 }
+                // ???
             }
 
             if (currentColor.a > 0 && fadeMaterial)

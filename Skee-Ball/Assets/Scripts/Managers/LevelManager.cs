@@ -47,4 +47,9 @@ public class LevelManager : Singelton<LevelManager>
             UIManager.Instance.UpdateScoreVisuals(totalScore.ToString());
         }      
     }
+
+    public void ResetScores()
+    {
+        totalScore = 0;
+    }
 }

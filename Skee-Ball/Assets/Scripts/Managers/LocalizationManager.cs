@@ -38,14 +38,13 @@ public class LocalizationManager : Singelton<LocalizationManager>
         IsReady = false;
 
         ChangeLanguage(defaultLanguage);
-        //ChangeLanguage("UK");
     }
 
     private IEnumerator Start()
     {
         yield return new WaitUntil(() => IsReady);
 
-        Debug.Log("Localization is ready");
+        //Debug.Log("Localization is ready");
 
         ChangeTextToNewLanguage();
     }
@@ -67,7 +66,7 @@ public class LocalizationManager : Singelton<LocalizationManager>
                 localizationTextDictionary.Add(loadedData.Items[i].Key, loadedData.Items[i].Value);
             }
 
-            Debug.Log("Data loaded, dictionary contains: " + localizationTextDictionary.Count + " entries.");
+            //Debug.Log("Data loaded, dictionary contains: " + localizationTextDictionary.Count + " entries.");
         }
         else
         {

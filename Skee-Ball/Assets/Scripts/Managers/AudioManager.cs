@@ -72,11 +72,12 @@ public class Narration : Sound
 
     public void PlayNarration()
     {
-        if (audioSource.isPlaying != false)
+        if (audioSource.isPlaying == true)
             return;
+
         audioSource.clip = AudioClips[UnityEngine.Random.Range(0, AudioClips.Length)];
         audioSource.Play();
-        Debug.LogError(Name + " PLAY ( Audio clip: " + audioSource.clip.name + " )");
+        Debug.LogWarning(Name + " PLAY ( Audio clip: " + audioSource.clip.name + " )");
     }
 
     public void StopNarration()
@@ -85,7 +86,7 @@ public class Narration : Sound
             return;
 
         audioSource.Stop();
-        Debug.LogError(Name + " STOP");
+        Debug.LogWarning(Name + " STOP");
     }
 }
 

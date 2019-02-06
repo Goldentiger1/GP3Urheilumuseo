@@ -1,12 +1,28 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Valve.VR;
 
 public class GameMaster : SingeltonPersistant<GameMaster>
 {
     private Coroutine loadSceneAsync;
+
+    [Header("Scene load variables")]
+    [Range(0, 200)]
     public float SceneChangeTimer = 60f;
+    [Range(0, 20)]
     public float FakeLoadDuration = 0f;
+
+    [Header("Fade variables")]
+    [Range(0, 10)]
+    public float FadeInDuration = 0f;
+    [Range(0, 10)]
+    public float FadeOutDuration = 0f;
+
+    public Color FadeColor = Color.black;
+
+    private float audioFadeInDuration;
+    private float audioFadeOutDuration;
 
     private int sceneCount;
 
@@ -39,6 +55,9 @@ public class GameMaster : SingeltonPersistant<GameMaster>
     {
         sceneCount = SceneManager.sceneCountInBuildSettings;
         CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        audioFadeInDuration = FadeInDuration;
+        audioFadeOutDuration = FadeOutDuration;
     }
 
     public void ChangeScene(int sceneIndex, float sceneChangeTimer = 0f)
@@ -65,21 +84,25 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
         LevelManager.Instance.ClearBasketBalls();
 
-        UIManager.Instance.FadeScreenImage(1f);
+        SteamFadeScreen(FadeColor, FadeInDuration);
 
-        AudioManager.Instance.FadeChannelVolume("Music", 0, 1);
+        AudioManager.Instance.FadeChannelVolume("Music", 0, audioFadeOutDuration);
+       
+        yield return new WaitWhile(() => AudioManager.Instance.IsAudioFading);
+
         AudioPlayer.Instance.StopMusicTrack(CurrentSceneIndex);
         AudioPlayer.Instance.StopNarration(CurrentSceneIndex);
 
-        yield return new WaitWhile(() => AudioManager.Instance.IsAudioFading);
-
-        yield return new WaitWhile(() => UIManager.Instance.IsFading);
+        Debug.LogError(SteamVR_Fade.Instance.IsFading);
+        yield return new WaitWhile(() => SteamVR_Fade.Instance.IsFading);
+        Debug.LogError(SteamVR_Fade.Instance.IsFading);
 
         var asyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
         asyncOperation.allowSceneActivation = false;
 
         while (!asyncOperation.isDone)
         {
+
             if (asyncOperation.progress == 0.9f)
             {
                 LocalizationManager.Instance.ClearLocalizedText();
@@ -87,8 +110,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
                 yield return new WaitForSeconds(FakeLoadDuration);
                 
                 CurrentSceneIndex = sceneIndex;
-                asyncOperation.allowSceneActivation = true;
-                
+                asyncOperation.allowSceneActivation = true;                
             }
 
             yield return null;
@@ -96,16 +118,18 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
         loadSceneAsync = null;
 
-        LocalizationManager.Instance.ChangeTextToNewLanguage();    
-
         OnSceneChanged();
     }
 
     private void OnSceneChanged()
     {
-        UIManager.Instance.FadeScreenImage(0f);
+        LocalizationManager.Instance.ChangeTextToNewLanguage();
+        LevelManager.Instance.ResetScores();
 
-        AudioManager.Instance.FadeChannelVolume("Music", 1, 1);
+        SteamFadeScreen(FadeColor, 0);
+        SteamFadeScreen(Color.clear, FadeOutDuration);
+
+        AudioManager.Instance.FadeChannelVolume("Music", 1, audioFadeInDuration);
         AudioPlayer.Instance.PlayMusicTrack(CurrentSceneIndex);
 
         if (CurrentSceneIndex == 0)
@@ -122,5 +146,10 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         }
 
         ChangeScene(NextSceneIndex, SceneChangeTimer);
+    }
+
+    private void SteamFadeScreen(Color color, float fadeDuration)
+    {
+        SteamVR_Fade.Start(color, fadeDuration, true);
     }
 }

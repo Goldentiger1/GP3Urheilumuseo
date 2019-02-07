@@ -1019,13 +1019,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e3e4511966ba94d8ba0b98c6c62f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OtherHand: {fileID: 0}
+  OtherHand: {fileID: 114083045504153134}
   HandType: 0
   TrackedObject: {fileID: 0}
-  GrabPinchAction: {fileID: 0}
-  GrabGripAction: {fileID: 0}
-  HapticAction: {fileID: 0}
-  UiInteractAction: {fileID: 0}
+  GrabPinchAction: {fileID: 11400000, guid: 54a1cfeca643149438660244a6bca89b, type: 2}
+  GrabGripAction: {fileID: 11400000, guid: 50b3dda8f49e1d74c9b7ce428bdde187, type: 2}
+  HapticAction: {fileID: 11400000, guid: 79d4cbd60f8ded942bce0e7440fd3a0e, type: 2}
+  UiInteractAction: {fileID: 11400000, guid: d67dd739e2e03d548b236b54ca59f093, type: 2}
   UseHoverSphere: 1
   HoverSphereTransform: {fileID: 0}
   HoverSphereRadius: 0.05
@@ -1043,7 +1043,7 @@ MonoBehaviour:
   NoSteamVRFallbackCamera: {fileID: 0}
   NoSteamVRFallbackMaxDistanceNoItem: 10
   NoSteamVRFallbackMaxDistanceWithItem: 0.5
-  RenderModelPrefab: {fileID: 0}
+  RenderModelPrefab: {fileID: 100052, guid: 02d2c3f5b5ca1014c8fb700e729167ae, type: 3}
   ShowDebugText: 0
   SpewDebugText: 0
   ShowDebugInteractables: 0

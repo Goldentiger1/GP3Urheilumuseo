@@ -368,11 +368,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8237a35b74dd3845b7f2b2c7d336b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneChangeTimer: 20
+  SceneChangeTimer: 30
   FakeLoadDuration: 2
   FadeInDuration: 2
   FadeOutDuration: 2
-  FadeColor: {r: 0, g: 0, b: 0, a: 1}
+  FadeColor: {r: 0.7860322, g: 0, b: 1, a: 1}
 --- !u!1 &8336564984598727477
 GameObject:
   m_ObjectHideFlags: 0

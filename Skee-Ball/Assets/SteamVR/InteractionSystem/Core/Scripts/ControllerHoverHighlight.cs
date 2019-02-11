@@ -5,6 +5,7 @@
 //=============================================================================
 
 using UnityEngine;
+using System.Collections;
 
 namespace Valve.VR.InteractionSystem
 {
@@ -27,16 +28,16 @@ namespace Valve.VR.InteractionSystem
 
         protected void OnHandInitialized(int deviceIndex)
         {
-            GameObject renderModelGameObject = GameObject.Instantiate(hand.RenderModelPrefab);
+            GameObject renderModelGameObject = GameObject.Instantiate(hand.renderModelPrefab);
             renderModelGameObject.transform.parent = this.transform;
             renderModelGameObject.transform.localPosition = Vector3.zero;
             renderModelGameObject.transform.localRotation = Quaternion.identity;
-            renderModelGameObject.transform.localScale = hand.RenderModelPrefab.transform.localScale;
+            renderModelGameObject.transform.localScale = hand.renderModelPrefab.transform.localScale;
 
 
             renderModel = renderModelGameObject.GetComponent<RenderModel>();
 
-            renderModel.SetInputSource(hand.HandType);
+            renderModel.SetInputSource(hand.handType);
             renderModel.OnHandInitialized(deviceIndex);
             renderModel.SetMaterial(highLightMaterial);
 
@@ -50,10 +51,11 @@ namespace Valve.VR.InteractionSystem
             renderModel.Hide();
         }
 
+
         //-------------------------------------------------
         protected void OnParentHandHoverBegin(Interactable other)
         {
-            if (!isActiveAndEnabled)
+            if (!this.isActiveAndEnabled)
             {
                 return;
             }
@@ -64,31 +66,35 @@ namespace Valve.VR.InteractionSystem
             }
         }
 
+
         //-------------------------------------------------
         private void OnParentHandHoverEnd(Interactable other)
         {
             HideHighlight();
         }
 
+
         //-------------------------------------------------
         private void OnParentHandInputFocusAcquired()
         {
-            if (!isActiveAndEnabled)
+            if (!this.isActiveAndEnabled)
             {
                 return;
             }
 
-            if (hand.HoveringInteractable && hand.HoveringInteractable.transform.parent != transform.parent)
+            if (hand.hoveringInteractable && hand.hoveringInteractable.transform.parent != transform.parent)
             {
                 ShowHighlight();
             }
         }
+
 
         //-------------------------------------------------
         private void OnParentHandInputFocusLost()
         {
             HideHighlight();
         }
+
 
         //-------------------------------------------------
         public void ShowHighlight()
@@ -105,6 +111,7 @@ namespace Valve.VR.InteractionSystem
 
             renderModel.Show();
         }
+
 
         //-------------------------------------------------
         public void HideHighlight()

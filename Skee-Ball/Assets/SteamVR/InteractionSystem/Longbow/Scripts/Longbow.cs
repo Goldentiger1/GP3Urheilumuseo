@@ -90,8 +90,8 @@ namespace Valve.VR.InteractionSystem
 		private void HandAttachedUpdate( Hand hand )
 		{
 			// Reset transform since we cheated it right after getting poses on previous frame
-			transform.localPosition = Vector3.zero;
-			transform.localRotation = Quaternion.identity;
+			//transform.localPosition = Vector3.zero;
+			//transform.localRotation = Quaternion.identity;
 
 			// Update handedness guess
 			EvaluateHandedness();
@@ -106,7 +106,7 @@ namespace Valve.VR.InteractionSystem
 
 				float pullLerp = Util.RemapNumberClamped( nockToarrowHand.magnitude, minPull, maxPull, 0f, 1f ); // Normalized current state of bow draw 0 - 1
 
-				Vector3 arrowNockTransformToHeadset = ( ( Player.Instance.HmdTransform.position + ( Vector3.down * 0.05f ) ) - arrowHand.arrowNockTransform.parent.position ).normalized;
+				Vector3 arrowNockTransformToHeadset = ( ( Player.instance.hmdTransform.position + ( Vector3.down * 0.05f ) ) - arrowHand.arrowNockTransform.parent.position ).normalized;
 				Vector3 arrowHandPosition = ( arrowHand.arrowNockTransform.parent.position + ( ( arrowNockTransformToHeadset * drawOffset ) * pullLerp ) ); // Use this line to lerp arrowHand nock position
 				//Vector3 arrowHandPosition = arrowHand.arrowNockTransform.position; // Use this line if we don't want to lerp arrowHand nock position
 
@@ -143,7 +143,7 @@ namespace Valve.VR.InteractionSystem
 					{
 						ushort hapticStrength = (ushort)Util.RemapNumber( nockDistanceTravelled, 0, maxPull, bowPullPulseStrengthLow, bowPullPulseStrengthHigh );
 						hand.TriggerHapticPulse( hapticStrength );
-						hand.OtherHand.TriggerHapticPulse( hapticStrength );
+						hand.otherHand.TriggerHapticPulse( hapticStrength );
 
 						drawSound.PlayBowTensionClicks( drawTension );
 
@@ -155,7 +155,7 @@ namespace Valve.VR.InteractionSystem
 						if ( Time.time > nextStrainTick )
 						{
 							hand.TriggerHapticPulse( 400 );
-							hand.OtherHand.TriggerHapticPulse( 400 );
+							hand.otherHand.TriggerHapticPulse( 400 );
 
 							drawSound.PlayBowTensionClicks( drawTension );
 
@@ -192,7 +192,7 @@ namespace Valve.VR.InteractionSystem
 		{
 			nocked = false;
 			hand.HoverUnlock( GetComponent<Interactable>() );
-			hand.OtherHand.HoverUnlock( arrowHand.GetComponent<Interactable>() );
+			hand.otherHand.HoverUnlock( arrowHand.GetComponent<Interactable>() );
 
 			if ( releaseSound != null )
 			{
@@ -260,7 +260,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void EvaluateHandedness()
 		{
-            var handType = hand.HandType;
+            var handType = hand.handType;
 
 			if ( handType == SteamVR_Input_Sources.LeftHand )// Bow hand is further left than arrow hand.
 			{
@@ -349,13 +349,13 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void ShutDown()
 		{
-			if ( hand != null && hand.OtherHand.CurrentAttachedObject != null )
+			if ( hand != null && hand.otherHand.currentAttachedObject != null )
 			{
-				if ( hand.OtherHand.CurrentAttachedObject.GetComponent<ItemPackageReference>() != null )
+				if ( hand.otherHand.currentAttachedObject.GetComponent<ItemPackageReference>() != null )
 				{
-					if ( hand.OtherHand.CurrentAttachedObject.GetComponent<ItemPackageReference>().itemPackage == arrowHandItemPackage )
+					if ( hand.otherHand.currentAttachedObject.GetComponent<ItemPackageReference>().itemPackage == arrowHandItemPackage )
 					{
-						hand.OtherHand.DetachObject( hand.OtherHand.CurrentAttachedObject );
+						hand.otherHand.DetachObject( hand.otherHand.currentAttachedObject );
 					}
 				}
 			}

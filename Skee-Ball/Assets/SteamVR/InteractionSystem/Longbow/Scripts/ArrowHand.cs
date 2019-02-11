@@ -46,7 +46,7 @@ namespace Valve.VR.InteractionSystem
 		void Awake()
 		{
 			allowTeleport = GetComponent<AllowTeleportWhileAttachedToHand>();
-			allowTeleport.teleportAllowed = true;
+			//allowTeleport.teleportAllowed = true;
 			allowTeleport.overrideHoverLock = false;
 
 			arrowList = new List<GameObject>();
@@ -267,16 +267,16 @@ namespace Valve.VR.InteractionSystem
 		{
 			yield return new WaitForSeconds( 0.05f );
 
-			hand.OtherHand.TriggerHapticPulse( 1500 );
+			hand.otherHand.TriggerHapticPulse( 1500 );
 			yield return new WaitForSeconds( 0.05f );
 
-			hand.OtherHand.TriggerHapticPulse( 800 );
+			hand.otherHand.TriggerHapticPulse( 800 );
 			yield return new WaitForSeconds( 0.05f );
 
-			hand.OtherHand.TriggerHapticPulse( 500 );
+			hand.otherHand.TriggerHapticPulse( 500 );
 			yield return new WaitForSeconds( 0.05f );
 
-			hand.OtherHand.TriggerHapticPulse( 300 );
+			hand.otherHand.TriggerHapticPulse( 300 );
 		}
 
 
@@ -297,7 +297,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void FindBow()
 		{
-			bow = hand.OtherHand.GetComponentInChildren<Longbow>();
+			bow = hand.otherHand.GetComponentInChildren<Longbow>();
 		}
 	}
 }

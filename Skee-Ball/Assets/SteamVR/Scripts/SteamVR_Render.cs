@@ -8,6 +8,7 @@ using UnityEngine;
 using System.Collections;
 using Valve.VR;
 
+
 namespace Valve.VR
 {
     public class SteamVR_Render : MonoBehaviour
@@ -48,7 +49,7 @@ namespace Valve.VR
 
         private SteamVR_Camera[] cameras = new SteamVR_Camera[0];
 
-        private void AddInternal(SteamVR_Camera vrcam)
+        void AddInternal(SteamVR_Camera vrcam)
         {
             var camera = vrcam.GetComponent<Camera>();
             var length = cameras.Length;
@@ -68,7 +69,7 @@ namespace Valve.VR
             cameras = sorted;
         }
 
-        private void RemoveInternal(SteamVR_Camera vrcam)
+        void RemoveInternal(SteamVR_Camera vrcam)
         {
             var length = cameras.Length;
             int count = 0;
@@ -93,7 +94,7 @@ namespace Valve.VR
             cameras = sorted;
         }
 
-        private SteamVR_Camera TopInternal()
+        SteamVR_Camera TopInternal()
         {
             if (cameras.Length > 0)
                 return cameras[cameras.Length - 1];
@@ -138,7 +139,7 @@ namespace Valve.VR
                     compositor.SetTrackingSpace(SteamVR.settings.trackingSpace);
                 }
 
-                var overlay = SteamVR_Overlay.Instance;
+                var overlay = SteamVR_Overlay.instance;
                 if (overlay != null)
                     overlay.UpdateOverlay();
 
@@ -146,7 +147,7 @@ namespace Valve.VR
             }
         }
 
-        private void RenderExternalCamera()
+        void RenderExternalCamera()
         {
             if (externalCamera == null)
                 return;
@@ -237,6 +238,8 @@ namespace Valve.VR
             }
         }
 
+        private EVRScreenshotType[] screenshotTypes = new EVRScreenshotType[] { EVRScreenshotType.StereoPanorama };
+
         private void OnEnable()
         {
             StartCoroutine(RenderLoop());
@@ -248,11 +251,20 @@ namespace Valve.VR
 #else
             Camera.onPreCull += OnCameraPreCull;
 #endif
-            var types = new EVRScreenshotType[] { EVRScreenshotType.StereoPanorama };
-            OpenVR.Screenshots.HookScreenshot(types);
+
+            if (SteamVR.initializedState == SteamVR.InitializedStates.InitializeSuccess)
+                OpenVR.Screenshots.HookScreenshot(screenshotTypes);
+            else
+                SteamVR_Events.Initialized.AddListener(OnSteamVRInitialized);
         }
 
-        void OnDisable()
+        private void OnSteamVRInitialized(bool success)
+        {
+            if (success)
+                OpenVR.Screenshots.HookScreenshot(screenshotTypes);
+        }
+
+        private void OnDisable()
         {
             StopAllCoroutines();
             SteamVR_Events.InputFocus.Remove(OnInputFocus);
@@ -263,6 +275,9 @@ namespace Valve.VR
 #else
             Camera.onPreCull -= OnCameraPreCull;
 #endif
+
+            if (SteamVR.initializedState != SteamVR.InitializedStates.InitializeSuccess)
+                SteamVR_Events.Initialized.RemoveListener(OnSteamVRInitialized);
         }
 
         private void Awake()
@@ -291,7 +306,7 @@ namespace Valve.VR
         }
 
 #if UNITY_2017_1_OR_NEWER
-        private void OnBeforeRender() 
+	    void OnBeforeRender() 
         { 
             if (SteamVR.active == false)
                 return;
@@ -302,7 +317,7 @@ namespace Valve.VR
             }
         }
 #else
-        private void OnCameraPreCull(Camera cam)
+        void OnCameraPreCull(Camera cam)
         {
             if (SteamVR.active == false)
                 return;
@@ -331,7 +346,7 @@ namespace Valve.VR
         static int lastFrameCount = -1;
 #endif
 
-        private void Update()
+        void Update()
         {
             if (SteamVR.active == false)
                 return;

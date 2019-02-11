@@ -331,23 +331,23 @@ namespace Valve.VR
 
             if (!string.IsNullOrEmpty(internalProcessPath))
             {
-                Debug.Log("Launching external application...");
+                Debug.Log("<b>[SteamVR]</b> Launching external application...");
                 var applications = OpenVR.Applications;
                 if (applications == null)
                 {
-                    Debug.Log("Failed to get OpenVR.Applications interface!");
+                    Debug.Log("<b>[SteamVR]</b> Failed to get OpenVR.Applications interface!");
                 }
                 else
                 {
                     var workingDirectory = Directory.GetCurrentDirectory();
                     var fullPath = Path.Combine(workingDirectory, internalProcessPath);
-                    Debug.Log("LaunchingInternalProcess");
-                    Debug.Log("ExternalAppPath = " + internalProcessPath);
-                    Debug.Log("FullPath = " + fullPath);
-                    Debug.Log("ExternalAppArgs = " + internalProcessArgs);
-                    Debug.Log("WorkingDirectory = " + workingDirectory);
+                    Debug.Log("<b>[SteamVR]</b> LaunchingInternalProcess");
+                    Debug.Log("<b>[SteamVR]</b> ExternalAppPath = " + internalProcessPath);
+                    Debug.Log("<b>[SteamVR]</b> FullPath = " + fullPath);
+                    Debug.Log("<b>[SteamVR]</b> ExternalAppArgs = " + internalProcessArgs);
+                    Debug.Log("<b>[SteamVR]</b> WorkingDirectory = " + workingDirectory);
                     var error = applications.LaunchInternalProcess(fullPath, internalProcessArgs, workingDirectory);
-                    Debug.Log("LaunchInternalProcessError: " + error);
+                    Debug.Log("<b>[SteamVR]</b> LaunchInternalProcessError: " + error);
 #if UNITY_EDITOR
                     UnityEditor.EditorApplication.isPlaying = false;
 #elif !UNITY_METRO
@@ -455,7 +455,7 @@ namespace Valve.VR
             if (overlay == null)
                 return handle;
 
-            var key = SteamVR_Overlay.Key + "." + overlayName;
+            var key = SteamVR_Overlay.key + "." + overlayName;
 
             var error = overlay.FindOverlay(key, ref handle);
             if (error != EVROverlayError.None)

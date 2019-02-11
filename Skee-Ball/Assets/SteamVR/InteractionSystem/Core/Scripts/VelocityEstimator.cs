@@ -24,6 +24,7 @@ namespace Valve.VR.InteractionSystem
 		private Vector3[] velocitySamples;
 		private Vector3[] angularVelocitySamples;
 
+	
 		//-------------------------------------------------
 		public void BeginEstimatingVelocity()
 		{
@@ -31,6 +32,7 @@ namespace Valve.VR.InteractionSystem
 
 			routine = StartCoroutine( EstimateVelocityCoroutine() );
 		}
+
 
 		//-------------------------------------------------
 		public void FinishEstimatingVelocity()
@@ -41,6 +43,7 @@ namespace Valve.VR.InteractionSystem
 				routine = null;
 			}
 		}
+
 
 		//-------------------------------------------------
 		public Vector3 GetVelocityEstimate()
@@ -60,6 +63,7 @@ namespace Valve.VR.InteractionSystem
 			return velocity;
 		}
 
+
 		//-------------------------------------------------
 		public Vector3 GetAngularVelocityEstimate()
 		{
@@ -77,6 +81,7 @@ namespace Valve.VR.InteractionSystem
 
 			return angularVelocity;
 		}
+
 
 		//-------------------------------------------------
 		public Vector3 GetAccelerationEstimate()
@@ -98,8 +103,9 @@ namespace Valve.VR.InteractionSystem
 			return average;
 		}
 
-        //-------------------------------------------------
-        private void Awake()
+
+		//-------------------------------------------------
+		void Awake()
 		{
 			velocitySamples = new Vector3[velocityAverageFrames];
 			angularVelocitySamples = new Vector3[angularVelocityAverageFrames];
@@ -109,6 +115,7 @@ namespace Valve.VR.InteractionSystem
 				BeginEstimatingVelocity();
 			}
 		}
+
 
 		//-------------------------------------------------
 		private IEnumerator EstimateVelocityCoroutine()

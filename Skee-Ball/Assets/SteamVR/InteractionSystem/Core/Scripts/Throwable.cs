@@ -36,9 +36,7 @@ namespace Valve.VR.InteractionSystem
 		[Tooltip( "When detaching the object, should it return to its original parent?" )]
 		public bool restoreOriginalParent = false;
 
-        public bool attachEaseIn = false;
-		public AnimationCurve snapAttachEaseInCurve = AnimationCurve.EaseInOut( 0.0f, 0.0f, 1.0f, 1.0f );
-		public float snapAttachEaseInTime = 0.15f;
+        
 
 		protected VelocityEstimator velocityEstimator;
         protected bool attached = false;
@@ -48,9 +46,9 @@ namespace Valve.VR.InteractionSystem
         protected Transform attachEaseInTransform;
 
 		public UnityEvent onPickUp;
-		public UnityEvent onDetachFromHand;
+        public UnityEvent onDetachFromHand;
+        public UnityEvent<Hand> onHeldUpdate;
 
-		public bool snapAttachEaseInCompleted = false;
         
         protected RigidbodyInterpolation hadInterpolation = RigidbodyInterpolation.None;
 
@@ -59,25 +57,27 @@ namespace Valve.VR.InteractionSystem
         [HideInInspector]
         public Interactable interactable;
 
+
         //-------------------------------------------------
         protected virtual void Awake()
 		{
 			velocityEstimator = GetComponent<VelocityEstimator>();
             interactable = GetComponent<Interactable>();
 
-			if ( attachEaseIn )
-			{
-				attachmentFlags &= ~Hand.AttachmentFlags.SnapOnAttach;
-			}
+
 
             rigidbody = GetComponent<Rigidbody>();
             rigidbody.maxAngularVelocity = 50.0f;
 
+
             if(attachmentOffset != null)
             {
-                interactable.handFollowTransform = attachmentOffset;
+                // remove?
+                //interactable.handFollowTransform = attachmentOffset;
             }
+
 		}
+
 
         //-------------------------------------------------
         protected virtual void OnHandHoverBegin( Hand hand )
@@ -89,7 +89,7 @@ namespace Valve.VR.InteractionSystem
             // and if it isn't attached to another hand
             if ( !attached && catchingSpeedThreshold != -1)
             {
-                float catchingThreshold = catchingSpeedThreshold * SteamVR_Utils.GetLossyScale(Player.Instance.TrackingOriginTransform);
+                float catchingThreshold = catchingSpeedThreshold * SteamVR_Utils.GetLossyScale(Player.instance.trackingOriginTransform);
 
                 GrabTypes bestGrabType = hand.GetBestGrabbingType();
 
@@ -116,6 +116,7 @@ namespace Valve.VR.InteractionSystem
             hand.HideGrabHint();
 		}
 
+
         //-------------------------------------------------
         protected virtual void HandHoverUpdate( Hand hand )
         {
@@ -131,7 +132,7 @@ namespace Valve.VR.InteractionSystem
         //-------------------------------------------------
         protected virtual void OnAttachedToHand( Hand hand )
 		{
-            //Debug.Log("Pickup: " + hand.GetGrabStarting().ToString());
+            //Debug.Log("<b>[SteamVR Interaction]</b> Pickup: " + hand.GetGrabStarting().ToString());
 
             hadInterpolation = this.rigidbody.interpolation;
 
@@ -149,13 +150,8 @@ namespace Valve.VR.InteractionSystem
 			attachPosition = transform.position;
 			attachRotation = transform.rotation;
 
-			if ( attachEaseIn )
-			{
-                attachEaseInTransform = hand.ObjectAttachmentPoint;
-			}
-
-			snapAttachEaseInCompleted = false;
 		}
+
 
         //-------------------------------------------------
         protected virtual void OnDetachedFromHand(Hand hand)
@@ -180,6 +176,9 @@ namespace Valve.VR.InteractionSystem
 
         public virtual void GetReleaseVelocities(Hand hand, out Vector3 velocity, out Vector3 angularVelocity)
         {
+            if (hand.noSteamVRFallbackCamera && releaseVelocityStyle != ReleaseStyle.NoChange)
+                releaseVelocityStyle = ReleaseStyle.ShortEstimation; // only type that works with fallback hand is short estimation.
+
             switch (releaseVelocityStyle)
             {
                 case ReleaseStyle.ShortEstimation:
@@ -191,11 +190,8 @@ namespace Valve.VR.InteractionSystem
                     hand.GetEstimatedPeakVelocities(out velocity, out angularVelocity);
                     break;
                 case ReleaseStyle.GetFromHand:
-                    // !!!
-                    #region MUSTONEN
                     velocity = hand.GetTrackedObjectVelocity(releaseVelocityTimeOffset);
                     angularVelocity = hand.GetTrackedObjectAngularVelocity(releaseVelocityTimeOffset);
-                    #endregion MUSTONEN
                     break;
                 default:
                 case ReleaseStyle.NoChange:
@@ -211,21 +207,7 @@ namespace Valve.VR.InteractionSystem
         //-------------------------------------------------
         protected virtual void HandAttachedUpdate(Hand hand)
         {
-            if (attachEaseIn)
-            {
-                float t = Util.RemapNumberClamped(Time.time, attachTime, attachTime + snapAttachEaseInTime, 0.0f, 1.0f);
-                if (t < 1.0f)
-                {
-                    t = snapAttachEaseInCurve.Evaluate(t);
-                    transform.position = Vector3.Lerp(attachPosition, attachEaseInTransform.position, t);
-                    transform.rotation = Quaternion.Lerp(attachRotation, attachEaseInTransform.rotation, t);
-                }
-                else if (!snapAttachEaseInCompleted)
-                {
-                    gameObject.SendMessage("OnThrowableAttachEaseInCompleted", hand, SendMessageOptions.DontRequireReceiver);
-                    snapAttachEaseInCompleted = true;
-                }
-            }
+
 
             if (hand.IsGrabEnding(this.gameObject))
             {
@@ -239,7 +221,11 @@ namespace Valve.VR.InteractionSystem
                 // to teleport behind the hand when the player releases it.
                 //StartCoroutine( LateDetach( hand ) );
             }
+
+            if (onHeldUpdate != null)
+                onHeldUpdate.Invoke(hand);
         }
+
 
         //-------------------------------------------------
         protected virtual IEnumerator LateDetach( Hand hand )
@@ -249,12 +235,14 @@ namespace Valve.VR.InteractionSystem
 			hand.DetachObject( gameObject, restoreOriginalParent );
 		}
 
+
         //-------------------------------------------------
         protected virtual void OnHandFocusAcquired( Hand hand )
 		{
 			gameObject.SetActive( true );
 			velocityEstimator.BeginEstimatingVelocity();
 		}
+
 
         //-------------------------------------------------
         protected virtual void OnHandFocusLost( Hand hand )

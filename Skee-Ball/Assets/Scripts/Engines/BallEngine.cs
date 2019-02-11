@@ -97,6 +97,9 @@ public class BallEngine : MonoBehaviour
                 if (rigidbody.velocity.magnitude < minHitToSoundVelocity)
                 {
                     Debug.LogWarning("HOOP");
+                    AudioPlayer.Instance.PlaySfx(
+                    audioSource,
+                    "Sock");
 
                     return;
                 }

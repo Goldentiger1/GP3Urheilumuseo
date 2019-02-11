@@ -34,7 +34,7 @@ public class LevelManager : Singelton<LevelManager>
 
     public void UpdateScore(Transform hitTransform)
     {
-        var throwDistance = Vector3.Distance(hitTransform.position, Player.Instance.FeetPositionGuess);
+        var throwDistance = Vector3.Distance(hitTransform.position, Player.instance.feetPositionGuess);
 
         totalScore = throwDistance > throwDistanceRequiredForThreePoints ? 3 : 2;
 

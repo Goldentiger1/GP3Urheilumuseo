@@ -13,33 +13,34 @@ namespace Valve.VR.InteractionSystem
 	//-------------------------------------------------------------------------
 	public class ChaperoneInfo : MonoBehaviour
 	{
-		public bool Initialized { get; private set; }
-		public float PlayAreaSizeX { get; private set; }
-		public float PlayAreaSizeZ { get; private set; }
-		public bool Roomscale { get; private set; }
+		public bool initialized { get; private set; }
+		public float playAreaSizeX { get; private set; }
+		public float playAreaSizeZ { get; private set; }
+		public bool roomscale { get; private set; }
 
-		public static SteamVR_Events.Event InitializedEvents = new SteamVR_Events.Event();
-		public static SteamVR_Events.Action InitializedAction( UnityAction action ) { return new SteamVR_Events.ActionNoArgs( InitializedEvents, action ); }
+		public static SteamVR_Events.Event Initialized = new SteamVR_Events.Event();
+		public static SteamVR_Events.Action InitializedAction( UnityAction action ) { return new SteamVR_Events.ActionNoArgs( Initialized, action ); }
 
 		//-------------------------------------------------
-		private static ChaperoneInfo instance;
-		public static ChaperoneInfo Instance
+		private static ChaperoneInfo _instance;
+		public static ChaperoneInfo instance
 		{
 			get
 			{
-				if ( instance == null )
+				if ( _instance == null )
 				{
-					instance = new GameObject( "[ChaperoneInfo]" ).AddComponent<ChaperoneInfo>();
-					instance.Initialized = false;
-					instance.PlayAreaSizeX = 1.0f;
-					instance.PlayAreaSizeZ = 1.0f;
-					instance.Roomscale = false;
+					_instance = new GameObject( "[ChaperoneInfo]" ).AddComponent<ChaperoneInfo>();
+					_instance.initialized = false;
+					_instance.playAreaSizeX = 1.0f;
+					_instance.playAreaSizeZ = 1.0f;
+					_instance.roomscale = false;
 
-					DontDestroyOnLoad( instance.gameObject );
+					DontDestroyOnLoad( _instance.gameObject );
 				}
-				return instance;
+				return _instance;
 			}
 		}
+
 
 		//-------------------------------------------------
 		IEnumerator Start()
@@ -56,8 +57,8 @@ namespace Valve.VR.InteractionSystem
 			var chaperone = OpenVR.Chaperone;
 			if ( chaperone == null )
 			{
-				Debug.LogWarning( "Failed to get IVRChaperone interface." );
-				Initialized = true;
+				Debug.LogWarning("<b>[SteamVR Interaction]</b> Failed to get IVRChaperone interface.");
+				initialized = true;
 				yield break;
 			}
 
@@ -67,14 +68,14 @@ namespace Valve.VR.InteractionSystem
 				float px = 0.0f, pz = 0.0f;
 				if ( chaperone.GetPlayAreaSize( ref px, ref pz ) )
 				{
-					Initialized = true;
-					PlayAreaSizeX = px;
-					PlayAreaSizeZ = pz;
-					Roomscale = Mathf.Max( px, pz ) > 1.01f;
+					initialized = true;
+					playAreaSizeX = px;
+					playAreaSizeZ = pz;
+					roomscale = Mathf.Max( px, pz ) > 1.01f;
 
-					Debug.LogFormat( "ChaperoneInfo initialized. {2} play area {0:0.00}m x {1:0.00}m", px, pz, Roomscale ? "Roomscale" : "Standing" );
+					Debug.LogFormat("<b>[SteamVR Interaction]</b> ChaperoneInfo initialized. {2} play area {0:0.00}m x {1:0.00}m", px, pz, roomscale ? "Roomscale" : "Standing" );
 
-                    InitializedEvents.Send();
+					ChaperoneInfo.Initialized.Send();
 
 					yield break;
 				}

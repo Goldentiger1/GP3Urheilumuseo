@@ -11,9 +11,9 @@ namespace Valve.VR.InteractionSystem.Sample
 
         public void AnimateHandWithController()
         {
-            for (int handIndex = 0; handIndex < Player.Instance.Hands.Length; handIndex++)
+            for (int handIndex = 0; handIndex < Player.instance.hands.Length; handIndex++)
             {
-                Hand hand = Player.Instance.Hands[handIndex];
+                Hand hand = Player.instance.hands[handIndex];
                 if (hand != null)
                 {
                     hand.SetSkeletonRangeOfMotion(Valve.VR.EVRSkeletalMotionRange.WithController);
@@ -23,9 +23,9 @@ namespace Valve.VR.InteractionSystem.Sample
 
         public void AnimateHandWithoutController()
         {
-            for (int handIndex = 0; handIndex < Player.Instance.Hands.Length; handIndex++)
+            for (int handIndex = 0; handIndex < Player.instance.hands.Length; handIndex++)
             {
-                Hand hand = Player.Instance.Hands[handIndex];
+                Hand hand = Player.instance.hands[handIndex];
                 if (hand != null)
                 {
                     hand.SetSkeletonRangeOfMotion(Valve.VR.EVRSkeletalMotionRange.WithoutController);
@@ -35,9 +35,9 @@ namespace Valve.VR.InteractionSystem.Sample
 
         public void ShowController()
         {
-            for (int handIndex = 0; handIndex < Player.Instance.Hands.Length; handIndex++)
+            for (int handIndex = 0; handIndex < Player.instance.hands.Length; handIndex++)
             {
-                Hand hand = Player.Instance.Hands[handIndex];
+                Hand hand = Player.instance.hands[handIndex];
                 if (hand != null)
                 {
                     hand.ShowController(true);
@@ -45,16 +45,16 @@ namespace Valve.VR.InteractionSystem.Sample
             }
         }
 
-        public void SetRenderModel(RenderModelHolder prefabs)
+        public void SetRenderModel(RenderModelChangerUI prefabs)
         {
-            for (int handIndex = 0; handIndex < Player.Instance.Hands.Length; handIndex++)
+            for (int handIndex = 0; handIndex < Player.instance.hands.Length; handIndex++)
             {
-                Hand hand = Player.Instance.Hands[handIndex];
+                Hand hand = Player.instance.hands[handIndex];
                 if (hand != null)
                 {
-                    if (hand.HandType == SteamVR_Input_Sources.RightHand)
+                    if (hand.handType == SteamVR_Input_Sources.RightHand)
                         hand.SetRenderModel(prefabs.rightPrefab);
-                    if (hand.HandType == SteamVR_Input_Sources.LeftHand)
+                    if (hand.handType == SteamVR_Input_Sources.LeftHand)
                         hand.SetRenderModel(prefabs.leftPrefab);
                 }
             }
@@ -62,9 +62,9 @@ namespace Valve.VR.InteractionSystem.Sample
 
         public void HideController()
         {
-            for (int handIndex = 0; handIndex < Player.Instance.Hands.Length; handIndex++)
+            for (int handIndex = 0; handIndex < Player.instance.hands.Length; handIndex++)
             {
-                Hand hand = Player.Instance.Hands[handIndex];
+                Hand hand = Player.instance.hands[handIndex];
                 if (hand != null)
                 {
                     hand.HideController(true);

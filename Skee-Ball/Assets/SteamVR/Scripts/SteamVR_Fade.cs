@@ -20,38 +20,41 @@
 //=============================================================================
 
 using UnityEngine;
+using Valve.VR;
 
 namespace Valve.VR
 {
-    public class SteamVR_Fade : Singelton<SteamVR_Fade>
+    public class SteamVR_Fade : MonoBehaviour
     {
-        public bool IsFading
-        {
-            get
-            {
-                return currentColor != targetColor;
-            }
-        }
-
         private Color currentColor = new Color(0, 0, 0, 0); // default starting color: black and fully transparent
         private Color targetColor = new Color(0, 0, 0, 0);  // default target color: black and fully transparent
         private Color deltaColor = new Color(0, 0, 0, 0);   // the delta-color is basically the "speed / second" at which the current color should change
-        private readonly bool fadeOverlay = false;
+        private bool fadeOverlay = false;
 
-        private static Material fadeMaterial = null;
-        private static int fadeMaterialColorID = -1;
+        public bool IsFading { get; private set; }
 
-        public static void Start(Color newColor, float duration, bool fadeOverlay = false)
+        static public void Start(Color newColor, float duration, bool fadeOverlay = false)
         {
-            SteamVR_Events.Fade.Send(newColor, duration, fadeOverlay);        
+            SteamVR_Events.Fade.Send(newColor, duration, fadeOverlay);
         }
 
-        public static void View(Color newColor, float duration)
+        static public void View(Color newColor, float duration)
         {
             var compositor = OpenVR.Compositor;
             if (compositor != null)
                 compositor.FadeToColor(duration, newColor.r, newColor.g, newColor.b, newColor.a, false);
         }
+
+#if TEST_FADE_VIEW
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			SteamVR_Fade.View(Color.black, 0);
+			SteamVR_Fade.View(Color.clear, 1);
+		}
+	}
+#endif
 
         public void OnStartFade(Color newColor, float duration, bool fadeOverlay)
         {
@@ -66,7 +69,10 @@ namespace Valve.VR
             }
         }
 
-        private void OnEnable()
+        static Material fadeMaterial = null;
+        static int fadeMaterialColorID = -1;
+
+        void OnEnable()
         {
             if (fadeMaterial == null)
             {
@@ -78,12 +84,12 @@ namespace Valve.VR
             SteamVR_Events.FadeReady.Send();
         }
 
-        private void OnDisable()
+        void OnDisable()
         {
             SteamVR_Events.Fade.Remove(OnStartFade);
         }
 
-        private void OnPostRender()
+        void OnPostRender()
         {
             if (currentColor != targetColor)
             {
@@ -100,13 +106,12 @@ namespace Valve.VR
 
                 if (fadeOverlay)
                 {
-                    var overlay = SteamVR_Overlay.Instance;
+                    var overlay = SteamVR_Overlay.instance;
                     if (overlay != null)
                     {
-                        overlay.Alpha = 1.0f - currentColor.a;
+                        overlay.alpha = 1.0f - currentColor.a;
                     }
                 }
-                // ???
             }
 
             if (currentColor.a > 0 && fadeMaterial)

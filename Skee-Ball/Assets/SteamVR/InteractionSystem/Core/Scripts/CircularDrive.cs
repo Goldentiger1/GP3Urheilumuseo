@@ -110,7 +110,7 @@ namespace Valve.VR.InteractionSystem
 		{
 			frozen = true;
 			frozenAngle = outAngle;
-			frozenHandWorldPos = hand.HoverSphereTransform.position;
+			frozenHandWorldPos = hand.hoverSphereTransform.position;
 			frozenSqDistanceMinMaxThreshold.x = frozenDistanceMinMaxThreshold.x * frozenDistanceMinMaxThreshold.x;
 			frozenSqDistanceMinMaxThreshold.y = frozenDistanceMinMaxThreshold.y * frozenDistanceMinMaxThreshold.y;
 		}
@@ -249,7 +249,7 @@ namespace Valve.VR.InteractionSystem
             {
                 grabbedWithType = startingGrabType;
                 // Trigger was just pressed
-                lastHandProjected = ComputeToTransformProjected( hand.HoverSphereTransform );
+                lastHandProjected = ComputeToTransformProjected( hand.hoverSphereTransform );
 
 				if ( hoverLock )
 				{
@@ -277,7 +277,7 @@ namespace Valve.VR.InteractionSystem
                 grabbedWithType = GrabTypes.None;
             }
 
-            if ( driving && isGrabEnding == false && hand.HoveringInteractable == this.interactable )
+            if ( driving && isGrabEnding == false && hand.hoveringInteractable == this.interactable )
 			{
 				ComputeAngle( hand );
 				UpdateAll();
@@ -298,8 +298,8 @@ namespace Valve.VR.InteractionSystem
 			}
 			else
 			{
-				Debug.LogFormat( "The collider needs to be a minimum distance away from the CircularDrive GameObject {0}", gameObject.ToString() );
-				Debug.Assert( false, string.Format( "The collider needs to be a minimum distance away from the CircularDrive GameObject {0}", gameObject.ToString() ) );
+				Debug.LogFormat("<b>[SteamVR Interaction]</b> The collider needs to be a minimum distance away from the CircularDrive GameObject {0}", gameObject.ToString() );
+				Debug.Assert( false, string.Format("<b>[SteamVR Interaction]</b> The collider needs to be a minimum distance away from the CircularDrive GameObject {0}", gameObject.ToString() ) );
 			}
 
 			if ( debugPath && dbgPathLimit > 0 )
@@ -446,7 +446,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void ComputeAngle( Hand hand )
 		{
-			Vector3 toHandProjected = ComputeToTransformProjected( hand.HoverSphereTransform );
+			Vector3 toHandProjected = ComputeToTransformProjected( hand.hoverSphereTransform );
 
 			if ( !toHandProjected.Equals( lastHandProjected ) )
 			{
@@ -456,7 +456,7 @@ namespace Valve.VR.InteractionSystem
 				{
 					if ( frozen )
 					{
-						float frozenSqDist = ( hand.HoverSphereTransform.position - frozenHandWorldPos ).sqrMagnitude;
+						float frozenSqDist = ( hand.hoverSphereTransform.position - frozenHandWorldPos ).sqrMagnitude;
 						if ( frozenSqDist > frozenSqDistanceMinMaxThreshold.x )
 						{
 							outAngle = frozenAngle + Random.Range( -1.0f, 1.0f );

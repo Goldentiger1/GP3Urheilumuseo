@@ -184,7 +184,8 @@ namespace Valve.VR.InteractionSystem
                             return hmdTransforms[i];
                     }
                 }
-				return null;
+
+                return null;            
 			}
 		}
 

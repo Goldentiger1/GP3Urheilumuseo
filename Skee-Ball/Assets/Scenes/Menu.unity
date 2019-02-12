@@ -113,26 +113,26 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &364290122 stripped
+--- !u!1 &109809846 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 100004, guid: 4366412481589a7479d89ffe3b2ff61e,
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 4366412481589a7479d89ffe3b2ff61e,
     type: 3}
   m_PrefabInstance: {fileID: 1757498491}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &364290123
+--- !u!64 &109809850
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364290122}
+  m_GameObject: {fileID: 109809846}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300000, guid: 4366412481589a7479d89ffe3b2ff61e, type: 3}
 --- !u!1 &404890207
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,6 +698,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 4366412481589a7479d89ffe3b2ff61e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 4366412481589a7479d89ffe3b2ff61e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 4366412481589a7479d89ffe3b2ff61e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -742,6 +750,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 212e2361cdec5684bbe02a33ec8a7670, type: 2}
+    - target: {fileID: 2300002, guid: 4366412481589a7479d89ffe3b2ff61e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300002, guid: 4366412481589a7479d89ffe3b2ff61e, type: 3}
+      propertyPath: m_AutoUVMaxAngle
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4366412481589a7479d89ffe3b2ff61e, type: 3}
 --- !u!4 &1757498492 stripped
@@ -974,12 +990,12 @@ PrefabInstance:
     - target: {fileID: 6890192731532230168, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6890192731532230168, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6890192731532230168, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
         type: 3}
@@ -1019,6 +1035,16 @@ PrefabInstance:
     - target: {fileID: 4585315075191053662, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
         type: 3}
       propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585315075191053662, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
+        type: 3}
+      propertyPath: m_spriteAsset
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585315075191053662, guid: 1a23fa4ef343f11438b6fd85a50d6b1b,
+        type: 3}
+      propertyPath: m_fontStyle
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

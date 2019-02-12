@@ -76,6 +76,9 @@ public class Narration : Sound
             return;
 
         audioSource.clip = AudioClips[UnityEngine.Random.Range(0, AudioClips.Length)];
+        Debug.LogError(audioSource.clip.name);
+        NarrationPanel.Instance.ShowPanel(audioSource.clip.name);
+
         audioSource.Play();
         Debug.LogWarning(Name + " PLAY ( Audio clip: " + audioSource.clip.name + " )");
     }

@@ -40,11 +40,11 @@ public class LevelManager : Singelton<LevelManager>
 
         if (totalScore < MAX_SCORE_AMOUNT)
         {
-            UIManager.Instance.UpdateScoreVisuals(totalScore.ToString());
+
         }
         else
         {
-            UIManager.Instance.UpdateScoreVisuals(totalScore.ToString());
+            GameMaster.Instance.ChangeNextScene();
         }      
     }
 

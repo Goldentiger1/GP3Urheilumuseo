@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 [Serializable]
@@ -57,7 +58,7 @@ public class LocalizationManager : Singelton<LocalizationManager>
 
         if (File.Exists(filePath))
         {
-            string dataAsJson = File.ReadAllText(filePath);
+            string dataAsJson = File.ReadAllText(filePath, Encoding.Default);
 
             LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataAsJson);
 

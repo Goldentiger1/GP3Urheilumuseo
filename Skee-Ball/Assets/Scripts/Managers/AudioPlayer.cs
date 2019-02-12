@@ -6,6 +6,8 @@ public class AudioPlayer : Singelton<AudioPlayer>
     public Narration[] Narrations;
     public Sfx[] SoundEffects;
 
+    public string CurrentNarrationClipName { get; set; }
+
     private void Start()
     {
         CreateMusicTrackAudioSources();

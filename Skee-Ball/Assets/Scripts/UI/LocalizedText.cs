@@ -31,10 +31,7 @@ public class LocalizedText : MonoBehaviour
     {
         textMeshProUGUI = GetComponent<TextMeshProUGUI>();
         textMeshPro = GetComponent<TextMeshPro>();
-    }
 
-    private void Start()
-    {
         LocalizationManager.Instance.AddLocalizedText(this);
     }
 }

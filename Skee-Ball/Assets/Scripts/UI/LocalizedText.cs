@@ -10,6 +10,21 @@ public class LocalizedText : MonoBehaviour
 
     public string Text
     {
+        get
+        {
+            if (textMeshProUGUI != null)
+            {
+                return textMeshProUGUI.text;
+            }
+            else if (textMeshPro != null)
+            {
+                return textMeshPro.text;
+            }
+            else
+            {
+                return "Super Foo!";
+            }
+        }
         set
         {
             if(textMeshProUGUI != null)

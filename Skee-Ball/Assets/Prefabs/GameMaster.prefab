@@ -185,14 +185,12 @@ MonoBehaviour:
     pitch: 1
     AudioClips:
     - {fileID: 8300000, guid: 93c20f5cbea3c994da72c15b4f37a3b3, type: 3}
-    Texts: []
   - Name: II
     volume: 1
     pitch: 1
     AudioClips:
     - {fileID: 8300000, guid: 7d024927ce7d6224eb13f67b48b27b39, type: 3}
     - {fileID: 8300000, guid: b246297d05442d84b927f255c5e7bc7c, type: 3}
-    Texts: []
   - Name: III
     volume: 1
     pitch: 1
@@ -200,7 +198,6 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 703183293ba7a714da97f9fc946e3d61, type: 3}
     - {fileID: 8300000, guid: 76b7c001c5b80d94cafe879c844c74bf, type: 3}
     - {fileID: 8300000, guid: 7db2f0760dc828f4cb7b09e4256b9878, type: 3}
-    Texts: []
   - Name: IV (60-luku)
     volume: 1
     pitch: 1
@@ -209,14 +206,12 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 9419fca32dc0fdd46a8510d78b46468d, type: 3}
     - {fileID: 8300000, guid: 9ae5dc99833e6b14d8dac10fbb07d948, type: 3}
     - {fileID: 8300000, guid: a1ce459995a63ed4f92841e38e57c3c7, type: 3}
-    Texts: []
   - Name: V (70-luku)
     volume: 0.5
     pitch: 1
     AudioClips:
     - {fileID: 8300000, guid: 7d5673fe336c9af448cca6c58f51e7e4, type: 3}
     - {fileID: 8300000, guid: dfaa9e6193726024bb1a6be8dc4ab955, type: 3}
-    Texts: []
   - Name: VI (80-luku)
     volume: 0.5
     pitch: 1
@@ -224,7 +219,6 @@ MonoBehaviour:
     - {fileID: 8300000, guid: f4f1e50d690f3704cba21db007bb1b3c, type: 3}
     - {fileID: 8300000, guid: 43979cf24bb89da43bc8abd6b9b74891, type: 3}
     - {fileID: 8300000, guid: 32e541ea30e078b46b79a3506e17f2f4, type: 3}
-    Texts: []
   - Name: VII (90-luku)
     volume: 0.5
     pitch: 1
@@ -232,7 +226,6 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 472192e32ee76c74098e2c653a021d09, type: 3}
     - {fileID: 8300000, guid: 7d4074439f3f81b4bb445a72b1407782, type: 3}
     - {fileID: 8300000, guid: fff44b1bfc78d6a48935e03883aa662c, type: 3}
-    Texts: []
   - Name: VIII (2000-luku)
     volume: 1
     pitch: 1
@@ -241,7 +234,6 @@ MonoBehaviour:
     - {fileID: 8300000, guid: b6954f24ca7c45f42a905a6fc8516445, type: 3}
     - {fileID: 8300000, guid: 1946c2306409f514f998a374018ad0f6, type: 3}
     - {fileID: 8300000, guid: 9c738bc38dd42fd46b52d22f373fedd9, type: 3}
-    Texts: []
   SoundEffects:
   - Name: BallBounce
     volume: 1
@@ -332,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8237a35b74dd3845b7f2b2c7d336b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneChangeTimer: 20
+  SceneChangeTimer: 10
   FakeLoadDuration: 2
   FadeInDuration: 2
   FadeOutDuration: 2
@@ -424,5 +416,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb02420b6b66b804783da5f262a75c4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NarrationPanel: {fileID: 0}
   AudioMixer: {fileID: 24100000, guid: 3fb0db9a5fbfcde4d902093b0697cf16, type: 2}

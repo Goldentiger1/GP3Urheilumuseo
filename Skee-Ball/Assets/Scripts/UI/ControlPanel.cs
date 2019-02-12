@@ -6,6 +6,7 @@ public class ControlPanel : MonoBehaviour
     private Button panelButton;
     private Button fiButton;
     private Button ukButton;
+    private Button quitButton;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class ControlPanel : MonoBehaviour
         panelButton = buttonContainer.Find("PanelButton").GetComponent<Button>();
         fiButton = buttonContainer.Find("FIButton").GetComponent<Button>();
         ukButton = buttonContainer.Find("UKButton").GetComponent<Button>();
+        quitButton = buttonContainer.Find("QuitButton").GetComponent<Button>();
     }
 
     private void AssignButtonEvents()
@@ -31,6 +33,7 @@ public class ControlPanel : MonoBehaviour
         panelButton.onClick.AddListener(PanelButton);
         fiButton.onClick.AddListener(FIButton);
         ukButton.onClick.AddListener(UKButton);
+        quitButton.onClick.AddListener(QuitButton);
     }
 
     private void PanelButton()
@@ -53,5 +56,10 @@ public class ControlPanel : MonoBehaviour
     private void UKButton()
     {
         LocalizationManager.Instance.ChangeLanguage("UK");
+    }
+
+    private void QuitButton()
+    {
+        GameMaster.Instance.QuitButton();
     }
 }

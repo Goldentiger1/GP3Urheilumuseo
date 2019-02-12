@@ -31,7 +31,7 @@ namespace Valve.VR
         private Color deltaColor = new Color(0, 0, 0, 0);   // the delta-color is basically the "speed / second" at which the current color should change
         private bool fadeOverlay = false;
 
-        public bool IsFading { get; private set; }
+        public static bool IsFading { get; private set; }
 
         static public void Start(Color newColor, float duration, bool fadeOverlay = false)
         {
@@ -58,8 +58,11 @@ namespace Valve.VR
 
         public void OnStartFade(Color newColor, float duration, bool fadeOverlay)
         {
+            IsFading = true;
+
             if (duration > 0.0f)
             {
+                Debug.LogError("IF");
                 targetColor = newColor;
                 deltaColor = (targetColor - currentColor) / duration;
             }
@@ -67,6 +70,9 @@ namespace Valve.VR
             {
                 currentColor = newColor;
             }
+
+            Debug.LogError("ELSE");
+            IsFading = false;
         }
 
         static Material fadeMaterial = null;

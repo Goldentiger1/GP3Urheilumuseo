@@ -36,19 +36,32 @@ public class LocalizationManager : Singelton<LocalizationManager>
 
     private void Awake()
     {
-        IsReady = false;
+        IsReady = false;     
 
         ChangeLanguage(defaultLanguage);
     }
 
-    private IEnumerator Start()
-    {
-        yield return new WaitUntil(() => IsReady);
+    //private IEnumerator Start()
+    //{
+    //    yield return new WaitUntil(() => IsReady);
 
-        //Debug.Log("Localization is ready");
+    //    //Debug.Log("Localization is ready");
 
-        ChangeTextToNewLanguage();
-    }
+    //    ChangeTextToNewLanguage();
+    //}
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.A))
+    //    {
+    //        ChangeLanguage("UK");
+    //    }
+
+    //    if (Input.GetKeyDown(KeyCode.D))
+    //    {
+    //        ChangeLanguage("FI");
+    //    }
+    //}
 
     private void LoadLocalizedText(string fileName)
     {
@@ -92,13 +105,13 @@ public class LocalizationManager : Singelton<LocalizationManager>
         foreach (var localizedText in localizedTextsInScene)
         {
             localizedText.Text = GetValue(localizedText.Key);
+            Debug.LogError("ChangeTextToNewLanguage: " + localizedText.Text + " " + localizedText.Key);
         }
     }
 
     private string GetValue(string key)
     {
         var result = string.Empty;
-
         return result = localizationTextDictionary.TryGetValue(key, out result) ? result : missingText;
     }
 

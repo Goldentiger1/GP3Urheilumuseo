@@ -10,13 +10,9 @@ public class NarrationPanel : Singelton<NarrationPanel>
         narrationText.enabled = false;
     }
 
-    private void OnEnable()
-    {
-        
-    }
-
     public void ShowPanel(string key)
     {
+        Debug.LogError(key);
         narrationText.Key = key;
         narrationText.enabled = true;
     }

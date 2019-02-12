@@ -85,7 +85,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &402768
 Transform:
   m_ObjectHideFlags: 0
@@ -546,7 +546,6 @@ GameObject:
   - component: {fileID: 429506}
   - component: {fileID: 2014920}
   - component: {fileID: 11450526}
-  - component: {fileID: 9215702}
   - component: {fileID: 12440092}
   m_Layer: 0
   m_Name: VRCamera
@@ -623,14 +622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad1e469d4e3e04489f9a36419f1a4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!92 &9215702
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125964}
-  m_Enabled: 1
 --- !u!124 &12440092
 Behaviour:
   m_ObjectHideFlags: 0

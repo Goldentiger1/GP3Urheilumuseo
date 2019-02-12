@@ -93,9 +93,9 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         AudioPlayer.Instance.StopMusicTrack(CurrentSceneIndex);
         AudioPlayer.Instance.StopNarration(CurrentSceneIndex);
 
-        //Debug.LogError(SteamVR_Fade.Instance.IsFading);
-        //yield return new WaitWhile(() => SteamVR_Fade.Instance.IsFading);
-        //Debug.LogError(SteamVR_Fade.Instance.IsFading);
+        Debug.LogError(SteamVR_Fade.IsFading);
+        yield return new WaitWhile(() => SteamVR_Fade.IsFading);
+        Debug.LogError(SteamVR_Fade.IsFading);
 
         var asyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
         asyncOperation.allowSceneActivation = false;
@@ -122,8 +122,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
     }
 
     private void OnSceneChanged()
-    {
-        LocalizationManager.Instance.ChangeTextToNewLanguage();
+    {       
         LevelManager.Instance.ResetScores();
 
         SteamFadeScreen(FadeColor, 0);
@@ -132,12 +131,14 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         AudioManager.Instance.FadeChannelVolume("Music", 1, audioFadeInDuration);
         AudioPlayer.Instance.PlayMusicTrack(CurrentSceneIndex);
 
+
+        AudioPlayer.Instance.PlayNarration(CurrentSceneIndex);
+        LocalizationManager.Instance.ChangeTextToNewLanguage();
+
         if (CurrentSceneIndex == 0)
         {
             return;
         }
-
-        AudioPlayer.Instance.PlayNarration(CurrentSceneIndex);
 
         if (CurrentSceneIndex == sceneCount - 1)
         {
@@ -151,5 +152,22 @@ public class GameMaster : SingeltonPersistant<GameMaster>
     private void SteamFadeScreen(Color color, float fadeDuration)
     {
         SteamVR_Fade.Start(color, fadeDuration, true);
+    }
+
+    public void QuitButton()
+    {
+        SteamFadeScreen(FadeColor, 0);
+        SteamFadeScreen(FadeColor, FadeOutDuration);
+
+        Invoke("OnQuit", FadeInDuration + 0.2f);
+    }
+
+    private void OnQuit()
+    {
+#if UNITY_EDITOR
+         UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }

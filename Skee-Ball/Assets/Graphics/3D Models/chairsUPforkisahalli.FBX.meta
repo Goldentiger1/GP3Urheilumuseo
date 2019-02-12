@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: d80cb25f92c3c5c4fbef1fdb6e450c14
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Penkit_plane_004
+    100004: Penkit_plane_005
+    100006: Penkit_plane_006
+    100008: Penkit_plane_007
+    100010: Penkit_plane_008
+    100012: Penkit_plane_009
+    100014: Penkit_plane_010
+    100016: Penkit_plane_011
+    100018: Penkit_plane_012
+    100020: Penkit_plane_013
+    100022: Penkit_plane_014
+    100024: Penkit_plane_015
+    100026: Penkit_plane_016
+    100028: Penkit_plane_017
+    400000: //RootNode
+    400002: Penkit_plane_004
+    400004: Penkit_plane_005
+    400006: Penkit_plane_006
+    400008: Penkit_plane_007
+    400010: Penkit_plane_008
+    400012: Penkit_plane_009
+    400014: Penkit_plane_010
+    400016: Penkit_plane_011
+    400018: Penkit_plane_012
+    400020: Penkit_plane_013
+    400022: Penkit_plane_014
+    400024: Penkit_plane_015
+    400026: Penkit_plane_016
+    400028: Penkit_plane_017
+    2100000: 'Material #188'
+    2100002: 'Material #189'
+    2300000: Penkit_plane_004
+    2300002: Penkit_plane_005
+    2300004: Penkit_plane_006
+    2300006: Penkit_plane_007
+    2300008: Penkit_plane_008
+    2300010: Penkit_plane_009
+    2300012: Penkit_plane_010
+    2300014: Penkit_plane_011
+    2300016: Penkit_plane_012
+    2300018: Penkit_plane_013
+    2300020: Penkit_plane_014
+    2300022: Penkit_plane_015
+    2300024: Penkit_plane_016
+    2300026: Penkit_plane_017
+    3300000: Penkit_plane_004
+    3300002: Penkit_plane_005
+    3300004: Penkit_plane_006
+    3300006: Penkit_plane_007
+    3300008: Penkit_plane_008
+    3300010: Penkit_plane_009
+    3300012: Penkit_plane_010
+    3300014: Penkit_plane_011
+    3300016: Penkit_plane_012
+    3300018: Penkit_plane_013
+    3300020: Penkit_plane_014
+    3300022: Penkit_plane_015
+    3300024: Penkit_plane_016
+    3300026: Penkit_plane_017
+    4300000: Penkit_plane_004
+    4300002: Penkit_plane_005
+    4300004: Penkit_plane_006
+    4300006: Penkit_plane_007
+    4300008: Penkit_plane_008
+    4300010: Penkit_plane_009
+    4300012: Penkit_plane_010
+    4300014: Penkit_plane_011
+    4300016: Penkit_plane_012
+    4300018: Penkit_plane_013
+    4300020: Penkit_plane_014
+    4300022: Penkit_plane_015
+    4300024: Penkit_plane_016
+    4300026: Penkit_plane_017
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

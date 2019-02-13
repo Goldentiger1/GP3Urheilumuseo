@@ -60,9 +60,11 @@ namespace Valve.VR
         {
             IsFading = true;
 
+            // !!!
+
             if (duration > 0.0f)
             {
-                Debug.LogError("IF");
+                //Debug.LogError("IF");
                 targetColor = newColor;
                 deltaColor = (targetColor - currentColor) / duration;
             }
@@ -71,7 +73,7 @@ namespace Valve.VR
                 currentColor = newColor;
             }
 
-            Debug.LogError("ELSE");
+            //Debug.LogError("ELSE");
             IsFading = false;
         }
 

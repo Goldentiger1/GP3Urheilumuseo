@@ -26,11 +26,10 @@ namespace Valve.VR.Extras
 
         Transform previousContact = null;
 
-
         private void Start()
         {
             if (pose == null)
-                pose = this.GetComponent<SteamVR_Behaviour_Pose>();
+                pose = GetComponent<SteamVR_Behaviour_Pose>();
             if (pose == null)
                 Debug.LogError("No SteamVR_Behaviour_Pose component found on this object");
             
@@ -39,7 +38,7 @@ namespace Valve.VR.Extras
             
 
             holder = new GameObject();
-            holder.transform.parent = this.transform;
+            holder.transform.parent = transform;
             holder.transform.localPosition = Vector3.zero;
             holder.transform.localRotation = Quaternion.identity;
 
@@ -62,7 +61,7 @@ namespace Valve.VR.Extras
             {
                 if (collider)
                 {
-                    Object.Destroy(collider);
+                    Destroy(collider);
                 }
             }
             Material newMaterial = new Material(Shader.Find("Unlit/Color"));
@@ -90,11 +89,11 @@ namespace Valve.VR.Extras
 
         
         private void Update()
-        {
-            if (!isActive)
+        {                     
+            if (!isActive )
             {
                 isActive = true;
-                this.transform.GetChild(0).gameObject.SetActive(true);
+                transform.GetChild(0).gameObject.SetActive(true);
             }
 
             float dist = 100f;
@@ -105,21 +104,25 @@ namespace Valve.VR.Extras
 
             if (previousContact && previousContact != hit.transform)
             {
-                PointerEventArgs args = new PointerEventArgs();
-                args.fromInputSource = pose.inputSource;
-                args.distance = 0f;
-                args.flags = 0;
-                args.target = previousContact;
+                PointerEventArgs args = new PointerEventArgs
+                {
+                    fromInputSource = pose.inputSource,
+                    distance = 0f,
+                    flags = 0,
+                    target = previousContact
+                };
                 OnPointerOut(args);
                 previousContact = null;
             }
             if (bHit && previousContact != hit.transform)
             {
-                PointerEventArgs argsIn = new PointerEventArgs();
-                argsIn.fromInputSource = pose.inputSource;
-                argsIn.distance = hit.distance;
-                argsIn.flags = 0;
-                argsIn.target = hit.transform;
+                PointerEventArgs argsIn = new PointerEventArgs
+                {
+                    fromInputSource = pose.inputSource,
+                    distance = hit.distance,
+                    flags = 0,
+                    target = hit.transform
+                };
                 OnPointerIn(argsIn);
                 previousContact = hit.transform;
             }
@@ -134,16 +137,19 @@ namespace Valve.VR.Extras
 
             if (bHit && interactWithUI.GetStateUp(pose.inputSource))
             {
-                PointerEventArgs argsClick = new PointerEventArgs();
-                argsClick.fromInputSource = pose.inputSource;
-                argsClick.distance = hit.distance;
-                argsClick.flags = 0;
-                argsClick.target = hit.transform;
+                PointerEventArgs argsClick = new PointerEventArgs
+                {
+                    fromInputSource = pose.inputSource,
+                    distance = hit.distance,
+                    flags = 0,
+                    target = hit.transform
+                };
                 OnPointerClick(argsClick);
             }
 
             if (interactWithUI != null && interactWithUI.GetState(pose.inputSource))
             {
+
                 pointer.transform.localScale = new Vector3(thickness * 5f, thickness * 5f, dist);
                 pointer.GetComponent<MeshRenderer>().material.color = clickColor;
             }
@@ -153,6 +159,14 @@ namespace Valve.VR.Extras
                 pointer.GetComponent<MeshRenderer>().material.color = color;
             }
             pointer.transform.localPosition = new Vector3(0f, 0f, dist / 2f);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.layer.Equals(5)) 
+            {
+                print(collision.gameObject.name);
+            }
         }
     }
 
@@ -164,5 +178,5 @@ namespace Valve.VR.Extras
         public Transform target;
     }
 
-    public delegate void PointerEventHandler(object sender, PointerEventArgs e);
+    public delegate void PointerEventHandler(object sender, PointerEventArgs e); 
 }

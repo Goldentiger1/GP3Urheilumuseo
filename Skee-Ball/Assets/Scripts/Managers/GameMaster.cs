@@ -93,9 +93,9 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         AudioPlayer.Instance.StopMusicTrack(CurrentSceneIndex);
         AudioPlayer.Instance.StopNarration(CurrentSceneIndex);
 
-        Debug.LogError(SteamVR_Fade.IsFading);
+        //Debug.LogError(SteamVR_Fade.IsFading);
         yield return new WaitWhile(() => SteamVR_Fade.IsFading);
-        Debug.LogError(SteamVR_Fade.IsFading);
+        //Debug.LogError(SteamVR_Fade.IsFading);
 
         var asyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
         asyncOperation.allowSceneActivation = false;

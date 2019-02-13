@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: 98cc9e767dcba9c458f612893b539152
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Circle020
+    100002: Circle029
+    100004: Circle030
+    100006: Circle031
+    100008: Circle032
+    100010: Circle033
+    100012: Circle034
+    100014: Circle035
+    100016: Circle045
+    100018: Circle046
+    100020: Circle047
+    100022: Circle048
+    100024: Circle053
+    100026: Circle055
+    100028: Circle056
+    100030: Circle059
+    100032: //RootNode
+    100034: L_Front_1
+    100036: L_Front_2
+    100038: L_Front_3
+    100040: L_Front_tip
+    100042: L_Mid_1
+    100044: L_Mid_2
+    100046: L_Mid_3
+    100048: L_Mid_tip
+    100050: L_Pinky_1
+    100052: L_Pinky_2
+    100054: L_Pinky_3
+    100056: L_Pinky_tip
+    100058: L_Ring_1
+    100060: L_Ring_2
+    100062: L_Ring_3
+    100064: L_Ring_tip
+    100066: L_Thumb_1
+    100068: L_Thumb_2
+    100070: L_Thumb_3
+    100072: L_Thumb_tip
+    100074: Left hand
+    100076: Left_Hand
+    100078: Left_Hand_tip
+    400000: Circle020
+    400002: Circle029
+    400004: Circle030
+    400006: Circle031
+    400008: Circle032
+    400010: Circle033
+    400012: Circle034
+    400014: Circle035
+    400016: Circle045
+    400018: Circle046
+    400020: Circle047
+    400022: Circle048
+    400024: Circle053
+    400026: Circle055
+    400028: Circle056
+    400030: Circle059
+    400032: //RootNode
+    400034: L_Front_1
+    400036: L_Front_2
+    400038: L_Front_3
+    400040: L_Front_tip
+    400042: L_Mid_1
+    400044: L_Mid_2
+    400046: L_Mid_3
+    400048: L_Mid_tip
+    400050: L_Pinky_1
+    400052: L_Pinky_2
+    400054: L_Pinky_3
+    400056: L_Pinky_tip
+    400058: L_Ring_1
+    400060: L_Ring_2
+    400062: L_Ring_3
+    400064: L_Ring_tip
+    400066: L_Thumb_1
+    400068: L_Thumb_2
+    400070: L_Thumb_3
+    400072: L_Thumb_tip
+    400074: Left hand
+    400076: Left_Hand
+    400078: Left_Hand_tip
+    2100000: 'Material #26'
+    4300000: Left hand
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Left hand
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.0254
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

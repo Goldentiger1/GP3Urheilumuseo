@@ -2,6 +2,7 @@
 	[
 		{"Key":"StartButton","Value":"ALOITA"},
 		{"Key":"ResetButton","Value":"RESETOI"},
+		{"Key":"QuitButton","Value":"POISTU"},
 		{"Key":"Score","Value":"PISTEET"},
 		
 		{"Key":"1","Value":"Vuonna 1891 James Naismith kehitti NMKYlle sisäpelin nimeltä basketball, siis Koripallo. Liike halusi sisäpelin joka kehittäisi myös terveitä elämäntapoja, olisi halpa ja helppo pelata ja ei veisi liikaa tilaa. Ensimmäisessä pelissä korina toimi seinään naulattu persikkakori jonka pohja oli leikattu pois. Alkujaan Naismithin luokalla oli 18 miestä ja näin ensimmäisissä peleissä oli 9 pelaajaa per puoli, mutta sääntöjen kehittyessä pelaajia vähennettiin. USAn NBA, National Basketball Association, syntyi 1949 kun BAA- ja NBL-yhdistykset yhdistyivät."},

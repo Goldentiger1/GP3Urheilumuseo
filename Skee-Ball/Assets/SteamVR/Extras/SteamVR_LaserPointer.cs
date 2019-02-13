@@ -1,6 +1,7 @@
 ﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
 using UnityEngine;
 using System.Collections;
+using Valve.VR.InteractionSystem;
 
 namespace Valve.VR.Extras
 {
@@ -10,6 +11,7 @@ namespace Valve.VR.Extras
 
         //public SteamVR_Action_Boolean interactWithUI = SteamVR_Input.__actions_default_in_InteractUI;
         public SteamVR_Action_Boolean interactWithUI = SteamVR_Input.GetBooleanAction("InteractUI");
+        public SteamVR_Action_Boolean ShootLaserAction;
 
         public bool active = true;
         public Color color;
@@ -24,10 +26,12 @@ namespace Valve.VR.Extras
         public event PointerEventHandler PointerOut;
         public event PointerEventHandler PointerClick;
 
+        private bool IsShootingRay = false;
+
         Transform previousContact = null;
 
         private void Start()
-        {
+        {          
             if (pose == null)
                 pose = GetComponent<SteamVR_Behaviour_Pose>();
             if (pose == null)
@@ -35,7 +39,6 @@ namespace Valve.VR.Extras
             
             if (interactWithUI == null)
                 Debug.LogError("No ui interaction action has been set on this component.");
-            
 
             holder = new GameObject();
             holder.transform.parent = transform;
@@ -87,10 +90,29 @@ namespace Valve.VR.Extras
                 PointerOut(this, e);
         }
 
-        
+        private void CheckLaserInput()
+        {      
+            if (ShootLaserAction.GetStateDown(pose.inputSource))
+            {
+                Debug.LogError("ShootLaserAction GetStateDown");
+                IsShootingRay = true;
+            }
+            if (ShootLaserAction.GetState(pose.inputSource))
+            {
+                Debug.LogError("ShootLaserAction GetState");
+            }
+            if (ShootLaserAction.GetStateUp(pose.inputSource))
+            {
+                Debug.LogError("ShootLaserAction GetStateUp");
+                IsShootingRay = false;
+            }
+        }
+
         private void Update()
-        {                     
-            if (!isActive )
+        {
+            CheckLaserInput();
+
+            if (!isActive && IsShootingRay)
             {
                 isActive = true;
                 transform.GetChild(0).gameObject.SetActive(true);
@@ -159,14 +181,6 @@ namespace Valve.VR.Extras
                 pointer.GetComponent<MeshRenderer>().material.color = color;
             }
             pointer.transform.localPosition = new Vector3(0f, 0f, dist / 2f);
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.gameObject.layer.Equals(5)) 
-            {
-                print(collision.gameObject.name);
-            }
         }
     }
 

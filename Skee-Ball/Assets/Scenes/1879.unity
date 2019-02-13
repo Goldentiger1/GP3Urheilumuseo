@@ -446,7 +446,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2083077367}
     m_Modifications:
     - target: {fileID: 5853374420231143366, guid: 85ec74aae777ab0468ec92d0feec0b51,
         type: 3}
@@ -471,7 +471,7 @@ PrefabInstance:
     - target: {fileID: 5853374420231142968, guid: 85ec74aae777ab0468ec92d0feec0b51,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5853374420231142968, guid: 85ec74aae777ab0468ec92d0feec0b51,
         type: 3}
@@ -481,7 +481,7 @@ PrefabInstance:
     - target: {fileID: 5853374420231142968, guid: 85ec74aae777ab0468ec92d0feec0b51,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5853374420231142968, guid: 85ec74aae777ab0468ec92d0feec0b51,
         type: 3}
@@ -491,7 +491,7 @@ PrefabInstance:
     - target: {fileID: 5853374420231142968, guid: 85ec74aae777ab0468ec92d0feec0b51,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5853374420231142968, guid: 85ec74aae777ab0468ec92d0feec0b51,
         type: 3}
@@ -557,6 +557,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853374420231142968, guid: 85ec74aae777ab0468ec92d0feec0b51,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853374420231142968, guid: 85ec74aae777ab0468ec92d0feec0b51,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5853374420231142970, guid: 85ec74aae777ab0468ec92d0feec0b51,
         type: 3}
@@ -827,7 +837,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (14)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -902,7 +912,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (2)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -977,7 +987,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (18)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -1119,6 +1129,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 6d4ac4e6fc9032f469717f19a4b5dfd2, type: 3}
+--- !u!4 &142441029 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: d806e50a9525ea4459bf2fc9f09f6867,
+    type: 3}
+  m_PrefabInstance: {fileID: 321297619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &162265201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1129,7 +1145,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (42)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -1282,7 +1298,7 @@ GameObject:
   - component: {fileID: 184709259}
   - component: {fileID: 184709258}
   m_Layer: 0
-  m_Name: Spot Light (2)
+  m_Name: SpotLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1318,7 +1334,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -1350,7 +1366,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (22)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -1425,7 +1441,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (1)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -1495,7 +1511,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1833462652}
     m_Modifications:
     - target: {fileID: 100000, guid: d806e50a9525ea4459bf2fc9f09f6867, type: 3}
       propertyPath: m_Name
@@ -1519,7 +1535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d806e50a9525ea4459bf2fc9f09f6867, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d806e50a9525ea4459bf2fc9f09f6867, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1531,7 +1547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d806e50a9525ea4459bf2fc9f09f6867, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d806e50a9525ea4459bf2fc9f09f6867, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1548,6 +1564,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: d806e50a9525ea4459bf2fc9f09f6867, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9102198
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d806e50a9525ea4459bf2fc9f09f6867, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: d806e50a9525ea4459bf2fc9f09f6867, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: d806e50a9525ea4459bf2fc9f09f6867, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1668,83 +1692,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 7b1f1c8f7c8da6448a64df2395507e39, type: 3}
---- !u!1001 &393126579
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 100000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_Name
-      value: Old_BALL
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.9909998
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10.285
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.69982487
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.053953208
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.054891553
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.71015567
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 261.13202
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 264.54
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -264.616
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4.1866
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4.1866
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 4.1866
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: fd5a698780281f64ab15a1c8be650697, type: 2}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2d6ad94b4bb8dd84ca9e20a121461c6e, type: 3}
 --- !u!1001 &459218908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1872,7 +1819,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (23)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -1947,7 +1894,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (37)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -2104,6 +2051,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 540983527}
   m_Mesh: {fileID: 4300008, guid: 4a18df98dbae0a740a202b6433742689, type: 3}
+--- !u!224 &543304327 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5853374420231142968, guid: 85ec74aae777ab0468ec92d0feec0b51,
+    type: 3}
+  m_PrefabInstance: {fileID: 74627545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &627346036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2114,7 +2067,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (20)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -2312,7 +2265,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (25)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -2387,7 +2340,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (34)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -2704,7 +2657,7 @@ GameObject:
   - component: {fileID: 782391878}
   - component: {fileID: 782391877}
   m_Layer: 0
-  m_Name: spotterooni
+  m_Name: SpotLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2740,7 +2693,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -2772,7 +2725,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (43)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -2964,7 +2917,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (35)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -3150,7 +3103,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (33)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -3225,7 +3178,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (28)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -3334,7 +3287,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (11)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -3409,7 +3362,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (12)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -3561,7 +3514,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (3)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -3648,7 +3601,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (19)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -3723,7 +3676,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (5)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -3911,7 +3864,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (36)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -3976,83 +3929,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1134444728}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1140024004
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1140024007}
-  - component: {fileID: 1140024006}
-  - component: {fileID: 1140024005}
-  m_Layer: 0
-  m_Name: Katto
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
---- !u!23 &1140024005
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1140024004}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100014, guid: 488b99ec2d1e096409080f45c1eb1885, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &1140024006
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1140024004}
-  m_Mesh: {fileID: 4300022, guid: 488b99ec2d1e096409080f45c1eb1885, type: 3}
---- !u!4 &1140024007
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1140024004}
-  m_LocalRotation: {x: 0.50000006, y: -0.50000006, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.56, y: 8.18, z: 0.09}
-  m_LocalScale: {x: 0.73094213, y: 0.71345824, z: 0.7043257}
-  m_Children: []
-  m_Father: {fileID: 2083077367}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 90}
 --- !u!1 &1142007328
 GameObject:
   m_ObjectHideFlags: 0
@@ -4064,7 +3940,7 @@ GameObject:
   - component: {fileID: 1142007330}
   - component: {fileID: 1142007329}
   m_Layer: 0
-  m_Name: Spot Light
+  m_Name: SpotLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4100,7 +3976,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -4132,7 +4008,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (29)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -4207,7 +4083,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (21)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -4282,7 +4158,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (40)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -4357,7 +4233,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (10)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -4432,7 +4308,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (41)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -4507,7 +4383,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (39)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -4655,7 +4531,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (13)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -4807,7 +4683,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (31)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -4882,7 +4758,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (9)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -5090,7 +4966,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (32)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -5155,75 +5031,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1438897145}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1485422920
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1485422922}
-  - component: {fileID: 1485422921}
-  m_Layer: 0
-  m_Name: Point Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!108 &1485422921
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1485422920}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.55
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &1485422922
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1485422920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.294, y: 2.141, z: -10.238}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1534887385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5234,7 +5041,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (7)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -5309,7 +5116,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (15)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -5566,7 +5373,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (16)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -5798,7 +5605,7 @@ PrefabInstance:
     - target: {fileID: 762804847047507654, guid: 40337c1f989496e4492a7ff670c5a084,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 762804847047507654, guid: 40337c1f989496e4492a7ff670c5a084,
         type: 3}
@@ -5827,7 +5634,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (26)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -5902,7 +5709,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (6)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -6034,7 +5841,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (30)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -6109,7 +5916,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (38)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -6224,6 +6031,7 @@ Transform:
   - {fileID: 181286785}
   - {fileID: 979971718}
   - {fileID: 1301049465}
+  - {fileID: 142441029}
   m_Father: {fileID: 2083077367}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6237,7 +6045,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (4)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -6312,7 +6120,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (17)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -6547,7 +6355,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (27)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -6622,7 +6430,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (44)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -6697,7 +6505,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (24)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -6772,7 +6580,7 @@ PrefabInstance:
     - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_Name
-      value: Old_Basketball (8)
+      value: Old_Basketball
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -6867,9 +6675,9 @@ Transform:
   - {fileID: 1833462652}
   - {fileID: 85475712}
   - {fileID: 969666963}
-  - {fileID: 1140024007}
+  - {fileID: 543304327}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2133476033
 PrefabInstance:

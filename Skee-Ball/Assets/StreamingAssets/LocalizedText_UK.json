@@ -2,6 +2,7 @@
 	[
 		{"Key":"StartButton","Value":"START"},
 		{"Key":"ResetButton","Value":"RESET"},
+		{"Key":"QuitButton","Value":"QUIT"},
 		{"Key":"Score","Value":"SCORE"},
 		
 		{"Key":"1","Value":"1 UK"},

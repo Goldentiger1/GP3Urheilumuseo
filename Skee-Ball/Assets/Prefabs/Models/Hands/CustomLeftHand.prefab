@@ -887,7 +887,7 @@ GameObject:
   - component: {fileID: 4000013477813392}
   - component: {fileID: 114000010158459022}
   m_Layer: 0
-  m_Name: vr_glove_left
+  m_Name: CustomLeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -955,7 +955,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: Valve.VR.SteamVR_Behaviour_Skeleton_TrackingChangedEvent, SteamVR,
       Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  mirroring: 2
+  mirroring: 1
 --- !u!1 &1000013654522248
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class NarrationPanel : Singelton<NarrationPanel>
 
     public void ShowPanel(string key)
     {
-        Debug.LogError(key);
+        //Debug.LogError(key);
         narrationText.Key = key;
         narrationText.enabled = true;
     }

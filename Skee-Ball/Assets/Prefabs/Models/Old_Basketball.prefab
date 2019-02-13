@@ -66,7 +66,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.114
+  m_Radius: 0.14
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &3595940831812342099
 AudioSource:
@@ -248,16 +248,38 @@ MonoBehaviour:
   catchingSpeedThreshold: -1
   releaseVelocityStyle: 1
   releaseVelocityTimeOffset: -0.011
-  scaleReleaseVelocity: 1.1
+  scaleReleaseVelocity: 1.5
   restoreOriginalParent: 0
   onPickUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onDetachFromHand:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   interactable: {fileID: 0}
@@ -273,12 +295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91a82575dc4faf43ba9db5795a66556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torqueX: 0
-  torqueY: 0
-  torqueZ: 0
-  speed: 0
-  oldVelocity: {x: 0, y: 0, z: 0}
-  newVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &2030566129505263653
 MonoBehaviour:
   m_ObjectHideFlags: 0

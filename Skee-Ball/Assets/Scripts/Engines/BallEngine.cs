@@ -5,26 +5,8 @@ public class BallEngine : MonoBehaviour
     private new Rigidbody rigidbody;
     private Vector3 rigidbodyStartPosition;
     private readonly float minHitToSoundVelocity = 1F;
-    private readonly float spinSpeed = 10f;
 
     private AudioSource audioSource;
-
-    #region AARO
-
-    // Size of torque along the world x-axis
-    public float torqueX;
-    // Size of torque along the world y-axis
-    public float torqueY;
-    // Size of torque along the world z-axis
-    public float torqueZ;
-    // Rigidbody rotation speed
-    public float speed;
-    // Old rigidbody velocity
-    public Vector3 oldVelocity;
-    // New rigidbody velocity
-    public Vector3 newVelocity;
-
-    #endregion AARO
 
     public float CurrentVelocity
     {
@@ -37,8 +19,6 @@ public class BallEngine : MonoBehaviour
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
-        // Starting velocity when object is not moving
-        oldVelocity = rigidbody.velocity;
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -47,18 +27,6 @@ public class BallEngine : MonoBehaviour
         LevelManager.Instance.AddLevelBasketBall(this);
 
         rigidbodyStartPosition = rigidbody.position;
-        AddSpin(Vector3.forward * CurrentVelocity * spinSpeed, ForceMode.Impulse);
-    }
-
-    private void Update()
-    {
-        // Kokeillaan Velocitya, paljonko arvo muuttuu heittäessä
-        newVelocity = rigidbody.velocity;
-        // Pallon liikkuessa pyöritetään palloa haluttuun suuntaan
-        if (oldVelocity.magnitude < newVelocity.magnitude)
-        {
-            rigidbody.AddTorque(torqueX, torqueY, torqueZ, ForceMode.Force);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -85,7 +53,6 @@ public class BallEngine : MonoBehaviour
                     return;
                 }
 
-                //AudioManager.Instance.PlaySfx("BallBounce", rigidbody.position);
                 AudioPlayer.Instance.PlaySfx(
                     audioSource,
                     "BallBounce");
@@ -96,7 +63,6 @@ public class BallEngine : MonoBehaviour
 
                 if (rigidbody.velocity.magnitude < minHitToSoundVelocity)
                 {
-                    Debug.LogWarning("HOOP");
                     AudioPlayer.Instance.PlaySfx(
                     audioSource,
                     "Sock");
@@ -108,9 +74,9 @@ public class BallEngine : MonoBehaviour
         }
     }
 
-    public void AddSpin(Vector3 spinDirection, ForceMode forceMode)
+    public void AddSpin(Vector3 spinDirection, float force, ForceMode forceMode)
     {
-        rigidbody.AddTorque(spinDirection, forceMode);
+        rigidbody.AddTorque(spinDirection * force, forceMode);
     }
 
     public void ResetPosition()

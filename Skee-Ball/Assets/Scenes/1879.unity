@@ -5652,7 +5652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1414567786, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
       propertyPath: SceneChangeTimer
-      value: 67.3
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}

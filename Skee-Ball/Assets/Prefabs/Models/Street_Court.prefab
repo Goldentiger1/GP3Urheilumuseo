@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004508721986294}
   m_LocalRotation: {x: -0.70710677, y: -0.00000017881393, z: -0.00000013509035, w: 0.7071068}
-  m_LocalPosition: {x: -3.1028352, y: 4.4371204, z: -5.119707}
+  m_LocalPosition: {x: -3.0786319, y: 4.437566, z: -4.0467997}
   m_LocalScale: {x: 0.5670614, y: 0.56706154, z: 0.56700027}
   m_Children:
   - {fileID: 4410082171248910}
@@ -90,7 +90,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004508721986294}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 164dbb280869d724ab38e23e35eaad50, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -235,7 +235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033122988131752}
   m_LocalRotation: {x: -0.4934241, y: 0.50649065, z: 0.50649047, w: 0.49342412}
-  m_LocalPosition: {x: -3.1742039, y: 3.6395547, z: -5.0729074}
+  m_LocalPosition: {x: -3.15, y: 3.64, z: -4}
   m_LocalScale: {x: 0.29747528, y: 0.37599528, z: 0.9274044}
   m_Children: []
   m_Father: {fileID: 4944341705483374}
@@ -390,7 +390,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040578345655272}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 4619669307050930}
   - component: {fileID: 33168867136977534}
   - component: {fileID: 23846005125172654}
-  - component: {fileID: 64677035969871668}
+  - component: {fileID: 8627807984049511208}
   m_Layer: 0
   m_Name: Verkkoaita_3
   m_TagString: Untagged
@@ -860,8 +860,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64677035969871668
-MeshCollider:
+--- !u!65 &8627807984049511208
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -870,10 +870,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 10, y: 0.00000059604645, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1133858088060392
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,7 +900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133858088060392}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -12.040128, y: 2.935106, z: -0.07675026}
+  m_LocalPosition: {x: -12.040128, y: 2.935106, z: 0}
   m_LocalScale: {x: 2.5400004, y: 2.54, z: 2.5400002}
   m_Children:
   - {fileID: 4131749044947252}
@@ -1057,7 +1056,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158362303014714}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1206,7 +1205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191083434302164}
   m_LocalRotation: {x: -0.7071068, y: -0.00000011920929, z: -0.00000009019088, w: 0.7071068}
-  m_LocalPosition: {x: -3.2218013, y: 4.2275276, z: -5.095172}
+  m_LocalPosition: {x: -3.197598, y: 4.227973, z: -4.0222645}
   m_LocalScale: {x: 0.5670414, y: 0.56704295, z: 0.56700164}
   m_Children:
   - {fileID: 4751903425695718}
@@ -1265,7 +1264,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191083434302164}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 164dbb280869d724ab38e23e35eaad50, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1515,7 +1514,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1226393788045234}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1707,7 +1706,7 @@ GameObject:
   - component: {fileID: 4528096782120616}
   - component: {fileID: 33748261974769810}
   - component: {fileID: 23869824313472426}
-  - component: {fileID: 64612013822892110}
+  - component: {fileID: 2600346144584885467}
   m_Layer: 0
   m_Name: Verkkoaita_2 (1)
   m_TagString: Untagged
@@ -1774,8 +1773,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64612013822892110
-MeshCollider:
+--- !u!65 &2600346144584885467
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1784,10 +1783,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1272627194001544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,7 +1968,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276293452599376}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2288,7 +2286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397530961010890}
   m_LocalRotation: {x: -0.7071067, y: -0.0000002682209, z: -0.00000012077714, w: 0.7071068}
-  m_LocalPosition: {x: -3.0578585, y: 4.7125587, z: -5.3559685}
+  m_LocalPosition: {x: -3.0336552, y: 4.713004, z: -4.283061}
   m_LocalScale: {x: 0.56710136, y: 0.5671004, z: 0.56699926}
   m_Children:
   - {fileID: 4659130221537420}
@@ -2347,7 +2345,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1397530961010890}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 164dbb280869d724ab38e23e35eaad50, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2629,7 +2627,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1418532330894542}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -12.086537, y: 2.8430607, z: -0.0767551}
+  m_LocalPosition: {x: -12.086537, y: 2.8430607, z: 0}
   m_LocalScale: {x: 1.7761277, y: 2.6137233, z: 1.9866747}
   m_Children: []
   m_Father: {fileID: 4811627962818812}
@@ -2785,7 +2783,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428741990877614}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2927,7 +2925,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448434538122404}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.1, y: 0, z: -0.27}
+  m_LocalPosition: {x: -5.18, y: 0, z: -4.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4465063868253098}
@@ -2963,7 +2961,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474157871790482}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.39, y: 0, z: -4.2}
+  m_LocalPosition: {x: -6.09, y: 0, z: -4.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4716933689482952}
@@ -2986,7 +2984,7 @@ GameObject:
   - component: {fileID: 4069922935755094}
   - component: {fileID: 33238515796259992}
   - component: {fileID: 23230142768620160}
-  - component: {fileID: 64514998870223816}
+  - component: {fileID: 8012603777575563467}
   m_Layer: 0
   m_Name: Plane006
   m_TagString: Untagged
@@ -3053,8 +3051,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64514998870223816
-MeshCollider:
+--- !u!65 &8012603777575563467
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3063,10 +3061,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300016, guid: 1667e36cc72c4154584ded3942e0bc9a, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 53.832695, y: 62.37915, z: 1.7729214e-12}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1527831254483870
 GameObject:
   m_ObjectHideFlags: 0
@@ -3078,7 +3075,7 @@ GameObject:
   - component: {fileID: 4058224458237436}
   - component: {fileID: 33981051262300980}
   - component: {fileID: 23235821939593312}
-  - component: {fileID: 64776292325140976}
+  - component: {fileID: 2379823910976606116}
   m_Layer: 0
   m_Name: Verkkoaita
   m_TagString: Untagged
@@ -3145,8 +3142,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64776292325140976
-MeshCollider:
+--- !u!65 &2379823910976606116
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3155,10 +3152,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.2204466e-16, z: 10.000002}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1540686422461446
 GameObject:
   m_ObjectHideFlags: 0
@@ -3237,7 +3233,7 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0.0000007748604, y: 0.0000038146973, z: 0.39906693}
+    m_Center: {x: 0.00000077532604, y: 0.0000038146973, z: 0.39906693}
     m_Extent: {x: 0.3825003, y: 0.38250083, z: 0.39906734}
   m_DirtyAABB: 0
 --- !u!183 &183983790879166332
@@ -3746,30 +3742,36 @@ Cloth:
     collisionSphereDistance: 3.4028235e+38
   m_CapsuleColliders: []
   m_SphereColliders:
-  - first: {fileID: 0}
-    second: {fileID: 0}
-  - first: {fileID: 135219651886862324}
-    second: {fileID: 0}
-  - first: {fileID: 135477751290294130}
-    second: {fileID: 0}
-  - first: {fileID: 135838101678581870}
-    second: {fileID: 0}
-  - first: {fileID: 135184136446954130}
-    second: {fileID: 0}
-  - first: {fileID: 135148042904510878}
-    second: {fileID: 0}
-  - first: {fileID: 0}
-    second: {fileID: 0}
   - first: {fileID: 135767250412687970}
-    second: {fileID: 0}
+    second: {fileID: 135767250412687970}
   - first: {fileID: 135941161718424486}
-    second: {fileID: 0}
+    second: {fileID: 135941161718424486}
   - first: {fileID: 135200997516174468}
-    second: {fileID: 0}
+    second: {fileID: 135200997516174468}
   - first: {fileID: 135688723098380364}
-    second: {fileID: 0}
+    second: {fileID: 135688723098380364}
   - first: {fileID: 135929704718678042}
-    second: {fileID: 0}
+    second: {fileID: 135929704718678042}
+  - first: {fileID: 135219651886862324}
+    second: {fileID: 135219651886862324}
+  - first: {fileID: 135477751290294130}
+    second: {fileID: 135477751290294130}
+  - first: {fileID: 135838101678581870}
+    second: {fileID: 135838101678581870}
+  - first: {fileID: 135184136446954130}
+    second: {fileID: 135184136446954130}
+  - first: {fileID: 135148042904510878}
+    second: {fileID: 135148042904510878}
+  - first: {fileID: 135801673236792258}
+    second: {fileID: 135801673236792258}
+  - first: {fileID: 135032974051429602}
+    second: {fileID: 135032974051429602}
+  - first: {fileID: 135822852061524774}
+    second: {fileID: 135822852061524774}
+  - first: {fileID: 135858330284592418}
+    second: {fileID: 135858330284592418}
+  - first: {fileID: 135960247707025912}
+    second: {fileID: 135960247707025912}
   m_SelfCollisionDistance: 0
   m_SelfCollisionStiffness: 1
   m_SelfAndInterCollisionIndices: 
@@ -3934,7 +3936,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549180301937676}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4122,7 +4124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4503633855322656}
   m_Layer: 0
-  m_Name: "\xA8Kentt\xE4"
+  m_Name: "Kentt\xE4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4173,7 +4175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574065192604098}
   m_LocalRotation: {x: -0.7071068, y: -0.000000059604645, z: -0.00000003058624, w: 0.7071068}
-  m_LocalPosition: {x: -3.106423, y: 4.2275276, z: -5.3576746}
+  m_LocalPosition: {x: -3.0822196, y: 4.227973, z: -4.284767}
   m_LocalScale: {x: 0.5670214, y: 0.56702316, z: 0.5670019}
   m_Children:
   - {fileID: 4949246554797750}
@@ -4232,7 +4234,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574065192604098}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 164dbb280869d724ab38e23e35eaad50, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4377,7 +4379,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653617983748682}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 2.94, y: 0, z: -0}
+  m_LocalPosition: {x: 2.94, y: 0.05, z: -0}
   m_LocalScale: {x: 1.2037226, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4811627962818812}
@@ -4452,7 +4454,7 @@ GameObject:
   - component: {fileID: 4913903427322262}
   - component: {fileID: 33388418553961848}
   - component: {fileID: 23386632474306876}
-  - component: {fileID: 64156136060680126}
+  - component: {fileID: 460401010309108672}
   m_Layer: 0
   m_Name: Verkkoaita_2
   m_TagString: Untagged
@@ -4519,8 +4521,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64156136060680126
-MeshCollider:
+--- !u!65 &460401010309108672
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4529,10 +4531,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1688851235854846
 GameObject:
   m_ObjectHideFlags: 0
@@ -4623,7 +4624,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688851235854846}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4831,7 +4832,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690189796377814}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5146,7 +5147,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705353611743192}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5402,7 +5403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742528837844880}
   m_LocalRotation: {x: -0.70710677, y: -0.00000023841855, z: -0.00000012038514, w: 0.7071069}
-  m_LocalPosition: {x: -3.2560487, y: 4.4371204, z: -5.354954}
+  m_LocalPosition: {x: -3.2318454, y: 4.437566, z: -4.2820463}
   m_LocalScale: {x: 0.5670816, y: 0.5670831, z: 0.56700176}
   m_Children:
   - {fileID: 4635293198393600}
@@ -5461,7 +5462,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742528837844880}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 164dbb280869d724ab38e23e35eaad50, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5845,7 +5846,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937422705750594}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.41, y: 0, z: -3.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4905856011256590}
@@ -6065,7 +6066,7 @@ GameObject:
   - component: {fileID: 4558660141631692}
   - component: {fileID: 33497227759247028}
   - component: {fileID: 23779607157605850}
-  - component: {fileID: 64353668591769710}
+  - component: {fileID: 4006583667116422245}
   m_Layer: 0
   m_Name: Verkkoaita_1
   m_TagString: Untagged
@@ -6132,8 +6133,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64353668591769710
-MeshCollider:
+--- !u!65 &4006583667116422245
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6142,10 +6143,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.2204466e-16, z: 10.000002}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1989277768832446
 GameObject:
   m_ObjectHideFlags: 0
@@ -6157,7 +6157,7 @@ GameObject:
   - component: {fileID: 4656506451610720}
   - component: {fileID: 33663328419364716}
   - component: {fileID: 23867860192772154}
-  - component: {fileID: 64937982544923544}
+  - component: {fileID: 553474696660813835}
   m_Layer: 0
   m_Name: Verkkoaita_3 (1)
   m_TagString: Untagged
@@ -6224,8 +6224,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64937982544923544
-MeshCollider:
+--- !u!65 &553474696660813835
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6234,10 +6234,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1997649772914140
 GameObject:
   m_ObjectHideFlags: 0
@@ -6328,7 +6327,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997649772914140}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2e81b378186c0ed4c98c04cfd4096914, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

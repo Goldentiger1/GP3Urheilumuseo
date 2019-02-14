@@ -183,7 +183,7 @@ MonoBehaviour:
   hideSkeletonOnAttach: 0
   hideControllerOnAttach: 1
   handAnimationOnPickup: 1
-  setRangeOfMotionOnPickup: -1
+  setRangeOfMotionOnPickup: 0
   useHandObjectAttachmentPoint: 1
   attachEaseIn: 0
   snapAttachEaseInCurve:

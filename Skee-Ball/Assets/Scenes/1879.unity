@@ -2057,6 +2057,25 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 74627545}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &581295883 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 1f2110bca0ca73b41b1b30f41e1edde8,
+    type: 3}
+  m_PrefabInstance: {fileID: 868964304}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &581295884
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581295883}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.740816, y: 8.301417, z: 0.46192607}
+  m_Center: {x: -0.000000059604645, y: 1.6465851, z: 0.23096265}
 --- !u!1001 &627346036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3004,6 +3023,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 1f2110bca0ca73b41b1b30f41e1edde8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 1f2110bca0ca73b41b1b30f41e1edde8, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 1f2110bca0ca73b41b1b30f41e1edde8, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4588,6 +4611,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 41653606220620936, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
+        type: 3}
+      propertyPath: handAnimationOnPickup
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 222ec5eea4930cf489b70d0f98f0e3cc, type: 3}
 --- !u!4 &1284124811 stripped
@@ -5622,6 +5650,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1414567786, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
+      propertyPath: SceneChangeTimer
+      value: 67.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
 --- !u!1001 &1740915572
@@ -5699,6 +5731,26 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1740915572}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1748256629 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100006, guid: 1f2110bca0ca73b41b1b30f41e1edde8,
+    type: 3}
+  m_PrefabInstance: {fileID: 868964304}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1748256630
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748256629}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300004, guid: 1f2110bca0ca73b41b1b30f41e1edde8, type: 3}
 --- !u!1001 &1754535001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6254,6 +6306,25 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1909863650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 1f2110bca0ca73b41b1b30f41e1edde8,
+    type: 3}
+  m_PrefabInstance: {fileID: 868964304}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1909863651
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909863650}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 26.599998, y: 17.5, z: 0.1}
+  m_Center: {x: 0, y: 0, z: -0.05}
 --- !u!1001 &1939903931
 PrefabInstance:
   m_ObjectHideFlags: 0

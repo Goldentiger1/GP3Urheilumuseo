@@ -74,10 +74,16 @@ public class BallEngine : MonoBehaviour
         }
     }
 
-    public void AddSpin(Vector3 spinDirection, float force, ForceMode forceMode)
+    private void AddSpin(Vector3 spinDirection, float force, ForceMode forceMode)
     {
         rigidbody.AddTorque(spinDirection * force, forceMode);
     }
+
+    public void AddBackSpin() 
+    {
+        AddSpin(rigidbody.transform.forward,rigidbody.velocity.magnitude, ForceMode.Impulse);
+    }
+
 
     public void ResetPosition()
     {

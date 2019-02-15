@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BallPrefab: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-  BallSpawnPoint: {x: 0, y: 0.5, z: 2}
+  BallSpawnPoint: {x: 0, y: 0.5, z: 1.5}
   RoomPointLight: {fileID: 0}
 --- !u!136 &4301159054127229474
 CapsuleCollider:

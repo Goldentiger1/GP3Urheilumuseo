@@ -4,7 +4,7 @@ public class BallEngine : MonoBehaviour
 {
     private new Rigidbody rigidbody;
     private Vector3 rigidbodyStartPosition;
-    private readonly float minHitToSoundVelocity = 1F;
+    private readonly float minHitToSoundVelocity = 1f;
 
     private AudioSource audioSource;
 
@@ -83,7 +83,6 @@ public class BallEngine : MonoBehaviour
     {
         AddSpin(rigidbody.transform.forward,rigidbody.velocity.magnitude, ForceMode.Impulse);
     }
-
 
     public void ResetPosition()
     {

@@ -361,7 +361,6 @@ namespace Valve.VR.InteractionSystem
 			}
 		}
 
-
 		//-------------------------------------------------
 		public void Draw2DDebug()
 		{
@@ -391,7 +390,6 @@ namespace Valve.VR.InteractionSystem
 			}
 		}
 
-
 		//-------------------------------------------------
 		private void ActivateRig( GameObject rig )
 		{
@@ -405,7 +403,6 @@ namespace Valve.VR.InteractionSystem
 				audioListener.transform.localRotation = Quaternion.identity;
 			}
 		}
-
 
 		//-------------------------------------------------
 		public void PlayerShotSelf()

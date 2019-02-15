@@ -9,16 +9,16 @@ public class Standpoint : MonoBehaviour
 
     public Vector3 BallSpawnPoint;
 
-    public Light RoomPointLight;
+    private bool isFirstTimeTrigger;
 
     private GameObject SwitchScene_Icon;
     private GameObject Arrow_Icon;
     private GameObject Locked_Icon;
     private GameObject Feet_Icon;
 
-    private AudioSource audioSource;
+    private new Renderer renderer;
 
-    private bool playerInArea;
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class Standpoint : MonoBehaviour
         Arrow_Icon = icons.GetChild(1).gameObject;
         Locked_Icon = icons.GetChild(2).gameObject;
         Feet_Icon = icons.GetChild(3).gameObject;
-
+        renderer = GetComponentInChildren<Renderer>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -63,33 +63,35 @@ public class Standpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer.Equals(12))
+        if (isFirstTimeTrigger == false) 
         {
-            playerInArea = true;
-            Arrow_Icon.SetActive(false);
-            audioSource.loop = false;
+            isFirstTimeTrigger = true;
 
-            Debug.LogError("OnTriggerEnter: " + other.name);
+            renderer.enabled = false;
+            Feet_Icon.SetActive(false);
 
-            //GameMaster.Instance.ChangeNextScene();
-            SpawnTrainingBall();
-        }
+            if (other.gameObject.layer.Equals(12)) 
+            {
+                Arrow_Icon.SetActive(false);
+                audioSource.loop = false;
+
+                SpawnTrainingBall();
+
+                //UIManager.Instance
+            }
+        }     
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer.Equals(12))
-        {
-            playerInArea = false;
-            Arrow_Icon.SetActive(true);
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.layer.Equals(12))
+    //    {
+    //        Arrow_Icon.SetActive(true);
 
-            if(audioSource.isPlaying == true)
-            AudioPlayer.Instance.PlayLoopingSfx(audioSource, "StandpointLoop");
+    //        if(audioSource.isPlaying == true)
+    //        AudioPlayer.Instance.PlayLoopingSfx(audioSource, "StandpointLoop");
 
-
-            UnspawnTrainingBall();
-
-            Debug.LogError("OnTriggerExit: " + other.name);
-        }
-    }
+    //        UnspawnTrainingBall();
+    //    }
+    //}
 }

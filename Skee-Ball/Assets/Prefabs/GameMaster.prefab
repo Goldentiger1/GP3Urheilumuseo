@@ -255,6 +255,10 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     audioClip: {fileID: 8300000, guid: 47b5e90896f0e004c85bebd26e6057e2, type: 3}
+  - Name: DespawnSound
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: aa9e211c83b607f479bd7772eb56a98c, type: 3}
 --- !u!1 &5146164436979092304
 GameObject:
   m_ObjectHideFlags: 0

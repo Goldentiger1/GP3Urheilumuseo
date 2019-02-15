@@ -42,7 +42,6 @@ namespace Valve.VR.InteractionSystem
 
 		public bool allowToggleTo2D = true;
 
-
 		//-------------------------------------------------
 		// Singleton instance of the Player. Only one can exist at a time.
 		//-------------------------------------------------
@@ -413,5 +412,5 @@ namespace Valve.VR.InteractionSystem
 		{
 			//Do something appropriate here
 		}
-	}
+    }
 }

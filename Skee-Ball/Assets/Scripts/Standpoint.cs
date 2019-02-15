@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class Standpoint : MonoBehaviour
 {
+    private GameObject SpawnedTrainingBall;
+
     public GameObject BallPrefab;
 
     public Vector3 BallSpawnPoint;
@@ -41,9 +44,21 @@ public class Standpoint : MonoBehaviour
 
     private void SpawnTrainingBall() 
     {
-        Instantiate(BallPrefab, BallSpawnPoint, Quaternion.identity);
+        if(SpawnedTrainingBall == null) 
+        {       
+            SpawnedTrainingBall = Instantiate(BallPrefab, BallSpawnPoint, Quaternion.identity);
 
-        AudioPlayer.Instance.PlayClipAtPoint("SpawnSound", BallSpawnPoint);
+            AudioPlayer.Instance.PlayClipAtPoint("SpawnSound", BallSpawnPoint);
+        }     
+    }
+
+    private void UnspawnTrainingBall() 
+    {
+        if(SpawnedTrainingBall != null) 
+        {
+            AudioPlayer.Instance.PlayClipAtPoint("DespawnSound", BallSpawnPoint);
+            Destroy(SpawnedTrainingBall);
+        }     
     }
 
     private void OnTriggerEnter(Collider other)
@@ -70,6 +85,9 @@ public class Standpoint : MonoBehaviour
 
             if(audioSource.isPlaying == true)
             AudioPlayer.Instance.PlayLoopingSfx(audioSource, "StandpointLoop");
+
+
+            UnspawnTrainingBall();
 
             Debug.LogError("OnTriggerExit: " + other.name);
         }

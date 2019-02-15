@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MusicTracks:
   - Name: Menu
-    volume: 0.1
+    volume: 0.05
     pitch: 1
     audioClip: {fileID: 8300000, guid: f449011625760a4439d550f6acf96536, type: 3}
     loop: 1
@@ -247,6 +247,14 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     audioClip: {fileID: 8300000, guid: 192caba07c24a3b44a6e2e810bf5f267, type: 3}
+  - Name: SpawnSound
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: e9befd794befe7540ad040be41dba757, type: 3}
+  - Name: StandpointLoop
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: 47b5e90896f0e004c85bebd26e6057e2, type: 3}
 --- !u!1 &5146164436979092304
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +337,7 @@ MonoBehaviour:
   FadeInDuration: 2
   FadeOutDuration: 2
   FadeColor: {r: 0, g: 0, b: 0, a: 1}
+  NarrationStartTimer: 4
 --- !u!1 &8336564984598727477
 GameObject:
   m_ObjectHideFlags: 0

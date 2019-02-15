@@ -102,7 +102,6 @@ namespace Valve.VR
                     currentColor = targetColor;
                     deltaColor = new Color(0, 0, 0, 0);
 
-                    Debug.LogError("ELSE");
                     IsFading = false;
                 }
                 else

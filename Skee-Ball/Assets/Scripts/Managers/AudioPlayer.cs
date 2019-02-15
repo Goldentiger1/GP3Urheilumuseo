@@ -80,6 +80,23 @@ public class AudioPlayer : Singelton<AudioPlayer>
         }
     }
 
+    public void PlayClipAtPoint(string clipName, Vector3 position, float volume = 1f) 
+    {
+        AudioSource.PlayClipAtPoint(GetSoundEffect(clipName), position, volume);
+    }
+
+    public void PlayLoopingSfx(AudioSource audioSource, string AudioClipName, float volume = 1f, float pitch = 1f)
+    {
+        if (!audioSource.isPlaying) 
+        {
+            audioSource.loop = true;
+            audioSource.volume = volume;
+            audioSource.pitch = pitch;
+            audioSource.clip = GetSoundEffect(AudioClipName);
+            audioSource.Play();
+        }
+    }
+
     private AudioClip GetSoundEffect(string clipName)
     {
         for (int i = 0; i < SoundEffects.Length; i++)

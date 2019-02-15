@@ -21,6 +21,8 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
     public Color FadeColor = Color.black;
 
+    public float NarrationStartTimer = 4f;
+
     private float audioFadeInDuration;
     private float audioFadeOutDuration;
 
@@ -93,9 +95,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         AudioPlayer.Instance.StopMusicTrack(CurrentSceneIndex);
         AudioPlayer.Instance.StopNarration(CurrentSceneIndex);
 
-        //Debug.LogError(SteamVR_Fade.IsFading);
         yield return new WaitWhile(() => SteamVR_Fade.IsFading);
-        //Debug.LogError(SteamVR_Fade.IsFading);
 
         var asyncOperation = SceneManager.LoadSceneAsync(sceneIndex);
         asyncOperation.allowSceneActivation = false;
@@ -118,7 +118,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
         loadSceneAsync = null;
 
-        OnSceneChanged();
+        OnSceneChanged();   
     }
 
     private void OnSceneChanged()

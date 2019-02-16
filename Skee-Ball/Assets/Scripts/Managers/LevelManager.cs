@@ -44,7 +44,7 @@ public class LevelManager : Singelton<LevelManager>
         }
         else
         {
-            GameMaster.Instance.ChangeNextScene();
+            SceneManager.Instance.ChangeNextScene();
         }      
     }
 

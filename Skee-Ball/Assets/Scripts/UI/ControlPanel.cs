@@ -38,13 +38,13 @@ public class ControlPanel : MonoBehaviour
 
     private void PanelButton()
     {    
-        if (GameMaster.Instance.CurrentSceneIndex == 0)
+        if (SceneManager.Instance.CurrentSceneIndex == 0)
         {
-            GameMaster.Instance.ChangeNextScene(); 
+            SceneManager.Instance.ChangeNextScene(); 
         }
         else
         {
-            GameMaster.Instance.RestartScene();
+            SceneManager.Instance.RestartScene();
         }
     }
 
@@ -60,6 +60,6 @@ public class ControlPanel : MonoBehaviour
 
     private void QuitButton()
     {
-        GameMaster.Instance.QuitButton();
+        SceneManager.Instance.QuitButton();
     }
 }

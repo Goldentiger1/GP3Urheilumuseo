@@ -1,0 +1,169 @@
+﻿using System.Collections;
+using UnityEngine;
+using Valve.VR;
+
+public class SceneManager : Singelton<SceneManager>
+{
+    private Coroutine loadSceneAsync;
+
+    [Header("Scene load variables")]
+    [Range(0, 200)]
+    public float SceneChangeTimer = 60f;
+    [Range(0, 20)]
+    public float FakeLoadDuration = 0f;
+
+    [Header("Fade variables")]
+    [Range(0, 10)]
+    public float FadeInDuration = 0f;
+    [Range(0, 10)]
+    public float FadeOutDuration = 0f;
+
+    public Color FadeColor = Color.black;
+
+    public float NarrationStartTimer = 4f;
+
+    private float audioFadeInDuration;
+    private float audioFadeOutDuration;
+
+    private int sceneCount;
+
+    public int CurrentSceneIndex
+    {
+        get;
+        private set;
+    }
+    public int NextSceneIndex
+    {
+        get
+        {
+            return CurrentSceneIndex + 1;
+        }
+    }
+
+    private void Awake()
+    {
+        Initialize();
+    }
+
+    private void Start()
+    {
+        OnSceneChanged();
+    }
+
+    private void Initialize()
+    {
+        sceneCount = UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings;
+        CurrentSceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+
+        audioFadeInDuration = FadeInDuration;
+        audioFadeOutDuration = FadeOutDuration;
+    }
+
+    public void ChangeScene(int sceneIndex, float sceneChangeTimer = 0f)
+    {
+        if (loadSceneAsync == null)
+        {
+            loadSceneAsync = StartCoroutine(ILoadSceneAsync(sceneIndex, sceneChangeTimer));
+        }
+    }
+
+    public void ChangeNextScene()
+    {
+        ChangeScene(NextSceneIndex);
+    }
+
+    public void RestartScene()
+    {
+        ChangeScene(CurrentSceneIndex);
+    }
+
+    private IEnumerator ILoadSceneAsync(int sceneIndex, float sceneChangeTimer)
+    {
+        yield return new WaitForSeconds(sceneChangeTimer);
+
+        LevelManager.Instance.ClearBasketBalls();
+
+        SteamFadeScreen(FadeColor, FadeInDuration);
+
+        AudioManager.Instance.FadeChannelVolume("Music", 0, audioFadeOutDuration);
+
+        yield return new WaitWhile(() => AudioManager.Instance.IsAudioFading);
+
+        AudioPlayer.Instance.StopMusicTrack(CurrentSceneIndex);
+        AudioPlayer.Instance.StopNarration(CurrentSceneIndex);
+
+        yield return new WaitWhile(() => SteamVR_Fade.IsFading);
+
+        var asyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneIndex);
+        asyncOperation.allowSceneActivation = false;
+
+        while (!asyncOperation.isDone)
+        {
+
+            if (asyncOperation.progress == 0.9f)
+            {
+                LocalizationManager.Instance.ClearLocalizedText();
+
+                yield return new WaitForSeconds(FakeLoadDuration);
+
+                CurrentSceneIndex = sceneIndex;
+                asyncOperation.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
+
+        loadSceneAsync = null;
+
+        OnSceneChanged();
+    }
+
+    private void OnSceneChanged()
+    {
+        LevelManager.Instance.ResetScores();
+
+        SteamFadeScreen(FadeColor, 0);
+        SteamFadeScreen(Color.clear, FadeOutDuration);
+
+        AudioManager.Instance.FadeChannelVolume("Music", 1, audioFadeInDuration);
+        AudioPlayer.Instance.PlayMusicTrack(CurrentSceneIndex);
+
+        AudioPlayer.Instance.PlayNarration(CurrentSceneIndex);
+        LocalizationManager.Instance.ChangeTextToNewLanguage();
+
+        if (CurrentSceneIndex == 0)
+        {
+            return;
+        }
+
+        if (CurrentSceneIndex == sceneCount - 1)
+        {
+            ChangeScene(0, SceneChangeTimer);
+            return;
+        }
+
+        ChangeScene(NextSceneIndex, SceneChangeTimer);
+    }
+
+    private void SteamFadeScreen(Color color, float fadeDuration)
+    {
+        SteamVR_Fade.Start(color, fadeDuration, true);
+    }
+
+    public void QuitButton()
+    {
+        SteamFadeScreen(FadeColor, 0);
+        SteamFadeScreen(FadeColor, FadeOutDuration);
+
+        Invoke("OnQuit", FadeInDuration + 0.2f);
+    }
+
+    private void OnQuit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+}

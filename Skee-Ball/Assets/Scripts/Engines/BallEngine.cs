@@ -31,9 +31,13 @@ public class BallEngine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer.Equals(10))
+        if(other.gameObject.layer.Equals(13))
         {
             LevelManager.Instance.UpdateScore(other.transform);
+
+            AudioPlayer.Instance.PlaySfx(
+                   audioSource,
+                   "IncreaseScore");
         }
     }
 

@@ -1,12 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class AudioPlayer : Singelton<AudioPlayer>
 {
+    public float NarrationDelay = 0f;
+
     public MusicTrack[] MusicTracks;
     public Narration[] Narrations;
     public Sfx[] SoundEffects;
 
-    public string CurrentNarrationClipName { get; set; }
+    public bool IsNarrationPlaying
+    {
+        get;
+        private set;
+    }
 
     private void Start()
     {
@@ -42,6 +49,8 @@ public class AudioPlayer : Singelton<AudioPlayer>
     public void StopMusicTrack(int sceneIndex)
     {
         GetMusicTrack(sceneIndex).StopTrack();
+
+        IsNarrationPlaying = false;
     }
 
     #region INDEXIT !!!
@@ -50,7 +59,7 @@ public class AudioPlayer : Singelton<AudioPlayer>
         if (sceneIndex < 1)
             return;
 
-        Narrations[sceneIndex - 1].PlayNarration();
+        StartCoroutine(IPlayNarration(sceneIndex, NarrationDelay));
     }
 
     public void StopNarration(int sceneIndex)
@@ -119,5 +128,14 @@ public class AudioPlayer : Singelton<AudioPlayer>
         }
 
         return null;
+    }
+
+    private IEnumerator IPlayNarration(int sceneIndex, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        Narrations[sceneIndex - 1].PlayNarration();
+
+        IsNarrationPlaying = true;
     }
 }

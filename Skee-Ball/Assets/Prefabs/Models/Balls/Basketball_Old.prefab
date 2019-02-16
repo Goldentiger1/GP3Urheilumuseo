@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 378264809549093981}
   - component: {fileID: 2276793993009884075}
   m_Layer: 0
-  m_Name: Old_Basketball
+  m_Name: Basketball_Old
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,8 +268,8 @@ MonoBehaviour:
   onDetachFromHand:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2276793993009884075}
-        m_MethodName: AddBackSpin
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5853374420231142970}
   - component: {fileID: 5853374420231143365}
   - component: {fileID: 5853374420231143364}
+  - component: {fileID: 9210493920503865683}
   - component: {fileID: 5853374420231143367}
   - component: {fileID: 5853374420231142969}
   m_Layer: 0
@@ -124,7 +125,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -149,7 +150,7 @@ MonoBehaviour:
   m_fontSizeMin: 0.5
   m_fontSizeMax: 60
   m_fontStyle: 1
-  m_textAlignment: 514
+  m_textAlignment: 528
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -209,6 +210,25 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!95 &9210493920503865683
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853374420231143366}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ce6799e12c6bb04882a20beb6e05e9f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &5853374420231143367
 MonoBehaviour:
   m_ObjectHideFlags: 0

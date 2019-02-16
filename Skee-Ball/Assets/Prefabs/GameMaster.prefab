@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9203d7103652b664385f24739d6842b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NarrationDelay: 4
   MusicTracks:
   - Name: Menu
     volume: 0.05
@@ -507,9 +508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff46ba3ff685d648b4f3f60061696f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneChangeTimer: 2
+  SceneChangeTimer: 120
   FakeLoadDuration: 1
-  NarrationStartTimer: 4
 --- !u!1 &5146164436979092304
 GameObject:
   m_ObjectHideFlags: 0

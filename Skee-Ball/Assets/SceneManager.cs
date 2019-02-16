@@ -39,8 +39,6 @@ public class SceneManager : Singelton<SceneManager>
     [Range(0, 20)]
     public float FakeLoadDuration = 0f;
 
-    public float NarrationStartTimer = 4f;
-
     public SceneData CurrentScene
     {
         get
@@ -76,7 +74,6 @@ public class SceneManager : Singelton<SceneManager>
             return CurrentScene == gameScenes[gameScenes.Length - 1];
         }
     }
-
 
     private void Awake()
     {
@@ -151,14 +148,15 @@ public class SceneManager : Singelton<SceneManager>
     }
 
     private void OnSceneChanged()
-    {
-        LocalizationManager.Instance.ChangeTextToNewLanguage();
+    {       
         LevelManager.Instance.ResetScores();
 
         UIManager.Instance.FadeScreenOut();
 
         AudioPlayer.Instance.PlayMusicTrack(CurrentScene.Index);
-        AudioPlayer.Instance.PlayNarration(CurrentScene.Index);    
+        AudioPlayer.Instance.PlayNarration(CurrentScene.Index);
+
+        LocalizationManager.Instance.ChangeTextToNewLanguage();
 
         if (IsFirstScene)
         {

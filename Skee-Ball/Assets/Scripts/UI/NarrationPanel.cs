@@ -1,19 +1,32 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class NarrationPanel : Singelton<NarrationPanel>
 {
     private LocalizedText narrationText;
+    private TextMeshPro textMeshPro;
+
+    private Animator animator;
 
     private void Awake()
     {
         narrationText = GetComponent<LocalizedText>();
-        narrationText.enabled = false;
+        textMeshPro = GetComponent<TextMeshPro>();
+        animator = GetComponent<Animator>();       
     }
 
     public void ShowPanel(string key)
     {
-        //Debug.LogError(key);
         narrationText.Key = key;
-        narrationText.enabled = true;
+
+        LocalizationManager.Instance.ChangeTextToNewLanguage();
+
+        animator.SetBool("IsShowing", true);
+
+    }
+
+    public void ClosePanel()
+    {
+        animator.SetBool("IsShowing", false);
     }
 }

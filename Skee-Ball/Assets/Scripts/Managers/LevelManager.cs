@@ -38,6 +38,7 @@ public class LevelManager : Singelton<LevelManager>
 
         totalScore = throwDistance > throwDistanceRequiredForThreePoints ? 3 : 2;
 
+
         if (totalScore < MAX_SCORE_AMOUNT)
         {
 

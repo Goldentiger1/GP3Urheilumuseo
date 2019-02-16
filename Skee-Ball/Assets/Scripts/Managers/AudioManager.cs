@@ -79,7 +79,7 @@ public class Narration : Sound
         NarrationPanel.Instance.ShowPanel(audioSource.clip.name);
 
         audioSource.Play();
-        Debug.LogWarning(Name + " PLAY ( Audio clip: " + audioSource.clip.name + " )");
+        //Debug.LogWarning(Name + " PLAY ( Audio clip: " + audioSource.clip.name + " )");
     }
 
     public void StopNarration()
@@ -88,7 +88,7 @@ public class Narration : Sound
             return;
 
         audioSource.Stop();
-        Debug.LogWarning(Name + " STOP");
+        NarrationPanel.Instance.ClosePanel();
     }
 }
 

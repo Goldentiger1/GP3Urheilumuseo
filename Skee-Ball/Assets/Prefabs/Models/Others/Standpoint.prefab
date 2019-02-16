@@ -431,10 +431,9 @@ GameObject:
   m_Component:
   - component: {fileID: 145406951100519064}
   - component: {fileID: 289757286}
-  - component: {fileID: 4301159054127229474}
   - component: {fileID: 266441751}
   - component: {fileID: 266441749}
-  - component: {fileID: 5525890952461401216}
+  - component: {fileID: 745016368}
   m_Layer: 0
   m_Name: Standpoint
   m_TagString: Untagged
@@ -472,21 +471,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BallPrefab: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
   BallSpawnPoint: {x: 0, y: 0.5, z: 1.5}
-  RoomPointLight: {fileID: 0}
---- !u!136 &4301159054127229474
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 145406951101003036}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.15
-  m_Height: 2.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!95 &266441751
 Animator:
   serializedVersion: 3
@@ -603,19 +587,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!54 &5525890952461401216
-Rigidbody:
+--- !u!65 &745016368
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145406951101003036}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Size: {x: 0.25, y: 2.5, z: 0.25}
+  m_Center: {x: 0, y: 1.25, z: 0}

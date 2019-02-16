@@ -36,9 +36,9 @@ namespace Valve.VR.InteractionSystem
 		[Tooltip( "When detaching the object, should it return to its original parent?" )]
 		public bool restoreOriginalParent = false;
 
-        
+        public bool IsThrowed { get; private set; }
 
-		protected VelocityEstimator velocityEstimator;
+        protected VelocityEstimator velocityEstimator;
         protected bool attached = false;
         protected float attachTime;
         protected Vector3 attachPosition;
@@ -132,6 +132,7 @@ namespace Valve.VR.InteractionSystem
         //-------------------------------------------------
         protected virtual void OnAttachedToHand( Hand hand )
 		{
+            IsThrowed = false;
             //Debug.Log("<b>[SteamVR Interaction]</b> Pickup: " + hand.GetGrabStarting().ToString());
 
             hadInterpolation = this.rigidbody.interpolation;
@@ -171,6 +172,8 @@ namespace Valve.VR.InteractionSystem
 
             rigidbody.velocity = velocity;
             rigidbody.angularVelocity = angularVelocity;
+
+            IsThrowed = true;
         }
 
 

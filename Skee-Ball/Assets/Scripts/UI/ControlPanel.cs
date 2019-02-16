@@ -38,7 +38,7 @@ public class ControlPanel : MonoBehaviour
 
     private void PanelButton()
     {    
-        if (SceneManager.Instance.CurrentSceneIndex == 0)
+        if (SceneManager.Instance.CurrentScene.Index == 0)
         {
             SceneManager.Instance.ChangeNextScene(); 
         }
@@ -60,6 +60,6 @@ public class ControlPanel : MonoBehaviour
 
     private void QuitButton()
     {
-        SceneManager.Instance.QuitButton();
+        UIManager.Instance.QuitButton();
     }
 }

@@ -36,14 +36,12 @@ public class AudioPlayer : Singelton<AudioPlayer>
 
     public void PlayMusicTrack(int sceneIndex)
     {
-        
-
-        MusicTracks[sceneIndex].PlayTrack();
+        GetMusicTrack(sceneIndex).PlayTrack();
     }
 
     public void StopMusicTrack(int sceneIndex)
     {
-        MusicTracks[sceneIndex].StopTrack();
+        GetMusicTrack(sceneIndex).StopTrack();
     }
 
     #region INDEXIT !!!
@@ -94,6 +92,19 @@ public class AudioPlayer : Singelton<AudioPlayer>
             audioSource.pitch = pitch;
             audioSource.clip = GetSoundEffect(AudioClipName);
             audioSource.Play();
+        }
+    }
+
+    private MusicTrack GetMusicTrack(int sceneIndex)
+    {
+        switch (sceneIndex)
+        {
+            case 0:
+                return MusicTracks[0];
+            case 4:
+                return MusicTracks[2];
+            default:
+                return MusicTracks[1];
         }
     }
 

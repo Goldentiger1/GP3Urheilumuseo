@@ -151,6 +151,49 @@ MonoBehaviour:
   FadeInDuration: 2
   FadeOutDuration: 4
   FadeColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!1 &922859480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 922859481}
+  - component: {fileID: 922859482}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &922859481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922859480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1114661408618749378}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &922859482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922859480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8abbaa175c9b1e4288d271db5113d2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1524090097
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a519200e9472d1141a84c19870819716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelTime: 60
 --- !u!1 &4092494253325817368
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,6 +509,10 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     audioClip: {fileID: 8300000, guid: aa9e211c83b607f479bd7772eb56a98c, type: 3}
+  - Name: IncreaseScore
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: 8d57953bec601a54a915153398cefa66, type: 3}
 --- !u!1 &4627499889172556143
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,7 +556,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff46ba3ff685d648b4f3f60061696f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneChangeTimer: 120
   FakeLoadDuration: 1
 --- !u!1 &5146164436979092304
 GameObject:
@@ -542,6 +589,7 @@ Transform:
   - {fileID: 5031552825618178827}
   - {fileID: 512049917}
   - {fileID: 2107566429822699419}
+  - {fileID: 922859481}
   m_Father: {fileID: 762804847047507654}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -3,12 +3,12 @@ using TMPro;
 
 public class ScorePanel : MonoBehaviour
 {
-    private TextMeshProUGUI timerDisplayText;
+    private TextMeshProUGUI timeDisplayText;
     private TextMeshProUGUI scoreDisplayText;
 
     private void Awake()
     {
-        timerDisplayText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        timeDisplayText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         scoreDisplayText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
     }
 
@@ -18,6 +18,11 @@ public class ScorePanel : MonoBehaviour
     }
 
     public void UpdateScoreDisplayText(int newValue)
+    {
+        scoreDisplayText.text = newValue.ToString();
+    }
+
+    public void UpdateTimeDisplayText(float newValue)
     {
         scoreDisplayText.text = newValue.ToString();
     }

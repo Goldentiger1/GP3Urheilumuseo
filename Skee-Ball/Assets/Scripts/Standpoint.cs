@@ -105,7 +105,7 @@ public class Standpoint : MonoBehaviour
 
     private IEnumerator IStartGame()
     {
-        yield return new WaitUntil(() => SpawnedTrainingBall.IsAttached);
+        yield return new WaitUntil(() => SpawnedTrainingBall.IsThrowed);
 
         SceneManager.Instance.ChangeNextScene();
     }

@@ -11,8 +11,10 @@ public class AudioPlayer : Singelton<AudioPlayer>
 
     public bool IsNarrationPlaying
     {
-        get;
-        private set;
+        get
+        {
+            return Narrations[SceneManager.Instance.CurrentScene.Index].IsPlaying;
+        }
     }
 
     private void Start()
@@ -49,11 +51,8 @@ public class AudioPlayer : Singelton<AudioPlayer>
     public void StopMusicTrack(int sceneIndex)
     {
         GetMusicTrack(sceneIndex).StopTrack();
-
-        IsNarrationPlaying = false;
     }
 
-    #region INDEXIT !!!
     public void PlayNarration(int sceneIndex)
     {
         if (sceneIndex < 1)
@@ -64,12 +63,11 @@ public class AudioPlayer : Singelton<AudioPlayer>
 
     public void StopNarration(int sceneIndex)
     {
-        if (sceneIndex< 1)
+        if (sceneIndex < 1)
             return;
 
         Narrations[sceneIndex - 1].StopNarration();
     }
-    #endregion INDEXIT !!!
 
     public void PlaySfx(
         AudioSource audioSource,
@@ -135,7 +133,5 @@ public class AudioPlayer : Singelton<AudioPlayer>
         yield return new WaitForSeconds(delay);
 
         Narrations[sceneIndex - 1].PlayNarration();
-
-        IsNarrationPlaying = true;
     }
 }

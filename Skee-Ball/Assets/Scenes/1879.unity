@@ -1418,6 +1418,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Old_Basketball (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1312375322486383636, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1431,7 +1436,7 @@ PrefabInstance:
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.45
+      value: -12.45
       objectReference: {fileID: 0}
     - target: {fileID: 195142613598519867, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
         type: 3}
@@ -1862,6 +1867,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 7b1f1c8f7c8da6448a64df2395507e39, type: 3}
+--- !u!20 &471627363 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2014920, guid: dc06161b6d97feb419f45f03b62e14b9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1772512035}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &532774040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5835,31 +5846,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9195234747672604789, guid: 40337c1f989496e4492a7ff670c5a084,
-        type: 3}
-      propertyPath: SoundEffects.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 9195234747672604789, guid: 40337c1f989496e4492a7ff670c5a084,
-        type: 3}
-      propertyPath: SoundEffects.Array.data[6].Name
-      value: IncreaseScore
-      objectReference: {fileID: 0}
-    - target: {fileID: 9195234747672604789, guid: 40337c1f989496e4492a7ff670c5a084,
-        type: 3}
-      propertyPath: SoundEffects.Array.data[6].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9195234747672604789, guid: 40337c1f989496e4492a7ff670c5a084,
-        type: 3}
-      propertyPath: SoundEffects.Array.data[6].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9195234747672604789, guid: 40337c1f989496e4492a7ff670c5a084,
-        type: 3}
-      propertyPath: SoundEffects.Array.data[6].audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8d57953bec601a54a915153398cefa66, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
 --- !u!1001 &1740915572
@@ -7171,6 +7157,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScorePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 8624717702020978192, guid: 9442dd8ca937ef348845aa7c36648982,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8624717702020978191, guid: 9442dd8ca937ef348845aa7c36648982,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7276,6 +7267,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8624717702020978190, guid: 9442dd8ca937ef348845aa7c36648982,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 471627363}
     - target: {fileID: 8624717702355582179, guid: 9442dd8ca937ef348845aa7c36648982,
         type: 3}
       propertyPath: m_havePropertiesChanged

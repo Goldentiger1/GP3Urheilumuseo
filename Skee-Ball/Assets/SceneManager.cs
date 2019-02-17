@@ -34,8 +34,6 @@ public class SceneManager : Singelton<SceneManager>
     private Coroutine loadSceneAsync;
 
     [Header("Scene load variables")]
-    [Range(0, 200)]
-    public float SceneChangeTimer = 60f;
     [Range(0, 20)]
     public float FakeLoadDuration = 0f;
 
@@ -49,7 +47,7 @@ public class SceneManager : Singelton<SceneManager>
     public SceneData NextScene
     {
         get
-        {
+        {  
             return gameScenes[UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1];
         }
     }
@@ -95,17 +93,28 @@ public class SceneManager : Singelton<SceneManager>
         }
     }
 
-    public void ChangeScene(int sceneIndex, float sceneChangeTimer = 0f)
+    private void ChangeScene(int sceneIndex)
     {
         if (loadSceneAsync == null)
         {
-            loadSceneAsync = StartCoroutine(ILoadSceneAsync(sceneIndex, sceneChangeTimer));
+            loadSceneAsync = StartCoroutine(ILoadSceneAsync(sceneIndex));
         }
     }
 
-    public void ChangeNextScene(float sceneChangeTimer = 0f)
+    public void ChangeNextScene()
     {
-        ChangeScene(NextScene.Index, sceneChangeTimer);
+        //if (IsFirstScene)
+        //{
+        //    return;
+        //}
+
+        if (IsLastScene)
+        {
+            ChangeScene(0);
+            return;
+        }
+
+        ChangeScene(NextScene.Index);
     }
 
     public void RestartScene()
@@ -113,9 +122,10 @@ public class SceneManager : Singelton<SceneManager>
         ChangeScene(CurrentScene.Index);
     }
 
-    private IEnumerator ILoadSceneAsync(int sceneIndex, float sceneChangeTimer)
+    private IEnumerator ILoadSceneAsync(int sceneIndex)
     {
-        yield return new WaitForSeconds(sceneChangeTimer);
+        //!!??
+        yield return new WaitWhile(() => AudioPlayer.Instance.IsNarrationPlaying);
 
         LevelManager.Instance.ClearBasketBalls();
 
@@ -149,26 +159,13 @@ public class SceneManager : Singelton<SceneManager>
 
     private void OnSceneChanged()
     {       
-        LevelManager.Instance.ResetScores();
+        LevelManager.Instance.ResetLevelValues();
 
         UIManager.Instance.FadeScreenOut();
 
         AudioPlayer.Instance.PlayMusicTrack(CurrentScene.Index);
         AudioPlayer.Instance.PlayNarration(CurrentScene.Index);
 
-        LocalizationManager.Instance.ChangeTextToNewLanguage();
-
-        if (IsFirstScene)
-        {
-            return;
-        }
-
-        if (IsLastScene)
-        {
-            ChangeScene(0, SceneChangeTimer);
-            return;
-        }
-
-        ChangeScene(NextScene.Index, SceneChangeTimer);
+        LocalizationManager.Instance.ChangeTextToNewLanguage();     
     }
 }

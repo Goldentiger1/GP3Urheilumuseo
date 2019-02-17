@@ -15,13 +15,8 @@ public class BallEngine : Throwable
             return rigidbody.velocity.magnitude;
         }
     }
-    public bool IsAttached
-    {
-        get
-        {
-            return attached;
-        }
-    }
+    public bool IsThrowed { get; private set; }
+   
 
     protected override void Awake()
     {
@@ -100,17 +95,14 @@ public class BallEngine : Throwable
 
     protected override void OnAttachedToHand(Hand hand)
     {
+        IsThrowed = false;
         base.OnAttachedToHand(hand);
-    }
-
-    private void Update()
-    {
-        //print("Attach rotation: " + attachRotation);
     }
 
     protected override void OnDetachedFromHand(Hand hand)
     {
         base.OnDetachedFromHand(hand);
+        IsThrowed = true;
 
         //AddSpin(pla, 100, ForceMode.Impulse);
     }

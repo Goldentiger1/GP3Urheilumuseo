@@ -5,6 +5,14 @@ using System.Collections;
 
 public class Sound
 {
+    public bool IsPlaying
+    {
+        get
+        {
+            return audioSource.isPlaying;
+        }
+    }
+
     public string Name;
     protected AudioSource audioSource;
     protected AudioMixerGroup audioMixerGroup;

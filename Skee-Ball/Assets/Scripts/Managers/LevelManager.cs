@@ -8,6 +8,8 @@ public class LevelManager : Singelton<LevelManager>
 
     private Stack<BallEngine> basketBalls = new Stack<BallEngine>();
 
+    public ScorePanel CurrentScorePanel { get; set; }
+
     private readonly float throwDistanceRequiredForThreePoints = 7f;
 
     private int totalScore = 0;
@@ -41,7 +43,7 @@ public class LevelManager : Singelton<LevelManager>
 
         if (totalScore < MAX_SCORE_AMOUNT)
         {
-
+            CurrentScorePanel.UpdateScoreDisplayText(totalScore);
         }
         else
         {

@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
-using Valve.VR.InteractionSystem;
 
 public class Standpoint : MonoBehaviour
 {
-    private Throwable SpawnedTrainingBall;
+    private BallEngine SpawnedTrainingBall;
 
     public GameObject BallPrefab;
 
@@ -60,7 +59,7 @@ public class Standpoint : MonoBehaviour
     {
         if(SpawnedTrainingBall == null) 
         {       
-            SpawnedTrainingBall = Instantiate(BallPrefab, BallSpawnPoint, Quaternion.identity).GetComponent<Throwable>();
+            SpawnedTrainingBall = Instantiate(BallPrefab, BallSpawnPoint, Quaternion.identity).GetComponent<BallEngine>();
 
             AudioPlayer.Instance.PlayClipAtPoint("SpawnSound", BallSpawnPoint);
         }     
@@ -106,7 +105,7 @@ public class Standpoint : MonoBehaviour
 
     private IEnumerator IStartGame()
     {
-        yield return new WaitUntil(() => SpawnedTrainingBall.IsThrowed);
+        yield return new WaitUntil(() => SpawnedTrainingBall.IsAttached);
 
         SceneManager.Instance.ChangeNextScene();
     }

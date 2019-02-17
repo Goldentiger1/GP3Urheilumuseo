@@ -109,7 +109,7 @@ public class LocalizationManager : Singelton<LocalizationManager>
         }
     }
 
-    private string GetValue(string key)
+    public string GetValue(string key)
     {
         var result = string.Empty;
         return result = localizationTextDictionary.TryGetValue(key, out result) ? result : missingText;

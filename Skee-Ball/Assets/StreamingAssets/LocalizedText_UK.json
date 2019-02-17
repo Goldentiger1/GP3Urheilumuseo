@@ -4,6 +4,7 @@
 		{"Key":"ResetButton","Value":"RESET"},
 		{"Key":"QuitButton","Value":"QUIT"},
 		{"Key":"Score","Value":"SCORE"},
+		{"Key":"Time","Value":"TIME"},
 		
 		{"Key":"1","Value":"1 UK"},
 		

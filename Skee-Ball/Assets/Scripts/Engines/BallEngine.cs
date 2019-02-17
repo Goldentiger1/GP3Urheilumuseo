@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
+using Valve.VR.InteractionSystem;
 
-public class BallEngine : MonoBehaviour
+public class BallEngine : Throwable
 {
-    private new Rigidbody rigidbody;
     private Vector3 rigidbodyStartPosition;
     private readonly float minHitToSoundVelocity = 1f;
 
@@ -15,10 +15,18 @@ public class BallEngine : MonoBehaviour
             return rigidbody.velocity.magnitude;
         }
     }
-
-    private void Awake()
+    public bool IsAttached
     {
-        rigidbody = GetComponent<Rigidbody>();
+        get
+        {
+            return attached;
+        }
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -26,12 +34,12 @@ public class BallEngine : MonoBehaviour
     {
         LevelManager.Instance.AddLevelBasketBall(this);
 
-        rigidbodyStartPosition = rigidbody.position;
+        rigidbodyStartPosition = rigidbody.transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer.Equals(13))
+        if (other.gameObject.layer.Equals(13))
         {
             LevelManager.Instance.UpdateScore(other.transform);
 
@@ -43,7 +51,7 @@ public class BallEngine : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -53,7 +61,7 @@ public class BallEngine : MonoBehaviour
             case 9:
 
                 if (rigidbody.velocity.magnitude < minHitToSoundVelocity)
-                { 
+                {
                     return;
                 }
 
@@ -83,15 +91,27 @@ public class BallEngine : MonoBehaviour
         rigidbody.AddTorque(spinDirection * force, forceMode);
     }
 
-    public void AddBackSpin() 
-    {
-        AddSpin(rigidbody.transform.forward,rigidbody.velocity.magnitude, ForceMode.Impulse);
-    }
-
     public void ResetPosition()
     {
         rigidbody.velocity = Vector3.zero;
         rigidbody.position = rigidbodyStartPosition;
         rigidbody.rotation = Quaternion.Euler(Vector3.zero);
+    }
+
+    protected override void OnAttachedToHand(Hand hand)
+    {
+        base.OnAttachedToHand(hand);
+    }
+
+    private void Update()
+    {
+        //print("Attach rotation: " + attachRotation);
+    }
+
+    protected override void OnDetachedFromHand(Hand hand)
+    {
+        base.OnDetachedFromHand(hand);
+
+        //AddSpin(pla, 100, ForceMode.Impulse);
     }
 }

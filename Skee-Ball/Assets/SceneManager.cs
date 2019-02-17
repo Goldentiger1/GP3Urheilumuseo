@@ -103,9 +103,9 @@ public class SceneManager : Singelton<SceneManager>
         }
     }
 
-    public void ChangeNextScene()
+    public void ChangeNextScene(float sceneChangeTimer = 0f)
     {
-        ChangeScene(NextScene.Index);
+        ChangeScene(NextScene.Index, sceneChangeTimer);
     }
 
     public void RestartScene()

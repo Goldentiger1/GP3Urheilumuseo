@@ -36,8 +36,6 @@ namespace Valve.VR.InteractionSystem
 		[Tooltip( "When detaching the object, should it return to its original parent?" )]
 		public bool restoreOriginalParent = false;
 
-        public bool IsThrowed { get; private set; }
-
         protected VelocityEstimator velocityEstimator;
         protected bool attached = false;
         protected float attachTime;
@@ -48,7 +46,6 @@ namespace Valve.VR.InteractionSystem
 		public UnityEvent onPickUp;
         public UnityEvent onDetachFromHand;
         public UnityEvent<Hand> onHeldUpdate;
-
         
         protected RigidbodyInterpolation hadInterpolation = RigidbodyInterpolation.None;
 
@@ -57,14 +54,11 @@ namespace Valve.VR.InteractionSystem
         [HideInInspector]
         public Interactable interactable;
 
-
         //-------------------------------------------------
         protected virtual void Awake()
 		{
 			velocityEstimator = GetComponent<VelocityEstimator>();
             interactable = GetComponent<Interactable>();
-
-
 
             rigidbody = GetComponent<Rigidbody>();
             rigidbody.maxAngularVelocity = 50.0f;
@@ -75,9 +69,7 @@ namespace Valve.VR.InteractionSystem
                 // remove?
                 //interactable.handFollowTransform = attachmentOffset;
             }
-
 		}
-
 
         //-------------------------------------------------
         protected virtual void OnHandHoverBegin( Hand hand )
@@ -109,13 +101,11 @@ namespace Valve.VR.InteractionSystem
 			}
 		}
 
-
         //-------------------------------------------------
         protected virtual void OnHandHoverEnd( Hand hand )
 		{
             hand.HideGrabHint();
 		}
-
 
         //-------------------------------------------------
         protected virtual void HandHoverUpdate( Hand hand )
@@ -132,14 +122,14 @@ namespace Valve.VR.InteractionSystem
         //-------------------------------------------------
         protected virtual void OnAttachedToHand( Hand hand )
 		{
-            IsThrowed = false;
             //Debug.Log("<b>[SteamVR Interaction]</b> Pickup: " + hand.GetGrabStarting().ToString());
 
             hadInterpolation = this.rigidbody.interpolation;
 
             attached = true;
-
-			onPickUp.Invoke();
+            print(attached);
+ 
+            onPickUp.Invoke();
 
 			hand.HoverLock( null );
             
@@ -150,14 +140,13 @@ namespace Valve.VR.InteractionSystem
 			attachTime = Time.time;
 			attachPosition = transform.position;
 			attachRotation = transform.rotation;
-
 		}
-
 
         //-------------------------------------------------
         protected virtual void OnDetachedFromHand(Hand hand)
         {
             attached = false;
+            print(attached);
 
             onDetachFromHand.Invoke();
 
@@ -172,10 +161,7 @@ namespace Valve.VR.InteractionSystem
 
             rigidbody.velocity = velocity;
             rigidbody.angularVelocity = angularVelocity;
-
-            IsThrowed = true;
         }
-
 
         public virtual void GetReleaseVelocities(Hand hand, out Vector3 velocity, out Vector3 angularVelocity)
         {
@@ -210,8 +196,6 @@ namespace Valve.VR.InteractionSystem
         //-------------------------------------------------
         protected virtual void HandAttachedUpdate(Hand hand)
         {
-
-
             if (hand.IsGrabEnding(this.gameObject))
             {
                 hand.DetachObject(gameObject, restoreOriginalParent);
@@ -229,7 +213,6 @@ namespace Valve.VR.InteractionSystem
                 onHeldUpdate.Invoke(hand);
         }
 
-
         //-------------------------------------------------
         protected virtual IEnumerator LateDetach( Hand hand )
 		{
@@ -238,14 +221,12 @@ namespace Valve.VR.InteractionSystem
 			hand.DetachObject( gameObject, restoreOriginalParent );
 		}
 
-
         //-------------------------------------------------
         protected virtual void OnHandFocusAcquired( Hand hand )
 		{
 			gameObject.SetActive( true );
 			velocityEstimator.BeginEstimatingVelocity();
 		}
-
 
         //-------------------------------------------------
         protected virtual void OnHandFocusLost( Hand hand )

@@ -15,11 +15,16 @@ public class NarrationPanel : Singelton<NarrationPanel>
         animator = GetComponent<Animator>();       
     }
 
+    private void Start()
+    {
+        LocalizationManager.Instance.ChangeTextToNewLanguage();
+    }
+
     public void ShowPanel(string key)
     {
         narrationText.Key = key;
 
-        LocalizationManager.Instance.ChangeTextToNewLanguage();
+        textMeshPro.text = LocalizationManager.Instance.GetValue(key);
 
         animator.SetBool("IsShowing", true);
 

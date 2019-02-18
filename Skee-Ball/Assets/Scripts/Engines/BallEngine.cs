@@ -3,10 +3,15 @@ using Valve.VR.InteractionSystem;
 
 public class BallEngine : Throwable
 {
+    #region VARIABLES
+
     private Vector3 rigidbodyStartPosition;
     private readonly float minHitToSoundVelocity = 1f;
-
     private AudioSource audioSource;
+
+    #endregion VARIABLES
+
+    #region PROPERTIES
 
     public float CurrentVelocity
     {
@@ -15,14 +20,21 @@ public class BallEngine : Throwable
             return rigidbody.velocity.magnitude;
         }
     }
-    public bool IsThrowed { get; private set; }
-   
+    public bool IsThrowed
+    {
+        get;
+        private set;
+    }
+
+    #endregion PROPERTIES
+
+    #region UNITY_FUNCTIONS
 
     protected override void Awake()
     {
         base.Awake();
 
-        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();     
     }
 
     private void Start()
@@ -81,6 +93,10 @@ public class BallEngine : Throwable
         }
     }
 
+    #endregion UNITY_FUNCTIONS
+
+    #region CUSTOM_FUNCTIONS
+
     private void AddSpin(Vector3 spinDirection, float force, ForceMode forceMode)
     {
         rigidbody.AddTorque(spinDirection * force, forceMode);
@@ -101,9 +117,13 @@ public class BallEngine : Throwable
 
     protected override void OnDetachedFromHand(Hand hand)
     {
-        base.OnDetachedFromHand(hand);
-        IsThrowed = true;
+        var holdingHand = hand;
 
-        //AddSpin(pla, 100, ForceMode.Impulse);
+        base.OnDetachedFromHand(hand);
+
+        IsThrowed = true;
+        AddSpin(holdingHand.transform.forward, 100, ForceMode.Impulse);
     }
+
+    #endregion CUSTOM_FUNCTIONS
 }

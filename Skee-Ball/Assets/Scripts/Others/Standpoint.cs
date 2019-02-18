@@ -91,9 +91,9 @@ public class Standpoint : MonoBehaviour
 
                 SpawnTrainingBall();
 
-                StartGame();              
+                StartGame();
 
-                // UIManager.Instance
+                UIManager.Instance.ShowHUD();
             }
         }     
     }

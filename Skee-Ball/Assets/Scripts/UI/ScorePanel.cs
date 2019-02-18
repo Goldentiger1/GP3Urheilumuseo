@@ -24,6 +24,6 @@ public class ScorePanel : MonoBehaviour
 
     public void UpdateTimeDisplayText(float newValue)
     {
-        timeDisplayText.text = ": " + newValue.ToString("00.00");
+        timeDisplayText.text = ": " + newValue.ToString("00.0");
     }
 }

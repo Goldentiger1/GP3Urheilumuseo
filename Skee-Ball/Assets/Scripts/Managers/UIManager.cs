@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using Valve.VR;
 
 public class UIManager : Singelton<UIManager>
 {
-    private Transform HUDCanvas;
+    #region VARIABLES
 
+    private Coroutine iShowHUD;
+
+    private Transform HUDCanvas;
     private float audioFadeInDuration;
     private float audioFadeOutDuration;
 
@@ -13,15 +17,32 @@ public class UIManager : Singelton<UIManager>
     public float FadeInDuration = 0f;
     [Range(0, 10)]
     public float FadeOutDuration = 0f;
-
     public Color FadeColor = Color.black;
 
-    private void Awake() 
+    #endregion VARIABLES
+
+    #region PROPERTIES
+
+
+
+    #endregion PROPERTIES
+
+    #region UNITY_FUNCTIONS
+
+    private void Awake()
     {
         HUDCanvas = transform.Find("HUDCanvas");
     }
 
-    private void Start() 
+    private void Update()
+    {
+        if (HUDCanvas.gameObject.activeSelf == false)
+            return;
+
+        MoveHUD();
+    }
+
+    private void Start()
     {
         audioFadeInDuration = FadeInDuration;
         audioFadeOutDuration = FadeOutDuration;
@@ -31,21 +52,21 @@ public class UIManager : Singelton<UIManager>
         SteamFadeScreen(FadeColor, 0);
     }
 
-    public void ShowText(float duration) 
-    {
-        HUDCanvas.gameObject.SetActive(true);
+    #endregion UNITY_FUNCTIONS
 
-        Invoke("HideCanvas", duration);
-    }
+    #region CUSTOM_FUNCTIONS
 
-    public void ShowLoadingImage(float duration)
+    private void MoveHUD()
     {
 
     }
 
-    private void HideCanvas() 
+    public void ShowHUD(float showDuration = 20f)
     {
-        HUDCanvas.gameObject.SetActive(false);
+        if(iShowHUD == null)
+        {
+            iShowHUD = StartCoroutine(IShowHUD(showDuration));
+        }
     }
 
     public void FadeScreenIn()
@@ -78,6 +99,17 @@ public class UIManager : Singelton<UIManager>
 #endif
     }
 
+    private IEnumerator IShowHUD(float showDuration)
+    {
+        HUDCanvas.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(showDuration);
+
+        HUDCanvas.gameObject.SetActive(false);
+
+        iShowHUD = null;
+    }
+
     #region Buttons
 
     public void QuitButton()
@@ -89,4 +121,6 @@ public class UIManager : Singelton<UIManager>
     }
 
     #endregion Buttons
+
+    #endregion CUSTOM_FUNCTIONS
 }

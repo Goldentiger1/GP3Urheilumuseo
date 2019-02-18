@@ -2,7 +2,13 @@
 
 public abstract class Singelton<T> : MonoBehaviour where T : Component
 {
+    #region VARIABLES
+
     private static T instance;
+
+    #endregion VARIABLES
+
+    #region PROPERTIES
 
     public static T Instance
     {
@@ -18,7 +24,7 @@ public abstract class Singelton<T> : MonoBehaviour where T : Component
                         hideFlags = HideFlags.HideAndDontSave
                     };
                     instance = gameObject.AddComponent<T>();
-                    
+
                 }
             }
             return instance;
@@ -28,4 +34,6 @@ public abstract class Singelton<T> : MonoBehaviour where T : Component
             instance = value;
         }
     }
+
+    #endregion PROPERTIES
 }

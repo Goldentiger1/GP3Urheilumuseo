@@ -5,6 +5,8 @@ using Valve.VR.InteractionSystem;
 
 public class LevelManager : Singelton<LevelManager>
 {
+    #region VARIABLES
+
     private Coroutine iStartTimer;
 
     [Range(0, 200)]
@@ -20,10 +22,21 @@ public class LevelManager : Singelton<LevelManager>
 
     private int totalScore = 0;
 
-    private void Start()
-    {
-        
-    }
+    #endregion VARIABLES
+
+    #region PROPERTIES
+
+
+
+    #endregion PROPERTIES
+
+    #region UNITY_FUNCTIONS
+
+
+
+    #endregion UNITY_FUNCTIONS
+
+    #region CUSTOM_FUNCTIONS
 
     public void AddLevelBasketBall(BallEngine ballEngine)
     {
@@ -35,11 +48,6 @@ public class LevelManager : Singelton<LevelManager>
         basketBalls.Clear();
     }
 
-    private void Initialize()
-    {
-
-    }
-
     public void UpdateScore(Transform hitTransform)
     {
         var throwDistance = Vector3.Distance(hitTransform.position, Player.instance.feetPositionGuess);
@@ -47,9 +55,9 @@ public class LevelManager : Singelton<LevelManager>
         totalScore += throwDistance > throwDistanceRequiredForThreePoints ? 3 : 2;
         CurrentScorePanel.UpdateScoreDisplayText(totalScore);
 
-       
+
         //SceneManager.Instance.ChangeNextScene();
-             
+
     }
 
     private void StartLevelTimer()
@@ -59,7 +67,7 @@ public class LevelManager : Singelton<LevelManager>
             return;
         }
 
-        if(iStartTimer == null)
+        if (iStartTimer == null)
         {
             iStartTimer = StartCoroutine(IStartLevelTimer());
         }
@@ -73,11 +81,11 @@ public class LevelManager : Singelton<LevelManager>
         {
             startTime -= Time.deltaTime;
             Debug.Log("Time: " + startTime);
-            if(CurrentScorePanel != null)
+            if (CurrentScorePanel != null)
             {
                 CurrentScorePanel.UpdateTimeDisplayText(startTime);
             }
-          
+
             yield return null;
         }
 
@@ -103,4 +111,6 @@ public class LevelManager : Singelton<LevelManager>
         totalScore = 0;
         StartLevelTimer();
     }
+
+    #endregion CUSTOM_FUNCTIONS
 }

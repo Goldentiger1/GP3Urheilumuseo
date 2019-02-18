@@ -120,15 +120,19 @@ public class SceneManager : Singelton<SceneManager>
     {
         //!!??
         yield return new WaitWhile(() => AudioPlayer.Instance.IsNarrationPlaying);
+      
 
         LevelManager.Instance.ClearBasketBalls();
 
         UIManager.Instance.FadeScreenIn();
+        print("1");
 
         AudioPlayer.Instance.StopNarration(CurrentScene.Index);
 
         yield return new WaitWhile(() => SteamVR_Fade.IsFading);
+        print("2");
         yield return new WaitUntil(() => AudioManager.Instance.IsAudioFading == false);
+        print("3");
 
         AudioPlayer.Instance.StopMusicTrack(CurrentScene.Index);
    
@@ -142,6 +146,7 @@ public class SceneManager : Singelton<SceneManager>
                 LocalizationManager.Instance.ClearLocalizedText();
                 yield return new WaitForSeconds(FakeLoadDuration);
                 asyncOperation.allowSceneActivation = true;
+
             }
 
             yield return null;

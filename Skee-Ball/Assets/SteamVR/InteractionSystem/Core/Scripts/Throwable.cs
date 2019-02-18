@@ -127,7 +127,6 @@ namespace Valve.VR.InteractionSystem
             hadInterpolation = this.rigidbody.interpolation;
 
             attached = true;
-            print(attached);
  
             onPickUp.Invoke();
 
@@ -146,7 +145,6 @@ namespace Valve.VR.InteractionSystem
         protected virtual void OnDetachedFromHand(Hand hand)
         {
             attached = false;
-            print(attached);
 
             onDetachFromHand.Invoke();
 

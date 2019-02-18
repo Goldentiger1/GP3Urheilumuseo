@@ -62,7 +62,6 @@ namespace Valve.VR
 
             if (duration > 0.0f)
             {
-                //Debug.LogError("IF");
                 targetColor = newColor;
                 deltaColor = (targetColor - currentColor) / duration;
             }
@@ -103,6 +102,7 @@ namespace Valve.VR
                     deltaColor = new Color(0, 0, 0, 0);
 
                     IsFading = false;
+                    print("Fade FALSE");
                 }
                 else
                 {

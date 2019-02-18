@@ -16,13 +16,18 @@ public class InputManager : Singelton<InputManager>
 
     #region UNITY_FUNCTIONS
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.R))
-    //    {
-    //        LevelManager.Instance.ResetBallPostions();
-    //    }
-    //}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            LevelManager.Instance.ResetBallPostions();
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            SceneManager.Instance.ChangeNextScene();
+        }
+    }
 
     #endregion UNITY_FUNCTIONS
 

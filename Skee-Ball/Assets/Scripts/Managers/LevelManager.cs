@@ -80,7 +80,7 @@ public class LevelManager : Singelton<LevelManager>
         while (startTime > 0)
         {
             startTime -= Time.deltaTime;
-            Debug.Log("Time: " + startTime);
+
             if (CurrentScorePanel != null)
             {
                 CurrentScorePanel.UpdateTimeDisplayText(startTime);

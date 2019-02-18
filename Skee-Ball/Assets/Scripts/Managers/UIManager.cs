@@ -27,6 +27,8 @@ public class UIManager : Singelton<UIManager>
         audioFadeOutDuration = FadeOutDuration;
 
         HUDCanvas.gameObject.SetActive(false);
+
+        SteamFadeScreen(FadeColor, 0);
     }
 
     public void ShowText(float duration) 

@@ -72,11 +72,16 @@ public class LevelManager : Singelton<LevelManager>
         while (startTime > 0)
         {
             startTime -= Time.deltaTime;
-
-            //CurrentScorePanel.UpdateTimeDisplayText(startTime);
+            Debug.Log("Time: " + startTime);
+            if(CurrentScorePanel != null)
+            {
+                CurrentScorePanel.UpdateTimeDisplayText(startTime);
+            }
+          
+            yield return null;
         }
 
-        //yield return new WaitForSeconds(LevelTime);
+        CurrentScorePanel.UpdateTimeDisplayText(0);
 
         SceneManager.Instance.ChangeNextScene();
 

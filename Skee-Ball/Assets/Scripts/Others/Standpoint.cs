@@ -9,7 +9,7 @@ public class Standpoint : MonoBehaviour
     public GameObject BallPrefab;
     public GameObject TrainingTarget;
 
-    public Vector3 BallSpawnPoint;
+    private Vector3 ballSpawnPoint;
 
     private bool isFirstTimeTrigger;
 
@@ -62,10 +62,11 @@ public class Standpoint : MonoBehaviour
     private void SpawnTrainingBall() 
     {
         if(spawnedTrainingBall == null) 
-        {       
-            spawnedTrainingBall = Instantiate(BallPrefab, Player.instance.feetPositionGuess + new Vector3(0, 0.2f, 0.5f), Quaternion.identity).GetComponent<BallEngine>();
+        {
+            ballSpawnPoint = Player.instance.feetPositionGuess + new Vector3(0, 0.2f, 0.5f);
+            spawnedTrainingBall = Instantiate(BallPrefab, ballSpawnPoint, Quaternion.identity).GetComponent<BallEngine>();
             spawnedTrainingBall.name = BallPrefab.name;
-            AudioPlayer.Instance.PlayClipAtPoint("SpawnSound", BallSpawnPoint);
+            AudioPlayer.Instance.PlayClipAtPoint("SpawnSound", ballSpawnPoint);
         }     
     }
 
@@ -73,7 +74,7 @@ public class Standpoint : MonoBehaviour
     {
         if(spawnedTrainingBall != null) 
         {
-            AudioPlayer.Instance.PlayClipAtPoint("DespawnSound", BallSpawnPoint);
+            AudioPlayer.Instance.PlayClipAtPoint("DespawnSound", ballSpawnPoint);
             Destroy(spawnedTrainingBall);
         }     
     }

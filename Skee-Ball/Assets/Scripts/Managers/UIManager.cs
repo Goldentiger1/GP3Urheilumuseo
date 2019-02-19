@@ -1,12 +1,17 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
 public class UIManager : Singelton<UIManager>
 {
     #region VARIABLES
-    
+
+    private TextMeshProUGUI hintText;
+    private Image hintImage;
+
     private readonly float yOffset = 0.8f;
     private readonly float zOffset = 1.2f;
     private readonly float smoothMultiplier = 0.6f;
@@ -16,8 +21,6 @@ public class UIManager : Singelton<UIManager>
     private Transform HUDCanvas;
     private float audioFadeInDuration;
     private float audioFadeOutDuration;
-
-    private Animator animator;
 
     [Header("Fade variables")]
     [Range(0, 10)]
@@ -39,7 +42,14 @@ public class UIManager : Singelton<UIManager>
     private void Awake()
     {
         HUDCanvas = transform.Find("HUDCanvas");
-        animator = GetComponent<Animator>();
+
+        hintImage = HUDCanvas.GetComponentInChildren<Image>();
+        hintText = HUDCanvas.GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    public void ChangeHintText(string newText)
+    {
+        hintText.text = newText;
     }
 
     private void Start()

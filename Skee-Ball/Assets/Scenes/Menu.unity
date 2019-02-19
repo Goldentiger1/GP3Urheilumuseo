@@ -839,7 +839,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
-    - _Color: {r: 0.5446778, g: 0.708681, b: 0.754717, a: 1}
+    - _Color: {r: 0.7971698, g: 0.95790315, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1214,14 +1214,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1529844290, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
-      propertyPath: m_Name
-      value: HintText
-      objectReference: {fileID: 0}
-    - target: {fileID: 1529844292, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 1667051012}
     - target: {fileID: 1529844292, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
       propertyPath: m_fontMaterial
       value: 
@@ -1233,10 +1225,6 @@ PrefabInstance:
     - target: {fileID: 1529844292, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 158184421, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
-      propertyPath: m_Name
-      value: HintImage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}

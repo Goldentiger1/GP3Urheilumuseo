@@ -63,7 +63,7 @@ LightmapSettings:
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
     m_Padding: 2
-    m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000,
+    m_LightmapParameters: {fileID: 15200, guid: 0000000000000000f000000000000000,
       type: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 112000000, guid: 35b35de17fd1fa148ae87475d7e332a6,
+  m_LightingDataAsset: {fileID: 112000000, guid: a57d01e8524825d49bcf1d3f4a94c426,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -268,7 +268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1005487760
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -384,6 +384,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 59dff9363ea918149838ec50c48b4676, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 59dff9363ea918149838ec50c48b4676, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -414,7 +418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 59dff9363ea918149838ec50c48b4676, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 59dff9363ea918149838ec50c48b4676, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -438,17 +442,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2300002, guid: 59dff9363ea918149838ec50c48b4676, type: 3}
       propertyPath: m_ScaleInLightmap
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300008, guid: 59dff9363ea918149838ec50c48b4676, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c6c923fdba9e9e94c9f1252f19480fd0, type: 2}
+    - target: {fileID: 2300008, guid: 59dff9363ea918149838ec50c48b4676, type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2300010, guid: 59dff9363ea918149838ec50c48b4676, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: cdaf3ce9f0b8d554185b607f74e44b3c, type: 2}
+    - target: {fileID: 2300010, guid: 59dff9363ea918149838ec50c48b4676, type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 59dff9363ea918149838ec50c48b4676, type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400014, guid: 59dff9363ea918149838ec50c48b4676, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 400014, guid: 59dff9363ea918149838ec50c48b4676, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300004, guid: 59dff9363ea918149838ec50c48b4676, type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300006, guid: 59dff9363ea918149838ec50c48b4676, type: 3}
       propertyPath: m_ScaleInLightmap
       value: 6
       objectReference: {fileID: 0}

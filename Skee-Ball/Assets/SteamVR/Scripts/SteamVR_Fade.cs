@@ -102,7 +102,6 @@ namespace Valve.VR
                     deltaColor = new Color(0, 0, 0, 0);
 
                     IsFading = false;
-                    print("Fade FALSE");
                 }
                 else
                 {

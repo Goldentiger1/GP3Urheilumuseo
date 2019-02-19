@@ -2,7 +2,7 @@
 
 public class PlayerEngine : Player
 {
-    public bool Instance
+    public static bool Instance
     {
         get
         {

@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 using Valve.VR;
+using Valve.VR.InteractionSystem;
 
 public class UIManager : Singelton<UIManager>
 {
+    private float speed = 5f;
+
     #region VARIABLES
 
     private Coroutine iShowHUD;
@@ -58,7 +61,18 @@ public class UIManager : Singelton<UIManager>
 
     private void MoveHUD()
     {
+        HUDCanvas.position = Player.instance.feetPositionGuess;
 
+        Vector3 targetDirection = Player.instance.headCollider.transform.position - transform.position;
+
+        // The step size is equal to speed times frame time.
+        float step = speed * Time.deltaTime;
+
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
+        Debug.DrawRay(transform.position, newDirection, Color.red);
+
+        // Move our position a step closer to the target.
+        transform.rotation = Quaternion.LookRotation(newDirection);
     }
 
     public void ShowHUD(float showDuration = 20f)

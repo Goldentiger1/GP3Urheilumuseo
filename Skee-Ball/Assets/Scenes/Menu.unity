@@ -630,7 +630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -941,39 +941,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1524090098, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.514
-      objectReference: {fileID: 0}
-    - target: {fileID: 8207350815846462771, guid: 40337c1f989496e4492a7ff670c5a084,
-        type: 3}
-      propertyPath: LevelTime
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 9195234747672604789, guid: 40337c1f989496e4492a7ff670c5a084,
-        type: 3}
-      propertyPath: SoundEffects.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 9195234747672604789, guid: 40337c1f989496e4492a7ff670c5a084,
-        type: 3}
-      propertyPath: SoundEffects.Array.data[7].Name
-      value: Ballpick
-      objectReference: {fileID: 0}
-    - target: {fileID: 9195234747672604789, guid: 40337c1f989496e4492a7ff670c5a084,
-        type: 3}
-      propertyPath: SoundEffects.Array.data[7].volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9195234747672604789, guid: 40337c1f989496e4492a7ff670c5a084,
-        type: 3}
-      propertyPath: SoundEffects.Array.data[7].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9195234747672604789, guid: 40337c1f989496e4492a7ff670c5a084,
-        type: 3}
-      propertyPath: SoundEffects.Array.data[7].audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8d57953bec601a54a915153398cefa66, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}

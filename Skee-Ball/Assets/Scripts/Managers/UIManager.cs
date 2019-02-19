@@ -5,7 +5,8 @@ using Valve.VR.InteractionSystem;
 
 public class UIManager : Singelton<UIManager>
 {
-    private float speed = 5f;
+    private readonly float zOffset = 2f;
+    private float startYPosition;
 
     #region VARIABLES
 
@@ -50,6 +51,8 @@ public class UIManager : Singelton<UIManager>
         audioFadeInDuration = FadeInDuration;
         audioFadeOutDuration = FadeOutDuration;
 
+        startYPosition = transform.position.y + 1;
+
         HUDCanvas.gameObject.SetActive(false);
 
         SteamFadeScreen(FadeColor, 0);
@@ -61,18 +64,15 @@ public class UIManager : Singelton<UIManager>
 
     private void MoveHUD()
     {
-        HUDCanvas.position = Player.instance.feetPositionGuess;
+        var playerDirection = Player.instance.headCollider.transform;
+        //Vector3 desiredPosition = playerDirection.position + playerDirection.forward * zOffset;
+        //HUDCanvas.position = new Vector3(Mathf.Lerp(HUDCanvas.position.x, desiredPosition.x, Time.deltaTime), startYPosition, desiredPosition.z);
 
-        Vector3 targetDirection = Player.instance.headCollider.transform.position - transform.position;
+        Vector3 desiredPosition = playerDirection.position + playerDirection.forward * zOffset;
+        HUDCanvas.position = desiredPosition;
 
-        // The step size is equal to speed times frame time.
-        float step = speed * Time.deltaTime;
-
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
-        Debug.DrawRay(transform.position, newDirection, Color.red);
-
-        // Move our position a step closer to the target.
-        transform.rotation = Quaternion.LookRotation(newDirection);
+        HUDCanvas.transform.LookAt(playerDirection);
+        HUDCanvas.transform.position = new Vector3(playerDirection.position.x, startYPosition, playerDirection.position.z);
     }
 
     public void ShowHUD(float showDuration = 20f)

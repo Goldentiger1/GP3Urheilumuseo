@@ -180,7 +180,7 @@ MonoBehaviour:
   hideHandOnAttach: 1
   hideSkeletonOnAttach: 1
   hideControllerOnAttach: 1
-  handAnimationOnPickup: 1
+  handAnimationOnPickup: 4
   setRangeOfMotionOnPickup: 0
   useHandObjectAttachmentPoint: 1
   attachEaseIn: 0

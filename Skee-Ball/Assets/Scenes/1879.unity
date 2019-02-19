@@ -4519,11 +4519,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 41653606220620936, guid: 222ec5eea4930cf489b70d0f98f0e3cc,
-        type: 3}
-      propertyPath: handAnimationOnPickup
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 222ec5eea4930cf489b70d0f98f0e3cc, type: 3}
 --- !u!4 &1284124811 stripped
@@ -5884,6 +5879,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6329302678123071360, guid: dc06161b6d97feb419f45f03b62e14b9,
+        type: 3}
+      propertyPath: allowToggleTo2D
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

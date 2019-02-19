@@ -128,6 +128,7 @@ public class SceneManager : Singelton<SceneManager>
         AudioPlayer.Instance.StopNarration(CurrentScene.Index);
 
         yield return new WaitWhile(() => SteamVR_Fade.IsFading);
+
         yield return new WaitUntil(() => AudioManager.Instance.IsAudioFading == false);
 
         AudioPlayer.Instance.StopMusicTrack(CurrentScene.Index);

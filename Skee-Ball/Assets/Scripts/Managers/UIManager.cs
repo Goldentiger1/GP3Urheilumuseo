@@ -5,10 +5,10 @@ using Valve.VR.InteractionSystem;
 
 public class UIManager : Singelton<UIManager>
 {
-    private readonly float zOffset = 2f;
-    private float startYPosition;
-
     #region VARIABLES
+
+    private readonly float yOffset = 0.5f;
+    private readonly float zOffset = 1.5f;
 
     private Coroutine iShowHUD;
 
@@ -43,15 +43,16 @@ public class UIManager : Singelton<UIManager>
         if (HUDCanvas.gameObject.activeSelf == false)
             return;
 
-        MoveHUD();
+        var target = Player.instance.hmdTransform;
+
+        MoveHUD(target);
+        RotateHUD(target);
     }
 
     private void Start()
     {
         audioFadeInDuration = FadeInDuration;
         audioFadeOutDuration = FadeOutDuration;
-
-        startYPosition = transform.position.y + 1;
 
         HUDCanvas.gameObject.SetActive(false);
 
@@ -62,17 +63,26 @@ public class UIManager : Singelton<UIManager>
 
     #region CUSTOM_FUNCTIONS
 
-    private void MoveHUD()
+    private void MoveHUD(Transform target)
     {
-        var playerDirection = Player.instance.headCollider.transform;
-        //Vector3 desiredPosition = playerDirection.position + playerDirection.forward * zOffset;
-        //HUDCanvas.position = new Vector3(Mathf.Lerp(HUDCanvas.position.x, desiredPosition.x, Time.deltaTime), startYPosition, desiredPosition.z);
+        HUDCanvas.position = target.position + target.forward * zOffset;
 
-        Vector3 desiredPosition = playerDirection.position + playerDirection.forward * zOffset;
-        HUDCanvas.position = desiredPosition;
+        HUDCanvas.position = new Vector3(
 
-        HUDCanvas.transform.LookAt(playerDirection);
-        HUDCanvas.transform.position = new Vector3(playerDirection.position.x, startYPosition, playerDirection.position.z);
+            HUDCanvas.position.x,
+            yOffset,
+            HUDCanvas.position.z
+
+            );
+    }
+
+    private void RotateHUD(Transform target)
+    {
+        HUDCanvas.LookAt(
+
+            new Vector3(target.position.x, HUDCanvas.position.y, target.position.z)
+
+            );
     }
 
     public void ShowHUD(float showDuration = 20f)

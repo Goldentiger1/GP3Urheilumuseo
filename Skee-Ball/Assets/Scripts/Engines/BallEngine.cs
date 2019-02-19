@@ -117,12 +117,12 @@ public class BallEngine : Throwable
 
     protected override void OnDetachedFromHand(Hand hand)
     {
-        //var holdingHand = hand;
+        var holdingHand = hand;
 
         base.OnDetachedFromHand(hand);
 
         IsThrowed = true;
-        //AddSpin(holdingHand.transform.forward, 100, ForceMode.Impulse);
+        AddSpin(new Vector3(holdingHand.transform.localPosition.z,0 , 0), 10, ForceMode.Impulse);
     }
 
     #endregion CUSTOM_FUNCTIONS

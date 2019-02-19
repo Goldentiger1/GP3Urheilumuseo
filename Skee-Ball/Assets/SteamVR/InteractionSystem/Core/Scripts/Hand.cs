@@ -1632,10 +1632,8 @@ namespace Valve.VR.InteractionSystem
         }
     }
 
-
     [System.Serializable]
     public class HandEvent : UnityEvent<Hand> { }
-
 
 #if UNITY_EDITOR
     //-------------------------------------------------------------------------

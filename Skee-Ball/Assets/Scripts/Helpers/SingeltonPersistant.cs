@@ -2,7 +2,13 @@
 
 public abstract class SingeltonPersistant<T> : MonoBehaviour where T : Component
 {
+    #region VARIABLES
+
     private static T instance;
+
+    #endregion VARIABLES
+
+    #region PROPERTIES
 
     public static T Instance
     {
@@ -29,6 +35,10 @@ public abstract class SingeltonPersistant<T> : MonoBehaviour where T : Component
         }
     }
 
+    #endregion PROPERTIES
+
+    #region UNITY_FUNCTIONS
+
     protected virtual void Awake()
     {
         DontDestroyOnLoad(this);
@@ -42,4 +52,6 @@ public abstract class SingeltonPersistant<T> : MonoBehaviour where T : Component
             Destroy(gameObject);
         }
     }
+
+    #endregion UNITY_FUNCTIONS
 }

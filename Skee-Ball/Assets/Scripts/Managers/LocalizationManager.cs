@@ -20,6 +20,8 @@ public class LocalizationItem
 
 public class LocalizationManager : Singelton<LocalizationManager>
 {
+    #region VARIABLES
+
     private string currentLanguage = string.Empty;
 
     private Dictionary<string, string> localizationTextDictionary;
@@ -28,40 +30,30 @@ public class LocalizationManager : Singelton<LocalizationManager>
     private readonly string defaultLanguage = "FI";
     private readonly string missingText = "Localized text not found!";
 
+    #endregion VARIABLES
+
+    #region PROPERTIES
+
     public bool IsReady
     {
         get;
         private set;
     }
 
+    #endregion PROPERTIES
+
+    #region UNITY_FUNCTIONS
+
     private void Awake()
     {
-        IsReady = false;     
+        IsReady = false;
 
         ChangeLanguage(defaultLanguage);
     }
 
-    //private IEnumerator Start()
-    //{
-    //    yield return new WaitUntil(() => IsReady);
+    #endregion UNITY_FUNCTIONS
 
-    //    //Debug.Log("Localization is ready");
-
-    //    ChangeTextToNewLanguage();
-    //}
-
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.A))
-    //    {
-    //        ChangeLanguage("UK");
-    //    }
-
-    //    if (Input.GetKeyDown(KeyCode.D))
-    //    {
-    //        ChangeLanguage("FI");
-    //    }
-    //}
+    #region CUSTOM_FUNCTIONS
 
     private void LoadLocalizedText(string fileName)
     {
@@ -128,5 +120,7 @@ public class LocalizationManager : Singelton<LocalizationManager>
         currentLanguage = newLanguage;
 
         ChangeTextToNewLanguage();
-    } 
+    }
+
+    #endregion CUSTOM_FUNCTIONS
 }

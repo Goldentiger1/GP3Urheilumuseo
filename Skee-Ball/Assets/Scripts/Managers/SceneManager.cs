@@ -1,34 +1,13 @@
-﻿using System;
+﻿
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 using Valve.VR;
-
-[Serializable]
-public class SceneData
-{
-    public int Index { get; private set; }
-    public string Name { get; private set; }
-
-    public SceneData(int index)
-    {
-        Index = index;
-        Name = GetSceneName(Index);
-    }
-
-    private string GetSceneName(int index)
-    {
-        var path = SceneUtility.GetScenePathByBuildIndex(index);
-        var slash = path.LastIndexOf('/');
-        var name = path.Substring(slash + 1);
-        var dot = name.LastIndexOf('.');
-
-        return name.Substring(0, dot);
-    }
-}
 
 public class SceneManager : Singelton<SceneManager>
 {
+    #region VARIABLES
+
     private SceneData[] gameScenes;
 
     private Coroutine loadSceneAsync;
@@ -37,6 +16,10 @@ public class SceneManager : Singelton<SceneManager>
     [Range(0, 20)]
     public float FakeLoadDuration = 0f;
 
+    #endregion VARIABLES
+
+    #region PROPERTIES
+
     public SceneData CurrentScene
     {
         get
@@ -44,13 +27,15 @@ public class SceneManager : Singelton<SceneManager>
             return gameScenes[UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex];
         }
     }
+
     public SceneData NextScene
     {
         get
-        {  
+        {
             return gameScenes[UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1];
         }
     }
+
     public int SceneCount
     {
         get
@@ -58,6 +43,7 @@ public class SceneManager : Singelton<SceneManager>
             return UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings;
         }
     }
+
     public bool IsFirstScene
     {
         get
@@ -73,6 +59,10 @@ public class SceneManager : Singelton<SceneManager>
         }
     }
 
+    #endregion PROPERTIES
+
+    #region UNITY_FUNCTIONS
+
     private void Awake()
     {
         Initialize();
@@ -80,9 +70,12 @@ public class SceneManager : Singelton<SceneManager>
 
     private void Start()
     {
-        
         OnSceneChanged();
     }
+
+    #endregion UNITY_FUNCTIONS
+
+    #region CUSTOM_FUNCTIONS
 
     private void Initialize()
     {
@@ -127,17 +120,22 @@ public class SceneManager : Singelton<SceneManager>
     {
         //!!??
         yield return new WaitWhile(() => AudioPlayer.Instance.IsNarrationPlaying);
+      
 
         LevelManager.Instance.ClearBasketBalls();
 
         UIManager.Instance.FadeScreenIn();
+        print("1");
 
-        yield return new WaitWhile(() => SteamVR_Fade.IsFading);
-        yield return new WaitUntil(() => AudioManager.Instance.IsAudioFading == false);
-
-        AudioPlayer.Instance.StopMusicTrack(CurrentScene.Index);
         AudioPlayer.Instance.StopNarration(CurrentScene.Index);
 
+        yield return new WaitWhile(() => SteamVR_Fade.IsFading);
+        print("2");
+        yield return new WaitUntil(() => AudioManager.Instance.IsAudioFading == false);
+        print("3");
+
+        AudioPlayer.Instance.StopMusicTrack(CurrentScene.Index);
+   
         var asyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneIndex);
         asyncOperation.allowSceneActivation = false;
 
@@ -148,6 +146,7 @@ public class SceneManager : Singelton<SceneManager>
                 LocalizationManager.Instance.ClearLocalizedText();
                 yield return new WaitForSeconds(FakeLoadDuration);
                 asyncOperation.allowSceneActivation = true;
+
             }
 
             yield return null;
@@ -159,7 +158,7 @@ public class SceneManager : Singelton<SceneManager>
     }
 
     private void OnSceneChanged()
-    {       
+    {
         LevelManager.Instance.ResetLevelValues();
 
         UIManager.Instance.FadeScreenOut();
@@ -167,6 +166,8 @@ public class SceneManager : Singelton<SceneManager>
         AudioPlayer.Instance.PlayMusicTrack(CurrentScene.Index);
         AudioPlayer.Instance.PlayNarration(CurrentScene.Index);
 
-        LocalizationManager.Instance.ChangeTextToNewLanguage();     
+        LocalizationManager.Instance.ChangeTextToNewLanguage();
     }
+
+    #endregion CUSTOM_FUNCTIONS
 }

@@ -3,11 +3,17 @@ using UnityEngine;
 
 public class AudioPlayer : Singelton<AudioPlayer>
 {
+    #region VARIABLES
+
     public float NarrationDelay = 0f;
 
     public MusicTrack[] MusicTracks;
     public Narration[] Narrations;
     public Sfx[] SoundEffects;
+
+    #endregion VARIABLES
+
+    #region PROPERTIES
 
     public bool IsNarrationPlaying
     {
@@ -17,11 +23,19 @@ public class AudioPlayer : Singelton<AudioPlayer>
         }
     }
 
+    #endregion PROPERTIES
+
+    #region UNITY_FUNCTIONS
+
     private void Start()
     {
         CreateMusicTrackAudioSources();
         CreateNarrationAudioSources();
     }
+
+    #endregion UNITY_FUNCTIONS
+
+    #region CUSTOM_FUNCTIONS
 
     private void CreateMusicTrackAudioSources()
     {
@@ -78,21 +92,21 @@ public class AudioPlayer : Singelton<AudioPlayer>
         float maxRandomPitch = 1.1f)
     {
         if (!audioSource.isPlaying)
-        {       
+        {
             audioSource.volume = Random.Range(minRandomVolume, maxRandomVolume);
             audioSource.pitch = Random.Range(minRandomPitch, maxRandomPitch);
             audioSource.PlayOneShot(GetSoundEffect(AudioClipName));
         }
     }
 
-    public void PlayClipAtPoint(string clipName, Vector3 position, float volume = 1f) 
+    public void PlayClipAtPoint(string clipName, Vector3 position, float volume = 1f)
     {
         AudioSource.PlayClipAtPoint(GetSoundEffect(clipName), position, volume);
     }
 
     public void PlayLoopingSfx(AudioSource audioSource, string AudioClipName, float volume = 1f, float pitch = 1f)
     {
-        if (!audioSource.isPlaying) 
+        if (!audioSource.isPlaying)
         {
             audioSource.loop = true;
             audioSource.volume = volume;
@@ -119,7 +133,7 @@ public class AudioPlayer : Singelton<AudioPlayer>
     {
         for (int i = 0; i < SoundEffects.Length; i++)
         {
-            if(clipName == SoundEffects[i].Name)
+            if (clipName == SoundEffects[i].Name)
             {
                 return SoundEffects[i].audioClip;
             }
@@ -134,4 +148,6 @@ public class AudioPlayer : Singelton<AudioPlayer>
 
         Narrations[sceneIndex - 1].PlayNarration();
     }
+
+    #endregion CUSTOM_FUNCTIONS
 }

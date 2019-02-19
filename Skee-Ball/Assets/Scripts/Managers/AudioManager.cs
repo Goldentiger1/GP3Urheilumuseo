@@ -1,108 +1,17 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections;
 
-public class Sound
-{
-    public bool IsPlaying
-    {
-        get
-        {
-            return audioSource.isPlaying;
-        }
-    }
-
-    public string Name;
-    protected AudioSource audioSource;
-    protected AudioMixerGroup audioMixerGroup;
-
-    [Range(0, 1)]
-    public float volume = 0.5f;
-    [Range(0.9f, 1.1f)]
-    public float pitch = 1f;
-
-    protected bool playOnAwake = false;
-
-    public virtual void SetAudioSource(AudioSource audioSource)
-    {
-        this.audioSource = audioSource;
-
-        audioSource.volume = volume;
-        audioSource.pitch = pitch;
-        audioSource.playOnAwake = playOnAwake;
-    }
-}
-
-[Serializable]
-public class MusicTrack : Sound
-{
-    public AudioClip audioClip;
-    public bool loop = false;
-
-    public override void SetAudioSource(AudioSource audioSource)
-    {
-        base.SetAudioSource(audioSource);
-        audioSource.clip = audioClip;
-        audioSource.loop = loop;
-        audioSource.outputAudioMixerGroup = AudioManager.Instance.GetChannelOutput("Music");
-    }
-
-    public void PlayTrack()
-    {
-        if (!audioSource.isPlaying)
-            audioSource.Play();
-    }
-
-    public void StopTrack()
-    {
-        if (audioSource.isPlaying)
-            audioSource.Stop();
-    }
-}
-
-[Serializable]
-public class Sfx : Sound
-{
-    public AudioClip audioClip;
-}
-
-[Serializable]
-public class Narration : Sound
-{
-    public AudioClip[] AudioClips;
-
-    public override void SetAudioSource(AudioSource audioSource)
-    {
-        base.SetAudioSource(audioSource);
-        audioSource.outputAudioMixerGroup = AudioManager.Instance.GetChannelOutput("Narration");
-    }
-
-    public void PlayNarration()
-    {
-        if (audioSource.isPlaying == true)
-            return;
-
-        audioSource.clip = AudioClips[UnityEngine.Random.Range(0, AudioClips.Length)];
-        NarrationPanel.Instance.ShowPanel(audioSource.clip.name);
-
-        audioSource.Play();
-        //Debug.LogWarning(Name + " PLAY ( Audio clip: " + audioSource.clip.name + " )");
-    }
-
-    public void StopNarration()
-    {
-        if (audioSource.isPlaying != true)
-            return;
-
-        audioSource.Stop();
-        NarrationPanel.Instance.ClosePanel();
-    }
-}
-
 public class AudioManager : Singelton<AudioManager>
 {
-    public AudioMixer AudioMixer;   
+    #region VARIABLES
+
+    public AudioMixer AudioMixer;
+
+    #endregion VARIABLES
+
+    #region PROPERTIES
+
     public AudioMixerUpdateMode AudioMixerUpdateMode
     {
         get;
@@ -113,17 +22,24 @@ public class AudioManager : Singelton<AudioManager>
         get;
         private set;
     }
-
     public bool IsAudioFading
     {
         get;
         private set;
     }
 
+    #endregion PROPERTIES
+
+    #region UNITY_FUNCTIONS
+
     private void Awake()
     {
         Initialize();
     }
+
+    #endregion UNITY_FUNCTIONS
+
+    #region CUSTOM_FUNCTIONS
 
     private void Initialize()
     {
@@ -212,4 +128,6 @@ public class AudioManager : Singelton<AudioManager>
             }
         }
     }
+
+    #endregion CUSTOM_FUNCTIONS
 }

@@ -470,6 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BallPrefab: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
+  TrainingTarget: {fileID: 0}
   BallSpawnPoint: {x: 0, y: 0.5, z: 1.5}
 --- !u!95 &266441751
 Animator:

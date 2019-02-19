@@ -481,6 +481,14 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     audioClip: {fileID: 8300000, guid: 8d57953bec601a54a915153398cefa66, type: 3}
+  - Name: UIPanelOpen
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: 2bd66143af0efeb4e884e4273d2ed956, type: 3}
+  - Name: UIPanelClose
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: 480615392ea7d6b489261483ec92bfa2, type: 3}
 --- !u!1 &4627499889172556143
 GameObject:
   m_ObjectHideFlags: 0

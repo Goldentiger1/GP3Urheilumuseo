@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UIPanelACO
+  m_Controller: {fileID: 9100000, guid: 1ce6799e12c6bb04882a20beb6e05e9f, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 0689063fee47fc24186c999f1c12ae2c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0689063fee47fc24186c999f1c12ae2c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: dbeb3641f725b8a4e8f2e646ad8941ca, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: dbeb3641f725b8a4e8f2e646ad8941ca, type: 2}

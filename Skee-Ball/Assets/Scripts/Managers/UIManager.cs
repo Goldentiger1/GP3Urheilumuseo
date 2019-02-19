@@ -6,15 +6,18 @@ using Valve.VR.InteractionSystem;
 public class UIManager : Singelton<UIManager>
 {
     #region VARIABLES
-
-    private readonly float yOffset = 0.5f;
-    private readonly float zOffset = 1.5f;
+    
+    private readonly float yOffset = 0.8f;
+    private readonly float zOffset = 1.2f;
+    private readonly float smoothMultiplier = 0.6f;
 
     private Coroutine iShowHUD;
 
     private Transform HUDCanvas;
     private float audioFadeInDuration;
     private float audioFadeOutDuration;
+
+    private Animator animator;
 
     [Header("Fade variables")]
     [Range(0, 10)]
@@ -36,6 +39,17 @@ public class UIManager : Singelton<UIManager>
     private void Awake()
     {
         HUDCanvas = transform.Find("HUDCanvas");
+        animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        audioFadeInDuration = FadeInDuration;
+        audioFadeOutDuration = FadeOutDuration;
+
+        HUDCanvas.gameObject.SetActive(false);
+
+        SteamFadeScreen(FadeColor, 0);
     }
 
     private void Update()
@@ -49,26 +63,25 @@ public class UIManager : Singelton<UIManager>
         RotateHUD(target);
     }
 
-    private void Start()
-    {
-        audioFadeInDuration = FadeInDuration;
-        audioFadeOutDuration = FadeOutDuration;
-
-        HUDCanvas.gameObject.SetActive(false);
-
-        SteamFadeScreen(FadeColor, 0);
-    }
-
     #endregion UNITY_FUNCTIONS
 
     #region CUSTOM_FUNCTIONS
 
     private void MoveHUD(Transform target)
     {
-        HUDCanvas.position = target.position + target.forward * zOffset;
+        var desiredPosition = new Vector3(
+            target.position.x,
+            HUDCanvas.position.y,
+            target.position.z
+
+            );
+
+        HUDCanvas.position = Vector3.Lerp(
+            HUDCanvas.position, 
+            desiredPosition + (target.forward * zOffset), 
+            Time.deltaTime * smoothMultiplier);
 
         HUDCanvas.position = new Vector3(
-
             HUDCanvas.position.x,
             yOffset,
             HUDCanvas.position.z
@@ -85,11 +98,11 @@ public class UIManager : Singelton<UIManager>
             );
     }
 
-    public void ShowHUD(float showDuration = 20f)
+    public void ShowHUD(Vector3 startPosition,  float showDelay = 0f, float showDuration = 20f)
     {
-        if(iShowHUD == null)
+        if (iShowHUD == null)
         {
-            iShowHUD = StartCoroutine(IShowHUD(showDuration));
+            iShowHUD = StartCoroutine(IShowHUD(startPosition, showDelay, showDuration));
         }
     }
 
@@ -123,11 +136,18 @@ public class UIManager : Singelton<UIManager>
 #endif
     }
 
-    private IEnumerator IShowHUD(float showDuration)
+    private IEnumerator IShowHUD(Vector3 startPosition, float showDelay, float showDuration)
     {
+        yield return new WaitForSeconds(showDelay);
+
+        HUDCanvas.position = startPosition;
         HUDCanvas.gameObject.SetActive(true);
 
+        AudioPlayer.Instance.PlayClipAtPoint("UIPanelOpen", HUDCanvas.position);
+
         yield return new WaitForSeconds(showDuration);
+
+        AudioPlayer.Instance.PlayClipAtPoint("UIPanelClose", HUDCanvas.position);
 
         HUDCanvas.gameObject.SetActive(false);
 

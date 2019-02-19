@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class Standpoint : MonoBehaviour
 {
-    private BallEngine SpawnedTrainingBall;
+    private BallEngine spawnedTrainingBall;
 
     public GameObject BallPrefab;
+    public GameObject TrainingTarget;
 
     public Vector3 BallSpawnPoint;
 
@@ -42,6 +44,8 @@ public class Standpoint : MonoBehaviour
         triggerColider = GetComponent<Collider>();
         renderer = GetComponentInChildren<Renderer>();
         audioSource = GetComponent<AudioSource>();
+
+        TrainingTarget.SetActive(false);
     }
 
     private void OnStart()
@@ -57,20 +61,20 @@ public class Standpoint : MonoBehaviour
 
     private void SpawnTrainingBall() 
     {
-        if(SpawnedTrainingBall == null) 
+        if(spawnedTrainingBall == null) 
         {       
-            SpawnedTrainingBall = Instantiate(BallPrefab, BallSpawnPoint, Quaternion.identity).GetComponent<BallEngine>();
-
+            spawnedTrainingBall = Instantiate(BallPrefab, Player.instance.feetPositionGuess + new Vector3(0, 0.2f, 0.5f), Quaternion.identity).GetComponent<BallEngine>();
+            spawnedTrainingBall.name = BallPrefab.name;
             AudioPlayer.Instance.PlayClipAtPoint("SpawnSound", BallSpawnPoint);
         }     
     }
 
     private void UnspawnTrainingBall() 
     {
-        if(SpawnedTrainingBall != null) 
+        if(spawnedTrainingBall != null) 
         {
             AudioPlayer.Instance.PlayClipAtPoint("DespawnSound", BallSpawnPoint);
-            Destroy(SpawnedTrainingBall);
+            Destroy(spawnedTrainingBall);
         }     
     }
 
@@ -93,7 +97,7 @@ public class Standpoint : MonoBehaviour
 
                 StartGame();
 
-                UIManager.Instance.ShowHUD();
+                UIManager.Instance.ShowHUD(Player.instance.bodyDirectionGuess + Vector3.forward, 1);
             }
         }     
     }
@@ -105,7 +109,9 @@ public class Standpoint : MonoBehaviour
 
     private IEnumerator IStartGame()
     {
-        yield return new WaitUntil(() => SpawnedTrainingBall.IsThrowed);
+        TrainingTarget.SetActive(true);
+
+        yield return new WaitUntil(() => TrainingTarget.activeSelf == false);
 
         SceneManager.Instance.ChangeNextScene();
     }

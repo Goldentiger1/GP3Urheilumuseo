@@ -12,7 +12,7 @@ public class UIManager : Singelton<UIManager>
     private TextMeshProUGUI hintText;
     private Image hintImage;
 
-    private readonly float yOffset = 0.6f;
+    private readonly float yOffset = 1f;
     private readonly float zOffset = 1.2f;
     private readonly float smoothMultiplier = 0.6f;
 

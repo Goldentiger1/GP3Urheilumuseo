@@ -328,16 +328,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5853374420231142968, guid: 85ec74aae777ab0468ec92d0feec0b51,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5853374420231142968, guid: 85ec74aae777ab0468ec92d0feec0b51,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5853374420231142970, guid: 85ec74aae777ab0468ec92d0feec0b51,
         type: 3}
       propertyPath: m_Mesh
@@ -4607,7 +4597,7 @@ Transform:
   - {fileID: 772411258}
   - {fileID: 1694381919}
   m_Father: {fileID: 1833462652}
-  m_RootOrder: 15
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1382766146 stripped
 GameObject:
@@ -5754,6 +5744,7 @@ Transform:
   - {fileID: 831834338}
   - {fileID: 1332942563}
   - {fileID: 90909224}
+  - {fileID: 1352779528}
   - {fileID: 1029140587}
   - {fileID: 2133476034}
   - {fileID: 350467020}
@@ -5761,7 +5752,6 @@ Transform:
   - {fileID: 1097006542}
   - {fileID: 1593849890}
   - {fileID: 679153044}
-  - {fileID: 1352779528}
   - {fileID: 142441029}
   - {fileID: 2102435407}
   m_Father: {fileID: 2083077367}

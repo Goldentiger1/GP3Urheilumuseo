@@ -12,7 +12,7 @@ public class UIManager : Singelton<UIManager>
     private TextMeshProUGUI hintText;
     private Image hintImage;
 
-    private readonly float yOffset = 0.8f;
+    private readonly float yOffset = 0.6f;
     private readonly float zOffset = 1.2f;
     private readonly float smoothMultiplier = 0.6f;
 
@@ -116,6 +116,18 @@ public class UIManager : Singelton<UIManager>
         }
     }
 
+    public void HideHUD()
+    {
+        if(iShowHUD != null)
+        {
+            StopCoroutine(iShowHUD);
+        }
+
+        AudioPlayer.Instance.PlayClipAtPoint("UIPanelClose", HUDCanvas.position);
+
+        HUDCanvas.gameObject.SetActive(false);
+    }
+
     public void FadeScreenIn()
     {
         SteamFadeScreen(Color.clear, 0);
@@ -150,16 +162,12 @@ public class UIManager : Singelton<UIManager>
     {
         yield return new WaitForSeconds(showDelay);
 
-        HUDCanvas.position = startPosition;
+        HUDCanvas.position = startPosition + Vector3.forward;
         HUDCanvas.gameObject.SetActive(true);
 
         AudioPlayer.Instance.PlayClipAtPoint("UIPanelOpen", HUDCanvas.position);
 
         yield return new WaitForSeconds(showDuration);
-
-        AudioPlayer.Instance.PlayClipAtPoint("UIPanelClose", HUDCanvas.position);
-
-        HUDCanvas.gameObject.SetActive(false);
 
         iShowHUD = null;
     }

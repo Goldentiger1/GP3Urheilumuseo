@@ -20,7 +20,7 @@ public class BallEngine : Throwable
             return rigidbody.velocity.magnitude;
         }
     }
-    public bool IsThrowed
+    public bool IsPickedUp
     {
         get;
         private set;
@@ -121,7 +121,7 @@ public class BallEngine : Throwable
 
     protected override void OnAttachedToHand(Hand hand)
     {
-        IsThrowed = false;
+        IsPickedUp = true;
         base.OnAttachedToHand(hand);
     }
 
@@ -131,7 +131,7 @@ public class BallEngine : Throwable
 
         base.OnDetachedFromHand(hand);
 
-        IsThrowed = true;
+        IsPickedUp = false;
         AddSpin(new Vector3(holdingHand.transform.localPosition.z, 0 , 0), CurrentVelocity, ForceMode.Impulse);
     }
 

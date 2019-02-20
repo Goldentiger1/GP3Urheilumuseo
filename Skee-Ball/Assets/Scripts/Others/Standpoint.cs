@@ -98,7 +98,7 @@ public class Standpoint : MonoBehaviour
 
                 StartGame();
 
-                UIManager.Instance.ShowHUD(Player.instance.bodyDirectionGuess + Vector3.forward, 1);
+                UIManager.Instance.ShowHUD(Player.instance.bodyDirectionGuess + Vector3.forward, 1f, 400f);
             }
         }     
     }
@@ -112,7 +112,13 @@ public class Standpoint : MonoBehaviour
     {
         TrainingTarget.SetActive(true);
 
+        yield return new WaitUntil(() => spawnedTrainingBall.IsPickedUp);
+
+        UIManager.Instance.ChangeHintText("HEILAUTA OHJAINTA JA PÄÄSTÄ LIIPAISIMESTA HEITTÄÄKSESI PALLOA- YRITÄ OSUA EDESSÄSI OLEVAAN MAALITAULUUN.");
+
         yield return new WaitUntil(() => TrainingTarget.activeSelf == false);
+
+        UIManager.Instance.HideHUD();
 
         SceneManager.Instance.ChangeNextScene();
     }

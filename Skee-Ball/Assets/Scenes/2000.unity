@@ -4547,8 +4547,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0.000000014901161, y: 0, z: 0.3990674}
-    m_Extent: {x: 0.38249996, y: 0.3824999, z: 0.3990673}
+    m_Center: {x: 0.0000005066395, y: -0.0000047683716, z: 0.3325553}
+    m_Extent: {x: 0.31875017, y: 0.3187499, z: 0.3325565}
   m_DirtyAABB: 0
 --- !u!4 &231035501
 Transform:
@@ -4557,12 +4557,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231035498}
-  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -11.9222555, y: 2.5056937, z: 0.05142764}
-  m_LocalScale: {x: 0.7681059, y: 0.7681057, z: 0.567607}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.3, y: 4.2, z: 12.155}
+  m_LocalScale: {x: 1.4397043, y: 1.4397044, z: 0.92512965}
   m_Children: []
-  m_Father: {fileID: 1562932379}
-  m_RootOrder: 1
+  m_Father: {fileID: 576246428}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &315796299
 GameObject:
@@ -5139,6 +5139,26 @@ PrefabInstance:
     - target: {fileID: 2300002, guid: 59c6e01d883029146935cb286b92778f, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 59c6e01d883029146935cb286b92778f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 59c6e01d883029146935cb286b92778f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 59c6e01d883029146935cb286b92778f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 59c6e01d883029146935cb286b92778f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 59c6e01d883029146935cb286b92778f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 59c6e01d883029146935cb286b92778f, type: 3}
       propertyPath: m_Enabled
@@ -6500,23 +6520,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 4801972475148994, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 54592747563221260, guid: cc9bef7725ba89842abfbe99dff30454,
-        type: 3}
-      propertyPath: m_Drag
-      value: 0.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
 --- !u!4 &1186990537 stripped
@@ -7621,10 +7624,9 @@ Transform:
   m_GameObject: {fileID: 1562932378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 576246428}
-  - {fileID: 231035501}
   - {fileID: 1908240177}
   m_Father: {fileID: 1232712401}
   m_RootOrder: 4
@@ -8338,11 +8340,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1908240176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.887, y: 2.915, z: 0.037}
+  m_LocalPosition: {x: -9.782, y: 2.853, z: -0.123}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1562932379}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1908240178
 BoxCollider:

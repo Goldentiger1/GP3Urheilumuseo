@@ -9,6 +9,8 @@ TagManager:
   - Ball
   - FxTemporaire
   - projectile
+  - ScoreTriggerDown
+  - ScoreTriggerUp
   layers:
   - Default
   - TransparentFX
@@ -26,7 +28,7 @@ TagManager:
   - ScoreTrigger
   - TrainingTarget
   - BallDestroyer
-  - 
+  - BackBoard
   - 
   - 
   - 

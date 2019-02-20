@@ -5,9 +5,15 @@ public class BallEngine : Throwable
 {
     #region VARIABLES
 
+    private readonly float spinSpeed = 0.25f;
+
     private Vector3 rigidbodyStartPosition;
     private readonly float minHitToSoundVelocity = 1f;
     private AudioSource audioSource;
+
+    private bool colliderUpIsTrigged, colliderDownIsTrigged;
+
+    private TrailRenderer throwTrailEffect;
 
     #endregion VARIABLES
 
@@ -34,7 +40,8 @@ public class BallEngine : Throwable
     {
         base.Awake();
 
-        audioSource = GetComponent<AudioSource>();     
+        audioSource = GetComponent<AudioSource>();
+        throwTrailEffect = GetComponentInChildren<TrailRenderer>();
     }
 
     private void Start()
@@ -42,17 +49,17 @@ public class BallEngine : Throwable
         LevelManager.Instance.AddLevelBasketBall(this);
 
         rigidbodyStartPosition = rigidbody.transform.position;
+        throwTrailEffect.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer.Equals(13))
         {
-            LevelManager.Instance.UpdateScore(other.transform);
 
-            AudioPlayer.Instance.PlaySfx(
-                   audioSource,
-                   "IncreaseScore");
+          
+
+           
         }
 
         if (other.gameObject.layer.Equals(14))
@@ -65,7 +72,8 @@ public class BallEngine : Throwable
             other.gameObject.SetActive(false);
         }
 
-        if (other.gameObject.layer.Equals(15)) {
+        if (other.gameObject.layer.Equals(15))
+        {
 
             //AudioPlayer.Instance.PlaySfx(
             //       audioSource,
@@ -77,11 +85,43 @@ public class BallEngine : Throwable
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.layer.Equals(13))
+        {
 
+            if (other.CompareTag("ScoreTriggerUp"))
+            {
+                
+            }
+            else
+            {
+
+                colliderDownIsTrigged = false;
+                AudioPlayer.Instance.PlaySfx(
+                      audioSource,
+                      "Sock");
+            }
+        }
+
+      
+        
+
+        if(colliderUpIsTrigged && colliderDownIsTrigged)
+        {
+            LevelManager.Instance.UpdateScore(other.transform);
+
+           
+        }
+
+
+
+
+       
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        throwTrailEffect.enabled = false;
+
         switch (collision.gameObject.layer)
         {
             case 9:
@@ -103,7 +143,7 @@ public class BallEngine : Throwable
                 {
                     AudioPlayer.Instance.PlaySfx(
                     audioSource,
-                    "Sock");
+                    "BackBoard");
 
                     return;
                 }
@@ -138,14 +178,15 @@ public class BallEngine : Throwable
     {
         var holdingHand = hand;
 
-
         base.OnDetachedFromHand(hand);
+
+        var spinDirection = Vector3.Cross(rigidbody.velocity, Vector3.up).normalized;
+     
+        AddSpin(spinDirection, spinSpeed, ForceMode.Impulse);
 
         IsPickedUp = false;
 
-        var dir = Vector3.Cross(rigidbody.velocity, Vector3.up).normalized;
-
-        AddSpin(dir, CurrentVelocity, ForceMode.Impulse);
+        throwTrailEffect.enabled = true;
     }
 
     #endregion CUSTOM_FUNCTIONS

@@ -142,7 +142,10 @@ public class BallEngine : Throwable
         base.OnDetachedFromHand(hand);
 
         IsPickedUp = false;
-        //AddSpin(foo.attachedRigidbody.transform.forward, CurrentVelocity, ForceMode.Impulse);
+
+        var dir = Vector3.Cross(rigidbody.velocity, Vector3.up).normalized;
+
+        AddSpin(dir, CurrentVelocity, ForceMode.Impulse);
     }
 
     #endregion CUSTOM_FUNCTIONS

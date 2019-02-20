@@ -56,10 +56,7 @@ public class BallEngine : Throwable
     {
         if (other.gameObject.layer.Equals(13))
         {
-
-          
-
-           
+         
         }
 
         if (other.gameObject.layer.Equals(14))
@@ -87,35 +84,13 @@ public class BallEngine : Throwable
     {
         if (other.gameObject.layer.Equals(13))
         {
-
-            if (other.CompareTag("ScoreTriggerUp"))
-            {
-                
-            }
-            else
-            {
-
-                colliderDownIsTrigged = false;
-                AudioPlayer.Instance.PlaySfx(
-                      audioSource,
-                      "Sock");
-            }
-        }
-
-      
-        
-
-        if(colliderUpIsTrigged && colliderDownIsTrigged)
-        {
             LevelManager.Instance.UpdateScore(other.transform);
 
-           
+            AudioPlayer.Instance.PlaySfx(
+                  audioSource,
+                  "Sock");
+            
         }
-
-
-
-
-       
     }
 
     private void OnCollisionEnter(Collision collision)

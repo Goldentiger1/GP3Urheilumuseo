@@ -64,6 +64,15 @@ public class BallEngine : Throwable
 
             other.gameObject.SetActive(false);
         }
+
+        if (other.gameObject.layer.Equals(15)) {
+
+            //AudioPlayer.Instance.PlaySfx(
+            //       audioSource,
+            //       "IncreaseScore");
+
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -129,10 +138,11 @@ public class BallEngine : Throwable
     {
         var holdingHand = hand;
 
+
         base.OnDetachedFromHand(hand);
 
         IsPickedUp = false;
-        AddSpin(new Vector3(holdingHand.transform.localPosition.z, 0 , 0), CurrentVelocity, ForceMode.Impulse);
+        //AddSpin(foo.attachedRigidbody.transform.forward, CurrentVelocity, ForceMode.Impulse);
     }
 
     #endregion CUSTOM_FUNCTIONS

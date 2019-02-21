@@ -1458,6 +1458,8 @@ namespace Valve.VR
                 return path;
         }
 
+
+
         private static bool checkingSetup = false;
         private static bool openingSetup = false;
         public static bool IsOpeningSetup() { return openingSetup; }

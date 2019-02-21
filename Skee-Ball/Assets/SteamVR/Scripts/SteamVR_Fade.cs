@@ -63,15 +63,14 @@ namespace Valve.VR
         public void OnStartFade(Color newColor, float duration, bool fadeOverlay)
         {
 #if UNITY_EDITOR
-
             IsFading = false;
-
 #else
             IsFading = true;
 #endif
 
             if (duration > 0.0f)
             {
+           
                 targetColor = newColor;
                 deltaColor = (targetColor - currentColor) / duration;
             }
@@ -110,7 +109,6 @@ namespace Valve.VR
                 {
                     currentColor = targetColor;
                     deltaColor = new Color(0, 0, 0, 0);
-
                     IsFading = false;
                 }
                 else

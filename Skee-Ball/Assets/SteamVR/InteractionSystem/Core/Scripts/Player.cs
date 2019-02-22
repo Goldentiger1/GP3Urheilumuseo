@@ -42,6 +42,7 @@ namespace Valve.VR.InteractionSystem
 
 		public bool allowToggleTo2D = true;
 
+
 		//-------------------------------------------------
 		// Singleton instance of the Player. Only one can exist at a time.
 		//-------------------------------------------------
@@ -57,6 +58,7 @@ namespace Valve.VR.InteractionSystem
 				return _instance;
 			}
 		}
+
 
 		//-------------------------------------------------
 		// Get the number of active Hands.
@@ -76,6 +78,7 @@ namespace Valve.VR.InteractionSystem
 				return count;
 			}
 		}
+
 
 		//-------------------------------------------------
 		// Get the i-th active Hand.
@@ -103,6 +106,7 @@ namespace Valve.VR.InteractionSystem
 			return null;
 		}
 
+
 		//-------------------------------------------------
 		public Hand leftHand
 		{
@@ -126,6 +130,7 @@ namespace Valve.VR.InteractionSystem
 				return null;
 			}
 		}
+
 
 		//-------------------------------------------------
 		public Hand rightHand
@@ -163,6 +168,7 @@ namespace Valve.VR.InteractionSystem
             }
         }
 
+
         //-------------------------------------------------
         // Get the HMD transform. This might return the fallback camera transform if SteamVR is unavailable or disabled.
         //-------------------------------------------------
@@ -178,10 +184,10 @@ namespace Valve.VR.InteractionSystem
                             return hmdTransforms[i];
                     }
                 }
-
-                return null;            
+				return null;
 			}
 		}
+
 
 		//-------------------------------------------------
 		// Height of the eyes above the ground - useful for estimating player height.
@@ -200,6 +206,7 @@ namespace Valve.VR.InteractionSystem
 			}
 		}
 
+
 		//-------------------------------------------------
 		// Guess for the world-space position of the player's feet, directly beneath the HMD.
 		//-------------------------------------------------
@@ -215,6 +222,7 @@ namespace Valve.VR.InteractionSystem
 				return trackingOriginTransform.position;
 			}
 		}
+
 
 		//-------------------------------------------------
 		// Guess for the world-space direction of the player's hips/torso. This is effectively just the gaze direction projected onto the floor plane.
@@ -240,6 +248,7 @@ namespace Valve.VR.InteractionSystem
 			}
 		}
 
+
 		//-------------------------------------------------
 		private void Awake()
 		{
@@ -248,6 +257,7 @@ namespace Valve.VR.InteractionSystem
 				trackingOriginTransform = this.transform;
 			}
 		}
+
 
 		//-------------------------------------------------
 		private IEnumerator Start()
@@ -351,6 +361,7 @@ namespace Valve.VR.InteractionSystem
 			}
 		}
 
+
 		//-------------------------------------------------
 		public void Draw2DDebug()
 		{
@@ -380,6 +391,7 @@ namespace Valve.VR.InteractionSystem
 			}
 		}
 
+
 		//-------------------------------------------------
 		private void ActivateRig( GameObject rig )
 		{
@@ -394,10 +406,11 @@ namespace Valve.VR.InteractionSystem
 			}
 		}
 
+
 		//-------------------------------------------------
 		public void PlayerShotSelf()
 		{
 			//Do something appropriate here
 		}
-    }
+	}
 }

@@ -114,7 +114,7 @@ public class Standpoint : MonoBehaviour
 
         yield return new WaitUntil(() => spawnedTrainingBall.IsPickedUp);
 
-        UIManager.Instance.ChangeHintText("HEILAUTA OHJAINTA JA PÄÄSTÄ LIIPAISIMESTA HEITTÄÄKSESI PALLOA- YRITÄ OSUA EDESSÄSI OLEVAAN MAALITAULUUN.");
+        UIManager.Instance.ChangeHintText("HEILAUTA OHJAINTA JA PÄÄSTÄ LIIPAISIMESTA HEITTÄÄKSESI PALLOA. YRITÄ OSUA EDESSÄSI OLEVAAN MAALITAULUUN.");
 
         yield return new WaitUntil(() => TrainingTarget.activeSelf == false);
 

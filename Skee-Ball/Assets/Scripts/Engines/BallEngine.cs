@@ -56,7 +56,11 @@ public class BallEngine : Throwable
     {
         if (other.gameObject.layer.Equals(13))
         {
-         
+            LevelManager.Instance.UpdateScore(other.transform);
+
+            AudioPlayer.Instance.PlaySfx(
+                  audioSource,
+                  "Sock");
         }
 
         if (other.gameObject.layer.Equals(14))
@@ -76,7 +80,7 @@ public class BallEngine : Throwable
             //       audioSource,
             //       "IncreaseScore");
 
-            gameObject.SetActive(false);
+            Destroy(gameObject, 2f);
         }
     }
 
@@ -84,11 +88,7 @@ public class BallEngine : Throwable
     {
         if (other.gameObject.layer.Equals(13))
         {
-            LevelManager.Instance.UpdateScore(other.transform);
-
-            AudioPlayer.Instance.PlaySfx(
-                  audioSource,
-                  "Sock");
+            
             
         }
     }
@@ -151,8 +151,6 @@ public class BallEngine : Throwable
 
     protected override void OnDetachedFromHand(Hand hand)
     {
-        var holdingHand = hand;
-
         base.OnDetachedFromHand(hand);
 
         var spinDirection = Vector3.Cross(rigidbody.velocity, Vector3.up).normalized;

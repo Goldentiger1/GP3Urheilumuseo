@@ -545,8 +545,8 @@ GameObject:
   m_Component:
   - component: {fileID: 429506}
   - component: {fileID: 2014920}
-  - component: {fileID: 11450526}
   - component: {fileID: 12440092}
+  - component: {fileID: 11450526}
   - component: {fileID: 2581854344385542154}
   m_Layer: 12
   m_Name: VRCamera
@@ -611,6 +611,14 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!124 &12440092
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125964}
+  m_Enabled: 1
 --- !u!114 &11450526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,14 +631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad1e469d4e3e04489f9a36419f1a4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!124 &12440092
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125964}
-  m_Enabled: 1
 --- !u!114 &2581854344385542154
 MonoBehaviour:
   m_ObjectHideFlags: 0

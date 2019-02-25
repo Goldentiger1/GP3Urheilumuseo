@@ -96,6 +96,7 @@ public class BallEngine : Throwable
     private void OnCollisionEnter(Collision collision)
     {
         throwTrailEffect.enabled = false;
+        throwTrailEffect.Clear();
 
         switch (collision.gameObject.layer)
         {
@@ -146,6 +147,7 @@ public class BallEngine : Throwable
     protected override void OnAttachedToHand(Hand hand)
     {
         IsPickedUp = true;
+
         base.OnAttachedToHand(hand);
     }
 

@@ -23,7 +23,17 @@ ModelImporter:
     4300000: Kaide
     4300002: Kisahalli
     4300004: Verho
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #109'
+    second: {fileID: 2100000, guid: 1e5f769fcfddb564f8323be9765dff9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #151'
+    second: {fileID: 2100000, guid: 7d8ec1511a460f84f89e0e3780c0313e, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

@@ -3206,18 +3206,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1911347942045886827}
     m_Modifications:
-    - target: {fileID: 100000, guid: 752cd025555249c4d89e802f4d071312, type: 3}
-      propertyPath: m_Name
-      value: Ball_Rack 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 752cd025555249c4d89e802f4d071312, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 752cd025555249c4d89e802f4d071312, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 752cd025555249c4d89e802f4d071312, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.182
@@ -3274,6 +3262,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.51904047
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 752cd025555249c4d89e802f4d071312, type: 3}
+      propertyPath: m_Name
+      value: Ball_Rack 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 752cd025555249c4d89e802f4d071312, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 752cd025555249c4d89e802f4d071312, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 752cd025555249c4d89e802f4d071312, type: 3}
 --- !u!4 &126288804013399296 stripped
@@ -3295,6 +3295,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1167732250844470313}
     m_Modifications:
+    - target: {fileID: 100000, guid: 51a4ad579df42864a95db07e5d95da76, type: 3}
+      propertyPath: m_Name
+      value: Alakatsomo_Kisi
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 51a4ad579df42864a95db07e5d95da76, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51a4ad579df42864a95db07e5d95da76, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.6699219
@@ -3339,14 +3347,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 51a4ad579df42864a95db07e5d95da76, type: 3}
-      propertyPath: m_Name
-      value: Alakatsomo_Kisi
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 51a4ad579df42864a95db07e5d95da76, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 51a4ad579df42864a95db07e5d95da76, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3366,6 +3366,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6306064556956022184}
     m_Modifications:
+    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
+      propertyPath: m_Name
+      value: Table_1970 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.55
@@ -3418,14 +3426,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.8750012
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
-      propertyPath: m_Name
-      value: Table_1970 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
 --- !u!4 &6852283468664786242 stripped
@@ -3441,6 +3441,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6502643442339816467}
     m_Modifications:
+    - target: {fileID: 100040, guid: 3bd1d2f5c0216c147bce20774cbc0d75, type: 3}
+      propertyPath: m_Name
+      value: "kisiksen eli lihiksen kattolamppuja jotka on raiteilla ja \xE4rsytt\xE4v\xE4n
+        ep\xE4tasaisin v\xE4lein"
+      objectReference: {fileID: 0}
+    - target: {fileID: 100040, guid: 3bd1d2f5c0216c147bce20774cbc0d75, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 400040, guid: 3bd1d2f5c0216c147bce20774cbc0d75, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.66
@@ -3484,15 +3493,6 @@ PrefabInstance:
     - target: {fileID: 400040, guid: 3bd1d2f5c0216c147bce20774cbc0d75, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100040, guid: 3bd1d2f5c0216c147bce20774cbc0d75, type: 3}
-      propertyPath: m_Name
-      value: "kisiksen eli lihiksen kattolamppuja jotka on raiteilla ja \xE4rsytt\xE4v\xE4n
-        ep\xE4tasaisin v\xE4lein"
-      objectReference: {fileID: 0}
-    - target: {fileID: 100040, guid: 3bd1d2f5c0216c147bce20774cbc0d75, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 3bd1d2f5c0216c147bce20774cbc0d75, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3669,6 +3669,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6306064556956022184}
     m_Modifications:
+    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
+      propertyPath: m_Name
+      value: Table_1970 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.290001
@@ -3720,14 +3728,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.8750012
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
-      propertyPath: m_Name
-      value: Table_1970 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
@@ -3827,6 +3827,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6306064556956022184}
     m_Modifications:
+    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
+      propertyPath: m_Name
+      value: Table_1970 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.09
@@ -3879,14 +3887,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.8750012
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
-      propertyPath: m_Name
-      value: Table_1970 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
 --- !u!4 &6852283468936145725 stripped
@@ -3902,19 +3902,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6852283470775061991}
     m_Modifications:
-    - target: {fileID: 100004, guid: e739213fae73a0c40a662ff255886f70, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e739213fae73a0c40a662ff255886f70, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: e739213fae73a0c40a662ff255886f70, type: 3}
       propertyPath: m_Name
       value: Lasi_kori_1970
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: e739213fae73a0c40a662ff255886f70, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: e739213fae73a0c40a662ff255886f70, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e739213fae73a0c40a662ff255886f70, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -4007,6 +4007,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5071537370782468328}
     m_Modifications:
+    - target: {fileID: 100004, guid: 6b4f62226968aff4c97dadcd17479406, type: 3}
+      propertyPath: m_Name
+      value: KISIS_UUSI
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 6b4f62226968aff4c97dadcd17479406, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 6b4f62226968aff4c97dadcd17479406, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4051,14 +4059,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 6b4f62226968aff4c97dadcd17479406, type: 3}
-      propertyPath: m_Name
-      value: KISIS_UUSI
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 6b4f62226968aff4c97dadcd17479406, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 6b4f62226968aff4c97dadcd17479406, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -4086,6 +4086,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6502643442339816467}
     m_Modifications:
+    - target: {fileID: 100040, guid: 3bd1d2f5c0216c147bce20774cbc0d75, type: 3}
+      propertyPath: m_Name
+      value: "kisiksen eli lihiksen kattolamppuja jotka on raiteilla ja \xE4rsytt\xE4v\xE4n
+        ep\xE4tasaisin v\xE4lein (1)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 100040, guid: 3bd1d2f5c0216c147bce20774cbc0d75, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 400040, guid: 3bd1d2f5c0216c147bce20774cbc0d75, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.66
@@ -4129,15 +4138,6 @@ PrefabInstance:
     - target: {fileID: 400040, guid: 3bd1d2f5c0216c147bce20774cbc0d75, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100040, guid: 3bd1d2f5c0216c147bce20774cbc0d75, type: 3}
-      propertyPath: m_Name
-      value: "kisiksen eli lihiksen kattolamppuja jotka on raiteilla ja \xE4rsytt\xE4v\xE4n
-        ep\xE4tasaisin v\xE4lein (1)"
-      objectReference: {fileID: 0}
-    - target: {fileID: 100040, guid: 3bd1d2f5c0216c147bce20774cbc0d75, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 3bd1d2f5c0216c147bce20774cbc0d75, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4314,6 +4314,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1167732250844470313}
     m_Modifications:
+    - target: {fileID: 100000, guid: 7d59bdb8a55b8a64e964d493afd5bb2e, type: 3}
+      propertyPath: m_Name
+      value: chairsforkisahalli
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7d59bdb8a55b8a64e964d493afd5bb2e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7d59bdb8a55b8a64e964d493afd5bb2e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.6699219
@@ -4357,14 +4365,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 7d59bdb8a55b8a64e964d493afd5bb2e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 7d59bdb8a55b8a64e964d493afd5bb2e, type: 3}
-      propertyPath: m_Name
-      value: chairsforkisahalli
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 7d59bdb8a55b8a64e964d493afd5bb2e, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 7d59bdb8a55b8a64e964d493afd5bb2e, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4508,6 +4508,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6306064556956022184}
     m_Modifications:
+    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
+      propertyPath: m_Name
+      value: Table_1970 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.66
@@ -4559,14 +4567,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.8750012
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
-      propertyPath: m_Name
-      value: Table_1970 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
@@ -4737,6 +4737,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6306064556956022184}
     m_Modifications:
+    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
+      propertyPath: m_Name
+      value: Table_1970 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.57
@@ -4789,14 +4797,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.8750012
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
-      propertyPath: m_Name
-      value: Table_1970 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b31ed4b02917a244b8b0a7d275d079d7, type: 3}
 --- !u!4 &6852283469961064147 stripped
@@ -4817,6 +4817,18 @@ PrefabInstance:
       value: Kello_Kisis
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 17e8a345adfeff74a89f79ce557e97e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 17e8a345adfeff74a89f79ce557e97e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 17e8a345adfeff74a89f79ce557e97e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 17e8a345adfeff74a89f79ce557e97e3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -4876,18 +4888,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f47f1e1585d83ba4fbcab3de46ebaef6, type: 2}
-    - target: {fileID: 100000, guid: 17e8a345adfeff74a89f79ce557e97e3, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 17e8a345adfeff74a89f79ce557e97e3, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: 17e8a345adfeff74a89f79ce557e97e3, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17e8a345adfeff74a89f79ce557e97e3, type: 3}
 --- !u!4 &6852283470020757625 stripped
@@ -4903,6 +4903,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6502643442339816467}
     m_Modifications:
+    - target: {fileID: 100002, guid: ba1779ceb7719e947ae583ac6b10c064, type: 3}
+      propertyPath: m_Name
+      value: Kisiksen rautaa joka roikkuu katossa ja seinilla
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: ba1779ceb7719e947ae583ac6b10c064, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ba1779ceb7719e947ae583ac6b10c064, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4946,14 +4954,6 @@ PrefabInstance:
     - target: {fileID: 400002, guid: ba1779ceb7719e947ae583ac6b10c064, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: ba1779ceb7719e947ae583ac6b10c064, type: 3}
-      propertyPath: m_Name
-      value: Kisiksen rautaa joka roikkuu katossa ja seinilla
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: ba1779ceb7719e947ae583ac6b10c064, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: ba1779ceb7719e947ae583ac6b10c064, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5062,6 +5062,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1167732250844470313}
     m_Modifications:
+    - target: {fileID: 100000, guid: d80cb25f92c3c5c4fbef1fdb6e450c14, type: 3}
+      propertyPath: m_Name
+      value: chairsUPforkisahalli
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d80cb25f92c3c5c4fbef1fdb6e450c14, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d80cb25f92c3c5c4fbef1fdb6e450c14, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.6699219
@@ -5105,14 +5113,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: d80cb25f92c3c5c4fbef1fdb6e450c14, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: d80cb25f92c3c5c4fbef1fdb6e450c14, type: 3}
-      propertyPath: m_Name
-      value: chairsUPforkisahalli
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: d80cb25f92c3c5c4fbef1fdb6e450c14, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d80cb25f92c3c5c4fbef1fdb6e450c14, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5482,18 +5482,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1911347942045886827}
     m_Modifications:
-    - target: {fileID: 100000, guid: 752cd025555249c4d89e802f4d071312, type: 3}
-      propertyPath: m_Name
-      value: Ball_Rack 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 752cd025555249c4d89e802f4d071312, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 752cd025555249c4d89e802f4d071312, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 752cd025555249c4d89e802f4d071312, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.182
@@ -5549,6 +5537,18 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 752cd025555249c4d89e802f4d071312, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.51904047
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 752cd025555249c4d89e802f4d071312, type: 3}
+      propertyPath: m_Name
+      value: Ball_Rack 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 752cd025555249c4d89e802f4d071312, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 752cd025555249c4d89e802f4d071312, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 752cd025555249c4d89e802f4d071312, type: 3}

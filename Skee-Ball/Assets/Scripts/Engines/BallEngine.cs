@@ -142,7 +142,7 @@ public class BallEngine : Throwable
         rigidbody.AddTorque(spinDirection * force, forceMode);
     }
 
-    private void ResetPosition()
+    public void ResetPosition()
     {
         rigidbody.velocity = Vector3.zero;
         rigidbody.angularVelocity = Vector3.zero;

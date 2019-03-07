@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using Valve.VR.InteractionSystem;
 
 public class BallEngine : Throwable
@@ -6,12 +7,15 @@ public class BallEngine : Throwable
     #region VARIABLES
 
     private readonly float spinSpeed = 0.25f;
+    private readonly float ballLifetime = 20f;
+
+    private Coroutine iLifetime;
 
     private Vector3 rigidbodyStartPosition;
+    private Quaternion rigidbodyStartRotation;
+
     private readonly float minHitToSoundVelocity = 1f;
     private AudioSource audioSource;
-
-    private bool colliderUpIsTrigged, colliderDownIsTrigged;
 
     private TrailRenderer throwTrailEffect;
 
@@ -49,6 +53,7 @@ public class BallEngine : Throwable
         LevelManager.Instance.AddLevelBasketBall(this);
 
         rigidbodyStartPosition = rigidbody.transform.position;
+        rigidbodyStartRotation = rigidbody.transform.rotation;
         throwTrailEffect.enabled = false;
     }
 
@@ -137,11 +142,13 @@ public class BallEngine : Throwable
         rigidbody.AddTorque(spinDirection * force, forceMode);
     }
 
-    public void ResetPosition()
+    private void ResetPosition()
     {
         rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
+
         rigidbody.position = rigidbodyStartPosition;
-        rigidbody.rotation = Quaternion.Euler(Vector3.zero);
+        rigidbody.rotation = rigidbodyStartRotation;
     }
 
     protected override void OnAttachedToHand(Hand hand)
@@ -155,6 +162,9 @@ public class BallEngine : Throwable
     {
         base.OnDetachedFromHand(hand);
 
+        // !!!
+        iLifetime = StartCoroutine(IStartLifetime(ballLifetime));
+
         var spinDirection = Vector3.Cross(rigidbody.velocity, Vector3.up).normalized;
      
         AddSpin(spinDirection, spinSpeed, ForceMode.Impulse);
@@ -165,4 +175,15 @@ public class BallEngine : Throwable
     }
 
     #endregion CUSTOM_FUNCTIONS
+
+    #region COROUTINES
+
+    private IEnumerator IStartLifetime(float lifeDuration) 
+    {
+        yield return new WaitForSeconds(lifeDuration);
+
+        ResetPosition();
+    }
+
+    #endregion COROUTINES
 }

@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.skeeball.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Projects\\Urheilumuseo\\Skee-Ball\\actions.json",
+      "action_manifest_path": "C:\\Users\\vieras\\Desktop\\Urheilumuseo\\Skee-Ball\\actions.json",
       "strings": {
         "en_us": {
           "name": "Skee-Ball [Testing]"

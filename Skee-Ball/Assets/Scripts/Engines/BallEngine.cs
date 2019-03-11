@@ -48,6 +48,11 @@ public class BallEngine : Throwable
         throwTrailEffect = GetComponentInChildren<TrailRenderer>();
     }
 
+    private void OnEnable()
+    {
+        IsPickedUp = false;
+    }
+
     private void Start()
     {
         LevelManager.Instance.AddLevelBasketBall(this);
@@ -59,78 +64,183 @@ public class BallEngine : Throwable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer.Equals(13))
-        {
-            LevelManager.Instance.UpdateScore(other.transform);
+        var hittedObject = other.gameObject;
 
-            AudioPlayer.Instance.PlaySfx(
-                  audioSource,
-                  "Sock");
-        }
-
-        if (other.gameObject.layer.Equals(14))
-        {
-
-            AudioPlayer.Instance.PlaySfx(
-                   audioSource,
-                   "IncreaseScore");
-
-            other.gameObject.SetActive(false);
-        }
-
-        if (other.gameObject.layer.Equals(15))
-        {
-
-            //AudioPlayer.Instance.PlaySfx(
-            //       audioSource,
-            //       "IncreaseScore");
-
-            Destroy(gameObject, 2f);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer.Equals(13))
-        {
-            
-            
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        throwTrailEffect.enabled = false;
-        throwTrailEffect.Clear();
-
-        switch (collision.gameObject.layer)
+        switch (hittedObject.layer)
         {
             case 9:
-
-                if (rigidbody.velocity.magnitude < minHitToSoundVelocity)
-                {
-                    return;
-                }
-
-                AudioPlayer.Instance.PlaySfx(
-                    audioSource,
-                    "BallBounce");
+                // Floor
 
                 break;
 
             case 10:
+                // Hoop
 
-                if (rigidbody.velocity.magnitude < minHitToSoundVelocity)
+                break;
+
+            case 11:
+                //Ball
+
+                break;
+
+            case 12:
+                //Player
+
+                break;
+
+            case 13:
+                //ScoreTrigger
+
+                LevelManager.Instance.UpdateScore(hittedObject.transform);
+
+                AudioPlayer.Instance.PlaySfx(
+                      audioSource,
+                      "Sock");
+
+                break;
+
+            case 14:
+                // TrainingTarget
+
+                AudioPlayer.Instance.PlaySfx(
+                  audioSource,
+                  "IncreaseScore");
+
+                hittedObject.SetActive(false);
+
+                break;
+
+            case 15:
+                // BallDestroyer
+
+                //AudioPlayer.Instance.PlaySfx(
+                //       audioSource,
+                //       "IncreaseScore");
+
+                Destroy(gameObject, 2f);
+
+                break;
+
+            case 16:
+                //BackBoard
+
+
+                //AudioPlayer.Instance.PlaySfx(
+                //       audioSource,
+                //       "IncreaseScore");
+
+                Destroy(gameObject, 2f);
+
+                break;
+
+            case 17:
+                //SpawnZone
+
+                break;
+
+            default:
+
+                break;
+        }      
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+      
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        var hittedObject = collision.gameObject;
+
+        throwTrailEffect.enabled = false;
+        throwTrailEffect.Clear();
+
+        switch (hittedObject.layer)
+        {
+            case 9:
+                // Floor
+
+                if (rigidbody.velocity.magnitude >= minHitToSoundVelocity)
+                {
+                    AudioPlayer.Instance.PlaySfx(
+                        audioSource,
+                        "BallBounce");
+                }
+
+                break;
+
+            case 10:
+                // Hoop
+
+                
+
+                break;
+
+            case 11:
+                //Ball
+
+                break;
+
+            case 12:
+                //Player
+
+                break;
+
+            case 13:
+                //ScoreTrigger
+
+                LevelManager.Instance.UpdateScore(hittedObject.transform);
+
+                AudioPlayer.Instance.PlaySfx(
+                      audioSource,
+                      "Sock");
+
+                break;
+
+            case 14:
+                // TrainingTarget
+
+                AudioPlayer.Instance.PlaySfx(
+                  audioSource,
+                  "IncreaseScore");
+
+                hittedObject.SetActive(false);
+
+                break;
+
+            case 15:
+                // BallDestroyer
+
+                //AudioPlayer.Instance.PlaySfx(
+                //       audioSource,
+                //       "IncreaseScore");
+
+                Destroy(gameObject, 2f);
+
+                break;
+
+            case 16:
+                //BackBoard
+
+                if (rigidbody.velocity.magnitude >= minHitToSoundVelocity)
                 {
                     AudioPlayer.Instance.PlaySfx(
                     audioSource,
                     "BackBoard");
-
-                    return;
                 }
 
                 break;
-        }
+
+            case 17:
+                //SpawnZone
+
+                break;
+
+            default:
+
+                break;
+        }      
     }
 
     #endregion UNITY_FUNCTIONS

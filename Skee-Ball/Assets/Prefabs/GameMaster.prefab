@@ -704,7 +704,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: b6954f24ca7c45f42a905a6fc8516445, type: 3}
     - {fileID: 8300000, guid: 1946c2306409f514f998a374018ad0f6, type: 3}
     - {fileID: 8300000, guid: 9c738bc38dd42fd46b52d22f373fedd9, type: 3}
-  SoundEffects:
+  BasketballEffects:
   - Name: BallBounce
     volume: 1
     pitch: 1
@@ -717,26 +717,11 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     audioClip: {fileID: 8300000, guid: 192caba07c24a3b44a6e2e810bf5f267, type: 3}
-  - Name: SpawnSound
-    volume: 1
-    pitch: 1
-    audioClip: {fileID: 8300000, guid: e9befd794befe7540ad040be41dba757, type: 3}
-  - Name: StandpointLoop
-    volume: 1
-    pitch: 1
-    audioClip: {fileID: 8300000, guid: 47b5e90896f0e004c85bebd26e6057e2, type: 3}
-  - Name: DespawnSound
-    volume: 1
-    pitch: 1
-    audioClip: {fileID: 8300000, guid: aa9e211c83b607f479bd7772eb56a98c, type: 3}
-  - Name: IncreaseScore
-    volume: 1
-    pitch: 1
-    audioClip: {fileID: 8300000, guid: 8d57953bec601a54a915153398cefa66, type: 3}
   - Name: Ballpick
-    volume: 1
-    pitch: 1
-    audioClip: {fileID: 8300000, guid: 8d57953bec601a54a915153398cefa66, type: 3}
+    volume: 0
+    pitch: 0
+    audioClip: {fileID: 0}
+  UIEffects:
   - Name: UIPanelOpen
     volume: 1
     pitch: 1
@@ -745,10 +730,27 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     audioClip: {fileID: 8300000, guid: 480615392ea7d6b489261483ec92bfa2, type: 3}
+  OtherEffects:
+  - Name: StandpointLoop
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: 47b5e90896f0e004c85bebd26e6057e2, type: 3}
+  - Name: SpawnSound
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: e9befd794befe7540ad040be41dba757, type: 3}
+  - Name: DespawnSound
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: aa9e211c83b607f479bd7772eb56a98c, type: 3}
   - Name: ObjectSpawn
     volume: 1
     pitch: 1
     audioClip: {fileID: 8300000, guid: 6e984feb46a04284e8c6ce4ebfd791d0, type: 3}
+  - Name: IncreaseScore
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: 8d57953bec601a54a915153398cefa66, type: 3}
 --- !u!1 &4627499889172556143
 GameObject:
   m_ObjectHideFlags: 0

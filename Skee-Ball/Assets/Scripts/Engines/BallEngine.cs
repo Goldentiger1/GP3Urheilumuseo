@@ -118,6 +118,7 @@ public class BallEngine : Throwable
                 LevelManager.Instance.UpdateScore(hittedObject.transform);
 
                 AudioPlayer.Instance.PlaySfx(
+                    0,
                       audioSource,
                       "Sock");
 
@@ -127,6 +128,7 @@ public class BallEngine : Throwable
                 // TrainingTarget
 
                 AudioPlayer.Instance.PlaySfx(
+                    2,
                   audioSource,
                   "IncreaseScore");
 
@@ -188,6 +190,7 @@ public class BallEngine : Throwable
                 if (rigidbody.velocity.magnitude >= minHitToSoundVelocity)
                 {
                     AudioPlayer.Instance.PlaySfx(
+                        0,
                         audioSource,
                         "BallBounce");
                 }
@@ -217,6 +220,7 @@ public class BallEngine : Throwable
                 LevelManager.Instance.UpdateScore(hittedObject.transform);
 
                 AudioPlayer.Instance.PlaySfx(
+                    0,
                       audioSource,
                       "Sock");
 
@@ -226,6 +230,7 @@ public class BallEngine : Throwable
                 // TrainingTarget
 
                 AudioPlayer.Instance.PlaySfx(
+                    2,
                   audioSource,
                   "IncreaseScore");
 
@@ -250,6 +255,7 @@ public class BallEngine : Throwable
                 if (rigidbody.velocity.magnitude >= minHitToSoundVelocity)
                 {
                     AudioPlayer.Instance.PlaySfx(
+                        0,
                     audioSource,
                     "BackBoard");
                 }

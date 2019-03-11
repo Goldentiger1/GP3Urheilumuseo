@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioPlayer : Singelton<AudioPlayer>
@@ -9,7 +10,12 @@ public class AudioPlayer : Singelton<AudioPlayer>
 
     public MusicTrack[] MusicTracks;
     public Narration[] Narrations;
-    public Sfx[] SoundEffects;
+
+    public Sfx[] BasketballEffects;
+    public Sfx[] UIEffects;
+    public Sfx[] OtherEffects;
+
+    private Dictionary<int, Sfx[]> soundEffects = new Dictionary<int, Sfx[]>();
 
     #endregion VARIABLES
 
@@ -29,6 +35,10 @@ public class AudioPlayer : Singelton<AudioPlayer>
 
     private void Start()
     {
+        soundEffects.Add(0, BasketballEffects);
+        soundEffects.Add(1, UIEffects);
+        soundEffects.Add(2, OtherEffects);
+
         CreateMusicTrackAudioSources();
         CreateNarrationAudioSources();
     }
@@ -84,6 +94,7 @@ public class AudioPlayer : Singelton<AudioPlayer>
     }
 
     public void PlaySfx(
+        int sfxIndex,
         AudioSource audioSource,
         string AudioClipName,
         float minRandomVolume = 0.9f,
@@ -95,23 +106,23 @@ public class AudioPlayer : Singelton<AudioPlayer>
         {
             audioSource.volume = Random.Range(minRandomVolume, maxRandomVolume);
             audioSource.pitch = Random.Range(minRandomPitch, maxRandomPitch);
-            audioSource.PlayOneShot(GetSoundEffect(AudioClipName));
+            audioSource.PlayOneShot(GetSoundEffect(sfxIndex, AudioClipName));
         }
     }
 
-    public void PlayClipAtPoint(string clipName, Vector3 position, float volume = 1f)
+    public void PlayClipAtPoint(int sfxIndex, string clipName, Vector3 position, float volume = 1f)
     {
-        AudioSource.PlayClipAtPoint(GetSoundEffect(clipName), position, volume);
+        AudioSource.PlayClipAtPoint(GetSoundEffect(sfxIndex, clipName), position, volume);
     }
 
-    public void PlayLoopingSfx(AudioSource audioSource, string AudioClipName, float volume = 1f, float pitch = 1f)
+    public void PlayLoopingSfx(int sfxIndex, AudioSource audioSource, string AudioClipName, float volume = 1f, float pitch = 1f)
     {
         if (!audioSource.isPlaying)
         {
             audioSource.loop = true;
             audioSource.volume = volume;
             audioSource.pitch = pitch;
-            audioSource.clip = GetSoundEffect(AudioClipName);
+            audioSource.clip = GetSoundEffect(sfxIndex, AudioClipName);
             audioSource.Play();
         }
     }
@@ -129,13 +140,13 @@ public class AudioPlayer : Singelton<AudioPlayer>
         }
     }
 
-    private AudioClip GetSoundEffect(string clipName)
+    private AudioClip GetSoundEffect(int sfxIndex, string clipName)
     {
-        for (int i = 0; i < SoundEffects.Length; i++)
+        for (int i = 0; i < soundEffects[sfxIndex].Length; i++)
         {
-            if (clipName == SoundEffects[i].Name)
+            if (clipName == soundEffects[sfxIndex][i].Name)
             {
-                return SoundEffects[i].audioClip;
+                return soundEffects[sfxIndex][i].audioClip;
             }
         }
 

@@ -54,7 +54,7 @@ public class Standpoint : MonoBehaviour
         Feet_Icon.SetActive(true);
 
         if (audioSource.isPlaying == false)
-            AudioPlayer.Instance.PlayLoopingSfx(audioSource, "StandpointLoop");
+            AudioPlayer.Instance.PlayLoopingSfx(2, audioSource, "StandpointLoop");
 
         var trainingTargetPrefab = ResourceManager.Instance.TrainingTargetPrefab;
         trainingTarget = Instantiate(trainingTargetPrefab);
@@ -70,7 +70,7 @@ public class Standpoint : MonoBehaviour
             spawnedTrainingBall = Instantiate(ballPrefab, ballSpawnPoint, Quaternion.identity).GetComponent<BallEngine>();
             spawnedTrainingBall.BallLifetime = 2f;
             spawnedTrainingBall.name = ballPrefab.name;
-            AudioPlayer.Instance.PlayClipAtPoint("SpawnSound", ballSpawnPoint);
+            AudioPlayer.Instance.PlayClipAtPoint(2, "SpawnSound", ballSpawnPoint);
         }     
     }
 
@@ -78,7 +78,7 @@ public class Standpoint : MonoBehaviour
     {
         if(spawnedTrainingBall != null) 
         {
-            AudioPlayer.Instance.PlayClipAtPoint("DespawnSound", ballSpawnPoint);
+            AudioPlayer.Instance.PlayClipAtPoint(2, "DespawnSound", ballSpawnPoint);
             Destroy(spawnedTrainingBall);
         }     
     }

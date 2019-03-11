@@ -24,7 +24,7 @@ public class Effect : MonoBehaviour
         {
             iEffectTimeCoroutine = StartCoroutine(IEffectLifeTime());
 
-            AudioPlayer.Instance.PlayClipAtPoint("ObjectSpawn", transform.position);
+            AudioPlayer.Instance.PlayClipAtPoint(2, "ObjectSpawn", transform.position);
         }
     }
 

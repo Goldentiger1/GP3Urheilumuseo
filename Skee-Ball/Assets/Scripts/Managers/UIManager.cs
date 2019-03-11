@@ -122,7 +122,7 @@ public class UIManager : Singelton<UIManager>
             StopCoroutine(iShowHUD);
         }
 
-        AudioPlayer.Instance.PlayClipAtPoint("UIPanelClose", HUDCanvas.position);
+        AudioPlayer.Instance.PlayClipAtPoint(1 ,"UIPanelClose", HUDCanvas.position);
 
         HUDCanvas.gameObject.SetActive(false);
     }
@@ -164,7 +164,7 @@ public class UIManager : Singelton<UIManager>
         HUDCanvas.position = startPosition + Vector3.forward;
         HUDCanvas.gameObject.SetActive(true);
 
-        AudioPlayer.Instance.PlayClipAtPoint("UIPanelOpen", HUDCanvas.position);
+        AudioPlayer.Instance.PlayClipAtPoint(1, "UIPanelOpen", HUDCanvas.position);
 
         yield return new WaitForSeconds(showDuration);
 

@@ -34,9 +34,7 @@ namespace Valve.VR.InteractionSystem
         public float scaleReleaseVelocity = 1.1f;
 
 		[Tooltip( "When detaching the object, should it return to its original parent?" )]
-		public bool restoreOriginalParent = false;
-
-        
+		public bool restoreOriginalParent = false;     
 
 		protected VelocityEstimator velocityEstimator;
         protected bool attached = false;
@@ -64,18 +62,14 @@ namespace Valve.VR.InteractionSystem
 			velocityEstimator = GetComponent<VelocityEstimator>();
             interactable = GetComponent<Interactable>();
 
-
-
             rigidbody = GetComponent<Rigidbody>();
             rigidbody.maxAngularVelocity = 50.0f;
-
 
             if(attachmentOffset != null)
             {
                 // remove?
                 //interactable.handFollowTransform = attachmentOffset;
             }
-
 		}
 
 

@@ -4,10 +4,10 @@ using Valve.VR.InteractionSystem;
 
 public class Standpoint : MonoBehaviour
 {
-    private BallEngine spawnedTrainingBall;
+    public Transform ballSpawnPosition;
 
-    public GameObject BallPrefab;
-    public GameObject TrainingTarget;
+    private BallEngine spawnedTrainingBall;
+    private GameObject trainingTarget;
 
     private Vector3 ballSpawnPoint;
 
@@ -43,9 +43,7 @@ public class Standpoint : MonoBehaviour
         Feet_Icon = icons.GetChild(3).gameObject;
         triggerColider = GetComponent<Collider>();
         renderer = GetComponentInChildren<Renderer>();
-        audioSource = GetComponent<AudioSource>();
-
-        TrainingTarget.SetActive(false);
+        audioSource = GetComponent<AudioSource>();      
     }
 
     private void OnStart()
@@ -57,15 +55,21 @@ public class Standpoint : MonoBehaviour
 
         if (audioSource.isPlaying == false)
             AudioPlayer.Instance.PlayLoopingSfx(audioSource, "StandpointLoop");
+
+        var trainingTargetPrefab = ResourceManager.Instance.TrainingTargetPrefab;
+        trainingTarget = Instantiate(trainingTargetPrefab);
+        trainingTarget.name = trainingTargetPrefab.name;
     }
 
     private void SpawnTrainingBall() 
     {
         if(spawnedTrainingBall == null) 
         {
-            ballSpawnPoint = Player.instance.feetPositionGuess + new Vector3(0, 0.2f, 0.5f);
-            spawnedTrainingBall = Instantiate(BallPrefab, ballSpawnPoint, Quaternion.identity).GetComponent<BallEngine>();
-            spawnedTrainingBall.name = BallPrefab.name;
+            ballSpawnPoint = ballSpawnPosition.position;
+            var ballPrefab = ResourceManager.Instance.BallPrefab;
+            spawnedTrainingBall = Instantiate(ballPrefab, ballSpawnPoint, Quaternion.identity).GetComponent<BallEngine>();
+            spawnedTrainingBall.BallLifetime = 2f;
+            spawnedTrainingBall.name = ballPrefab.name;
             AudioPlayer.Instance.PlayClipAtPoint("SpawnSound", ballSpawnPoint);
         }     
     }
@@ -110,13 +114,14 @@ public class Standpoint : MonoBehaviour
 
     private IEnumerator IStartGame()
     {
-        TrainingTarget.SetActive(true);
+        trainingTarget.SetActive(true);
 
         yield return new WaitUntil(() => spawnedTrainingBall.IsPickedUp);
 
+        // Localization...
         UIManager.Instance.ChangeHintText("HEILAUTA OHJAINTA JA PÄÄSTÄ LIIPAISIMESTA HEITTÄÄKSESI PALLOA. YRITÄ OSUA EDESSÄSI OLEVAAN MAALITAULUUN.");
 
-        yield return new WaitUntil(() => TrainingTarget.activeSelf == false);
+        yield return new WaitUntil(() => trainingTarget.activeSelf == false);
 
         UIManager.Instance.HideHUD();
 

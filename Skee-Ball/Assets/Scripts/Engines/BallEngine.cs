@@ -6,18 +6,24 @@ public class BallEngine : Throwable
 {
     #region VARIABLES
 
-    private readonly float spinSpeed = 0.25f;
-    private readonly float ballLifetime = 20f;
+    private GameObject spawnEffect;
 
-    private Coroutine iLifetime;
+    private readonly float spinSpeed = 0.25f;
+    private float ballLifetime = 10f;
+
+    private Coroutine iLifetimeCoroutine;
+    private Coroutine iResetPositionCoroutine;
 
     private Vector3 rigidbodyStartPosition;
     private Quaternion rigidbodyStartRotation;
+
+    private SphereCollider ballCollider;
 
     private readonly float minHitToSoundVelocity = 1f;
     private AudioSource audioSource;
 
     private TrailRenderer throwTrailEffect;
+    private MeshRenderer ballRenderer;
 
     #endregion VARIABLES
 
@@ -28,6 +34,17 @@ public class BallEngine : Throwable
         get
         {
             return rigidbody.velocity.magnitude;
+        }
+    }
+    public float BallLifetime
+    {
+        get
+        {
+            return ballLifetime;
+        }
+        set
+        {
+            ballLifetime = value;
         }
     }
     public bool IsPickedUp
@@ -44,8 +61,15 @@ public class BallEngine : Throwable
     {
         base.Awake();
 
+        ballCollider = GetComponent<SphereCollider>();
+
         audioSource = GetComponent<AudioSource>();
         throwTrailEffect = GetComponentInChildren<TrailRenderer>();
+        ballRenderer = GetComponentInChildren<MeshRenderer>();
+
+        var ballSpawnEffectPrefab = ResourceManager.Instance.ObjectSpawnEffect;
+        spawnEffect = Instantiate(ballSpawnEffectPrefab, transform);
+        spawnEffect.name = ballSpawnEffectPrefab.name;
     }
 
     private void OnEnable()
@@ -59,7 +83,7 @@ public class BallEngine : Throwable
 
         rigidbodyStartPosition = rigidbody.transform.position;
         rigidbodyStartRotation = rigidbody.transform.rotation;
-        throwTrailEffect.enabled = false;
+        throwTrailEffect.enabled = false;     
     }
 
     private void OnTriggerEnter(Collider other)
@@ -237,6 +261,17 @@ public class BallEngine : Throwable
 
                 break;
 
+            case 18:
+
+                ResetPosition();
+
+                if(iLifetimeCoroutine != null)
+                {
+                    StopCoroutine(iLifetimeCoroutine);
+                }
+
+                break;
+
             default:
 
                 break;
@@ -254,15 +289,28 @@ public class BallEngine : Throwable
 
     public void ResetPosition()
     {
-        rigidbody.velocity = Vector3.zero;
-        rigidbody.angularVelocity = Vector3.zero;
+        if(iResetPositionCoroutine == null)
+        {
+            iResetPositionCoroutine = StartCoroutine(IResetPosition());
+        }
+    }
 
-        rigidbody.position = rigidbodyStartPosition;
-        rigidbody.rotation = rigidbodyStartRotation;
+    public void StartLifeTime(float lifeTime)
+    {
+        if (iLifetimeCoroutine == null)
+        {
+            iLifetimeCoroutine = StartCoroutine(IStartLifetime(ballLifetime));
+        }      
     }
 
     protected override void OnAttachedToHand(Hand hand)
     {
+        if(iLifetimeCoroutine != null)
+        {
+            StopCoroutine(iLifetimeCoroutine);
+            iLifetimeCoroutine = null;
+        }
+
         IsPickedUp = true;
 
         base.OnAttachedToHand(hand);
@@ -270,10 +318,9 @@ public class BallEngine : Throwable
 
     protected override void OnDetachedFromHand(Hand hand)
     {
-        base.OnDetachedFromHand(hand);
+        StartLifeTime(ballLifetime);
 
-        // !!!
-        iLifetime = StartCoroutine(IStartLifetime(ballLifetime));
+        base.OnDetachedFromHand(hand);
 
         var spinDirection = Vector3.Cross(rigidbody.velocity, Vector3.up).normalized;
      
@@ -284,15 +331,64 @@ public class BallEngine : Throwable
         throwTrailEffect.enabled = true;
     }
 
+    private void PlaySpawnEffect()
+    {
+        if(spawnEffect != null)
+        {
+            spawnEffect.SetActive(true);
+        }
+    }
+
     #endregion CUSTOM_FUNCTIONS
 
     #region COROUTINES
 
     private IEnumerator IStartLifetime(float lifeDuration) 
-    {
+    {  
         yield return new WaitForSeconds(lifeDuration);
 
+        PlaySpawnEffect();
+
         ResetPosition();
+
+        iLifetimeCoroutine = null;
+    }
+
+    private void SetActive(bool isActive)
+    {
+        if (isActive)
+        {
+            rigidbody.isKinematic = false;
+            ballCollider.enabled = true;
+            ballRenderer.enabled = true;
+        }
+        else
+        {
+            rigidbody.isKinematic = true;
+            ballCollider.enabled = false;
+            ballRenderer.enabled = false;
+
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.angularVelocity = Vector3.zero;
+
+            rigidbody.position = rigidbodyStartPosition;
+            rigidbody.rotation = rigidbodyStartRotation;
+        }
+    }
+
+    private IEnumerator IResetPosition()
+    {
+        SetActive(false);
+
+        yield return new WaitWhile(() => spawnEffect.activeSelf);
+
+        PlaySpawnEffect();
+
+        yield return new WaitForEndOfFrame();
+
+        SetActive(true);
+
+        iResetPositionCoroutine = null;
     }
 
     #endregion COROUTINES

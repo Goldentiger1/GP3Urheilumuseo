@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
@@ -10,7 +9,7 @@ public class UIManager : Singelton<UIManager>
     #region VARIABLES
 
     private TextMeshProUGUI hintText;
-    private Image hintImage;
+    //private Image hintImage;
 
     private readonly float yOffset = 1f;
     private readonly float zOffset = 1.2f;
@@ -43,7 +42,7 @@ public class UIManager : Singelton<UIManager>
     {
         HUDCanvas = transform.Find("HUDCanvas");
 
-        hintImage = HUDCanvas.GetComponentInChildren<Image>();
+        //hintImage = HUDCanvas.GetComponentInChildren<Image>();
         hintText = HUDCanvas.GetComponentInChildren<TextMeshProUGUI>();
     }
 

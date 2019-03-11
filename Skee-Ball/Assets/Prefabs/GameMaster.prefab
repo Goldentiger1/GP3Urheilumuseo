@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &35929829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 35929830}
+  - component: {fileID: 2005618319521365498}
+  m_Layer: 0
+  m_Name: ResourceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &35929830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35929829}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1114661408618749378}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2005618319521365498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35929829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34038fbd34db07841bec672059beea94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BallPrefab: {fileID: 1501557961488420, guid: cc9bef7725ba89842abfbe99dff30454, type: 3}
+  TrainingTargetPrefab: {fileID: 428765948610455668, guid: 8def519920fdad043b4144937e7ead84,
+    type: 3}
+  ObjectSpawnEffect: {fileID: 2543561823600621528, guid: f9a9c3e4f189ea445a4407dad8cf34b6,
+    type: 3}
+  BigObjectSpawnEffect: {fileID: 8683202724386335274, guid: 8cda90e825443274bb4f1413681061b8,
+    type: 3}
 --- !u!1 &158184421
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +745,10 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     audioClip: {fileID: 8300000, guid: 480615392ea7d6b489261483ec92bfa2, type: 3}
+  - Name: ObjectSpawn
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: 6e984feb46a04284e8c6ce4ebfd791d0, type: 3}
 --- !u!1 &4627499889172556143
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,6 +826,7 @@ Transform:
   - {fileID: 512049917}
   - {fileID: 2107566429822699419}
   - {fileID: 922859481}
+  - {fileID: 35929830}
   m_Father: {fileID: 762804847047507654}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

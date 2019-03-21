@@ -635,17 +635,17 @@ MonoBehaviour:
   NarrationDelay: 4
   MusicTracks:
   - Name: Menu
-    volume: 0.05
+    volume: 0.4
     pitch: 1
     audioClip: {fileID: 8300000, guid: 24b19f5b34a2e424a8cedb28f2261e8a, type: 3}
     loop: 1
   - Name: Ambience
-    volume: 0.1
+    volume: 0.5
     pitch: 1
     audioClip: {fileID: 8300000, guid: 55f10de55bc465b49b0e1c76692ad40e, type: 3}
     loop: 1
   - Name: StreetAmbience
-    volume: 0.1
+    volume: 0.4
     pitch: 1
     audioClip: {fileID: 8300000, guid: de649b2ea27019a4385b8bb6d2bc0049, type: 3}
     loop: 1

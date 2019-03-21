@@ -4,12 +4,9 @@ using Valve.VR.InteractionSystem;
 
 public class Standpoint : MonoBehaviour
 {
-    public Transform ballSpawnPosition;
-
     private BallEngine spawnedTrainingBall;
+    private readonly float trainingBallLifeSpan = 2f;
     private GameObject trainingTarget;
-
-    private Vector3 ballSpawnPoint;
 
     private bool isFirstTimeTrigger;
 
@@ -23,6 +20,14 @@ public class Standpoint : MonoBehaviour
     private new Renderer renderer;
 
     private AudioSource audioSource;
+
+    public Vector3 BallSpawnPoint 
+    {
+        get
+        {
+            return Player.instance.feetPositionGuess + Vector3.forward * 0.5f;
+        }
+    }
 
     private void Awake()
     {
@@ -65,12 +70,12 @@ public class Standpoint : MonoBehaviour
     {
         if(spawnedTrainingBall == null) 
         {
-            ballSpawnPoint = ballSpawnPosition.position;
+            
             var ballPrefab = ResourceManager.Instance.BallPrefab;
-            spawnedTrainingBall = Instantiate(ballPrefab, ballSpawnPoint, Quaternion.identity).GetComponent<BallEngine>();
-            spawnedTrainingBall.BallLifetime = 2f;
+            spawnedTrainingBall = Instantiate(ballPrefab, BallSpawnPoint, Quaternion.identity).GetComponent<BallEngine>();
+            spawnedTrainingBall.BallLifetime = trainingBallLifeSpan;
             spawnedTrainingBall.name = ballPrefab.name;
-            AudioPlayer.Instance.PlayClipAtPoint(2, "SpawnSound", ballSpawnPoint);
+            AudioPlayer.Instance.PlayClipAtPoint(2, "SpawnSound", BallSpawnPoint);
         }     
     }
 
@@ -78,7 +83,7 @@ public class Standpoint : MonoBehaviour
     {
         if(spawnedTrainingBall != null) 
         {
-            AudioPlayer.Instance.PlayClipAtPoint(2, "DespawnSound", ballSpawnPoint);
+            AudioPlayer.Instance.PlayClipAtPoint(2, "DespawnSound", BallSpawnPoint);
             Destroy(spawnedTrainingBall);
         }     
     }

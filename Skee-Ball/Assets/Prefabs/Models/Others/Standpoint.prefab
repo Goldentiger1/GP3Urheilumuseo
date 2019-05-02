@@ -469,8 +469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf47d8ff61bc69d44877e87b86209854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballSpawnPosition: {fileID: 0}
-  TrainingTarget: {fileID: 0}
 --- !u!95 &266441751
 Animator:
   serializedVersion: 3

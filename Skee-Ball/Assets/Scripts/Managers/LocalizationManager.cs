@@ -1,9 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
+
+public enum LANGUAGE
+{
+    FI,
+    UK
+}
 
 [Serializable]
 public class LocalizationData
@@ -22,13 +27,44 @@ public class LocalizationManager : Singelton<LocalizationManager>
 {
     #region VARIABLES
 
-    private string currentLanguage = string.Empty;
-
     private Dictionary<string, string> localizationTextDictionary;
     private List<LocalizedText> localizedTextsInScene = new List<LocalizedText>();
 
-    private readonly string defaultLanguage = "FI";
-    private readonly string missingText = "Localized text not found!";
+    public LANGUAGE DEFAULT_LANGUAGE = LANGUAGE.FI;
+
+    public LANGUAGE CURRENT_LANGUAGE
+    {
+        get;
+        private set;
+    }
+
+    public LANGUAGE PREVIOUS_LANGUAGE
+    {
+        get;
+        private set;
+    }
+
+    public string MissingText
+    {
+        get 
+        {
+            switch (CURRENT_LANGUAGE)
+            {
+                case LANGUAGE.FI:
+
+                return "Lokalisoitua tekstiä ei löytynyt!";
+
+                case LANGUAGE.UK:
+
+                return "Localized text not found!";
+
+                default:
+
+                return "Lokalisoitua tekstiä ei löytynyt!";
+            }
+
+        }
+    } 
 
     #endregion VARIABLES
 
@@ -48,22 +84,22 @@ public class LocalizationManager : Singelton<LocalizationManager>
     {
         IsReady = false;
 
-        ChangeLanguage(defaultLanguage);
+        SetLanguage(DEFAULT_LANGUAGE);
     }
 
     #endregion UNITY_FUNCTIONS
 
     #region CUSTOM_FUNCTIONS
 
-    private void LoadLocalizedText(string fileName)
+    private void LoadLocalizedText(LANGUAGE fileName)
     {
         localizationTextDictionary = new Dictionary<string, string>();
 
-        string filePath = Path.Combine(Application.streamingAssetsPath, "LocalizedText_" + fileName + ".json");
+        var filePath = Path.Combine(Application.streamingAssetsPath, "LocalizedText_" + fileName.ToString() + ".json");
 
         if (File.Exists(filePath))
         {
-            string dataAsJson = File.ReadAllText(filePath, Encoding.Default);
+            var dataAsJson = File.ReadAllText(filePath, Encoding.Default);
 
             LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataAsJson);
 
@@ -104,22 +140,27 @@ public class LocalizationManager : Singelton<LocalizationManager>
     public string GetValue(string key)
     {
         var result = string.Empty;
-        return result = localizationTextDictionary.TryGetValue(key, out result) ? result : missingText;
+        return localizationTextDictionary.TryGetValue(key, out result) ? result : MissingText;
     }
 
-    public void ChangeLanguage(string newLanguage)
+    private void SetLanguage(LANGUAGE NEW_LANGUAGE)
     {
-        if (currentLanguage.Equals(newLanguage))
+        LoadLocalizedText(NEW_LANGUAGE);
+
+        ChangeTextToNewLanguage();
+
+        CURRENT_LANGUAGE = NEW_LANGUAGE;
+    }
+
+    public void ChangeLanguage(LANGUAGE NEW_LANGUAGE)
+    {
+        if (CURRENT_LANGUAGE.Equals(NEW_LANGUAGE))
         {
-            Debug.LogWarning("Language is already: " + newLanguage);
+            Debug.LogWarning("Language is already: " + NEW_LANGUAGE);
             return;
         }
 
-        LoadLocalizedText(newLanguage);
-
-        currentLanguage = newLanguage;
-
-        ChangeTextToNewLanguage();
+        SetLanguage(NEW_LANGUAGE);
     }
 
     #endregion CUSTOM_FUNCTIONS

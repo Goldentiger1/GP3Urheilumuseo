@@ -82,7 +82,10 @@ public class AudioPlayer : Singelton<AudioPlayer>
         if (sceneIndex < 1)
             return;
 
-        StartCoroutine(IPlayNarration(sceneIndex, NarrationDelay));
+
+
+
+       StartCoroutine(IPlayNarration(sceneIndex, NarrationDelay));
     }
 
     public void StopNarration(int sceneIndex)
@@ -140,7 +143,7 @@ public class AudioPlayer : Singelton<AudioPlayer>
         }
     }
 
-    private AudioClip GetSoundEffect(int sfxIndex, string clipName)
+    public AudioClip GetSoundEffect(int sfxIndex, string clipName)
     {
         for (int i = 0; i < soundEffects[sfxIndex].Length; i++)
         {
@@ -156,6 +159,8 @@ public class AudioPlayer : Singelton<AudioPlayer>
     private IEnumerator IPlayNarration(int sceneIndex, float delay)
     {
         yield return new WaitForSeconds(delay);
+
+
 
         Narrations[sceneIndex - 1].PlayNarration();
     }

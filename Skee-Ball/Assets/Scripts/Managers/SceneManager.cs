@@ -1,7 +1,6 @@
 ﻿
 using System.Collections;
 using UnityEngine;
-
 using Valve.VR;
 
 public class SceneManager : Singelton<SceneManager>
@@ -19,6 +18,14 @@ public class SceneManager : Singelton<SceneManager>
     #endregion VARIABLES
 
     #region PROPERTIES
+
+    public string CurrentSceneName
+    {
+        get 
+        {
+            return CurrentScene.Name;
+        }
+    }
 
     public SceneData CurrentScene
     {
@@ -97,11 +104,6 @@ public class SceneManager : Singelton<SceneManager>
 
     public void ChangeNextScene()
     {
-        //if (IsFirstScene)
-        //{
-        //    return;
-        //}
-
         if (IsLastScene)
         {
             ChangeScene(0);
@@ -118,7 +120,6 @@ public class SceneManager : Singelton<SceneManager>
 
     private IEnumerator ILoadSceneAsync(int sceneIndex)
     {
-        //!!??
         yield return new WaitWhile(() => AudioPlayer.Instance.IsNarrationPlaying);
       
         LevelManager.Instance.ClearBasketBalls();
@@ -161,7 +162,8 @@ public class SceneManager : Singelton<SceneManager>
         UIManager.Instance.FadeScreenOut();
 
         AudioPlayer.Instance.PlayMusicTrack(CurrentScene.Index);
-        AudioPlayer.Instance.PlayNarration(CurrentScene.Index);
+
+        AudioPlayer.Instance.PlayNarration(CurrentScene.NarrationIndex);
 
         LocalizationManager.Instance.ChangeTextToNewLanguage();
     }

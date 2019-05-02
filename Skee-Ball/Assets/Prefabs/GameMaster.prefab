@@ -454,7 +454,6 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_textAlignment: 514
-  m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -481,6 +480,7 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
@@ -495,12 +495,9 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
-  m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
@@ -653,57 +650,65 @@ MonoBehaviour:
   - Name: I
     volume: 1
     pitch: 1
-    AudioClips:
+    AudioClips_FI:
     - {fileID: 8300000, guid: 93c20f5cbea3c994da72c15b4f37a3b3, type: 3}
+    AudioClips_UK: []
   - Name: II
     volume: 1
     pitch: 1
-    AudioClips:
+    AudioClips_FI:
     - {fileID: 8300000, guid: 7d024927ce7d6224eb13f67b48b27b39, type: 3}
     - {fileID: 8300000, guid: b246297d05442d84b927f255c5e7bc7c, type: 3}
+    AudioClips_UK: []
   - Name: III
     volume: 1
     pitch: 1
-    AudioClips:
+    AudioClips_FI:
     - {fileID: 8300000, guid: 703183293ba7a714da97f9fc946e3d61, type: 3}
     - {fileID: 8300000, guid: 76b7c001c5b80d94cafe879c844c74bf, type: 3}
     - {fileID: 8300000, guid: 7db2f0760dc828f4cb7b09e4256b9878, type: 3}
+    AudioClips_UK: []
   - Name: IV (60-luku)
     volume: 1
     pitch: 1
-    AudioClips:
+    AudioClips_FI:
     - {fileID: 8300000, guid: 4aee85064a73f2a4d883c820b546c8bc, type: 3}
     - {fileID: 8300000, guid: 9419fca32dc0fdd46a8510d78b46468d, type: 3}
     - {fileID: 8300000, guid: 9ae5dc99833e6b14d8dac10fbb07d948, type: 3}
     - {fileID: 8300000, guid: a1ce459995a63ed4f92841e38e57c3c7, type: 3}
+    AudioClips_UK: []
   - Name: V (70-luku)
     volume: 0.5
     pitch: 1
-    AudioClips:
+    AudioClips_FI:
     - {fileID: 8300000, guid: 7d5673fe336c9af448cca6c58f51e7e4, type: 3}
     - {fileID: 8300000, guid: dfaa9e6193726024bb1a6be8dc4ab955, type: 3}
+    AudioClips_UK: []
   - Name: VI (80-luku)
     volume: 0.5
     pitch: 1
-    AudioClips:
+    AudioClips_FI:
     - {fileID: 8300000, guid: f4f1e50d690f3704cba21db007bb1b3c, type: 3}
     - {fileID: 8300000, guid: 43979cf24bb89da43bc8abd6b9b74891, type: 3}
     - {fileID: 8300000, guid: 32e541ea30e078b46b79a3506e17f2f4, type: 3}
+    AudioClips_UK: []
   - Name: VII (90-luku)
     volume: 0.5
     pitch: 1
-    AudioClips:
+    AudioClips_FI:
     - {fileID: 8300000, guid: 472192e32ee76c74098e2c653a021d09, type: 3}
     - {fileID: 8300000, guid: 7d4074439f3f81b4bb445a72b1407782, type: 3}
     - {fileID: 8300000, guid: fff44b1bfc78d6a48935e03883aa662c, type: 3}
+    AudioClips_UK: []
   - Name: VIII (2000-luku)
     volume: 1
     pitch: 1
-    AudioClips:
+    AudioClips_FI:
     - {fileID: 8300000, guid: 3ad7e99262b131a4795b0b9accdda7a0, type: 3}
     - {fileID: 8300000, guid: b6954f24ca7c45f42a905a6fc8516445, type: 3}
     - {fileID: 8300000, guid: 1946c2306409f514f998a374018ad0f6, type: 3}
     - {fileID: 8300000, guid: 9c738bc38dd42fd46b52d22f373fedd9, type: 3}
+    AudioClips_UK: []
   BasketballEffects:
   - Name: BallBounce
     volume: 1
@@ -748,6 +753,10 @@ MonoBehaviour:
     pitch: 1
     audioClip: {fileID: 8300000, guid: 6e984feb46a04284e8c6ce4ebfd791d0, type: 3}
   - Name: IncreaseScore
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: 8d57953bec601a54a915153398cefa66, type: 3}
+  - Name: MissingAudioClip
     volume: 1
     pitch: 1
     audioClip: {fileID: 8300000, guid: 8d57953bec601a54a915153398cefa66, type: 3}
@@ -919,6 +928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0020b9ac0e1ee45852bd4fe599537f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DEFAULT_LANGUAGE: 0
 --- !u!1 &8337668015066160614
 GameObject:
   m_ObjectHideFlags: 0

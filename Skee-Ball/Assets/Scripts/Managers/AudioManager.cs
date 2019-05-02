@@ -61,8 +61,7 @@ public class AudioManager : Singelton<AudioManager>
 
     public float GetChannelValue(string channelName)
     {
-        float value;
-        AudioMixer.GetFloat(channelName, out value);
+        AudioMixer.GetFloat(channelName, out float value);
         return value;
     }
 

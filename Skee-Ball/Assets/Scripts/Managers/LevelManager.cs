@@ -54,10 +54,6 @@ public class LevelManager : Singelton<LevelManager>
 
         totalScore += throwDistance > throwDistanceRequiredForThreePoints ? 3 : 2;
         CurrentScorePanel.UpdateScoreDisplayText(totalScore);
-
-
-        //SceneManager.Instance.ChangeNextScene();
-
     }
 
     private void StartLevelTimer()

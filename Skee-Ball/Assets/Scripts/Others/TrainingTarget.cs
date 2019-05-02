@@ -25,6 +25,6 @@ public class TrainingTarget : MonoBehaviour
 
     private void OnDisable()
     {
-        trainingTargetSpawnEffect.SetActive(true);
+        trainingTargetSpawnEffect.SetActive(false);
     }
 }

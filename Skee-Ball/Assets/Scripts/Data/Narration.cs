@@ -48,7 +48,6 @@ public class Narration : Sound
         }
         
         NarrationPanel.Instance.ShowPanel(audioSource.clip.name);
-
         audioSource.Play();
         //Debug.LogWarning(Name + " PLAY ( Audio clip: " + audioSource.clip.name + " )");
     }

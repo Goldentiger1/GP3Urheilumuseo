@@ -1170,5 +1170,10 @@ PrefabInstance:
       propertyPath: m_fontMaterial
       value: 
       objectReference: {fileID: 1667051012}
+    - target: {fileID: 8207350815846462771, guid: 40337c1f989496e4492a7ff670c5a084,
+        type: 3}
+      propertyPath: LevelTime
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40337c1f989496e4492a7ff670c5a084, type: 3}

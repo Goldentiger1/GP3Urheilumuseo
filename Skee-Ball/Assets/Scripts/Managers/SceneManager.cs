@@ -126,7 +126,7 @@ public class SceneManager : Singelton<SceneManager>
 
         UIManager.Instance.FadeScreenIn();
 
-        AudioPlayer.Instance.StopNarration(CurrentScene.Index);
+        AudioPlayer.Instance.StopNarration();      
 
         yield return new WaitWhile(() => SteamVR_Fade.IsFading);
 
@@ -152,20 +152,14 @@ public class SceneManager : Singelton<SceneManager>
 
         loadSceneAsync = null;
 
-        OnSceneChanged();
+        //OnSceneChanged();
     }
 
     private void OnSceneChanged()
     {
-        LevelManager.Instance.ResetLevelValues();
+        print("OnSceneChanged");
 
-        UIManager.Instance.FadeScreenOut();
-
-        AudioPlayer.Instance.PlayMusicTrack(CurrentScene.Index);
-
-        AudioPlayer.Instance.PlayNarration(CurrentScene.NarrationIndex);
-
-        LocalizationManager.Instance.ChangeTextToNewLanguage();
+        LevelManager.Instance.StartGame(CurrentScene);     
     }
 
     #endregion CUSTOM_FUNCTIONS

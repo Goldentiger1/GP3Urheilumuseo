@@ -102,10 +102,19 @@ public class LevelManager : Singelton<LevelManager>
         }
     }
 
-    public void ResetLevelValues()
+    public void StartGame(SceneData CurrentScene)
     {
         totalScore = 0;
         StartLevelTimer();
+
+        UIManager.Instance.FadeScreenOut();
+
+        AudioPlayer.Instance.PlayMusicTrack(CurrentScene.Index);
+
+        if(CurrentScene.NarrationIndex != 0)
+        AudioPlayer.Instance.PlayNarration(CurrentScene.NarrationIndex);
+
+        LocalizationManager.Instance.ChangeTextToNewLanguage();
     }
 
     #endregion CUSTOM_FUNCTIONS

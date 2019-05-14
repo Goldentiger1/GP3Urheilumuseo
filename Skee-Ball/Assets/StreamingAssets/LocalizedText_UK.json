@@ -1,5 +1,6 @@
 ﻿{"Items":
 	[
+		{"Key":"CurrentLanguage","Value":"ENGLISH"},
 		{"Key":"StartButton","Value":"START"},
 		{"Key":"ResetButton","Value":"RESET"},
 		{"Key":"QuitButton","Value":"QUIT"},

@@ -1,5 +1,6 @@
 ﻿{"Items":
 	[
+		{"Key":"CurrentLanguage","Value":"SUOMI"},
 		{"Key":"StartButton","Value":"ALOITA"},
 		{"Key":"ResetButton","Value":"RESETOI"},
 		{"Key":"QuitButton","Value":"POISTU"},

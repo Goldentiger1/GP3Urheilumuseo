@@ -107,6 +107,16 @@ public class AudioPlayer : Singelton<AudioPlayer>
         }
     }
 
+    /// <summary>
+    ///  Sfx indexes:
+    ///  0 = Basketball,
+    ///  1 = UI,
+    ///  2 = Others,
+    /// </summary>
+    /// <param name="sfxIndex"></param>
+    /// <param name="clipName"></param>
+    /// <param name="position"></param>
+    /// <param name="volume"></param>
     public void PlayClipAtPoint(int sfxIndex, string clipName, Vector3 position, float volume = 1f)
     {
         AudioSource.PlayClipAtPoint(GetSoundEffect(sfxIndex, clipName), position, volume);
@@ -146,8 +156,8 @@ public class AudioPlayer : Singelton<AudioPlayer>
                 return soundEffects[sfxIndex][i].audioClip;
             }
         }
-
-        return null;
+        
+        return soundEffects[2][0].audioClip;
     }
 
     private IEnumerator IPlayNarration(int sceneIndex, float delay)

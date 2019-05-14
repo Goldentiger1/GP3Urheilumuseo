@@ -28,7 +28,7 @@ public class Narration : Sound
         if (audioSource.isPlaying == true)
             return;
 
-        switch (LocalizationManager.Instance.CURRENT_LANGUAGE)
+        switch (LocalizationManager.Instance.CurrentLanguage)
         {
             case LANGUAGE.FI:
 

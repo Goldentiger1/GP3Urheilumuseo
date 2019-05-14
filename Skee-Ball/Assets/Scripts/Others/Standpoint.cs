@@ -4,6 +4,8 @@ using Valve.VR.InteractionSystem;
 
 public class Standpoint : MonoBehaviour
 {
+    private Coroutine iStartGame_Coroutine;
+
     private BallEngine spawnedTrainingBall;
     private readonly float trainingBallLifeSpan = 2f;
     private GameObject trainingTarget;
@@ -59,11 +61,7 @@ public class Standpoint : MonoBehaviour
         Feet_Icon.SetActive(true);
 
         if (audioSource.isPlaying == false)
-            AudioPlayer.Instance.PlayLoopingSfx(2, audioSource, "StandpointLoop");
-
-        var trainingTargetPrefab = ResourceManager.Instance.TrainingTargetPrefab;
-        trainingTarget = Instantiate(trainingTargetPrefab);
-        trainingTarget.name = trainingTargetPrefab.name;
+            AudioPlayer.Instance.PlayLoopingSfx(2, audioSource, "StandpointLoop");     
     }
 
     private void SpawnTrainingBall() 
@@ -107,24 +105,43 @@ public class Standpoint : MonoBehaviour
 
                 StartGame();
 
-                UIManager.Instance.ShowHUD(Player.instance.bodyDirectionGuess + Vector3.forward, 1f, 400f);
+               
             }
         }     
     }
 
     private void StartGame()
     {
-        StartCoroutine(IStartGame());
+        if(iStartGame_Coroutine == null)
+        {
+            iStartGame_Coroutine = StartCoroutine(IStartGame());
+        }
     }
 
     private IEnumerator IStartGame()
     {
+        UIManager.Instance.ShowHUD(
+                    0,
+                    Player.instance.bodyDirectionGuess + Vector3.forward,
+                    1f,
+                    400f);
+
+        var trainingTargetPrefab = ResourceManager.Instance.TrainingTargetPrefab;
+        trainingTarget = Instantiate(trainingTargetPrefab);
+        trainingTarget.name = trainingTargetPrefab.name;
+
+        yield return new WaitUntil(() => spawnedTrainingBall.IsPickedUp);    
+
+        UIManager.Instance.ShowHUD(
+                   1,
+                   Player.instance.bodyDirectionGuess + Vector3.forward,
+                   1f,
+                   400f);
+
+
         trainingTarget.SetActive(true);
-
-        yield return new WaitUntil(() => spawnedTrainingBall.IsPickedUp);
-
         // Localization...
-        UIManager.Instance.ChangeHintText("HEILAUTA OHJAINTA JA PÄÄSTÄ LIIPAISIMESTA HEITTÄÄKSESI PALLOA. YRITÄ OSUA EDESSÄSI OLEVAAN MAALITAULUUN.");
+        // UIManager.Instance.ChangeHintText("HEILAUTA OHJAINTA JA PÄÄSTÄ LIIPAISIMESTA HEITTÄÄKSESI PALLOA. YRITÄ OSUA EDESSÄSI OLEVAAN MAALITAULUUN.");
 
         yield return new WaitUntil(() => trainingTarget.activeSelf == false);
 

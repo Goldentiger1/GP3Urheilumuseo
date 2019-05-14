@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using TMPro;
 using UnityEngine;
+using UnityEditor;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
@@ -8,20 +8,19 @@ public class UIManager : Singelton<UIManager>
 {
     #region VARIABLES
 
-    private TextMeshProUGUI hintText;
-    //private Image hintImage;
+    public UI_Panel[] UI_Panels;
 
     private readonly float yOffset = 1f;
     private readonly float zOffset = 1.2f;
     private readonly float smoothMultiplier = 0.6f;
 
-    private Coroutine iShowHUD;
+    private Coroutine iShowHUD_Coroutine;
 
     private Transform HUDCanvas;
     private float audioFadeInDuration;
     private float audioFadeOutDuration;
 
-    [Header("Fade variables")]
+    [Header("Fade Variables")]
     [Range(0, 10)]
     public float FadeInDuration = 0f;
     [Range(0, 10)]
@@ -42,13 +41,10 @@ public class UIManager : Singelton<UIManager>
     {
         HUDCanvas = transform.Find("HUDCanvas");
 
-        //hintImage = HUDCanvas.GetComponentInChildren<Image>();
-        hintText = HUDCanvas.GetComponentInChildren<TextMeshProUGUI>();
-    }
-
-    public void ChangeHintText(string newText)
-    {
-        hintText.text = newText;
+        for (int i = 0; i < UI_Panels.Length; i++)
+        {
+            UI_Panels[i].gameObject.SetActive(false);
+        }
     }
 
     private void Start()
@@ -58,18 +54,10 @@ public class UIManager : Singelton<UIManager>
 
         HUDCanvas.gameObject.SetActive(false);
 
+        // !!!!!!!!!
+        HUDCanvas.transform.localScale = new Vector3(-1, 1, 1);
+
         SteamFadeScreen(FadeColor, 0);
-    }
-
-    private void Update()
-    {
-        if (HUDCanvas.gameObject.activeSelf == false)
-            return;
-
-        var target = Player.instance.hmdTransform;
-
-        MoveHUD(target);
-        RotateHUD(target);
     }
 
     #endregion UNITY_FUNCTIONS
@@ -82,7 +70,6 @@ public class UIManager : Singelton<UIManager>
             target.position.x,
             HUDCanvas.position.y,
             target.position.z
-
             );
 
         HUDCanvas.position = Vector3.Lerp(
@@ -94,32 +81,47 @@ public class UIManager : Singelton<UIManager>
             HUDCanvas.position.x,
             yOffset,
             HUDCanvas.position.z
-
             );
     }
 
     private void RotateHUD(Transform target)
     {
         HUDCanvas.LookAt(
-
-            new Vector3(target.position.x, HUDCanvas.position.y, target.position.z)
-
+            new Vector3(target.position.x,
+            HUDCanvas.position.y, 
+            target.position.z)
             );
     }
 
-    public void ShowHUD(Vector3 startPosition,  float showDelay = 0f, float showDuration = 20f)
+    /// <summary>
+    ///  uiPanelIndex = 0 => MenuPanel
+    ///  uiPanelIndex = 1 => TutorialPanel
+    ///  uiPanelIndex = 2 => NarrationPanel
+    /// </summary>
+    /// <param name="uiPanelIndex"></param>
+    /// <param name="startPosition"></param>
+    /// <param name="showDelay"></param>
+    /// <param name="showDuration"></param>
+    public void ShowHUD(int uiPanelIndex, Vector3 startPosition,  float showDelay = 0f, float showDuration = 20f)
     {
-        if (iShowHUD == null)
+        if (iShowHUD_Coroutine == null)
         {
-            iShowHUD = StartCoroutine(IShowHUD(startPosition, showDelay, showDuration));
+            iShowHUD_Coroutine = StartCoroutine(
+                IShowHUD(uiPanelIndex,
+                startPosition,
+                showDelay,
+                showDuration,
+                Player.instance.hmdTransform
+                ));
         }
     }
 
     public void HideHUD()
     {
-        if(iShowHUD != null)
+        if(iShowHUD_Coroutine != null)
         {
-            StopCoroutine(iShowHUD);
+            StopCoroutine(iShowHUD_Coroutine);
+            iShowHUD_Coroutine = null;
         }
 
         AudioPlayer.Instance.PlayClipAtPoint(1 ,"UIPanelClose", HUDCanvas.position);
@@ -151,24 +153,35 @@ public class UIManager : Singelton<UIManager>
     private void OnQuit()
     {
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+        EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 #endif
     }
 
-    private IEnumerator IShowHUD(Vector3 startPosition, float showDelay, float showDuration)
+    private IEnumerator IShowHUD(int uiPanelIndex ,Vector3 startPosition, float showDelay, float showDuration, Transform target)
     {
         yield return new WaitForSeconds(showDelay);
 
         HUDCanvas.position = startPosition + Vector3.forward;
         HUDCanvas.gameObject.SetActive(true);
 
+        OpenUIPanel(UI_Panels[uiPanelIndex]);
+       
         AudioPlayer.Instance.PlayClipAtPoint(1, "UIPanelOpen", HUDCanvas.position);
 
-        yield return new WaitForSeconds(showDuration);
+        while(showDuration > 0)
+        {
+            showDuration -= Time.deltaTime;
 
-        iShowHUD = null;
+            MoveHUD(target);
+            RotateHUD(target);
+
+            yield return null;
+        }
+
+        HideHUD();
+        iShowHUD_Coroutine = null;
     }
 
     #region Buttons
@@ -184,4 +197,19 @@ public class UIManager : Singelton<UIManager>
     #endregion Buttons
 
     #endregion CUSTOM_FUNCTIONS
+
+
+    private void OpenUIPanel(UI_Panel uI_Panel)
+    {
+        uI_Panel.gameObject.SetActive(true);
+
+        uI_Panel.OpenPanel();
+    }
+
+    private void CloseUIPanel(UI_Panel uI_Panel)
+    {
+        uI_Panel.ClosePanel();
+
+        uI_Panel.gameObject.SetActive(false);      
+    }
 }

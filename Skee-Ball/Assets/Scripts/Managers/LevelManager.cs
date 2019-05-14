@@ -111,8 +111,8 @@ public class LevelManager : Singelton<LevelManager>
 
         AudioPlayer.Instance.PlayMusicTrack(CurrentScene.Index);
 
-        if(CurrentScene.NarrationIndex != 0)
-        AudioPlayer.Instance.PlayNarration(CurrentScene.NarrationIndex);
+        if (CurrentScene.NarrationIndex != 0)
+            AudioPlayer.Instance.PlayNarration(CurrentScene.NarrationIndex);
 
         LocalizationManager.Instance.ChangeTextToNewLanguage();
     }

@@ -20,11 +20,23 @@ public class TrainingTarget : MonoBehaviour
 
     private void OnEnable()
     {
+        if (trainingTargetSpawnEffect == null)
+        {
+            Debug.LogError("OnEnable: effect is null");
+            return;
+        }
+
         trainingTargetSpawnEffect.SetActive(true);
     }
 
     private void OnDisable()
     {
+        if(trainingTargetSpawnEffect == null)
+        {
+            Debug.LogError("OnDisable: effect is null");
+            return;
+        }
+
         trainingTargetSpawnEffect.SetActive(false);
     }
 }

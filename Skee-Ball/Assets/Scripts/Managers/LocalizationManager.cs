@@ -30,15 +30,15 @@ public class LocalizationManager : Singelton<LocalizationManager>
     private Dictionary<string, string> localizationTextDictionary;
     private List<LocalizedText> localizedTextsInScene = new List<LocalizedText>();
 
-    public LANGUAGE DEFAULT_LANGUAGE = LANGUAGE.FI;
+    public LANGUAGE DefaultLanguage = LANGUAGE.FI;
 
-    public LANGUAGE CURRENT_LANGUAGE
+    public LANGUAGE CurrentLanguage
     {
         get;
         private set;
     }
 
-    public LANGUAGE PREVIOUS_LANGUAGE
+    public LANGUAGE PreviousLanguage
     {
         get;
         private set;
@@ -48,7 +48,7 @@ public class LocalizationManager : Singelton<LocalizationManager>
     {
         get 
         {
-            switch (CURRENT_LANGUAGE)
+            switch (CurrentLanguage)
             {
                 case LANGUAGE.FI:
 
@@ -84,7 +84,7 @@ public class LocalizationManager : Singelton<LocalizationManager>
     {
         IsReady = false;
 
-        SetLanguage(DEFAULT_LANGUAGE);
+        SetLanguage(DefaultLanguage);
     }
 
     #endregion UNITY_FUNCTIONS
@@ -149,18 +149,18 @@ public class LocalizationManager : Singelton<LocalizationManager>
 
         ChangeTextToNewLanguage();
 
-        CURRENT_LANGUAGE = NEW_LANGUAGE;
+        CurrentLanguage = NEW_LANGUAGE;
     }
 
-    public void ChangeLanguage(LANGUAGE NEW_LANGUAGE)
+    public void ChangeLanguage(int NEW_LANGUAGE)
     {
-        if (CURRENT_LANGUAGE.Equals(NEW_LANGUAGE))
+        if (CurrentLanguage.Equals(NEW_LANGUAGE))
         {
             Debug.LogWarning("Language is already: " + NEW_LANGUAGE);
             return;
         }
 
-        SetLanguage(NEW_LANGUAGE);
+        SetLanguage((LANGUAGE)NEW_LANGUAGE);
     }
 
     #endregion CUSTOM_FUNCTIONS

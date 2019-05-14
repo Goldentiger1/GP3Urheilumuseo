@@ -32,14 +32,11 @@ public class UI_Button : UI_Element
 
     public override void OnPointerUp(PointerEventData eventData)
     {
-        base.OnPointerUp(eventData);
-
-        
+        base.OnPointerUp(eventData);       
     }
 
     public override void OnPointerEnter(PointerEventData eventData)
     {
-        print(gameObject.name);
         transform.localScale = hoverSize;
         AudioPlayer.Instance.PlayClipAtPoint(1, "UIButtonHover", transform.localPosition);
     }

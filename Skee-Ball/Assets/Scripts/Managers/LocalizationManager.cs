@@ -28,6 +28,7 @@ public class LocalizationManager : Singelton<LocalizationManager>
     #region VARIABLES
 
     private Dictionary<string, string> localizationTextDictionary;
+    [SerializeField]
     private List<LocalizedText> localizedTextsInScene = new List<LocalizedText>();
 
     public LANGUAGE DefaultLanguage = LANGUAGE.FI;
@@ -120,6 +121,12 @@ public class LocalizationManager : Singelton<LocalizationManager>
 
     public void AddLocalizedText(LocalizedText newLocalizedText)
     {
+        if (localizedTextsInScene.Contains(newLocalizedText))
+        {
+            Debug.LogWarning(newLocalizedText + " already contains in dictionary");
+            return;
+        }
+
         localizedTextsInScene.Add(newLocalizedText);
     }
 
@@ -133,7 +140,7 @@ public class LocalizationManager : Singelton<LocalizationManager>
         foreach (var localizedText in localizedTextsInScene)
         {
             localizedText.Text = GetValue(localizedText.Key);
-            //Debug.LogError("ChangeTextToNewLanguage: " + localizedText.Text + " " + localizedText.Key);
+            Debug.LogError("ChangeTextToNewLanguage: " + localizedText.Text + " " + localizedText.Key);
         }
     }
 
@@ -152,7 +159,7 @@ public class LocalizationManager : Singelton<LocalizationManager>
         CurrentLanguage = NEW_LANGUAGE;
     }
 
-    public void ChangeLanguage(int NEW_LANGUAGE)
+    public void ChangeLanguage(LANGUAGE NEW_LANGUAGE)
     {
         if (CurrentLanguage.Equals(NEW_LANGUAGE))
         {
@@ -160,7 +167,7 @@ public class LocalizationManager : Singelton<LocalizationManager>
             return;
         }
 
-        SetLanguage((LANGUAGE)NEW_LANGUAGE);
+        SetLanguage(NEW_LANGUAGE);
     }
 
     #endregion CUSTOM_FUNCTIONS

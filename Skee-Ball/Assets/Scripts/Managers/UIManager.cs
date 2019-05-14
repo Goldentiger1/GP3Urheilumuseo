@@ -31,7 +31,11 @@ public class UIManager : Singelton<UIManager>
 
     #region PROPERTIES
 
-
+    public bool IsOptionsConfirmed
+    {
+        get;
+        private set;
+    }
 
     #endregion PROPERTIES
 
@@ -55,7 +59,7 @@ public class UIManager : Singelton<UIManager>
         HUDCanvas.gameObject.SetActive(false);
 
         // !!!!!!!!!
-        HUDCanvas.transform.localScale = new Vector3(-1, 1, 1);
+        //HUDCanvas.transform.localScale = new Vector3(-1, 1, 1);
 
         SteamFadeScreen(FadeColor, 0);
     }
@@ -159,6 +163,20 @@ public class UIManager : Singelton<UIManager>
 #endif
     }
 
+    private void OpenUIPanel(UI_Panel uI_Panel)
+    {
+        uI_Panel.gameObject.SetActive(true);
+
+        uI_Panel.OpenPanel();
+    }
+
+    private void CloseUIPanel(UI_Panel uI_Panel)
+    {
+        uI_Panel.ClosePanel();
+
+        uI_Panel.gameObject.SetActive(false);
+    }
+
     private IEnumerator IShowHUD(int uiPanelIndex ,Vector3 startPosition, float showDelay, float showDuration, Transform target)
     {
         yield return new WaitForSeconds(showDelay);
@@ -194,22 +212,18 @@ public class UIManager : Singelton<UIManager>
         Invoke("OnQuit", FadeInDuration + 0.2f);
     }
 
+    public void ChangeLanguage(int NEW_LANGUAGE)
+    {
+        LocalizationManager.Instance.ChangeLanguage((LANGUAGE)NEW_LANGUAGE);
+    }
+
+    public void ConfirmOptionsButton()
+    {
+        if (IsOptionsConfirmed == false)
+            IsOptionsConfirmed = true;
+    }
+
     #endregion Buttons
 
     #endregion CUSTOM_FUNCTIONS
-
-
-    private void OpenUIPanel(UI_Panel uI_Panel)
-    {
-        uI_Panel.gameObject.SetActive(true);
-
-        uI_Panel.OpenPanel();
-    }
-
-    private void CloseUIPanel(UI_Panel uI_Panel)
-    {
-        uI_Panel.ClosePanel();
-
-        uI_Panel.gameObject.SetActive(false);      
-    }
 }

@@ -77,7 +77,9 @@ public class SceneManager : Singelton<SceneManager>
 
     private void Start()
     {
-        OnSceneChanged();
+        print("SceneChanged");
+
+        LevelManager.Instance.StartGame(CurrentScene);
     }
 
     #endregion UNITY_FUNCTIONS
@@ -151,15 +153,6 @@ public class SceneManager : Singelton<SceneManager>
         }
 
         loadSceneAsync = null;
-
-        //OnSceneChanged();
-    }
-
-    private void OnSceneChanged()
-    {
-        print("OnSceneChanged");
-
-        LevelManager.Instance.StartGame(CurrentScene);     
     }
 
     #endregion CUSTOM_FUNCTIONS

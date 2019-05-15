@@ -6,16 +6,7 @@ public class TrainingTarget : MonoBehaviour
 
     private void Awake()
     {
-        var trainingTargetEffectPrefab = ResourceManager.Instance.BigObjectSpawnEffect;
-
-        trainingTargetSpawnEffect = Instantiate(
-            trainingTargetEffectPrefab,
-            transform.position,
-            Quaternion.identity);
-
-        trainingTargetSpawnEffect.name = trainingTargetEffectPrefab.name;
-
-        gameObject.SetActive(false);
+        trainingTargetSpawnEffect = GameMaster.Instance.SpawnGameObjectInstance(ResourceManager.Instance.BigObjectSpawnEffect, transform.position, Quaternion.identity, null, false);
     }
 
     private void OnEnable()

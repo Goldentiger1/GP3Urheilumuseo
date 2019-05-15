@@ -9,6 +9,7 @@ public class UIManager : Singelton<UIManager>
     #region VARIABLES
 
     public UI_Panel[] UI_Panels;
+    private UI_Panel currentlyOpenPanel;
 
     private readonly float yOffset = 1f;
     private readonly float zOffset = 1.2f;
@@ -108,10 +109,18 @@ public class UIManager : Singelton<UIManager>
     /// <param name="showDuration"></param>
     public void ShowHUD(int uiPanelIndex, Vector3 startPosition,  float showDelay = 0f, float showDuration = 20f)
     {
+        if (currentlyOpenPanel != null)
+        {
+            print(currentlyOpenPanel.gameObject.name);
+            currentlyOpenPanel.gameObject.SetActive(false);
+        }
+
+        currentlyOpenPanel = UI_Panels[uiPanelIndex];
+
         if (iShowHUD_Coroutine == null)
         {
             iShowHUD_Coroutine = StartCoroutine(
-                IShowHUD(uiPanelIndex,
+                IShowHUD(currentlyOpenPanel,
                 startPosition,
                 showDelay,
                 showDuration,
@@ -177,14 +186,14 @@ public class UIManager : Singelton<UIManager>
         uI_Panel.gameObject.SetActive(false);
     }
 
-    private IEnumerator IShowHUD(int uiPanelIndex ,Vector3 startPosition, float showDelay, float showDuration, Transform target)
+    private IEnumerator IShowHUD(UI_Panel uiPanel ,Vector3 startPosition, float showDelay, float showDuration, Transform target)
     {
         yield return new WaitForSeconds(showDelay);
 
         HUDCanvas.position = startPosition + Vector3.forward;
         HUDCanvas.gameObject.SetActive(true);
 
-        OpenUIPanel(UI_Panels[uiPanelIndex]);
+        OpenUIPanel(uiPanel);
        
         AudioPlayer.Instance.PlayClipAtPoint(1, "UIPanelOpen", HUDCanvas.position);
 

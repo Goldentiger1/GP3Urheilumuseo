@@ -9,8 +9,6 @@ public class BallEngine : Throwable
     private GameObject spawnEffect;
 
     private readonly float spinSpeed = 0.25f;
-    private float ballLifetime = 10f;
-
     private Coroutine iLifetimeCoroutine;
     private Coroutine iResetPositionCoroutine;
 
@@ -36,17 +34,7 @@ public class BallEngine : Throwable
             return rigidbody.velocity.magnitude;
         }
     }
-    public float BallLifetime
-    {
-        get
-        {
-            return ballLifetime;
-        }
-        set
-        {
-            ballLifetime = value;
-        }
-    }
+    public float BallLifetime { get; set; } = 10f;
     public bool IsPickedUp
     {
         get;
@@ -67,9 +55,7 @@ public class BallEngine : Throwable
         throwTrailEffect = GetComponentInChildren<TrailRenderer>();
         ballRenderer = GetComponentInChildren<MeshRenderer>();
 
-        var ballSpawnEffectPrefab = ResourceManager.Instance.ObjectSpawnEffect;
-        spawnEffect = Instantiate(ballSpawnEffectPrefab, transform);
-        spawnEffect.name = ballSpawnEffectPrefab.name;
+        spawnEffect = GameMaster.Instance.SpawnGameObjectInstance(ResourceManager.Instance.ObjectSpawnEffect, Vector3.zero, Quaternion.identity, transform);
     }
 
     private void OnEnable()
@@ -305,7 +291,7 @@ public class BallEngine : Throwable
     {
         if (iLifetimeCoroutine == null)
         {
-            iLifetimeCoroutine = StartCoroutine(IStartLifetime(ballLifetime));
+            iLifetimeCoroutine = StartCoroutine(IStartLifetime(BallLifetime));
         }      
     }
 
@@ -324,7 +310,7 @@ public class BallEngine : Throwable
 
     protected override void OnDetachedFromHand(Hand hand)
     {
-        StartLifeTime(ballLifetime);
+        StartLifeTime(BallLifetime);
 
         base.OnDetachedFromHand(hand);
 
@@ -337,7 +323,7 @@ public class BallEngine : Throwable
         throwTrailEffect.enabled = true;
     }
 
-    private void PlaySpawnEffect()
+    public void PlaySpawnEffect()
     {
         if(spawnEffect != null)
         {

@@ -1,15 +1,9 @@
-﻿using System.Collections;
-using UnityEngine;
-using Valve.VR.InteractionSystem;
+﻿using UnityEngine;
 
 public class Standpoint : MonoBehaviour
 {
-    #region VARIABLES
+    #region VARIABLES  
 
-    private Coroutine iStartGame_Coroutine;
-    private BallEngine spawnedTrainingBall;
-    private readonly float trainingBallLifeSpan = 2f;
-    private GameObject trainingTarget;
     private bool isFirstTimeTrigger;
     private Collider triggerColider;
     private GameObject SwitchScene_Icon;
@@ -22,14 +16,6 @@ public class Standpoint : MonoBehaviour
     #endregion VARIABLES
 
     #region PROPERTIES    
-
-    public Vector3 BallSpawnPoint
-    {
-        get 
-        {
-            return Player.instance.feetPositionGuess + Vector3.forward * 0.5f;
-        }
-    }
 
     #endregion PROPERTIES
 
@@ -60,7 +46,7 @@ public class Standpoint : MonoBehaviour
                 Arrow_Icon.SetActive(false);
                 audioSource.loop = false;
 
-                StartGame();
+                GameMaster.Instance.StartTrainingSession();
             }
         }
     }
@@ -103,71 +89,6 @@ public class Standpoint : MonoBehaviour
 
         if (audioSource.isPlaying == false)
             AudioPlayer.Instance.PlayLoopingSfx(2, audioSource, "StandpointLoop");
-    }
-
-    private void SpawnTrainingBall()
-    {
-        if (spawnedTrainingBall == null)
-        {
-
-            var ballPrefab = ResourceManager.Instance.BallPrefab;
-            spawnedTrainingBall = Instantiate(ballPrefab, BallSpawnPoint, Quaternion.identity).GetComponent<BallEngine>();
-            spawnedTrainingBall.BallLifetime = trainingBallLifeSpan;
-            spawnedTrainingBall.name = ballPrefab.name;
-            AudioPlayer.Instance.PlayClipAtPoint(2, "SpawnSound", BallSpawnPoint);
-        }
-    }
-
-    private void UnspawnTrainingBall()
-    {
-        if (spawnedTrainingBall != null)
-        {
-            AudioPlayer.Instance.PlayClipAtPoint(2, "DespawnSound", BallSpawnPoint);
-            Destroy(spawnedTrainingBall);
-        }
-    }
-
-    private void StartGame()
-    {
-        if (iStartGame_Coroutine == null)
-        {
-            iStartGame_Coroutine = StartCoroutine(IStartGame());
-        }
-    }
-
-    private IEnumerator IStartGame()
-    {
-        UIManager.Instance.ShowHUD(
-                    0,
-                    Player.instance.bodyDirectionGuess + Vector3.forward,
-                    1f,
-                    400f);
-
-        yield return new WaitUntil(() => UIManager.Instance.IsOptionsConfirmed);
-
-        print("Foo");
-        SpawnTrainingBall();
-        var trainingTargetPrefab = ResourceManager.Instance.TrainingTargetPrefab;
-        trainingTarget = Instantiate(trainingTargetPrefab);
-        trainingTarget.name = trainingTargetPrefab.name;
-
-        yield return new WaitUntil(() => spawnedTrainingBall.IsPickedUp);
-
-        UIManager.Instance.ShowHUD(
-                   1,
-                   Player.instance.bodyDirectionGuess + Vector3.forward,
-                   1f,
-                   400f);
-
-        trainingTarget.SetActive(true);
-        // Localization...
-        // UIManager.Instance.ChangeHintText("HEILAUTA OHJAINTA JA PÄÄSTÄ LIIPAISIMESTA HEITTÄÄKSESI PALLOA. YRITÄ OSUA EDESSÄSI OLEVAAN MAALITAULUUN.");
-
-        yield return new WaitUntil(() => trainingTarget.activeSelf == false);
-
-        UIManager.Instance.HideHUD();
-
-        SceneManager.Instance.ChangeNextScene();
     }
 
     #endregion CUSTOM_FUNCTIONS

@@ -61,11 +61,8 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
     private IEnumerator IStartGame()
     {
-        UIManager.Instance.ShowHUD(
-                    0,
-                    Player.instance.bodyDirectionGuess + Vector3.forward,
-                    1f,
-                    400f);
+        // Show Menu / Options panel
+        UIManager.Instance.ShowMenuPanel();
 
         yield return new WaitUntil(() => UIManager.Instance.IsOptionsConfirmed);
 
@@ -82,22 +79,19 @@ public class GameMaster : SingeltonPersistant<GameMaster>
             trainingTarget = Instantiate(ResourceManager.Instance.TrainingTargetPrefab).GetComponent<TrainingTarget>();
         }
 
+        // Show Tutorial / Hint panel -- Pick the ball hint
+        UIManager.Instance.ShowTutorialPanel(1);
+
         yield return new WaitUntil(() => spawnedTrainingBall.IsPickedUp);
 
-        UIManager.Instance.HideHUD();
-
-        UIManager.Instance.ShowHUD(
-                   1,
-                   Player.instance.bodyDirectionGuess + Vector3.forward,
-                   1f,
-                   400f);
+        UIManager.Instance.ShowTutorialPanel(2);
+        // Show Tutorial / Hint panel -- Throw ball to target hint
 
         trainingTarget.gameObject.SetActive(true);
-        // Localization...
-        // UIManager.Instance.ChangeHintText("HEILAUTA OHJAINTA JA PÄÄSTÄ LIIPAISIMESTA HEITTÄÄKSESI PALLOA. YRITÄ OSUA EDESSÄSI OLEVAAN MAALITAULUUN.");
-
+        
         yield return new WaitUntil(() => trainingTarget.gameObject.activeSelf == false);
 
+        // Close Panels and HUD
         UIManager.Instance.HideHUD();
 
         SceneManager.Instance.ChangeNextScene();

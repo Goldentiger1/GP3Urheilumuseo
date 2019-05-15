@@ -140,7 +140,7 @@ public class LocalizationManager : Singelton<LocalizationManager>
         foreach (var localizedText in localizedTextsInScene)
         {
             localizedText.Text = GetValue(localizedText.Key);
-            Debug.LogError("ChangeTextToNewLanguage: " + localizedText.Text + " " + localizedText.Key);
+            //Debug.Log("ChangeTextToNewLanguage: " + localizedText.Text + " " + localizedText.Key);
         }
     }
 

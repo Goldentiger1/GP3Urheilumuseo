@@ -77,8 +77,6 @@ public class SceneManager : Singelton<SceneManager>
 
     private void Start()
     {
-        print("SceneChanged");
-
         LevelManager.Instance.StartGame(CurrentScene);
     }
 

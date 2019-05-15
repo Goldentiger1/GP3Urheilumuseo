@@ -8,8 +8,12 @@ public class UIManager : Singelton<UIManager>
 {
     #region VARIABLES
 
-    public UI_Panel[] UI_Panels;
-    private UI_Panel currentlyOpenPanel;
+    [SerializeField]private MenuPanel menuPanel;
+    [SerializeField] private TutorialPanel tutorialPanel;
+    [SerializeField] private NarrationPanel narrationPanel;
+
+    private UI_Panel previousPanel;
+    private UI_Panel currentPanel;
 
     private readonly float yOffset = 1f;
     private readonly float zOffset = 1.2f;
@@ -46,21 +50,17 @@ public class UIManager : Singelton<UIManager>
     {
         HUDCanvas = transform.Find("HUDCanvas");
 
-        for (int i = 0; i < UI_Panels.Length; i++)
-        {
-            UI_Panels[i].gameObject.SetActive(false);
-        }
+        menuPanel.gameObject.SetActive(false);
+        tutorialPanel.gameObject.SetActive(false);
+        //narrationPanel.gameObject.SetActive(false);
+
+        HUDCanvas.gameObject.SetActive(false);
     }
 
     private void Start()
     {
         audioFadeInDuration = FadeInDuration;
-        audioFadeOutDuration = FadeOutDuration;
-
-        HUDCanvas.gameObject.SetActive(false);
-
-        // !!!!!!!!!
-        //HUDCanvas.transform.localScale = new Vector3(-1, 1, 1);
+        audioFadeOutDuration = FadeOutDuration;    
 
         SteamFadeScreen(FadeColor, 0);
     }
@@ -98,46 +98,61 @@ public class UIManager : Singelton<UIManager>
             );
     }
 
-    /// <summary>
-    ///  uiPanelIndex = 0 => MenuPanel
-    ///  uiPanelIndex = 1 => TutorialPanel
-    ///  uiPanelIndex = 2 => NarrationPanel
-    /// </summary>
-    /// <param name="uiPanelIndex"></param>
-    /// <param name="startPosition"></param>
-    /// <param name="showDelay"></param>
-    /// <param name="showDuration"></param>
-    public void ShowHUD(int uiPanelIndex, Vector3 startPosition,  float showDelay = 0f, float showDuration = 20f)
+    private void SwitchPanel(UI_Panel newPanel)
     {
-        if (currentlyOpenPanel != null)
-        {
-            print(currentlyOpenPanel.gameObject.name);
-            currentlyOpenPanel.gameObject.SetActive(false);
-        }
-
-        currentlyOpenPanel = UI_Panels[uiPanelIndex];
-
         if (iShowHUD_Coroutine == null)
         {
-            iShowHUD_Coroutine = StartCoroutine(
-                IShowHUD(currentlyOpenPanel,
-                startPosition,
-                showDelay,
-                showDuration,
-                Player.instance.hmdTransform
-                ));
+            ShowHUD(Player.instance.bodyDirectionGuess, 1f, 400f);
         }
+
+        previousPanel = currentPanel;
+
+        if (previousPanel != null)
+            previousPanel.gameObject.SetActive(false);
+
+        currentPanel = newPanel;
+        newPanel.gameObject.SetActive(true);
+
+    }
+
+    public void ShowMenuPanel()
+    {
+        SwitchPanel(menuPanel);
+    }
+
+    public void ShowTutorialPanel(int tutorialTextNumber)
+    {
+        SwitchPanel(tutorialPanel);
+
+        tutorialPanel.ShowTutorialText(tutorialTextNumber);
+    }
+
+    public void ShowNarrationPanel()
+    {
+        //SwitchPanel(narrationPanel);
+    }
+
+    private void ShowHUD(Vector3 startPosition,  float showDelay = 0f, float showDuration = 20f)
+    {       
+        iShowHUD_Coroutine = StartCoroutine(
+            IShowHUD(
+            startPosition,
+            showDelay,
+            showDuration,
+            Player.instance.hmdTransform
+            ));       
     }
 
     public void HideHUD()
     {
-        if(iShowHUD_Coroutine != null)
+        currentPanel.gameObject.SetActive(false);
+        AudioPlayer.Instance.PlayClipAtPoint(1, "UIPanelClose", HUDCanvas.position);
+
+        if (iShowHUD_Coroutine != null)
         {
             StopCoroutine(iShowHUD_Coroutine);
             iShowHUD_Coroutine = null;
         }
-
-        AudioPlayer.Instance.PlayClipAtPoint(1 ,"UIPanelClose", HUDCanvas.position);
 
         HUDCanvas.gameObject.SetActive(false);
     }
@@ -176,7 +191,7 @@ public class UIManager : Singelton<UIManager>
     {
         uI_Panel.gameObject.SetActive(true);
 
-        uI_Panel.OpenPanel();
+        uI_Panel.Open();
     }
 
     private void CloseUIPanel(UI_Panel uI_Panel)
@@ -186,15 +201,13 @@ public class UIManager : Singelton<UIManager>
         uI_Panel.gameObject.SetActive(false);
     }
 
-    private IEnumerator IShowHUD(UI_Panel uiPanel ,Vector3 startPosition, float showDelay, float showDuration, Transform target)
+    private IEnumerator IShowHUD(Vector3 startPosition, float showDelay, float showDuration, Transform target)
     {
         yield return new WaitForSeconds(showDelay);
 
         HUDCanvas.position = startPosition + Vector3.forward;
         HUDCanvas.gameObject.SetActive(true);
-
-        OpenUIPanel(uiPanel);
-       
+    
         AudioPlayer.Instance.PlayClipAtPoint(1, "UIPanelOpen", HUDCanvas.position);
 
         while(showDuration > 0)
@@ -208,7 +221,6 @@ public class UIManager : Singelton<UIManager>
         }
 
         HideHUD();
-        iShowHUD_Coroutine = null;
     }
 
     #region Buttons

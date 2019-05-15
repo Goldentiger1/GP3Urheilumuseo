@@ -43,9 +43,9 @@ public class LocalizedText : MonoBehaviour
     }
 
     private void Awake()
-    {
+    {     
         textMeshProUGUI = GetComponent<TextMeshProUGUI>();
-        textMeshPro = GetComponent<TextMeshPro>();       
+        textMeshPro = GetComponent<TextMeshPro>();
     }
 
     private void OnEnable()

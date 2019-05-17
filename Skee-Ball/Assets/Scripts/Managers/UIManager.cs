@@ -102,8 +102,12 @@ public class UIManager : Singelton<UIManager>
     {
         if (iShowHUD_Coroutine == null)
         {
+            print("ShowHUD");
             ShowHUD(Player.instance.bodyDirectionGuess, 1f, 400f);
         }
+
+        if (currentPanel != null && newPanel == currentPanel)
+            return;
 
         previousPanel = currentPanel;
 
@@ -133,7 +137,9 @@ public class UIManager : Singelton<UIManager>
     }
 
     private void ShowHUD(Vector3 startPosition,  float showDelay = 0f, float showDuration = 20f)
-    {       
+    {
+        AudioPlayer.Instance.PlayClipAtPoint(1, "UIPanelOpen", HUDCanvas.position);
+
         iShowHUD_Coroutine = StartCoroutine(
             IShowHUD(
             startPosition,

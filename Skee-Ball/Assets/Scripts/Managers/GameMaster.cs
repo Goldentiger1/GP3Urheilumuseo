@@ -57,6 +57,8 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         {
             iStartGame_Coroutine = StartCoroutine(IStartGame());
         }
+
+        iStartGame_Coroutine = null;
     }
 
     private IEnumerator IStartGame()

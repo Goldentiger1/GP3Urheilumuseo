@@ -16,21 +16,16 @@ public class TutorialPanel : UI_Panel
     {
         if (tutorialTextNumber == 1)
         {
-            if (turtorialText_2.gameObject.activeSelf)
-            {
-                turtorialText_2.gameObject.SetActive(false);
-            }
-
+            turtorialText_2.gameObject.SetActive(false);
             turtorialText_1.gameObject.SetActive(true);
-        }
-        else
-        {
-            if (turtorialText_1.gameObject.activeSelf)
-            {
-                turtorialText_1.gameObject.SetActive(false);
-            }
+            print("1");
 
+        } 
+        else
+        {       
+            turtorialText_1.gameObject.SetActive(false);
             turtorialText_2.gameObject.SetActive(true);
-        }         
+            print("2");
+        }
     }
 }

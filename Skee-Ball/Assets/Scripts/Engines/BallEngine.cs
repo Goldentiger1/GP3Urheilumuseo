@@ -57,7 +57,8 @@ public class BallEngine : Throwable
 
         Debug.LogError("FIX ME!!!!");
         // GameMaster should not be called by instances in the scene...
-        //spawnEffect = GameMaster.Instance.SpawnGameObjectInstance(ResourceManager.Instance.ObjectSpawnEffect, Vector3.zero, Quaternion.identity, transform);
+        // Now works because GameMaster executer order is before BallEngine ("this class")...
+        spawnEffect = GameMaster.Instance.SpawnGameObjectInstance(ResourceManager.Instance.ObjectSpawnEffect, Vector3.zero, Quaternion.identity, transform);
     }
 
     private void OnEnable()

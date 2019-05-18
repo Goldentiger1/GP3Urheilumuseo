@@ -757,7 +757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1169480011
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1327,7 +1327,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: OSOITA PALLOA JA PAINA LIIPAISINTA POHJASSA.
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -2255,8 +2255,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "HEILAUTA OHJAINTA JA P\xC4\xC4ST\xC4 LIIPAISIMESTA HEITT\xC4\xC4KSESI PALLOA.
-    YRIT\xC4 OSUA EDESS\xC4SI OLEVAAN MAALITAULUUN.\n"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -2405,6 +2404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelTime: 5
+  GameStartDelay: 2
 --- !u!1 &4092494253325817368
 GameObject:
   m_ObjectHideFlags: 0
@@ -2593,6 +2593,14 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     audioClip: {fileID: 8300000, guid: 47b5e90896f0e004c85bebd26e6057e2, type: 3}
+  - Name: SessionStarted
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: 4e2e74504a83fbd438147cfda37cf3d0, type: 3}
+  - Name: AirHorn
+    volume: 1
+    pitch: 1
+    audioClip: {fileID: 8300000, guid: d3bcaf1fe13e48d42984461157757045, type: 3}
 --- !u!1 &4627499889172556143
 GameObject:
   m_ObjectHideFlags: 0

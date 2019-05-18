@@ -106,8 +106,7 @@ public class UIManager : Singelton<UIManager>
     {
         if (iShowHUD_Coroutine == null)
         {
-            print("ShowHUD");
-            ShowHUD(Player.instance.bodyDirectionGuess, 1f, 400f);
+            ShowHUD(Player.instance.hmdTransform.position + Vector3.forward, 1f, 400f);
         }
 
         previousPanel = currentPanel;
@@ -117,6 +116,7 @@ public class UIManager : Singelton<UIManager>
 
         currentPanel = newPanel;
         newPanel.gameObject.SetActive(true);
+        newPanel.Open();
 
     }
 
@@ -161,6 +161,7 @@ public class UIManager : Singelton<UIManager>
         }
 
         HUDCanvas.gameObject.SetActive(false);
+        IsOptionsConfirmed = false; 
     }
 
     public void FadeScreenIn()
@@ -247,7 +248,9 @@ public class UIManager : Singelton<UIManager>
     public void ConfirmOptionsButton()
     {
         if (IsOptionsConfirmed == false)
+        {
             IsOptionsConfirmed = true;
+        }
     }
 
     #endregion Buttons

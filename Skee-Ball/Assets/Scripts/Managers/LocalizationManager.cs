@@ -27,7 +27,7 @@ public class LocalizationManager : Singelton<LocalizationManager>
 {
     #region VARIABLES
 
-    private Dictionary<string, string> localizationTextDictionary;
+    private Dictionary<string, string> localizationTextDictionary = new Dictionary<string, string>();
     [SerializeField]
     private List<LocalizedText> localizedTextsInScene = new List<LocalizedText>();
 
@@ -92,11 +92,21 @@ public class LocalizationManager : Singelton<LocalizationManager>
 
     #region CUSTOM_FUNCTIONS
 
-    private void LoadLocalizedText(LANGUAGE fileName)
+    public void GetLocalalizedTexts()
     {
-        localizationTextDictionary = new Dictionary<string, string>();
+        localizedTextsInScene.Clear();
 
-        var filePath = Path.Combine(Application.streamingAssetsPath, "LocalizedText_" + fileName.ToString() + ".json");
+        var allLocalizedTexts = GameMaster.Instance.GetComponentsInChildren<LocalizedText>(includeInactive: true);
+
+        for (int i = 0; i < allLocalizedTexts.Length; i++)
+        {
+            AddLocalizedText(allLocalizedTexts[i]);
+        }
+    }
+
+    private void LoadLocalizedText(string fileName)
+    {
+        var filePath = Path.Combine(Application.streamingAssetsPath, "LocalizedText_" + fileName + ".json");
 
         if (File.Exists(filePath))
         {
@@ -109,7 +119,7 @@ public class LocalizationManager : Singelton<LocalizationManager>
                 localizationTextDictionary.Add(loadedData.Items[i].Key, loadedData.Items[i].Value);
             }
 
-            //Debug.Log("Data loaded, dictionary contains: " + localizationTextDictionary.Count + " entries.");
+            Debug.Log("Data loaded, dictionary contains: " + localizationTextDictionary.Count + " entries.");
         }
         else
         {
@@ -130,18 +140,19 @@ public class LocalizationManager : Singelton<LocalizationManager>
         localizedTextsInScene.Add(newLocalizedText);
     }
 
-    public void ClearLocalizedText()
-    {
-        localizedTextsInScene.Clear();
-    }
+    //public void ClearLocalizedText()
+    //{
+    //    localizedTextsInScene.Clear();
+    //}
 
     public void ChangeTextToNewLanguage()
-    {
+    {   
         foreach (var localizedText in localizedTextsInScene)
         {
             localizedText.Text = GetValue(localizedText.Key);
             //Debug.Log("ChangeTextToNewLanguage: " + localizedText.Text + " " + localizedText.Key);
         }
+        
     }
 
     public string GetValue(string key)
@@ -152,7 +163,7 @@ public class LocalizationManager : Singelton<LocalizationManager>
 
     private void SetLanguage(LANGUAGE NEW_LANGUAGE)
     {
-        LoadLocalizedText(NEW_LANGUAGE);
+        LoadLocalizedText(NEW_LANGUAGE.ToString());
 
         ChangeTextToNewLanguage();
 
@@ -161,11 +172,13 @@ public class LocalizationManager : Singelton<LocalizationManager>
 
     public void ChangeLanguage(LANGUAGE NEW_LANGUAGE)
     {
-        if (CurrentLanguage.Equals(NEW_LANGUAGE))
+        if (CurrentLanguage == NEW_LANGUAGE)
         {
             Debug.LogWarning("Language is already: " + NEW_LANGUAGE);
             return;
         }
+
+        localizationTextDictionary.Clear();
 
         SetLanguage(NEW_LANGUAGE);
     }

@@ -12,6 +12,7 @@ public class LevelManager : Singelton<LevelManager>
 
     [Range(0, 200)]
     public float LevelTime = 60f;
+    public float GameStartDelay = 1f;
 
     private const int MAX_SCORE_AMOUNT = 10;
 
@@ -76,6 +77,10 @@ public class LevelManager : Singelton<LevelManager>
 
     private IEnumerator IStartLevelTimer()
     {
+        AudioPlayer.Instance.PlayClipAtPoint(2, "AirHorn", transform.position);
+
+        yield return new WaitForSeconds(GameStartDelay);
+
         var startTime = LevelTime;
 
         while (startTime > 0)
@@ -89,6 +94,8 @@ public class LevelManager : Singelton<LevelManager>
 
             yield return null;
         }
+
+        AudioPlayer.Instance.PlayClipAtPoint(2, "AirHorn", transform.position);
 
         CurrentScorePanel.UpdateTimeDisplayText(0);
 
@@ -111,7 +118,9 @@ public class LevelManager : Singelton<LevelManager>
     {
         var currentScene = SceneManager.Instance.CurrentScene;
 
-        totalScore = 0;
+        LocalizationManager.Instance.GetLocalalizedTexts();
+        LocalizationManager.Instance.ChangeTextToNewLanguage();
+
         IsGameStarted = false;
 
         UIManager.Instance.FadeScreenOut();
@@ -131,16 +140,14 @@ public class LevelManager : Singelton<LevelManager>
 
             yield return new WaitUntil(() => IsGameStarted);
 
-            StartLevelTimer();
-
-            LocalizationManager.Instance.ChangeTextToNewLanguage();
+            totalScore = 0;
+  
+            StartLevelTimer();        
 
             iStartGame_Coroutine = null;
 
             yield return null;
         }
-
-
     }
 
     #endregion CUSTOM_FUNCTIONS

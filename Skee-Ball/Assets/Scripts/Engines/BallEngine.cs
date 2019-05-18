@@ -55,7 +55,7 @@ public class BallEngine : Throwable
         throwTrailEffect = GetComponentInChildren<TrailRenderer>();
         ballRenderer = GetComponentInChildren<MeshRenderer>();
 
-        Debug.LogError("FIX ME!!!!");
+        //Debug.LogError("FIX ME!!!!");
         // GameMaster should not be called by instances in the scene...
         // Now works because GameMaster executer order is before BallEngine ("this class")...
         spawnEffect = GameMaster.Instance.SpawnGameObjectInstance(ResourceManager.Instance.ObjectSpawnEffect, Vector3.zero, Quaternion.identity, transform);

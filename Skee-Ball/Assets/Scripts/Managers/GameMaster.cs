@@ -29,7 +29,6 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
     #region UNITY_FUNCTIONS
 
-
     #endregion UNITY_FUNCTIONS
 
     #region CUSTOM_FUNCTIONS
@@ -58,12 +57,12 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         {
             iStartGame_Coroutine = StartCoroutine(IStartTrainingSession());
         }
-
-        iStartGame_Coroutine = null;
     }
 
     private IEnumerator IStartTrainingSession()
     {
+        AudioPlayer.Instance.PlayClipAtPoint(2, "SessionStarted", transform.position);
+
         // Show Menu / Options panel
         UIManager.Instance.ShowMenuPanel();
 
@@ -74,6 +73,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
             spawnedTrainingBall = SpawnGameObjectInstance(ResourceManager.Instance.BallPrefab, TrainingBallSpawnPoint).GetComponent<BallEngine>();
             spawnedTrainingBall.BallLifetime = trainingBallLifeSpan;
             spawnedTrainingBall.PlaySpawnEffect();
+
             AudioPlayer.Instance.PlayClipAtPoint(2, "SpawnSound", TrainingBallSpawnPoint);
         }
 
@@ -100,6 +100,8 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         yield return new WaitUntil(() => trainingTarget.gameObject.activeSelf == false);
 
         SceneManager.Instance.ChangeNextScene();
+
+        iStartGame_Coroutine = null;
     }
 
     private IEnumerator IStartNarrationSession()

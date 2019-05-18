@@ -141,7 +141,7 @@ public class SceneManager : Singelton<SceneManager>
         {
             if (asyncOperation.progress == 0.9f)
             {
-                LocalizationManager.Instance.ClearLocalizedText();
+                //LocalizationManager.Instance.ClearLocalizedText();
                 yield return new WaitForSeconds(FakeLoadDuration);
                 asyncOperation.allowSceneActivation = true;
 

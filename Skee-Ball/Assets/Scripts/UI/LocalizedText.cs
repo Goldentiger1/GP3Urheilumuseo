@@ -37,7 +37,7 @@ public class LocalizedText : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Super Foo!");
+                Debug.LogError("Super Foo!: " + value.ToString());
             }
         }
     }
@@ -50,6 +50,6 @@ public class LocalizedText : MonoBehaviour
 
     private void OnEnable()
     {
-        LocalizationManager.Instance.AddLocalizedText(this);
+        Text = LocalizationManager.Instance.GetValue(Key);
     }
 }

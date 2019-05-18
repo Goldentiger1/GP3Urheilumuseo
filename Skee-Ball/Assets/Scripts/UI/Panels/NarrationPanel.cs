@@ -15,11 +15,6 @@ public class NarrationPanel : UI_Panel
         Initialize();      
     }
 
-    private void Start()
-    {
-        LocalizationManager.Instance.ChangeTextToNewLanguage();
-    }
-
     private void Initialize()
     {
         if (hasInitialized)

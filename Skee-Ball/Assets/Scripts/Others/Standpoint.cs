@@ -47,8 +47,6 @@ public class Standpoint : MonoBehaviour
                 audioSource.loop = false;
 
                 GameMaster.Instance.StartTrainingSession();
-
-                AudioPlayer.Instance.PlayClipAtPoint(1, "SpawnSound", transform.position);
             }
         }
     }

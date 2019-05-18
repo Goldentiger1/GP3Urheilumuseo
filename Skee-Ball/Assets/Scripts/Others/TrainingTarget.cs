@@ -17,7 +17,7 @@ public class TrainingTarget : MonoBehaviour
             return;
         }
 
-        trainingTargetSpawnEffect.SetActive(true);
+        trainingTargetSpawnEffect.SetActive(true);      
     }
 
     private void OnDisable()

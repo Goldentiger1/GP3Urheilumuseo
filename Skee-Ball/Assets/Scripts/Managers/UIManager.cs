@@ -8,9 +8,9 @@ public class UIManager : Singelton<UIManager>
 {
     #region VARIABLES
 
-    [SerializeField]private MenuPanel menuPanel;
-    [SerializeField] private TutorialPanel tutorialPanel;
-    [SerializeField] private NarrationPanel narrationPanel;
+    private MenuPanel menuPanel;
+    private TutorialPanel tutorialPanel;
+    private NarrationPanel narrationPanel;
 
     private UI_Panel previousPanel;
     private UI_Panel currentPanel;
@@ -50,9 +50,13 @@ public class UIManager : Singelton<UIManager>
     {
         HUDCanvas = transform.Find("HUDCanvas");
 
+        menuPanel = GetComponentInChildren<MenuPanel>(includeInactive:true);
+        tutorialPanel = GetComponentInChildren<TutorialPanel>(includeInactive: true);
+        narrationPanel = GetComponentInChildren<NarrationPanel>(includeInactive: true);
+
         menuPanel.gameObject.SetActive(false);
         tutorialPanel.gameObject.SetActive(false);
-        //narrationPanel.gameObject.SetActive(false);
+        narrationPanel.gameObject.SetActive(false);
 
         HUDCanvas.gameObject.SetActive(false);
     }
@@ -106,9 +110,6 @@ public class UIManager : Singelton<UIManager>
             ShowHUD(Player.instance.bodyDirectionGuess, 1f, 400f);
         }
 
-        if (currentPanel != null && newPanel == currentPanel)
-            return;
-
         previousPanel = currentPanel;
 
         if (previousPanel != null)
@@ -131,15 +132,15 @@ public class UIManager : Singelton<UIManager>
         tutorialPanel.ShowTutorialText(tutorialTextNumber);
     }
 
-    public void ShowNarrationPanel()
+    public void ShowNarrationPanel(string key)
     {
-        //SwitchPanel(narrationPanel);
+        SwitchPanel(narrationPanel);
+
+        narrationPanel.ShowPanel(key);
     }
 
     private void ShowHUD(Vector3 startPosition,  float showDelay = 0f, float showDuration = 20f)
     {
-        AudioPlayer.Instance.PlayClipAtPoint(1, "UIPanelOpen", HUDCanvas.position);
-
         iShowHUD_Coroutine = StartCoroutine(
             IShowHUD(
             startPosition,
@@ -152,7 +153,6 @@ public class UIManager : Singelton<UIManager>
     public void HideHUD()
     {
         currentPanel.gameObject.SetActive(false);
-        AudioPlayer.Instance.PlayClipAtPoint(1, "UIPanelClose", HUDCanvas.position);
 
         if (iShowHUD_Coroutine != null)
         {
@@ -202,7 +202,7 @@ public class UIManager : Singelton<UIManager>
 
     private void CloseUIPanel(UI_Panel uI_Panel)
     {
-        uI_Panel.ClosePanel();
+        uI_Panel.Close();
 
         uI_Panel.gameObject.SetActive(false);
     }

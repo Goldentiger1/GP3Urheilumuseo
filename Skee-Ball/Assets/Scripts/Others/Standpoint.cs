@@ -47,22 +47,11 @@ public class Standpoint : MonoBehaviour
                 audioSource.loop = false;
 
                 GameMaster.Instance.StartTrainingSession();
+
+                AudioPlayer.Instance.PlayClipAtPoint(1, "SpawnSound", transform.position);
             }
         }
     }
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.layer.Equals(12))
-    //    {
-    //        Arrow_Icon.SetActive(true);
-
-    //        if(audioSource.isPlaying == true)
-    //        AudioPlayer.Instance.PlayLoopingSfx(audioSource, "StandpointLoop");
-
-    //        UnspawnTrainingBall();
-    //    }
-    //}
 
     #endregion UNITY_FUNCTIONS
 
@@ -88,7 +77,9 @@ public class Standpoint : MonoBehaviour
         Feet_Icon.SetActive(true);
 
         if (audioSource.isPlaying == false)
+        {
             AudioPlayer.Instance.PlayLoopingSfx(2, audioSource, "StandpointLoop");
+        }
     }
 
     #endregion CUSTOM_FUNCTIONS

@@ -18,14 +18,12 @@ public class TutorialPanel : UI_Panel
         {
             turtorialText_2.gameObject.SetActive(false);
             turtorialText_1.gameObject.SetActive(true);
-            print("1");
 
         } 
         else
         {       
             turtorialText_1.gameObject.SetActive(false);
             turtorialText_2.gameObject.SetActive(true);
-            print("2");
         }
     }
 }

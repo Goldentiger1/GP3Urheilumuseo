@@ -1,18 +1,18 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class NarrationPanel : Singelton<NarrationPanel>
+public class NarrationPanel : UI_Panel
 {
-    private LocalizedText narrationText;
-    private TextMeshPro textMeshPro;
+    private LocalizedText localizedText;
+    private TextMeshProUGUI narrationText;
+
+    private bool hasInitialized = false;
 
     private Animator animator;
 
     private void Awake()
     {
-        narrationText = GetComponent<LocalizedText>();
-        textMeshPro = GetComponent<TextMeshPro>();
-        animator = GetComponent<Animator>();       
+        Initialize();      
     }
 
     private void Start()
@@ -20,18 +20,39 @@ public class NarrationPanel : Singelton<NarrationPanel>
         LocalizationManager.Instance.ChangeTextToNewLanguage();
     }
 
+    private void Initialize()
+    {
+        if (hasInitialized)
+            return;
+
+        localizedText = GetComponentInChildren<LocalizedText>();
+        narrationText = GetComponentInChildren<TextMeshProUGUI>();
+        animator = GetComponent<Animator>();
+        hasInitialized = true;
+    }
+
     public void ShowPanel(string key)
     {
-        narrationText.Key = key;
+        Initialize();
 
-        textMeshPro.text = LocalizationManager.Instance.GetValue(key);
+        localizedText.Key = key;
+
+        narrationText.text = LocalizationManager.Instance.GetValue(key);
 
         animator.SetBool("IsShowing", true);
 
     }
 
-    public void ClosePanel()
+    public override void Close()
     {
         animator.SetBool("IsShowing", false);
+    }
+
+    public void SkipNarration()
+    {
+        AudioPlayer.Instance.StopNarration();
+        UIManager.Instance.HideHUD();
+
+        LevelManager.Instance.IsGameStarted = true;
     }
 }

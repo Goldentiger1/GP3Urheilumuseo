@@ -9,6 +9,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
     private Coroutine iStartGame_Coroutine;
     private BallEngine spawnedTrainingBall;
     private TrainingTarget trainingTarget;
+    private Vector3 trainingTargetPosition = new Vector3(0, 1.5f, 1.4f);
 
     private readonly float trainingBallLifeSpan = 2f;
 
@@ -55,13 +56,13 @@ public class GameMaster : SingeltonPersistant<GameMaster>
     {
         if (iStartGame_Coroutine == null)
         {
-            iStartGame_Coroutine = StartCoroutine(IStartGame());
+            iStartGame_Coroutine = StartCoroutine(IStartTrainingSession());
         }
 
         iStartGame_Coroutine = null;
     }
 
-    private IEnumerator IStartGame()
+    private IEnumerator IStartTrainingSession()
     {
         // Show Menu / Options panel
         UIManager.Instance.ShowMenuPanel();
@@ -78,7 +79,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
 
         if (trainingTarget == null)
         {
-            trainingTarget = Instantiate(ResourceManager.Instance.TrainingTargetPrefab).GetComponent<TrainingTarget>();
+            trainingTarget = SpawnGameObjectInstance(ResourceManager.Instance.TrainingTargetPrefab, trainingTargetPosition).GetComponent<TrainingTarget>();
         }
 
         // Show Tutorial / Hint panel -- Pick the ball hint
@@ -90,13 +91,29 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         // Show Tutorial / Hint panel -- Throw ball to target hint
 
         trainingTarget.gameObject.SetActive(true);
-        
-        yield return new WaitUntil(() => trainingTarget.gameObject.activeSelf == false);
+
+        yield return new WaitUntil(() => spawnedTrainingBall.IsPickedUp == false);
 
         // Close Panels and HUD
         UIManager.Instance.HideHUD();
 
+        yield return new WaitUntil(() => trainingTarget.gameObject.activeSelf == false);
+
         SceneManager.Instance.ChangeNextScene();
+    }
+
+    private IEnumerator IStartNarrationSession()
+    {
+
+
+        yield return null;
+    }
+
+    private IEnumerator IStartGameSession()
+    {
+
+
+        yield return null;
     }
 
     #endregion CUSTOM_FUNCTIONS

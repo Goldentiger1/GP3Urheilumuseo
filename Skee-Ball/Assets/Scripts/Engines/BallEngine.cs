@@ -68,7 +68,7 @@ public class BallEngine : Throwable
 
     private void Start()
     {
-        LevelManager.Instance.AddLevelBasketBall(this);
+        LevelManager.Instance.AddBasketball(this);
 
         rigidbodyStartPosition = rigidbody.transform.position;
         rigidbodyStartRotation = rigidbody.transform.rotation;

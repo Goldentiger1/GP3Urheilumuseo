@@ -7,14 +7,15 @@ public class LevelManager : Singelton<LevelManager>
 {
     #region VARIABLES
 
-    private Coroutine iStartTimer;
+    private Coroutine iStartGame_Coroutine;
+    private Coroutine iStartTimer_Coroutine;
 
     [Range(0, 200)]
     public float LevelTime = 60f;
 
     private const int MAX_SCORE_AMOUNT = 10;
 
-    private Stack<BallEngine> basketBalls = new Stack<BallEngine>();
+    private Stack<BallEngine> basketballs = new Stack<BallEngine>();
 
     public ScorePanel CurrentScorePanel { get; set; }
 
@@ -26,26 +27,29 @@ public class LevelManager : Singelton<LevelManager>
 
     #region PROPERTIES
 
-
+    public bool IsGameStarted
+    {
+        get;
+        set;
+    }
 
     #endregion PROPERTIES
 
     #region UNITY_FUNCTIONS
 
 
-
     #endregion UNITY_FUNCTIONS
 
     #region CUSTOM_FUNCTIONS
 
-    public void AddLevelBasketBall(BallEngine ballEngine)
+    public void AddBasketball(BallEngine ballEngine)
     {
-        basketBalls.Push(ballEngine);
+        basketballs.Push(ballEngine);
     }
 
     public void ClearBasketBalls()
     {
-        basketBalls.Clear();
+        basketballs.Clear();
     }
 
     public void UpdateScore(Transform hitTransform)
@@ -56,16 +60,17 @@ public class LevelManager : Singelton<LevelManager>
         CurrentScorePanel.UpdateScoreDisplayText(totalScore);
     }
 
+    public void StartScene()
+    {
+        if (iStartGame_Coroutine == null)
+            iStartGame_Coroutine = StartCoroutine(IStartScene());
+    }
+
     private void StartLevelTimer()
     {
-        if (SceneManager.Instance.IsFirstScene)
+        if (iStartTimer_Coroutine == null)
         {
-            return;
-        }
-
-        if (iStartTimer == null)
-        {
-            iStartTimer = StartCoroutine(IStartLevelTimer());
+            iStartTimer_Coroutine = StartCoroutine(IStartLevelTimer());
         }
     }
 
@@ -89,32 +94,53 @@ public class LevelManager : Singelton<LevelManager>
 
         SceneManager.Instance.ChangeNextScene();
 
-        iStartTimer = null;
+        iStartTimer_Coroutine = null;
 
         yield return null;
     }
 
     public void ResetBallPostions()
     {
-        foreach (var basketBall in basketBalls)
+        foreach (var basketBall in basketballs)
         {
             basketBall.ResetPosition();
         }
     }
 
-    public void StartGame(SceneData CurrentScene)
+    private IEnumerator IStartScene()
     {
+        var currentScene = SceneManager.Instance.CurrentScene;
+
         totalScore = 0;
-        StartLevelTimer();
+        IsGameStarted = false;
 
         UIManager.Instance.FadeScreenOut();
+        AudioPlayer.Instance.PlayMusicTrack(currentScene.Index);
 
-        AudioPlayer.Instance.PlayMusicTrack(CurrentScene.Index);
+        if (SceneManager.Instance.IsFirstScene == false)
+        {
+            if (currentScene.NarrationIndex != 0)
+            {
+                AudioPlayer.Instance.PlayNarration(currentScene.NarrationIndex);
+            }
 
-        if (CurrentScene.NarrationIndex != 0)
-            AudioPlayer.Instance.PlayNarration(CurrentScene.NarrationIndex);
+            if (CurrentScorePanel != null)
+            {
+                CurrentScorePanel.UpdateTimeDisplayText(LevelTime);
+            }
 
-        LocalizationManager.Instance.ChangeTextToNewLanguage();
+            yield return new WaitUntil(() => IsGameStarted);
+
+            StartLevelTimer();
+
+            LocalizationManager.Instance.ChangeTextToNewLanguage();
+
+            iStartGame_Coroutine = null;
+
+            yield return null;
+        }
+
+
     }
 
     #endregion CUSTOM_FUNCTIONS

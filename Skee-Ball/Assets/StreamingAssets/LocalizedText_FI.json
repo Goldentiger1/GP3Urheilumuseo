@@ -4,6 +4,7 @@
 		{"Key":"ConfirmOptions","Value":"HYVÄKSY"},
 		{"Key":"Tutorial 1","Value":"OSOITA PALLOA JA PAINA SEKÄ PIDÄ LIIPASINTA POHJASSA."},
 		{"Key":"Tutorial 2","Value":"HEILAUTA OHJAINTA JA PÄÄSTÄ LIIPAISIMESTA HEITTÄÄKSESI PALLOA. YRITÄ OSUA EDESSÄSI OLEVAAN MAALITAULUUN."},
+		{"Key":"Close","Value":"SULJE"},
 		{"Key":"StartButton","Value":"ALOITA"},
 		{"Key":"ResetButton","Value":"RESETOI"},
 		{"Key":"QuitButton","Value":"POISTU"},

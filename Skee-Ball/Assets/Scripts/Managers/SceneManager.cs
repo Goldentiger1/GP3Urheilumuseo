@@ -77,7 +77,7 @@ public class SceneManager : Singelton<SceneManager>
 
     private void Start()
     {
-        LevelManager.Instance.StartGame(CurrentScene);
+        LevelManager.Instance.StartScene();
     }
 
     #endregion UNITY_FUNCTIONS

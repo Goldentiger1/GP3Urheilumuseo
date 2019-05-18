@@ -46,8 +46,8 @@ public class Narration : Sound
 
             break;
         }
-        
-        NarrationPanel.Instance.ShowPanel(audioSource.clip.name);
+
+        UIManager.Instance.ShowNarrationPanel(audioSource.clip.name);
         audioSource.Play();
         //Debug.LogWarning(Name + " PLAY ( Audio clip: " + audioSource.clip.name + " )");
     }
@@ -58,6 +58,6 @@ public class Narration : Sound
             return;
 
         audioSource.Stop();
-        NarrationPanel.Instance.ClosePanel();
+        UIManager.Instance.HideHUD();
     }
 }

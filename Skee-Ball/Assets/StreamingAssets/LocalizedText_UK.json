@@ -4,6 +4,7 @@
 		{"Key":"ConfirmOptions","Value":"CONFIRM"},
 		{"Key":"Tutorial 1","Value":"HINT 1"},
 		{"Key":"Tutorial 2","Value":"HINT 2"},
+		{"Key":"Close","Value":"CLOSE"},
 		{"Key":"StartButton","Value":"START"},
 		{"Key":"ResetButton","Value":"RESET"},
 		{"Key":"QuitButton","Value":"QUIT"},

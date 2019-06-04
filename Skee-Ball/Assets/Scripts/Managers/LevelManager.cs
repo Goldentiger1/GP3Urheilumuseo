@@ -141,7 +141,10 @@ public class LevelManager : Singelton<LevelManager>
             yield return new WaitUntil(() => IsGameStarted);
 
             totalScore = 0;
-  
+
+            CurrentScorePanel.UpdateScoreDisplayText(totalScore);
+
+
             StartLevelTimer();        
 
             iStartGame_Coroutine = null;

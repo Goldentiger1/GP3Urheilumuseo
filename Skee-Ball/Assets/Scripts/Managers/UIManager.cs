@@ -16,7 +16,7 @@ public class UIManager : Singelton<UIManager>
     private UI_Panel currentPanel;
 
     private readonly float yOffset = 1f;
-    private readonly float zOffset = 1.2f;
+    private readonly float zOffset = .6f;
     private readonly float smoothMultiplier = 0.6f;
 
     private Coroutine iShowHUD_Coroutine;

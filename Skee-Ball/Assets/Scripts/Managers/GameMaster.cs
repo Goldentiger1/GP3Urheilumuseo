@@ -21,7 +21,7 @@ public class GameMaster : SingeltonPersistant<GameMaster>
     {
         get
         {
-            return Player.instance.feetPositionGuess + new Vector3(0, 1, 1);
+            return Player.instance.feetPositionGuess + new Vector3(0, .5f, .5f);
         }
     }
 

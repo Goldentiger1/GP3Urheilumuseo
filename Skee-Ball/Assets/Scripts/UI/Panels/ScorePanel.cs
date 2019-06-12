@@ -18,7 +18,7 @@ public class ScorePanel : UI_Panel
 
     public void UpdateScoreDisplayText(int newValue)
     {
-        scoreDisplayText.text = ": " + newValue.ToString();
+        scoreDisplayText.text = " " + newValue.ToString();
     }
 
     public void UpdateTimeDisplayText(float newValue)

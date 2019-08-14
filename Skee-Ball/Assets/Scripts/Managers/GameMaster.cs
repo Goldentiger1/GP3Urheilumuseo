@@ -131,7 +131,6 @@ public class GameMaster : SingeltonPersistant<GameMaster>
         AudioManager.Instance.FadeChannelVolume("Music", 1, audioFadeInDuration);
         AudioPlayer.Instance.PlayMusicTrack(CurrentSceneIndex);
 
-
         AudioPlayer.Instance.PlayNarration(CurrentSceneIndex);
         LocalizationManager.Instance.ChangeTextToNewLanguage();
 

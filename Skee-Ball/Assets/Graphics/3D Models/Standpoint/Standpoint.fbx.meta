@@ -1,0 +1,128 @@
+fileFormatVersion: 2
+guid: a23bc40f2aeaa034ca320bff08cdffd5
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Arrow_Icon
+    100002: Locked_Icon
+    100004: //RootNode
+    100006: Standpoint
+    100008: Standpoint_mesh
+    100010: SwitchScene_Icon
+    100012: teleport_marker_icons
+    100014: teleport_marker_icons_end
+    100016: teleport_marker_icons_end_end
+    100018: teleport_marker_icons_end_end_end
+    100020: teleport_marker_lookat_joint
+    400000: Arrow_Icon
+    400002: Locked_Icon
+    400004: //RootNode
+    400006: Standpoint
+    400008: Standpoint_mesh
+    400010: SwitchScene_Icon
+    400012: teleport_marker_icons
+    400014: teleport_marker_icons_end
+    400016: teleport_marker_icons_end_end
+    400018: teleport_marker_icons_end_end_end
+    400020: teleport_marker_lookat_joint
+    2100000: Standpoint_Visible
+    2300000: Arrow_Icon
+    2300002: Locked_Icon
+    2300004: Standpoint_mesh
+    2300006: SwitchScene_Icon
+    3300000: Arrow_Icon
+    3300002: Locked_Icon
+    3300004: Standpoint_mesh
+    3300006: SwitchScene_Icon
+    4300000: Locked_Icon
+    4300002: Arrow_Icon
+    4300004: SwitchScene_Icon
+    4300006: Standpoint_mesh
+    7400000: Standpoint|Standpoint|Standpoint|Standpoint|Standpoint|teleport_marker|Tak
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

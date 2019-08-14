@@ -36,6 +36,8 @@ public class AudioPlayer : Singelton<AudioPlayer>
 
     public void PlayMusicTrack(int sceneIndex)
     {
+        
+
         MusicTracks[sceneIndex].PlayTrack();
     }
 

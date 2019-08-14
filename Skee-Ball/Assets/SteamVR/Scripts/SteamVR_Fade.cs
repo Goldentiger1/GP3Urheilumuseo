@@ -60,8 +60,6 @@ namespace Valve.VR
         {
             IsFading = true;
 
-            // !!!
-
             if (duration > 0.0f)
             {
                 //Debug.LogError("IF");
@@ -72,9 +70,6 @@ namespace Valve.VR
             {
                 currentColor = newColor;
             }
-
-            //Debug.LogError("ELSE");
-            IsFading = false;
         }
 
         static Material fadeMaterial = null;
@@ -106,6 +101,9 @@ namespace Valve.VR
                 {
                     currentColor = targetColor;
                     deltaColor = new Color(0, 0, 0, 0);
+
+                    Debug.LogError("ELSE");
+                    IsFading = false;
                 }
                 else
                 {
